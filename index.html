@@ -23,7 +23,6 @@
     <meta name="twitter:description" content="System som tänker med er. Vi bygger er framtidssäkra, intelligenta AI-arkitektur.">
     
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KRLNF7DHVJ"></script>
@@ -42,7 +41,9 @@
         })(window, document, "clarity", "script", "s6ismr0411");
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FORENSISK ÅTGÄRD: Ersatt script-baserad Tailwind med stabil CSS-version -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -70,6 +71,40 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="icon" href="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg">
     <style>
+        /* --- TAILWIND V3 COMPATIBILITY PATCH (FORENSISK ÅTGÄRD) --- */
+        /* Eftersom vi bytte till CSS-versionen (v2) måste vi manuellt definiera v3-specifika färger */
+        .text-sky-100 { color: #e0f2fe !important; }
+        .text-sky-200 { color: #bae6fd !important; }
+        .text-sky-300 { color: #7dd3fc !important; }
+        .text-sky-400 { color: #38bdf8 !important; }
+        .bg-sky-700\/50 { background-color: rgba(3, 105, 161, 0.5) !important; }
+        .bg-sky-800\/50 { background-color: rgba(7, 89, 133, 0.5) !important; }
+        .bg-sky-900\/70 { background-color: rgba(12, 74, 110, 0.7) !important; }
+        .border-sky-700\/50 { border-color: rgba(3, 105, 161, 0.5) !important; }
+        .border-sky-800\/50 { border-color: rgba(7, 89, 133, 0.5) !important; }
+        
+        /* NÖD-FÄRGER (Mörkt läge som standard) */
+        .bg-nord-sym-deep-space-blue { background-color: #0c1427 !important; }
+        .bg-nord-sym-deep-space-blue\/95 { background-color: rgba(12, 20, 39, 0.95) !important; }
+        .bg-nord-sym-deep-space-blue\/80 { background-color: rgba(12, 20, 39, 0.8) !important; }
+        .bg-nord-sym-deep-space-blue\/50 { background-color: rgba(12, 20, 39, 0.5) !important; }
+        
+        .backdrop-blur-sm { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+        .backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        
+        /* --- OPERATION BALANS: LAYOUT-SÄKRING --- */
+        /* Dessa regler ser till att dölja/visa element korrekt även om Tailwind v2 laddas långsamt eller blockeras */
+        .hidden { display: none !important; }
+        .flex { display: flex !important; }
+        .block { display: block !important; }
+        
+        @media (min-width: 768px) {
+            .md\:flex { display: flex !important; }
+            .md\:hidden { display: none !important; }
+            .md\:block { display: block !important; }
+        }
+        /* --- SLUT PÅ PATCH --- */
+
         html {
             /* scroll-behavior: smooth; */ /* BORTTAGEN FÖR ATT LÖSA MOBIL SCROLL-KONFLIKT */
         }
@@ -218,7 +253,7 @@
         
         /* Header */
         body.light-theme #header {
-            background-color: var(--nord-sym-blueprint-bg);
+            background-color: var(--nord-sym-blueprint-bg) !important; /* VIKTIGT: Tvinga vit bakgrund */
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
             border-bottom: 1px solid var(--nord-sym-blueprint-lines);
@@ -227,26 +262,26 @@
         
         /* Nav-länkar */
         body.light-theme .nav-link {
-            color: var(--nord-sym-blueprint-ink);
+            color: var(--nord-sym-blueprint-ink) !important; /* VIKTIGT: Tvinga mörk text */
             opacity: 0.8;
         }
         body.light-theme .nav-link:hover {
-            color: var(--nord-sym-blueprint-cyan);
+            color: var(--nord-sym-blueprint-cyan) !important;
             opacity: 1;
         }
         body.light-theme .nav-link.active {
-            color: var(--nord-sym-blueprint-cyan);
+            color: var(--nord-sym-blueprint-cyan) !important;
             font-weight: 700;
             opacity: 1;
         }
         
         /* Temaknapp (Ljust läge) */
         body.light-theme .theme-toggle-btn {
-            color: var(--nord-sym-blueprint-ink);
+            color: var(--nord-sym-blueprint-ink) !important; /* VIKTIGT: Synlig ikon */
             opacity: 0.7;
         }
         body.light-theme .theme-toggle-btn:hover {
-            color: var(--nord-sym-blueprint-cyan);
+            color: var(--nord-sym-blueprint-cyan) !important;
             background-color: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
             transform: scale(1.1) rotate(-15deg); /* Roterar åt andra hållet */
             opacity: 1;
@@ -256,7 +291,7 @@
         body.light-theme .btn-cta-revised {
             background: transparent;
             border: 2px solid var(--nord-sym-blueprint-ink);
-            color: var(--nord-sym-blueprint-ink);
+            color: var(--nord-sym-blueprint-ink) !important;
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
             box-shadow: none;
@@ -264,24 +299,24 @@
         body.light-theme .btn-cta-revised:hover {
             background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
             border-color: var(--nord-sym-blueprint-cyan);
-            color: var(--nord-sym-blueprint-cyan);
+            color: var(--nord-sym-blueprint-cyan) !important;
             box-shadow: 0 0 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
             transform: translateY(-3px) scale(1.03); /* Behåll hover-effekt */
         }
         
         /* Mobilmeny-bakgrund */
         body.light-theme #mobile-menu {
-            background-color: var(--nord-sym-blueprint-bg);
+            background-color: var(--nord-sym-blueprint-bg) !important;
             backdrop-filter: none;
         }
         body.light-theme #mobile-menu a {
-            color: var(--nord-sym-blueprint-ink);
+            color: var(--nord-sym-blueprint-ink) !important;
             opacity: 0.8;
             border-color: var(--nord-sym-blueprint-lines-faint);
         }
          body.light-theme #mobile-menu a:hover {
-            background-color: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.05);
-            color: var(--nord-sym-blueprint-cyan);
+            background-color: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.05) !important;
+            color: var(--nord-sym-blueprint-cyan) !important;
             opacity: 1;
         }
 
@@ -558,23 +593,25 @@
 
         /* Footer (Blåkopia) */
         body.light-theme #main-footer {
-            background-color: var(--nord-sym-blueprint-bg);
+            background-color: var(--nord-sym-blueprint-bg) !important; /* VIKTIGT: Tvinga vit bakgrund */
             border: 1px solid var(--nord-sym-blueprint-lines);
             border-top: 1px solid var(--nord-sym-blueprint-lines); /* Dubbel spec. för säkerhet */
             box-shadow: none;
         }
         body.light-theme .footer-quicklinks .font-semibold,
         body.light-theme .nordsym-logo-star {
-            color: var(--nord-sym-blueprint-ink);
+            color: var(--nord-sym-blueprint-ink) !important;
             animation: none; /* Ta bort stjärn-glöd */
         }
         body.light-theme .footer-link,
-        body.light-theme #main-footer .text-xs {
-            color: var(--nord-sym-blueprint-ink) !important; /* Tailwind override */
+        body.light-theme #main-footer .text-xs,
+        body.light-theme #main-footer p,
+        body.light-theme #main-footer span {
+            color: var(--nord-sym-blueprint-ink) !important; /* VIKTIGT: Tailwind override */
             opacity: 0.8;
         }
         body.light-theme .footer-link:hover {
-            color: var(--nord-sym-blueprint-cyan);
+            color: var(--nord-sym-blueprint-cyan) !important;
             opacity: 1;
         }
         body.light-theme #main-footer .border-sky-700\/50 {
@@ -872,10 +909,14 @@
             opacity: 0.7;
         }
         body.light-theme #workshop-onboarding button:hover {
-            background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
-            color: var(--nord-sym-blueprint-cyan);
-            opacity: 1;
+             opacity: 1;
         }
+
+        /* --- NYTT: AI-First Spel (Easter Egg) --- */
+        body.light-theme #ai-first-ship-icon {
+            border-bottom-color: var(--nord-sym-blueprint-cyan);
+        }
+        /* --- Slut på AI-First Spel --- */
 
 
         /* --- VENNDIAGRAM-HARMONISERING --- */
@@ -2160,6 +2201,97 @@
             background-color: rgba(var(--nord-sym-cyan-rgb), 0.15);
             color: var(--nord-sym-cyan);
         }
+
+        /* --- NYTT: STEG 1.3 (CSS-regler för AI-First Spelet) --- */
+        
+        /* Döljer spel-elementen som standard */
+        .ai-pulse {
+            display: none;
+            position: fixed;
+            z-index: 100;
+        }
+
+        /* Styling för spelarens skepp (återanvänder befintlig ikon) */
+        .ai-ship {
+            /* Ikonen #ai-first-ship-icon är redan 'absolute' och har rätt stil.
+               Vi behöver en klass för att hantera dess 'fixed' position under spelet.
+               Vi lägger till 'will-change' för prestanda.
+            */
+            will-change: left, bottom, transform;
+            transition: left 0.1s linear; /* För mjuk rörelse */
+            z-index: 101; /* STEG 1: KRITISK BUGGFIX - Gör skeppet synligt ovanför sköldar/fiender. */
+        }
+
+        /* Styling för pulsen som skjuts */
+        .ai-pulse {
+            display: block;
+            width: 6px; /* Lite bredare */
+            height: 28px; /* Lite längre */
+            /* Byt ut platt färg mot en gradient */
+            background: linear-gradient(
+                to top,
+                rgba(var(--nord-sym-cyan-rgb), 0.5) 0%,
+                rgba(var(--nord-sym-cyan-rgb), 1) 50%,
+                #ffffff 100%
+            );
+            /* Starkare, snyggare skugga */
+            box-shadow: 0 0 15px 5px rgba(var(--nord-sym-cyan-rgb), 0.7);
+            border-radius: 3px;
+            will-change: top;
+        }
+
+        /* Ny klass för korten när de är i "spel-läge".
+           Vi kan inte animera .arkitektur-card direkt, eftersom
+           Tailwinds grid-klasser stör 'position: fixed'.
+           Vi kommer att klona dem eller applicera denna klass.
+        */
+        .invader-card-game {
+            position: fixed;
+            z-index: 100;
+            /* Säkerställer att korten behåller sin stil */
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.15);
+            padding: 2.5rem 2rem;
+            border-radius: 1.5rem;
+            width: var(--invader-width, 400px); /* Bredd sätts via JS */
+            height: var(--invader-height, 250px); /* Höjd sätts via JS */
+            will-change: transform, opacity;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        /* En body-klass för att dölja scrollbars under spelet */
+        body.game-active {
+            overflow: hidden !important;
+        }
+        /* --- SLUT PÅ STEG 1.3 --- */
+
+        /* --- NYTT: STEG 3.1 (Fiende-Triangel CSS) --- */
+        .ai-enemy-triangle {
+            position: fixed;
+            z-index: 100;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 25px solid #FF4136; /* Röd färg */
+            filter: drop-shadow(0 0 5px rgba(255, 65, 54, 0.7));
+            will-change: transform, opacity;
+            transition: opacity 0.3s ease;
+        }
+        /* --- SLUT PÅ STEG 3.1 --- */
+
+        /* --- NYTT: STEG 3.2 (Fiende-Skott CSS) --- */
+        .ai-enemy-pulse {
+            position: fixed;
+            z-index: 100;
+            width: 5px;
+            height: 15px;
+            background-color: var(--nord-sym-orange); /* Använder temats orangea färg */
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+            will-change: top;
+        }
+        /* --- SLUT PÅ STEG 3.2 --- */
     </style>
 </head>
 <body class="antialiased">
@@ -2312,7 +2444,7 @@
         <section id="om-oss" class="space-background-section page-content-padding" style="display: none;">
             <div class="section-content-wrapper max-w-5xl mx-auto text-lg text-sky-100 leading-relaxed">
                 <div class="text-center mb-16">
-                    <h2 class="section-title text-4xl md:text-5xl">Vår Arkitektur: AI som Operativsystem</h2>
+                    <h2 id="ai-first-game-title" class="section-title text-4xl md:text-5xl">Vår Arkitektur: <span>AI som Operativsystem</span></h2>
                     <p class="mt-6 max-w-3xl mx-auto">
                         Vad innebär ett <span class="interactive-ai-first-text">AI-First</span> Operativsystem? För konkurrenter är AI ett verktyg man lägger ovanpå gamla processer. För oss är det <strong>själva operativsystemet</strong>. Hela vår arkitektur – från första idé till driftsatt system – är byggd <em>för</em> och <em>med</em> intelligens. Skillnaden är fundamental: De bygger statisk kod som hanterar uppgifter. Vi bygger dynamiska, intelligenta system som förstår er affärslogik och blir smartare över tid.
                     </p>
@@ -2349,7 +2481,13 @@
                     </div>
                 </div>
                 
-                <div class="text-center mt-16 border-t border-sky-800/50 pt-16">
+                <div class="text-center mt-16 border-t border-sky-800/50 pt-16 relative">
+                    <!-- NYTT: AI-First Spel (Easter Egg) Skepp -->
+                    <div id="ai-first-ship-icon" class="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0"
+                         style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 15px solid var(--nord-sym-cyan);">
+                    </div>
+                    <!-- Slut på AI-First Spel -->
+
                     <h3 class="text-3xl font-bold text-white">Redo att bygga med 4x hastighet?</h3>
                     <p class="text-lg text-content-dark-bg max-w-2xl mx-auto mt-4 mb-8">Boka ett strategisamtal och låt oss visa hur vår AI-drivna arkitektur levererar värde med oöverträffad hastighet och precision.</p>
                     <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised px-10 py-4 text-lg">Boka Strategisamtal</a>
@@ -2824,6 +2962,7 @@
 
     // --- GLOBAL NAMESPACE & STATE MANAGEMENT ---
     window.nord = {};
+    window.nord.currentPage = 'hero'; // NYTT: Steg 1 (Återställning) - Sätt en standard
     window.UnifiedGeometryManager = null;
 
     const SACRED_GEOMETRY_LIBRARY = {
@@ -2931,6 +3070,19 @@
         };
 
         window.nord.showPage = function(pageId, isPoppingState = false) {
+            // --- NYTT: Steg 3 (Återställning) ---
+            // Logik för att återställa "Arkitektur-Invasion" om vi lämnar den sidan
+            if (window.nord.currentPage === 'om-oss' && 
+                pageId !== 'om-oss' && 
+                window.aiFirstGameManager && 
+                window.aiFirstGameManager.isActive) 
+            {
+                window.aiFirstGameManager.endGame();
+            }
+            // Uppdatera nuvarande sida
+            window.nord.currentPage = pageId;
+            // --- SLUT PÅ Steg 3 ---
+            
             // New chat visibility logic
             const chatContainer = document.getElementById('chat-widget-container');
             const homePageIds = ['hero', 'home-diagram-section', 'atom-gallery-section', 'home-contact-section'];
@@ -4368,6 +4520,12 @@
         new ChatManager(); // Instantiate the new chat manager
         new ThemeManager(); // <-- NY TEMAHANTERARE
 
+        // --- NYTT: STEG 1.1 & STEG 2 (Återställning) ---
+        // Exponerar spel-managern globalt
+        window.aiFirstGameManager = new AIFirstGameManager();
+        window.aiFirstGameManager.init();
+        // --- SLUT PÅ STEG 1.1 & 2 ---
+
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     });
 
@@ -5397,6 +5555,782 @@
             this.formElement.innerHTML = errorHTML;
         }
     }
+
+    // --- NYTT: STEG 1.1 (Stomme för AI-First Spelet) ---
+    class AIFirstGameManager {
+        constructor() {
+            this.isActive = false;
+            this.gameTrigger = null;
+            this.playerShip = null;
+            this.invaderCards = [];
+            
+            // NYTT: Steg 2.1 - State för spelaren
+            this.playerMovement = { left: false, right: false, up: false, down: false }; // UPPDATERAD
+            
+            // NYTT: Steg 2.2 - State för skjutmekanik
+            this.pulses = []; // Håller reda på skott
+            this.canFire = true; // För skjut-cooldown
+            
+            // NYTT: Steg 3.1 - State för fiender
+            this.enemies = []; // Håller reda på fiender
+            
+            // NYTT: Steg 3.2 - State för fiendernas rörelse och skott
+            this.enemyPulses = [];
+            
+            // STEG 5: "Jobbig" AI - Ta bort den globala rörelselogiken.
+            /*
+            this.enemyMovement = {
+                direction: 1,       // 1 för höger, -1 för vänster
+                speed: 10,          // Pixlar per rörelsesteg
+                moveTimer: 0,
+                moveInterval: 60    // Rör sig varje 60 frames (ca 1 sekund)
+            };
+            */
+            this.enemyFireTimer = 0;
+            this.enemyFireInterval = 100; // Skjuter ca var 1.6 sekund
+
+            // BORTTAGET: Steg 3.0 (KORRIGERING) - Korten är nu sköldar, inte fiender.
+            // this.invaderDirection = 1; 
+            // this.invaderSpeed = 2; 
+            // this.invaderMoveTimer = 0; 
+            // this.invaderMoveInterval = 20; 
+            // this.invaderBounds = {}; 
+
+            // NYTT: Steg 2.1 - Bind "this" för event-lyssnare
+            this.boundHandleKeyDown = this.handleKeyDown.bind(this);
+            this.boundHandleKeyUp = this.handleKeyUp.bind(this);
+
+            console.log("AIFirstGameManager Stomme Laddad."); // Verifiering
+        }
+
+        init() {
+            // --- NYTT: STEG 1.2 (Koppla Event-lyssnare) ---
+            // KORRIGERING: Ändrar till den glödande texten i brödtexten.
+            this.gameTrigger = document.querySelector('#om-oss .interactive-ai-first-text');
+            
+            if (this.gameTrigger) {
+                // Vi måste binda 'this' så att 'startGame' anropas med rätt kontext (klassen AIFirstGameManager)
+                this.boundStartGame = this.startGame.bind(this);
+                this.gameTrigger.addEventListener('click', this.boundStartGame);
+            } else {
+                // Lägger till en varning om vi inte hittar knappen, bra för felsökning.
+                // KORRIGERING: Uppdaterar varningsmeddelandet
+                console.warn("AIFirstGameManager: Kunde inte hitta spel-triggern (#om-oss .interactive-ai-first-text).");
+            }
+            // --- SLUT PÅ STEG 1.2 ---
+        }
+
+        startGame() {
+            // --- NYTT: STEG 1.2 (Verifiering) ---
+            if (this.isActive) return; // Förhindrar att spelet startas flera gånger
+            // --- SLUT PÅ STEG 1.2 ---
+            console.log("Steg 1.4: Spelet initieras, tonar ut text...");
+            this.isActive = true;
+            document.body.classList.add('game-active');
+
+            // --- NYTT: STEG 1.4 (Tona ut text-element) ---
+
+            // 1. Hitta elementen som ska tonas ut
+            const titleElements = document.querySelectorAll('#om-oss .text-center.mb-16 > *');
+            // 2. Hitta CTA-elementen, MEN exkludera skeppet (#ai-first-ship-icon)
+            const ctaElements = document.querySelectorAll('#om-oss .text-center.mt-16 > *:not(#ai-first-ship-icon)');
+
+            // 3. Skapa en GSAP-tidslinje för att animera ut dem
+            const tl = gsap.timeline({
+                // KORRIGERING: Anropa positionGameElements
+                onComplete: () => {
+                    // KORRIGERING (Steg 2.0): Byt till omedelbar aktivering
+                    // this.positionGameElements(); // Gå till Steg 1.5
+                    this.activateGameElements(); // NYTT: Steg 2.0
+                }
+            });
+
+            // KORRIGERING: Ta bort all kod som animerar skepp och kort härifrån.
+            // Lägg till text-animationen
+            tl.to([...titleElements, ...ctaElements], {
+                opacity: 0,
+                y: -10, // Lyft dem lätt
+                duration: 0.5,
+                ease: 'power2.in',
+                stagger: 0.05 // Tona ut dem en i taget
+            });
+       }
+
+       // BORTTAGEN (Steg 2.0): Ersatt av activateGameElements
+       /*
+       positionGameElements() {
+            console.log("Steg 1.5: Positionerar spelelement...");
+            
+            // 1. Hämta elementen
+            this.playerShip = document.getElementById('ai-first-ship-icon');
+            this.invaderCards = Array.from(document.querySelectorAll('#om-oss .arkitektur-card'));
+            
+            if (!this.playerShip || this.invaderCards.length !== 4) {
+                console.error("Kunde inte hitta alla spelelement. Avbryter.");
+                this.endGame(true); // Återställ omedelbart
+                return;
+            }
+
+            // 2. Mät och lås skeppet
+            const shipRect = this.playerShip.getBoundingClientRect();
+            gsap.set(this.playerShip, {
+                position: 'fixed',
+                top: shipRect.top,
+                left: shipRect.left,
+                width: shipRect.width,
+                height: shipRect.height,
+                margin: 0 // Nollställ eventuella marginaler
+            });
+            this.playerShip.classList.add('ai-ship');
+
+            // 3. Mät och lås korten (fienderna)
+            const cardRects = this.invaderCards.map(card => {
+                const rect = card.getBoundingClientRect();
+                // Applicera .invader-card-game klassen och sätt position
+                card.classList.add('invader-card-game');
+                gsap.set(card, {
+                    position: 'fixed', // Dubbelkolla att det är fixed
+                    top: rect.top,
+                    left: rect.left,
+                    width: rect.width, // Behåll ursprunglig bredd
+                    height: rect.height, // Behåll ursprunglig höjd
+                    margin: 0,
+                    // Sätt CSS-variablerna som klassen förväntar sig
+                    '--invader-width': `${rect.width}px`,
+                    '--invader-height': `${rect.height}px`
+                });
+                return rect; // Vi behöver inte returnera något specifikt här
+            });
+
+            // 4. Skapa animationen till spel-positioner
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    this.setupInputListeners(); // NYTT: Steg 2.1
+                    // BORTTAGET: Steg 3.0 (KORRIGERING)
+                    // this.calculateInvaderBounds(); // NYTT: Steg 3.1
+                    this.startGameLoop(); // Gå till Steg 2.1
+                }
+            });
+
+            // Animera skeppet till botten
+            tl.to(this.playerShip, {
+                top: 'auto', // Ta bort top
+                bottom: '5vh',
+                left: '50vw',
+                xPercent: -50, // Centrera exakt
+                duration: 0.8,
+                ease: 'power2.out'
+            }, 0); // Starta vid 0 sekunder
+
+            // Animera korten till en 2x2-grid högst upp
+            // Vi behöver beräkna positionerna baserat på kortens bredd för att centrera dem
+            const cardWidth = this.invaderCards[0].offsetWidth;
+            const screenWidth = window.innerWidth;
+            const gap = 50; // Mellanrum mellan korten
+
+            // Beräkna vänster-positioner för en centrerad 2x2 grid
+            const leftPos = (screenWidth / 2) - cardWidth - (gap / 2);
+            const rightPos = (screenWidth / 2) + (gap / 2);
+
+            tl.to(this.invaderCards[0], { top: '10vh', left: leftPos, duration: 0.8, ease: 'power2.out' }, 0);
+            tl.to(this.invaderCards[1], { top: '10vh', left: rightPos, duration: 0.8, ease: 'power2.out' }, 0);
+            tl.to(this.invaderCards[2], { top: '30vh', left: leftPos, duration: 0.8, ease: 'power2.out' }, 0);
+            tl.to(this.invaderCards[3], { top: '30vh', left: rightPos, duration: 0.8, ease: 'power2.out' }, 0);
+       }
+       */
+
+       // NYTT (Steg 2.0): Omedelbar aktivering
+       activateGameElements() {
+            console.log("Steg 2.0: Omedelbar aktivering...");
+            
+            // 1. Hämta elementen
+            this.playerShip = document.getElementById('ai-first-ship-icon');
+            
+            // STEG 3: Sköld-hälsa. Konvertera element-arrayen till en array av objekt.
+            this.invaderCards = Array.from(document.querySelectorAll('#om-oss .arkitektur-card')).map(cardEl => ({
+                element: cardEl,
+                health: 5, // 5 träffar
+                initialOpacity: 1 // Start-opacity
+            }));
+            
+            if (!this.playerShip || this.invaderCards.length !== 4) {
+                console.error("Kunde inte hitta alla spelelement. Avbryter.");
+                this.endGame(true); // Återställ omedelbart
+                return;
+            }
+
+            // 2. Mät och LÅS skeppet (ingen animation)
+            const shipRect = this.playerShip.getBoundingClientRect();
+            gsap.set(this.playerShip, {
+                position: 'fixed',
+                top: shipRect.top,
+                left: shipRect.left,
+                width: shipRect.width,
+                height: shipRect.height,
+                margin: 0,
+                // Sätt startposition för kontrollen (botten, centrerat)
+                top: 'auto',
+                bottom: '5vh',
+                left: '50vw',
+                xPercent: -50 // Centrera exakt
+            });
+            this.playerShip.classList.add('ai-ship');
+
+            // 3. Mät och LÅS sköldarna (ingen animation)
+            // const cardWidth = this.invaderCards[0].offsetWidth; // Gammal referens
+            const cardWidth = this.invaderCards[0].element.offsetWidth; // STEG 3: Ny referens
+            const screenWidth = window.innerWidth;
+            const gap = 50;
+            const leftPos = (screenWidth / 2) - cardWidth - (gap / 2);
+            const rightPos = (screenWidth / 2) + (gap / 2);
+            
+            const cardPositions = [
+                { top: '10vh', left: leftPos },
+                { top: '10vh', left: rightPos },
+                { top: '30vh', left: leftPos },
+                { top: '30vh', left: rightPos }
+            ];
+
+            // this.invaderCards.forEach((card, index) => { // Gammal referens
+            this.invaderCards.forEach((shield, index) => { // STEG 3: Ny referens
+                const card = shield.element; // Hämta DOM-elementet
+                const rect = card.getBoundingClientRect();
+                card.classList.add('invader-card-game'); // Din CSS-klass för sköldar
+                gsap.set(card, {
+                    position: 'fixed',
+                    top: rect.top, // Starta på nuvarande plats
+                    left: rect.left, // Starta på nuvarande plats
+                    width: rect.width,
+                    height: rect.height,
+                    margin: 0,
+                    '--invader-width': `${rect.width}px`,
+                    '--invader-height': `${rect.height}px`,
+                    // Sätt omedelbart till slutposition
+                    ...cardPositions[index]
+                });
+                
+                // NYTT (Steg 2.0): Lägg till en "aktiverings-glöd"
+                gsap.fromTo(card, 
+                    { opacity: 0.5, borderColor: 'rgba(var(--nord-sym-cyan-rgb), 0.2)' },
+                    { opacity: 1, borderColor: 'rgba(var(--nord-sym-cyan-rgb), 0.8)', duration: 0.5, repeat: 2, yoyo: true, ease: 'power1.inOut' }
+                );
+            });
+
+            // 4. Starta spelet OMEDELBART
+            this.setupInputListeners();
+            this.startGameLoop();
+            this.spawnEnemies(); // Nästa steg!
+       }
+
+       // --- NYTT: Den saknade funktionen från Steg 2.1 ---
+       setupInputListeners() {
+            console.log("Steg 2.1 (Korrekt): Sätter upp input-lyssnare.");
+            window.addEventListener('keydown', this.boundHandleKeyDown);
+            window.addEventListener('keyup', this.boundHandleKeyUp);
+       }
+       // --- SLUT PÅ KORRIGERING ---
+
+       // KORRIGERING: Tömmer framtida metoder
+       // NYTT: Steg 2.1 - Ta bort lyssnare
+       removeInputListeners() {
+            window.removeEventListener('keydown', this.boundHandleKeyDown);
+            window.removeEventListener('keyup', this.boundHandleKeyUp);
+       }
+
+       // KORRIGERING: Tömmer framtida metoder
+       // NYTT: Steg 2.1 - Hantera tangenttryck
+       handleKeyDown(e) {
+            if (e.key === 'ArrowLeft') {
+                this.playerMovement.left = true;
+            } else if (e.key === 'ArrowRight') {
+                this.playerMovement.right = true;
+            }
+            // NYTT: Lade till Upp/Ner
+            if (e.key === 'ArrowUp') {
+                this.playerMovement.up = true;
+            } else if (e.key === 'ArrowDown') {
+                this.playerMovement.down = true;
+            }
+            
+            // NYTT: Steg 2.2 - Hantera mellanslag
+            if (e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault(); // Förhindra att sidan scrollar
+                this.firePulse();
+            }
+        }
+
+        // KORRIGERING: Tömmer framtida metoder
+        // NYTT: Steg 2.1 - Hantera när tangent släpps
+        handleKeyUp(e) {
+            if (e.key === 'ArrowLeft') {
+                this.playerMovement.left = false;
+            } else if (e.key === 'ArrowRight') {
+                this.playerMovement.right = false;
+            }
+            // NYTT: Lade till Upp/Ner
+            if (e.key === 'ArrowUp') {
+                this.playerMovement.up = false;
+            } else if (e.key === 'ArrowDown') {
+                this.playerMovement.down = false;
+            }
+        }
+
+       // KORRIGERING: Tömmer framtida metoder
+       // NYTT: Steg 2.2 - Skjutmekanik
+       firePulse() {
+           if (!this.canFire || !this.playerShip) return;
+
+           this.canFire = false;
+           // 300ms cooldown innan man kan skjuta igen
+           setTimeout(() => { this.canFire = true; }, 300); 
+
+           const pulse = document.createElement('div');
+           pulse.className = 'ai-pulse';
+           // Lägg till pulsen i body så att 'position: fixed' fungerar
+           document.body.appendChild(pulse);
+
+           // Hämta skeppets nuvarande position
+           const shipRect = this.playerShip.getBoundingClientRect();
+           const startLeft = shipRect.left + (shipRect.width / 2) - 2; // 2 är halva pulsbredden (4px)
+           const startTop = shipRect.top;
+
+           // Lägg till i vår array för spårning (för kollisioner i Steg 3)
+           this.pulses.push(pulse);
+
+           // Animera pulsen uppåt
+           gsap.fromTo(pulse, 
+                { left: startLeft, top: startTop }, 
+                {
+                    top: -50, // Flyg utanför skärmen
+                    duration: 1.5,
+                    ease: 'linear',
+                    onComplete: () => {
+                        // Ta bort från DOM och array när den är klar
+                        pulse.remove();
+                        this.pulses = this.pulses.filter(p => p !== pulse);
+                    }
+                }
+            );
+       }
+
+       // UPPDATERAD: Steg 2.1 - Initierar spellopen
+       startGameLoop() {
+           console.log("Steg 2.1: Spellopen initierad.");
+           // Bind 'this' för requestAnimationFrame
+           this.gameLoop = this.gameLoop.bind(this);
+           requestAnimationFrame(this.gameLoop);
+       }
+
+       // KORRIGERING: Tömmer framtida metoder
+       // NYTT: Steg 2.1 - Huvud-spellopen
+       gameLoop() {
+           if (!this.isActive) return; // Stoppa loopen om spelet är över
+
+           // Uppdatera spelarens position
+           this.updatePlayer();
+
+           // NYTT: Steg 3.1 - Anropa fiende-logik
+           this.updateEnemies();
+
+           // STEG 2: Anropa den nya kollisionslogiken
+           this.checkCollisions();
+
+           // STEG 6: Våg-logik
+           if (this.enemies.length === 0 && this.isActive) {
+               console.log("Våg rensad! Ny våg inkommande...");
+               // Lägg till en liten paus innan nästa våg
+               setTimeout(() => {
+                   if (this.isActive) this.spawnEnemies();
+               }, 1000);
+           }
+
+           // Fortsätt loopen
+           requestAnimationFrame(this.gameLoop);
+       }
+
+       // KORRIGERING: Tömmer framtida metoder
+       // NYTT: Steg 2.1 - Uppdatera spelarens position
+       updatePlayer() {
+           if (!this.playerShip) return;
+
+           try {
+                // Vi använder gsap.getProperty för att läsa det 'fixed' värdet
+                const currentLeft = gsap.getProperty(this.playerShip, "left");
+                const currentBottom = gsap.getProperty(this.playerShip, "bottom"); // NYTT
+                const speed = 8;
+                let newLeft = currentLeft;
+                let newBottom = currentBottom; // NYTT
+
+                if (this.playerMovement.left) {
+                    newLeft -= speed;
+                }
+                if (this.playerMovement.right) {
+                    newLeft += speed;
+                }
+                // NYTT: Lade till Upp/Ner
+                if (this.playerMovement.up) {
+                    newBottom += speed;
+                }
+                if (this.playerMovement.down) {
+                    newBottom -= speed;
+                }
+
+                // Begränsa till skärmens kanter
+                const shipWidth = this.playerShip.offsetWidth;
+                const shipHeight = this.playerShip.offsetHeight; // NYTT
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight; // NYTT
+                
+                // Säkerställ att newLeft är inom 0 och (skärmbredd - skeppsbredd)
+                newLeft = Math.max(0, Math.min(screenWidth - shipWidth, newLeft));
+                // NYTT: Begränsa newBottom
+                newBottom = Math.max(0, Math.min(screenHeight - shipHeight, newBottom));
+
+                if (newLeft !== currentLeft || newBottom !== currentBottom) { // UPPDATERAD
+                    // Använd gsap.set för omedelbar respons, ingen animation
+                    gsap.set(this.playerShip, { left: newLeft, bottom: newBottom }); // UPPDATERAD
+                }
+           } catch (e) {
+                // Om skeppet tas bort (t.ex. vid endGame) kan detta ge fel
+                console.warn("Kunde inte hämta spelarens position, spelet kanske avslutades?", e);
+           }
+       }
+ 
+       // NYTT (Steg 3.2): Tom platshållare för fiendeuppdateringar
+       // STEG 5: "Jobbig" AI - Hela denna metod skrivs om.
+       updateEnemies() {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            // Individuell rörelselogik
+            this.enemies.forEach((enemy, index) => {
+                enemy.moveTimer++;
+                if (enemy.moveTimer >= enemy.moveInterval) {
+                    enemy.moveTimer = 0;
+                    // 20% chans att byta horisontell riktning
+                    if (Math.random() < 0.2) {
+                        enemy.directionX *= -1;
+                    }
+                    // 10% chans att ändra horisontell hastighet
+                    if (Math.random() < 0.1) {
+                         enemy.speedX = (1 + Math.random()) * (enemy.directionX > 0 ? 1 : -1);
+                    }
+                    // 10% chans att ändra vertikal hastighet
+                     if (Math.random() < 0.1) {
+                        enemy.speedY = 0.3 + Math.random() * 0.3;
+                    }
+                    // Uppdatera intervall för variation
+                    enemy.moveInterval = 60 + Math.random() * 40; // 1 till 1.6 sekunder
+                }
+
+                // Applicera rörelse
+                enemy.x += enemy.speedX;
+                enemy.y += enemy.speedY; // Långsam konstant drift nedåt
+
+                // Vägg-studs
+                if ((enemy.x < 10 && enemy.speedX < 0) || (enemy.x > screenWidth - 40 && enemy.speedX > 0)) {
+                    enemy.speedX *= -1;
+                    enemy.directionX *= -1;
+                }
+
+                // Uppdatera elementets position
+                gsap.set(enemy.element, { left: enemy.x, top: enemy.y });
+
+                // STEG 6: Förlust-villkor (Fiende når botten)
+                if (enemy.y > screenHeight - 50) {
+                    console.log("En fiende nådde botten. Game Over.");
+                    this.endGame();
+                }
+            });
+            
+            // --- Skjutlogik (behålls) ---
+            this.enemyFireTimer++;
+            if (this.enemyFireTimer >= this.enemyFireInterval && this.enemies.length > 0) {
+                this.enemyFireTimer = 0;
+                this.enemyFire(); // Anropa den nya skjut-funktionen
+            }
+       }
+
+        // NYTT (Steg 3.2): Fienderna skjuter
+        // STEG 4: "Jobbig" AI - Hela denna metod skrivs om för målsökning.
+        enemyFire() {
+            if (this.enemies.length === 0) return;
+
+            // Välj en slumpmässig fiende som ska skjuta
+            const randomEnemy = this.enemies[Math.floor(Math.random() * this.enemies.length)];
+
+            // 1. Välj ett mål
+            let targetElement;
+            const validShields = this.invaderCards.filter(shield => shield.health > 0);
+            
+            // 40% chans att sikta på en sköld (om några finns kvar), annars sikta på spelaren
+            if (Math.random() < 0.4 && validShields.length > 0) {
+                targetElement = validShields[Math.floor(Math.random() * validShields.length)].element;
+            } else {
+                targetElement = this.playerShip;
+            }
+
+            if (!targetElement) return; // Om spelaren är borta?
+
+            const pulse = document.createElement('div');
+            pulse.className = 'ai-enemy-pulse';
+            document.body.appendChild(pulse);
+            this.enemyPulses.push(pulse);
+
+            // 2. Beräkna vektor och destination
+            const startLeft = randomEnemy.x + 13; // Centrum av fiendens bas
+            const startTop = randomEnemy.y + 25; // Fiendens spets
+
+            const targetRect = targetElement.getBoundingClientRect();
+            // Sikta på en slumpmässig punkt inom målet för variation
+            const targetX = targetRect.left + (targetRect.width * (0.2 + Math.random() * 0.6));
+            const targetY = targetRect.top + (targetRect.height * (0.2 + Math.random() * 0.6));
+
+            const deltaX = targetX - startLeft;
+            const deltaY = targetY - startTop;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+            
+            // Projicera vektorn långt utanför skärmen för att säkerställa att den passerar målet
+            const endX = startLeft + deltaX * (window.innerHeight / distance) * 2;
+            const endY = startTop + deltaY * (window.innerHeight / distance) * 2;
+            // Hastighet: 350 pixlar per sekund
+            const duration = distance / 350; 
+
+            // 3. Animera
+            gsap.fromTo(pulse, 
+                { left: startLeft, top: startTop }, 
+                {
+                    left: endX,
+                    top: endY,
+                    duration: Math.max(1.5, duration), // Minst 1.5 sekunders restid
+                    ease: 'linear',
+                    onComplete: () => {
+                        // Ta bort från DOM och array när den är klar
+                        pulse.remove();
+                        this.enemyPulses = this.enemyPulses.filter(p => p !== pulse);
+                    }
+                }
+            );
+        }
+
+        // STEG 2: Implementera Kollisionslogik
+        checkCollisions() {
+            if (!this.playerShip) return;
+            const playerRect = this.playerShip.getBoundingClientRect();
+
+            // Hjälpfunktion för Axis-Aligned Bounding Box (AABB) kollision
+            const isColliding = (rect1, rect2) => {
+                return !(
+                    rect1.right < rect2.left ||
+                    rect1.left > rect2.right ||
+                    rect1.bottom < rect2.top ||
+                    rect1.top > rect2.bottom
+                );
+            };
+
+            // 1. Spelarens skott mot Fiender
+            for (let i = this.pulses.length - 1; i >= 0; i--) {
+                const pulse = this.pulses[i];
+                if (!pulse) continue;
+                const pulseRect = pulse.getBoundingClientRect();
+
+                for (let j = this.enemies.length - 1; j >= 0; j--) {
+                    const enemy = this.enemies[j];
+                    const enemyRect = enemy.element.getBoundingClientRect();
+
+                    if (isColliding(pulseRect, enemyRect)) {
+                        // Träff!
+                        // Stoppa pulsens animation och ta bort den
+                        gsap.killTweensOf(pulse);
+                        pulse.remove();
+                        this.pulses.splice(i, 1);
+
+                        // Ta bort fienden
+                        enemy.element.remove();
+                        this.enemies.splice(j, 1);
+
+                        // Bryt den inre loopen eftersom pulsen är borta
+                        break; 
+                    }
+                }
+            }
+
+            // 2. Fiendens skott mot Spelaren
+            for (let i = this.enemyPulses.length - 1; i >= 0; i--) {
+                const pulse = this.enemyPulses[i];
+                if (!pulse) continue;
+                const pulseRect = pulse.getBoundingClientRect();
+
+                if (isColliding(pulseRect, playerRect)) {
+                    // Spelaren träffad!
+                    gsap.killTweensOf(pulse);
+                    pulse.remove();
+                    this.enemyPulses.splice(i, 1);
+                    
+                    console.log("Spelaren träffad! Game Over.");
+                    // Explosionseffekt och anropa endGame
+                    gsap.to(this.playerShip, { scale: 3, opacity: 0, duration: 0.3, onComplete: () => this.endGame() });
+                    
+                    return; // Stoppa all vidare kollisionskoll denna frame
+                }
+            }
+            
+            // 3. Fiendens skott mot Sköldarna
+            for (let i = this.enemyPulses.length - 1; i >= 0; i--) {
+                const pulse = this.enemyPulses[i];
+                if (!pulse) continue;
+                const pulseRect = pulse.getBoundingClientRect();
+
+                for (let j = this.invaderCards.length - 1; j >= 0; j--) {
+                    const shield = this.invaderCards[j];
+                    if (shield.health <= 0) continue; // Hoppa över förstörda sköldar
+
+                    const shieldRect = shield.element.getBoundingClientRect();
+
+                    if (isColliding(pulseRect, shieldRect)) {
+                        // Sköld träffad!
+                        gsap.killTweensOf(pulse);
+                        pulse.remove();
+                        this.enemyPulses.splice(i, 1);
+
+                        shield.health--;
+                        const newOpacity = shield.health / 5.0; // Baserat på 5 hälsa
+                        gsap.to(shield.element, { opacity: newOpacity, duration: 0.2 });
+                        
+                        if (shield.health <= 0) {
+                            console.log("En sköld är förstörd!");
+                            gsap.to(shield.element, { opacity: 0.1, duration: 0.5 }); // Låt den se förstörd ut
+                        }
+                        
+                        // Bryt den inre loopen eftersom pulsen är borta
+                        break;
+                    }
+                }
+            }
+        }
+
+        endGame(forceImmediate = false) {
+            if (!this.isActive && !forceImmediate) return; // Kör bara om spelet är aktivt
+
+            this.isActive = false; // Stoppar rAF-loopen
+            document.body.classList.remove('game-active');
+            
+            // KORRIGERING: removeInputListeners kommer anropas här senare
+            this.removeInputListeners(); // NYTT: Steg 2.1
+            console.log("Återställer 'om-oss'-sidan...");
+
+            // --- NYTT: Steg 2 (Återställning) ---
+            // Hitta elementen som doldes
+            const titleElements = document.querySelectorAll('#om-oss .text-center.mb-16 > *');
+            const ctaElements = document.querySelectorAll('#om-oss .text-center.mt-16 > *:not(#ai-first-ship-icon)');
+
+            // Återställ dem omedelbart med GSAP.set() (ingen animation)
+            gsap.set([...titleElements, ...ctaElements], {
+                opacity: 1,
+                y: 0
+            });
+            // STEG 3: Återställ sköldarnas hälsa och opacity
+            if (this.invaderCards.length > 0) {
+                this.invaderCards.forEach(shield => {
+                    gsap.set(shield.element, { clearProps: 'all' });
+                    shield.element.classList.remove('invader-card-game');
+                    shield.health = 5; // Återställ hälsa
+                });
+                this.invaderCards = [];
+            }
+            // --- SLUT PÅ Steg 1.5 Återställning ---
+
+            // --- NYTT: Steg 2.2 (Återställning av pulser) ---
+            // Uppdaterad för att döda alla tweens
+            [...this.pulses, ...this.enemyPulses].forEach(pulse => {
+                gsap.killTweensOf(pulse);
+                pulse.remove();
+            });
+            this.pulses = [];
+            this.enemyPulses = [];
+            
+            this.canFire = true; // Återställ skjut-cooldown
+            // --- SLUT PÅ Steg 2.2 Återställning ---
+
+            // --- NYTT (Steg 3.2): Återställ fiendernas skott och timers ---
+            // this.enemyPulses är redan rensad
+            // this.enemyMovement.moveTimer = 0; // STEG 5: Borttagen
+            this.enemyFireTimer = 0;
+            // this.enemyMovement.direction = 1; // STEG 5: Borttagen
+            // --- SLUT PÅ Steg 3.2 Återställning ---
+
+            // --- NYTT (Steg 2.0): Platshållare för fiende-städning ---
+            this.removeEnemies();
+        }
+
+        // --- NYTT (Steg 2.0): Platshållare ---
+        spawnEnemies() {
+            // console.log("Steg 3.1: Skapar fiender (EJ IMPLEMENTERAT)"); // Borttagen
+             console.log("Steg 3.1: Skapar fiender...");
+
+            const enemyCount = 4; // MINSKAT ANTAL: Sidan laggade med 8, testar med 4.
+            const enemyWidth = 30; // Motsvarar 2 * border-left/right
+            const enemySpacing = 20;
+            const totalWidth = (enemyCount * enemyWidth) + ((enemyCount - 1) * enemySpacing);
+            const screenWidth = window.innerWidth;
+            let startX = (screenWidth / 2) - (totalWidth / 2);
+            const startY = -50; // Starta precis ovanför skärmen
+
+            for (let i = 0; i < enemyCount; i++) {
+                const enemy = document.createElement('div');
+                enemy.className = 'ai-enemy-triangle';
+                document.body.appendChild(enemy);
+                
+                const enemyLeft = startX + i * (enemyWidth + enemySpacing);
+                
+                // Spara fiendens data
+                const enemyData = {
+                    element: enemy,
+                    x: enemyLeft,
+                    y: startY,
+                    health: 1, // (För framtida bruk)
+                    // STEG 5: Individuell AI
+                    moveTimer: Math.random() * 100, // Slumpad start-timer
+                    moveInterval: 60 + Math.random() * 40, // 1 - 1.6 sek
+                    directionX: Math.random() < 0.5 ? 1 : -1, // Startriktning
+                    speedX: (1 + Math.random()) * (Math.random() < 0.5 ? 1 : -1), // 1-2 px/frame
+                    speedY: 0.3 + Math.random() * 0.3 // 0.3-0.6 px/frame nedåt
+                };
+                
+                this.enemies.push(enemyData);
+                
+                // Placera fienden och animera in den
+                gsap.fromTo(enemy, 
+                    { left: enemyLeft, top: startY, opacity: 0 },
+                    { 
+                        top: 50, // Animera ner till sin startrad
+                        opacity: 1,
+                        duration: 0.5,
+                        delay: 0.1 * i, // Stagger-effekt
+                        ease: 'power2.out',
+                        // --- STEG 1 BUGGFIX: Synkronisera den interna positionen ---
+                        onComplete: () => {
+                            enemyData.y = 50; // Sätt den interna Y-positionen till 50
+                        }
+                        // --- SLUT PÅ BUGGFIX ---
+                    }
+                );
+            }
+        }
+
+        removeEnemies() {
+             // console.log("Steg 4.0: Tar bort fiender (EJ IMPLEMENTERAT)"); // Borttagen
+             console.log("Steg 4.0: Tar bort fiender...");
+             this.enemies.forEach(enemy => {
+                 // Ta bort från DOM
+                 enemy.element.remove();
+             });
+             // Töm arrayen
+             this.enemies = [];
+        }
+    }
+    // --- SLUT PÅ STEG 1.1 ---
+    
     </script>
 </body>
 </html>
