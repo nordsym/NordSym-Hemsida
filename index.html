@@ -14,7 +14,7 @@
     <meta property="og:locale" content="sv_SE">
     <meta property="og:title" content="NordSym AB - System som tänker med er.">
     <meta property="og:description" content="System som tänker med er. Vi bygger er framtidssäkra, intelligenta AI-arkitektur.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg">
+    <!-- Logotyp-länk borttagen tillfälligt -->
     <meta property="og:url" content="https://nordsym.com">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@NordSym">
@@ -63,13 +63,13 @@
     <link rel="preconnect" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="dns-prefetch" href="//formspree.io">
-    <link rel="preload" href="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" as="image">
+    <!-- Preload för logga borttagen -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" as="style">
     <link rel="preload" href="https://unpkg.com/@phosphor-icons/web" as="script">
 
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;500;600;700;800&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="icon" href="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg">
+    <!-- Favicon borttagen tillfälligt -->
     <style>
         /* --- TAILWIND V3 COMPATIBILITY PATCH (FORENSISK ÅTGÄRD) --- */
         /* Eftersom vi bytte till CSS-versionen (v2) måste vi manuellt definiera v3-specifika färger */
@@ -2297,15 +2297,16 @@
 <body class="antialiased">
     <header id="header" class="fixed w-full top-0 left-0 right-0 z-40 bg-nord-sym-deep-space-blue/95 transition-all duration-300">
         <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center"> 
-            <a href="#" id="header-logo-link" onclick="window.nord.handleHeaderLogoClick(event); return false;" class="flex-shrink-0">
-                <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16 md:h-20 transition-all duration-300">
+            <a href="#" id="header-logo-link" onclick="window.nord.handleHeaderLogoClick(event); return false;" class="flex-shrink-0 no-underline">
+                <!-- Text-baserad logga istället för SVG -->
+                <span class="text-2xl md:text-3xl font-bold text-white tracking-wider" style="font-family: 'Comfortaa', sans-serif;">NordSym</span>
             </a>
             <nav aria-label="Huvudnavigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
                 <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium">Hem</a>
                 <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium">Arkitektur</a>
                 <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium">System</a>
                 <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="nav-link transition-colors font-medium">Ritbordet</a>
-                <a href="#" onclick="window.nord.showPage('karriar'); return false;" data-nav="karriar" class="nav-link transition-colors font-medium">Gör din del</a>
+                <a href="#" onclick="window.nord.showPage('karriar'); return false;" data-nav="karriar" class="nav-link transition-colors font-medium">Karriär</a>
             </nav>
             <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
                 <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm">Framtidsförsäkra er verksamhet</a>
@@ -2328,7 +2329,7 @@
             <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Arkitektur</a>
             <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">System</a>
             <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Ritbordet</a>
-            <a href="#" onclick="window.nord.showPage('karriar'); return false;" data-nav="karriar" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Gör din del</a>
+            <a href="#" onclick="window.nord.showPage('karriar'); return false;" data-nav="karriar" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Karriär</a>
             <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
                 <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow">Framtidsförsäkra er verksamhet</a>
             </div>
@@ -2339,8 +2340,9 @@
         <section id="hero" class="space-background-section">
             <div class="section-content-wrapper">
                 <div class="flex flex-col items-center gap-y-8">
-                    <div id="hero-logo-wrapper" onclick="window.nord.showPage('om-oss');">
-                        <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" width="400" height="114">
+                    <div id="hero-logo-wrapper" onclick="window.nord.showPage('om-oss');" class="text-center cursor-pointer">
+                         <!-- Text-baserad logga istället för SVG -->
+                        <span class="text-6xl md:text-8xl font-bold text-white tracking-wider" style="font-family: 'Comfortaa', sans-serif; text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);">NordSym</span>
                     </div>
                     <h1 class="text-5xl md:text-6xl font-bold leading-tight text-center hero-headline-glow" style="color: var(--nord-sym-light-accent);">
                         System som tänker med er.
@@ -2778,8 +2780,9 @@
         <div class="section-content-wrapper py-10 relative z-10">
             <div class="grid md:grid-cols-3 gap-8 text-sm">
                 <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
-                    <a href="#" onclick="window.nord.showPage('hero'); return false;" class="inline-block mb-4">
-                        <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16" loading="lazy" decoding="async">
+                    <a href="#" onclick="window.nord.showPage('hero'); return false;" class="inline-block mb-4 no-underline">
+                        <!-- Text-baserad logga istället för SVG -->
+                        <span class="text-3xl font-bold text-white tracking-wider" style="font-family: 'Comfortaa', sans-serif;">NordSym</span>
                     </a>
                     <p class="text-xs text-content-dark-bg">Intelligenta system med mänsklig insikt och teknologisk precision.</p>
                 </div>
@@ -2789,7 +2792,7 @@
                         <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link">Arkitektur</a>
                         <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link">System</a>
                         <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link">Ritbordet</a>
-                        <a href="#" onclick="window.nord.showPage('karriar'); return false;" class="footer-link">Gör din del</a>
+                        <a href="#" onclick="window.nord.showPage('karriar'); return false;" class="footer-link">Karriär</a>
                     </div>
                 </div>
                 <div class="md:col-span-1 text-center md:text-left">
