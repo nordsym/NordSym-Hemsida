@@ -6001,40 +6001,33 @@
        updateEnemies() {
             const screenWidth = window.innerWidth;
             const screenHeight = window.innerHeight;
+            const time = Date.now() * 0.001; // Global tid för sinus-vågor
 
-            // Individuell rörelselogik
+            // Individuell rörelselogik - SVÄRM-INTELLIGENS
             this.enemies.forEach((enemy, index) => {
-                enemy.moveTimer++;
-                if (enemy.moveTimer >= enemy.moveInterval) {
-                    enemy.moveTimer = 0;
-                    // 20% chans att byta horisontell riktning
-                    if (Math.random() < 0.2) {
-                        enemy.directionX *= -1;
-                    }
-                    // 10% chans att ändra horisontell hastighet
-                    if (Math.random() < 0.1) {
-                         enemy.speedX = (1 + Math.random()) * (enemy.directionX > 0 ? 1 : -1);
-                    }
-                    // 10% chans att ändra vertikal hastighet
-                     if (Math.random() < 0.1) {
-                        enemy.speedY = 0.3 + Math.random() * 0.3;
-                    }
-                    // Uppdatera intervall för variation
-                    enemy.moveInterval = 60 + Math.random() * 40; // 1 till 1.6 sekunder
+                // 1. Organisk Rörelse: Sinusvåg baserad på tid + index (för att de inte ska röra sig exakt likadant)
+                // Detta skapar en "ormande" eller "svävande" effekt istället för stel robotrörelse.
+                const waveX = Math.sin(time * 2 + index) * 3; 
+                
+                // 2. Aggressivitet: Ökar hastigheten ju längre ner de kommer
+                const aggression = 1 + (enemy.y / screenHeight); 
+
+                enemy.x += (enemy.speedX * aggression) + waveX;
+                enemy.y += enemy.speedY * aggression; 
+
+                // Vägg-studs med dämpning
+                if (enemy.x < 20) {
+                    enemy.x = 20;
+                    enemy.speedX = Math.abs(enemy.speedX);
+                } else if (enemy.x > screenWidth - 50) {
+                    enemy.x = screenWidth - 50;
+                    enemy.speedX = -Math.abs(enemy.speedX);
                 }
 
-                // Applicera rörelse
-                enemy.x += enemy.speedX;
-                enemy.y += enemy.speedY; // Långsam konstant drift nedåt
-
-                // Vägg-studs
-                if ((enemy.x < 10 && enemy.speedX < 0) || (enemy.x > screenWidth - 40 && enemy.speedX > 0)) {
-                    enemy.speedX *= -1;
-                    enemy.directionX *= -1;
-                }
-
-                // Uppdatera elementets position
-                gsap.set(enemy.element, { left: enemy.x, top: enemy.y });
+                // Uppdatera elementets position med transform för prestanda
+                // Vi roterar dem också lite baserat på rörelseriktningen för en snyggare effekt
+                const tilt = enemy.speedX * 5; 
+                gsap.set(enemy.element, { left: enemy.x, top: enemy.y, rotation: tilt });
 
                 // STEG 6: Förlust-villkor (Fiende når botten)
                 if (enemy.y > screenHeight - 50) {
@@ -6045,67 +6038,77 @@
             
             // --- Skjutlogik (behålls) ---
             this.enemyFireTimer++;
-            if (this.enemyFireTimer >= this.enemyFireInterval && this.enemies.length > 0) {
+            // Skjut oftare om det finns färre fiender kvar (Desperation mode)
+            const dynamicInterval = Math.max(20, this.enemyFireInterval - (4 - this.enemies.length) * 15);
+            
+            if (this.enemyFireTimer >= dynamicInterval && this.enemies.length > 0) {
                 this.enemyFireTimer = 0;
-                this.enemyFire(); // Anropa den nya skjut-funktionen
+                this.enemyFire(); 
             }
        }
 
         // NYTT (Steg 3.2): Fienderna skjuter
         // STEG 4: "Jobbig" AI - Hela denna metod skrivs om för målsökning.
         enemyFire() {
-            if (this.enemies.length === 0) return;
+            if (this.enemies.length === 0 || !this.playerShip) return;
 
             // Välj en slumpmässig fiende som ska skjuta
             const randomEnemy = this.enemies[Math.floor(Math.random() * this.enemies.length)];
 
-            // 1. Välj ett mål
-            let targetElement;
-            const validShields = this.invaderCards.filter(shield => shield.health > 0);
+            // 1. Välj ett mål (Prioritera spelaren för att skapa stress)
+            let targetElement = this.playerShip;
             
-            // 40% chans att sikta på en sköld (om några finns kvar), annars sikta på spelaren
-            if (Math.random() < 0.4 && validShields.length > 0) {
+            // Ibland (30%) skjuter de på sköldarna för att rensa vägen
+            const validShields = this.invaderCards.filter(shield => shield.health > 0);
+            if (Math.random() < 0.3 && validShields.length > 0) {
                 targetElement = validShields[Math.floor(Math.random() * validShields.length)].element;
-            } else {
-                targetElement = this.playerShip;
             }
-
-            if (!targetElement) return; // Om spelaren är borta?
 
             const pulse = document.createElement('div');
             pulse.className = 'ai-enemy-pulse';
             document.body.appendChild(pulse);
             this.enemyPulses.push(pulse);
 
-            // 2. Beräkna vektor och destination
-            const startLeft = randomEnemy.x + 13; // Centrum av fiendens bas
-            const startTop = randomEnemy.y + 25; // Fiendens spets
+            // 2. Startposition
+            const startLeft = randomEnemy.x + 13; 
+            const startTop = randomEnemy.y + 25;
 
+            // 3. PREDIKTIVT SIKTE (Gemini 3 Logic)
+            // Vi räknar inte bara ut var spelaren är, utan var de är på väg.
             const targetRect = targetElement.getBoundingClientRect();
-            // Sikta på en slumpmässig punkt inom målet för variation
-            const targetX = targetRect.left + (targetRect.width * (0.2 + Math.random() * 0.6));
-            const targetY = targetRect.top + (targetRect.height * (0.2 + Math.random() * 0.6));
+            let targetX = targetRect.left + (targetRect.width / 2);
+            const targetY = targetRect.top + (targetRect.height / 2);
+
+            // Om målet är spelaren, lägg till "lead" (framförhållning)
+            if (targetElement === this.playerShip) {
+                // Enkel uppskattning: Om spelaren rör sig vänster, sikta vänster om nuvarande position
+                if (this.playerMovement.left) targetX -= 100;
+                if (this.playerMovement.right) targetX += 100;
+            }
+
+            // Lägg till lite slumpmässighet (spridning) så det inte blir omöjligt
+            targetX += (Math.random() - 0.5) * 50;
 
             const deltaX = targetX - startLeft;
             const deltaY = targetY - startTop;
             const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
             
-            // Projicera vektorn långt utanför skärmen för att säkerställa att den passerar målet
+            // Projicera vektorn långt utanför skärmen
             const endX = startLeft + deltaX * (window.innerHeight / distance) * 2;
             const endY = startTop + deltaY * (window.innerHeight / distance) * 2;
-            // Hastighet: 350 pixlar per sekund
-            const duration = distance / 350; 
+            
+            // Snabbare skott än tidigare (350 -> 450 px/s)
+            const duration = distance / 450; 
 
             // 3. Animera
             gsap.fromTo(pulse, 
-                { left: startLeft, top: startTop }, 
+                { left: startLeft, top: startTop, rotation: Math.atan2(deltaY, deltaX) * (180/Math.PI) - 90 }, // Rotera skottet i färdriktningen
                 {
                     left: endX,
                     top: endY,
-                    duration: Math.max(1.5, duration), // Minst 1.5 sekunders restid
+                    duration: Math.max(1.0, duration),
                     ease: 'linear',
                     onComplete: () => {
-                        // Ta bort från DOM och array när den är klar
                         pulse.remove();
                         this.enemyPulses = this.enemyPulses.filter(p => p !== pulse);
                     }
