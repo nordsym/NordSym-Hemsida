@@ -884,32 +884,46 @@
         }
 
         /* Onboarding Modal (Blåkopia) */
-        body.light-theme #workshop-onboarding {
-            background: rgba(var(--nord-sym-blueprint-bg-rgb), 0.8);
-            backdrop-filter: blur(10px);
+        /* BORTTAGEN: Gamla onboarding-stilar rensas eller ignoreras då vi byter till Ghost Hints */
+        
+        /* --- NYTT: Ghost Hints (Ersätter Onboarding Modal) --- */
+        #workshop-ghost-hints {
+            position: fixed;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            pointer-events: none; /* Klick går rakt igenom */
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 1s ease;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 1rem;
         }
-        body.light-theme .onboarding-content {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 30px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
+        #workshop-ghost-hints.visible {
+            opacity: 1;
         }
-        body.light-theme .onboarding-content h3 {
-            color: var(--nord-sym-blueprint-ink);
+        .ghost-hint-text {
+            font-family: 'Comfortaa', sans-serif;
+            font-size: 1.1rem;
+            color: var(--nord-sym-cyan);
+            text-shadow: 0 0 15px rgba(var(--nord-sym-cyan-rgb), 0.5);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
         }
-        body.light-theme .onboarding-content p {
-            color: var(--nord-sym-blueprint-ink);
-            opacity: 0.9;
+        .ghost-hint-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--nord-sym-text-medium);
+            opacity: 0.8;
         }
-        body.light-theme .onboarding-content .nord-accent-text {
-            color: var(--nord-sym-blueprint-cyan);
-        }
-        body.light-theme #workshop-onboarding button { /* Stäng-knappen */
-            background: rgba(var(--nord-sym-blueprint-lines-faint), 0.5);
-            color: var(--nord-sym-blueprint-ink);
-            opacity: 0.7;
-        }
-        body.light-theme #workshop-onboarding button:hover {
-             opacity: 1;
+        
+        /* Mobil-justering för hints */
+        @media (max-width: 768px) {
+            #workshop-ghost-hints {
+                bottom: 25%; /* Högre upp på mobil för att inte krocka med joysticks */
+            }
         }
 
         /* --- NYTT: AI-First Spel (Easter Egg) --- */
@@ -1645,11 +1659,10 @@
             }
         }
         
+        /* UPPDATERAD: Dölj joysticks helt på desktop/tablet */
         @media (min-width: 768px) {
-             body.labb-active .joystick-portal {
-                bottom: 2rem;
-                pointer-events: auto;
-                opacity: 1;
+             .joystick-portal {
+                display: none !important;
             }
         }
 
@@ -2804,11 +2817,10 @@
                         <a href="https://www.instagram.com/nordsym_ab/" target="_blank" rel="noopener noreferrer" class="footer-link inline-flex items-center gap-2"><i class="ph-instagram-logo"></i>Instagram</a>
                     </div>
 
-                    <!-- NY PLACERING: HÖGER SIDA (Kolumn 3) -->
-                    <!-- GDPR LOGO (Clean Version - Inga Masker/Hål) -->
-                    <div class="mt-8 flex flex-col items-center md:items-start opacity-70 hover:opacity-100 transition-opacity duration-300 select-none cursor-help" title="Dataskydd och Integritet">
-                        <svg width="140" height="45" viewBox="0 0 140 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-nord-sym-text-light">
-                            <!-- Huvudtext "GDPR" -->
+                    <!-- GDPR LOGO (Solid, Smaller & Clean) -->
+                    <div class="mt-8 flex flex-col items-center md:items-start opacity-60 hover:opacity-100 transition-opacity duration-300 select-none cursor-help" title="Dataskydd och Integritet">
+                        <svg width="100" height="32" viewBox="0 0 140 45" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-nord-sym-text-light">
+                            <!-- Huvudtext "GDPR" (Solid - Inget mask-hål) -->
                             <text x="0" y="28" font-family="'Inter', sans-serif" font-weight="900" font-size="32" fill="currentColor" letter-spacing="-1">GDPR</text>
                             
                             <!-- Undertitel "COMPLIANT" -->
@@ -2874,23 +2886,14 @@
     <!-- CHAT WIDGET END -->
 
     <!-- === UI OVERLAYS & FIXED CONTROLS (ARKITEKTONISK SEPARATION) === -->
-    <div id="workshop-onboarding">
-        <div class="onboarding-content relative">
-            <button onclick="window.UnifiedGeometryManager.exitBuilderMode()" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-nord-sym-deep-space-blue/50 flex items-center justify-center text-sky-400 hover:text-nord-sym-cyan hover:bg-nord-sym-deep-space-blue/80 transition-all text-2xl z-50" aria-label="Stäng Ritbordet">
-                <i class="ph-x"></i>
-            </button>
-            <h3>Ert Strategiska Ritbord</h3>
-            <p class="text-lg">
-                Välkommen. Ni ser nu en live-visualisering av ett intelligent system. Varje form är en interaktiv blueprint som representerar en specifik arkitektur – från ett stabilt ramverk till ett dynamiskt flöde.
-            </p>
-            <div class="my-4 text-left max-w-xs mx-auto space-y-2">
-                <p><strong class="nord-accent-text">MORFA (Scroll/Touch):</strong> Transformera systemets arketyper.</p>
-                <p><strong class="nord-accent-text">ROTERA (Mus/Touch):</strong> Granska systemet från alla vinklar.</p>
-            </div>
-            <p class="font-semibold text-sky-200 italic">Från strategi till manifesterad struktur.</p>
-            <p class="mt-4 text-xs text-sky-400 esc-hint">(Återvänd med ESC eller X)</p>
-        </div>
+    
+    <!-- GHOST HINTS (Ersätter den gamla modala rutan) -->
+    <div id="workshop-ghost-hints">
+        <div class="ghost-hint-text">Scrolla för att Transformera</div>
+        <div class="ghost-hint-sub">Dra för att Rotera</div>
     </div>
+
+    <!-- BORTTAGET: Gammal #workshop-onboarding kod -->
 
     <button id="mobile-enter-workshop-btn" onclick="window.UnifiedGeometryManager.enterBuilderMode()">
         <i class="ph ph-cube"></i>
@@ -3280,8 +3283,8 @@
                 this.dampingFactor = 0.94;
                 this.forceFactor = 0.0015;
                 this.MAX_INPUT_FORCE = 0.035;
-                this.onboardingTimeout = null;
-                this.activeParticleMorph = { from: null, to: null };
+            this.onboardingTimeout = null;
+            this.activeParticleMorph = { from: null, to: null };
                 this.themeSwitchCooldown = 500; // Harmoni-fix: En "andningspaus" för temaväxling.
                 this.lastThemeSwitchTime = 0;
 
@@ -3305,7 +3308,7 @@
             this.boundJoystickTouchStart = this.handleJoystickTouchStart.bind(this);
             this.boundJoystickTouchMove = this.handleJoystickTouchMove.bind(this);
             this.boundJoystickTouchEnd = this.handleJoystickTouchEnd.bind(this);
-            this.boundHideOnboarding = null;
+            // this.boundHideOnboarding = null; // Ej längre nödvändig
             this.clock = new THREE.Clock();
 
             // NYA BINDNINGAR FÖR MUS-ROTATION
@@ -3736,16 +3739,17 @@
                     this.canvas.classList.add('interactive');
                 }
 
-                const onboardingEl = document.getElementById('workshop-onboarding');
-                onboardingEl?.classList.add('visible');
-                
-                clearTimeout(this.onboardingTimeout);
-                this.onboardingTimeout = setTimeout(() => this.hideOnboarding(), 4000);
-
-                // Harmoni-fix: Låt användaren klicka bort rutan.
-                if (onboardingEl && !this.boundHideOnboarding) {
-                    this.boundHideOnboarding = this.hideOnboarding.bind(this);
-                    onboardingEl.addEventListener('click', this.boundHideOnboarding);
+                // --- NYTT: Hantera Ghost Hints istället för Modal ---
+                const ghostHints = document.getElementById('workshop-ghost-hints');
+                if (ghostHints) {
+                    // Visa hints
+                    ghostHints.classList.add('visible');
+                    
+                    // Tona ut dem automatiskt efter 4.5 sekunder
+                    clearTimeout(this.onboardingTimeout);
+                    this.onboardingTimeout = setTimeout(() => {
+                        ghostHints.classList.remove('visible');
+                    }, 4500);
                 }
 
                 // Harmoni-fix: Aktivera bara de globala touch-lyssnarna när verkstaden är aktiv.
@@ -3753,11 +3757,9 @@
                     window.addEventListener('touchmove', this.boundJoystickTouchMove, { passive: false });
                     window.addEventListener('touchend', this.boundJoystickTouchEnd, { passive: false });
                     window.addEventListener('touchcancel', this.boundJoystickTouchEnd, { passive: false });
-                } // <-- FIX: Lade till den saknade måsvingen här.
+                } 
 
                 // Harmoni-fix: Anropa BARA UI-synken.
-                // Detta förhindrar att geometrin nollställs
-                // när man går in i verkstaden (BUG 2b).
                 this.updateButtonUI();
             }
             
@@ -3765,35 +3767,25 @@
                 clearTimeout(this.onboardingTimeout);
                 this.isWorkshopBuilderActive = false;
                 document.body.classList.remove('labb-active');
-                document.body.classList.remove('toolbar-open'); // Harmoni-fix: Säkerställ att verktygsfältet stängs.
+                document.body.classList.remove('toolbar-open'); 
                 this.transitionTo(this.lastState === 'HIDDEN' ? 'HERO' : this.lastState);
                 
                 // Nollställ mus-interaktion
                 this.isDragging = false;
                 this.canvas.classList.remove('interactive');
                 
-                this.hideOnboarding();
+                // Dölj hints direkt vid exit
+                document.getElementById('workshop-ghost-hints')?.classList.remove('visible');
+                
+                // this.hideOnboarding(); // Behövs ej då modalen är borta
                 this.hideFormName();
                 document.getElementById('joystick-portal-right')?.classList.remove('active');
                 
-                // Harmoni-fix: Utrotar scroll-konflikten genom att garanterat ta bort de globala lyssnarna.
-                // Tidigare anrop hade fel syntax, vilket gjorde att de aldrig togs bort.
+                // Harmoni-fix: Utrotar scroll-konflikten...
                 if (window.matchMedia('(pointer: coarse)').matches) {
                     window.removeEventListener('touchmove', this.boundJoystickTouchMove);
                     window.removeEventListener('touchend', this.boundJoystickTouchEnd);
                     window.removeEventListener('touchcancel', this.boundJoystickTouchEnd);
-                }
-            }
-            
-            hideOnboarding() { 
-                const onboardingEl = document.getElementById('workshop-onboarding');
-                if(onboardingEl) {
-                    onboardingEl.classList.remove('visible'); 
-                    // Harmoni-fix: Rensa event listener för att förhindra minnesläckor.
-                    if (this.boundHideOnboarding) {
-                        onboardingEl.removeEventListener('click', this.boundHideOnboarding);
-                        this.boundHideOnboarding = null;
-                    }
                 }
             }
 
