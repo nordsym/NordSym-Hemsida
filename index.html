@@ -3348,7 +3348,8 @@
                 const starsMaterial = new THREE.ShaderMaterial({
                     uniforms: {
                         time: { value: 0.0 },
-                        opacity: { value: 1.0 }
+                        opacity: { value: 1.0 },
+                        u_themeOpacity: { value: 1.0 } // NYTT: Separat opacitet för temat
                     },
                     vertexShader: `
                         varying vec3 vColor;
@@ -3362,11 +3363,13 @@
                     fragmentShader: `
                         uniform float time;
                         uniform float opacity;
+                        uniform float u_themeOpacity; // NYTT
                         varying vec3 vColor;
                         void main() {
                             if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
                             float twinkle = 0.6 + 0.4 * sin(time * 5.0 + vColor.r * 10.0);
-                            gl_FragColor = vec4(vColor * twinkle, opacity);
+                            // NYTT: Multiplicerar med u_themeOpacity för att dölja i ljust läge
+                            gl_FragColor = vec4(vColor * twinkle, opacity * u_themeOpacity);
                         }
                     `,
                     transparent: true,
@@ -3378,6 +3381,20 @@
                 this.stars = new THREE.Points(starsGeometry, starsMaterial);
                 this.scene.add(this.stars);
                 this.material = starsMaterial;
+            }
+
+            // NYTT: Metod för att hantera temaväxling
+            updateTheme(isLight) {
+                // I ljust läge (blueprint) ska stjärnorna vara helt osynliga (0.0).
+                // I mörkt läge (rymd) ska de synas (1.0).
+                const targetOpacity = isLight ? 0.0 : 1.0;
+                if (this.material && this.material.uniforms) {
+                    gsap.to(this.material.uniforms.u_themeOpacity, { 
+                        value: targetOpacity, 
+                        duration: 1.5, 
+                        ease: 'power2.inOut' 
+                    });
+                }
             }
         }
 
@@ -3502,6 +3519,11 @@
                 
                 const isLight = theme === 'light';
                 
+                // NYTT: Uppdatera stjärnornas synlighet baserat på tema
+                if (this.stars) {
+                    this.stars.updateTheme(isLight);
+                }
+
                 if (this.elasticGeometry) {
                     this.elasticGeometry.updateMaterialsForTheme(isLight);
                 }
