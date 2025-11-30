@@ -2305,6 +2305,120 @@
             will-change: top;
         }
         /* --- SLUT PÅ STEG 3.2 --- */
+
+        /* --- COOKIE CARD STYLES (Adapted for NordSym) --- */
+        .cookie-card {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+            max-width: 320px;
+            padding: 1.5rem;
+            background-color: rgba(12, 20, 39, 0.95); /* NordSym Dark */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.3);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: none; /* Dold som standard, JS visar den */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .cookie-card.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cookie-card .title {
+            font-family: 'Comfortaa', sans-serif;
+            font-weight: 700;
+            color: var(--nord-sym-text-light);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cookie-card .description {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: var(--nord-sym-text-medium);
+        }
+
+        .cookie-card .description a {
+            color: var(--nord-sym-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .cookie-card .description a:hover {
+            color: var(--nord-sym-light-accent);
+            text-decoration: underline;
+        }
+
+        .cookie-card .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            gap: 1rem;
+        }
+
+        .cookie-card .pref {
+            font-size: 0.75rem;
+            color: var(--nord-sym-text-medium);
+            text-decoration: underline;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .cookie-card .pref:hover {
+            color: var(--nord-sym-cyan);
+        }
+
+        .cookie-card .accept {
+            font-size: 0.85rem;
+            background-color: var(--nord-sym-cyan);
+            font-weight: 600;
+            border-radius: 99px;
+            color: var(--nord-sym-deep-space-blue);
+            padding: 0.6rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(var(--nord-sym-cyan-rgb), 0.3);
+        }
+
+        .cookie-card .accept:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(var(--nord-sym-cyan-rgb), 0.5);
+        }
+
+        /* Light Theme Override för Cookie Card */
+        body.light-theme .cookie-card {
+            background-color: var(--nord-sym-blueprint-bg);
+            border-color: var(--nord-sym-blueprint-lines);
+            box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+        }
+        body.light-theme .cookie-card .title {
+            color: var(--nord-sym-blueprint-ink);
+        }
+        body.light-theme .cookie-card .description {
+            color: var(--nord-sym-blueprint-ink);
+            opacity: 0.8;
+        }
+        body.light-theme .cookie-card .accept {
+            background-color: var(--nord-sym-blueprint-ink);
+            color: white;
+        }
+        body.light-theme .cookie-card .accept:hover {
+            background-color: var(--nord-sym-blueprint-cyan);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -2884,6 +2998,18 @@
         </div>
     </div>
     <!-- CHAT WIDGET END -->
+
+    <!-- COOKIE CONSENT CARD -->
+    <div id="cookie-consent-card" class="cookie-card">
+        <span class="title">🍪 Kakor & Integritet</span>
+        <p class="description">
+            Vi använder kakor för att optimera din upplevelse och analysera trafik. Genom att fortsätta godkänner du vår hantering av data. <a href="#" onclick="window.nord.showPage('privacy-policy-en'); return false;">Läs vår policy</a>.
+        </p>
+        <div class="actions">
+            <button class="pref" onclick="alert('Inställningar för kakor kommer snart!')">Inställningar</button>
+            <button id="accept-cookies-btn" class="accept">Acceptera</button>
+        </div>
+    </div>
 
     <!-- === UI OVERLAYS & FIXED CONTROLS (ARKITEKTONISK SEPARATION) === -->
     
@@ -4528,6 +4654,7 @@
         new FormManager('jobApplicationForm', 'xblypplz');
         new ChatManager(); // Instantiate the new chat manager
         new ThemeManager(); // <-- NY TEMAHANTERARE
+        new CookieManager(); // <-- NY COOKIE MANAGER
 
         // --- NYTT: STEG 1.1 & STEG 2 (Återställning) ---
         // Exponerar spel-managern globalt
@@ -4600,6 +4727,48 @@
             // if (window.UnifiedGeometryManager) {
             //     window.UnifiedGeometryManager.setGlobalTheme(theme);
             // }
+        }
+    }
+
+    class CookieManager {
+        constructor() {
+            this.card = document.getElementById('cookie-consent-card');
+            this.acceptBtn = document.getElementById('accept-cookies-btn');
+            this.storageKey = 'nordsym_cookies_accepted';
+            
+            if (this.card && this.acceptBtn) {
+                this.init();
+            }
+        }
+
+        init() {
+            // Kontrollera om användaren redan godkänt
+            const hasAccepted = localStorage.getItem(this.storageKey);
+
+            if (!hasAccepted) {
+                // Visa kortet med en liten fördröjning för snygg effekt
+                setTimeout(() => {
+                    this.card.style.display = 'block';
+                    // Tvinga reflow
+                    this.card.offsetHeight; 
+                    this.card.classList.add('visible');
+                }, 2000);
+            }
+
+            this.acceptBtn.addEventListener('click', () => {
+                this.acceptCookies();
+            });
+        }
+
+        acceptCookies() {
+            // Spara godkännandet
+            localStorage.setItem(this.storageKey, 'true');
+            
+            // Animera bort kortet
+            this.card.classList.remove('visible');
+            setTimeout(() => {
+                this.card.style.display = 'none';
+            }, 500); // Matcha CSS transition tid
         }
     }
 
