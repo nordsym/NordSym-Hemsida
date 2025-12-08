@@ -2306,118 +2306,58 @@
         }
         /* --- SLUT PÅ STEG 3.2 --- */
 
-        /* --- COOKIE CARD STYLES (Adapted for NordSym) --- */
-        .cookie-card {
+        /* --- COOKIE CONSENT (HARMONISERAD) --- */
+        #cookie-consent {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
+            bottom: 2rem;
+            left: 2rem; /* Vänster sida för att balansera Chat Widget */
+            width: calc(100% - 4rem);
             max-width: 320px;
-            padding: 1.5rem;
-            background-color: rgba(12, 20, 39, 0.95); /* NordSym Dark */
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.3);
+            z-index: 2050; /* Över det mesta, men under extrema overlays */
+            
+            /* Dark Theme Default */
+            background: rgba(12, 20, 39, 0.9);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            display: none; /* Dold som standard, JS visar den */
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            
+            /* Animation State */
             opacity: 0;
+            pointer-events: none;
             transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .cookie-card.visible {
-            display: block;
+        
+        #cookie-consent.visible {
             opacity: 1;
+            pointer-events: auto;
             transform: translateY(0);
         }
 
-        .cookie-card .title {
-            font-family: 'Comfortaa', sans-serif;
-            font-weight: 700;
-            color: var(--nord-sym-text-light);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cookie-card .description {
-            margin-top: 0.75rem;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            color: var(--nord-sym-text-medium);
-        }
-
-        .cookie-card .description a {
-            color: var(--nord-sym-cyan);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s ease;
-        }
-
-        .cookie-card .description a:hover {
-            color: var(--nord-sym-light-accent);
-            text-decoration: underline;
-        }
-
-        .cookie-card .actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 1.5rem;
-            gap: 1rem;
-        }
-
-        .cookie-card .pref {
-            font-size: 0.75rem;
-            color: var(--nord-sym-text-medium);
-            text-decoration: underline;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .cookie-card .pref:hover {
-            color: var(--nord-sym-cyan);
-        }
-
-        .cookie-card .accept {
+        #cookie-consent p {
             font-size: 0.85rem;
-            background-color: var(--nord-sym-cyan);
-            font-weight: 600;
-            border-radius: 99px;
-            color: var(--nord-sym-deep-space-blue);
-            padding: 0.6rem 1.5rem;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 10px rgba(var(--nord-sym-cyan-rgb), 0.3);
+            color: var(--nord-sym-text-medium);
+            line-height: 1.5;
+            margin-bottom: 1rem;
         }
 
-        .cookie-card .accept:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(var(--nord-sym-cyan-rgb), 0.5);
+        #cookie-consent a {
+            color: var(--nord-sym-cyan);
+            text-decoration: underline;
+            transition: color 0.2s;
         }
+        #cookie-consent a:hover { color: var(--nord-sym-light-accent); }
 
-        /* Light Theme Override för Cookie Card */
-        body.light-theme .cookie-card {
-            background-color: var(--nord-sym-blueprint-bg);
-            border-color: var(--nord-sym-blueprint-lines);
-            box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+        /* Light Theme Overrides */
+        body.light-theme #cookie-consent {
+            background: var(--nord-sym-blueprint-bg);
+            border: 1px solid var(--nord-sym-blueprint-lines);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
-        body.light-theme .cookie-card .title {
+        body.light-theme #cookie-consent p {
             color: var(--nord-sym-blueprint-ink);
-        }
-        body.light-theme .cookie-card .description {
-            color: var(--nord-sym-blueprint-ink);
-            opacity: 0.8;
-        }
-        body.light-theme .cookie-card .accept {
-            background-color: var(--nord-sym-blueprint-ink);
-            color: white;
-        }
-        body.light-theme .cookie-card .accept:hover {
-            background-color: var(--nord-sym-blueprint-cyan);
         }
     </style>
 </head>
@@ -2869,9 +2809,23 @@
                 <i class="ph-x"></i>
             </button>
             <i class="ph-rocket-launch text-4xl text-nord-sym-cyan mb-4"></i>
-            <h3 class="text-2xl font-semibold text-white mb-2">Snart på ett ritbord nära dig!</h3>
-            <p class="text-sky-300 mb-6">Demonstrationen för Beaver håller på att finjusteras för lansering. Tack för ditt tålamod – arkitektur av den här kalibern tar tid att perfektionera.</p>
-            <button onclick="window.nord.closeComingSoonModal()" class="btn-base btn-secondary-on-dark">Stäng</button>
+            <h3 class="text-2xl font-semibold text-white mb-2">Demonstration under utveckling</h3>
+            <p class="text-sky-300 mb-6">Beaver är vårt system för byggbranschen. Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.</p>
+            
+            <!-- VÄNTELISTA FORMULÄR -->
+            <form id="waitlistForm" class="text-left mt-6">
+                <input type="hidden" name="_subject" value="Ny anmälan: Väntelista Beaver Demo">
+                <div class="space-y-4">
+                    <div>
+                        <label for="waitlist-email" class="form-label sr-only">E-post</label>
+                        <input type="email" name="email" id="waitlist-email" required class="form-input text-center" placeholder="Din e-postadress">
+                    </div>
+                    <button type="submit" class="btn-base btn-cta-revised w-full">Bevaka lansering</button>
+                </div>
+                <div class="form-success-container hidden mt-4">
+                    <p class="text-nord-sym-cyan"><i class="ph-check-circle"></i> Du är uppskriven!</p>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -2945,7 +2899,7 @@
                 </div>
             </div>
             <div class="mt-8 border-t border-sky-700/50 pt-6 text-center text-xs text-content-dark-bg space-x-4">
-                <span>© <span id="currentYear"></span> NordSym. Arkitektur i rörelse.</span>
+                <span>© <span id="currentYear"></span> NordSym.</span>
                 <a href="#privacy-policy-en" onclick="window.nord.showPage('privacy-policy-en'); return false;" class="footer-link hover:underline ml-4">Privacy Policy</a>
                 <a href="#terms-of-service-en" onclick="window.nord.showPage('terms-of-service-en'); return false;" class="footer-link hover:underline">Terms of Service</a>
             </div>
@@ -2999,15 +2953,19 @@
     </div>
     <!-- CHAT WIDGET END -->
 
-    <!-- COOKIE CONSENT CARD -->
-    <div id="cookie-consent-card" class="cookie-card">
-        <span class="title">🍪 Kakor & Integritet</span>
-        <p class="description">
-            Vi använder kakor för att optimera din upplevelse och analysera trafik. Genom att fortsätta godkänner du vår hantering av data. <a href="#" onclick="window.nord.showPage('privacy-policy-en'); return false;">Läs vår policy</a>.
-        </p>
-        <div class="actions">
-            <button class="pref" onclick="alert('Inställningar för kakor kommer snart!')">Inställningar</button>
-            <button id="accept-cookies-btn" class="accept">Acceptera</button>
+    <!-- COOKIE CONSENT BANNER -->
+    <div id="cookie-consent">
+        <div class="flex flex-col">
+            <div class="flex items-center gap-3 mb-3">
+                <i class="ph-cookie text-2xl text-nord-sym-cyan"></i>
+                <span class="font-bold text-white text-sm light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Digital Integritet</span>
+            </div>
+            <p>
+                Vi använder cookies för att optimera systemets prestanda. Genom att fortsätta godkänner du vår <a href="#" onclick="window.nord.showPage('privacy-policy-en'); return false;">Integritetspolicy</a>.
+            </p>
+            <button id="cookie-accept-btn" class="btn-base btn-cta-revised w-full py-2 text-sm">
+                OK, jag förstår
+            </button>
         </div>
     </div>
 
@@ -3348,8 +3306,7 @@
                 const starsMaterial = new THREE.ShaderMaterial({
                     uniforms: {
                         time: { value: 0.0 },
-                        opacity: { value: 1.0 },
-                        u_themeOpacity: { value: 1.0 } // NYTT: Separat opacitet för temat
+                        opacity: { value: 1.0 }
                     },
                     vertexShader: `
                         varying vec3 vColor;
@@ -3363,13 +3320,11 @@
                     fragmentShader: `
                         uniform float time;
                         uniform float opacity;
-                        uniform float u_themeOpacity; // NYTT
                         varying vec3 vColor;
                         void main() {
                             if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) discard;
                             float twinkle = 0.6 + 0.4 * sin(time * 5.0 + vColor.r * 10.0);
-                            // NYTT: Multiplicerar med u_themeOpacity för att dölja i ljust läge
-                            gl_FragColor = vec4(vColor * twinkle, opacity * u_themeOpacity);
+                            gl_FragColor = vec4(vColor * twinkle, opacity);
                         }
                     `,
                     transparent: true,
@@ -3381,20 +3336,6 @@
                 this.stars = new THREE.Points(starsGeometry, starsMaterial);
                 this.scene.add(this.stars);
                 this.material = starsMaterial;
-            }
-
-            // NYTT: Metod för att hantera temaväxling
-            updateTheme(isLight) {
-                // I ljust läge (blueprint) ska stjärnorna vara helt osynliga (0.0).
-                // I mörkt läge (rymd) ska de synas (1.0).
-                const targetOpacity = isLight ? 0.0 : 1.0;
-                if (this.material && this.material.uniforms) {
-                    gsap.to(this.material.uniforms.u_themeOpacity, { 
-                        value: targetOpacity, 
-                        duration: 1.5, 
-                        ease: 'power2.inOut' 
-                    });
-                }
             }
         }
 
@@ -3519,13 +3460,14 @@
                 
                 const isLight = theme === 'light';
                 
-                // NYTT: Uppdatera stjärnornas synlighet baserat på tema
-                if (this.stars) {
-                    this.stars.updateTheme(isLight);
-                }
-
                 if (this.elasticGeometry) {
                     this.elasticGeometry.updateMaterialsForTheme(isLight);
+                }
+
+                // HARMONI-FIX: Dölj stjärnorna helt i ljust tema
+                // Detta förhindrar att de syns som "svarta prickar" mot den vita bakgrunden.
+                if (this.stars && this.stars.stars) {
+                    this.stars.stars.visible = !isLight;
                 }
     
                 // Uppdatera dimma och bloom
@@ -4674,6 +4616,9 @@
         
         new FormManager('formSkraddarsydd', 'xqabggao');
         new FormManager('jobApplicationForm', 'xblypplz');
+        // NY: Koppla vänteliste-formuläret (Återanvänder kontakt-ID tills vidare)
+        new FormManager('waitlistForm', 'xqabggao'); 
+        
         new ChatManager(); // Instantiate the new chat manager
         new ThemeManager(); // <-- NY TEMAHANTERARE
         new CookieManager(); // <-- NY COOKIE MANAGER
@@ -4754,43 +4699,40 @@
 
     class CookieManager {
         constructor() {
-            this.card = document.getElementById('cookie-consent-card');
-            this.acceptBtn = document.getElementById('accept-cookies-btn');
-            this.storageKey = 'nordsym_cookies_accepted';
+            this.banner = document.getElementById('cookie-consent');
+            this.acceptBtn = document.getElementById('cookie-accept-btn');
+            this.storageKey = 'nordsym_cookie_consent'; // Unik nyckel för NordSym
             
-            if (this.card && this.acceptBtn) {
+            if (this.banner && this.acceptBtn) {
                 this.init();
             }
         }
 
         init() {
-            // Kontrollera om användaren redan godkänt
-            const hasAccepted = localStorage.getItem(this.storageKey);
-
-            if (!hasAccepted) {
-                // Visa kortet med en liten fördröjning för snygg effekt
+            // 1. Kolla om nyckeln saknas i localStorage
+            if (!localStorage.getItem(this.storageKey)) {
+                // 2. Visa bannern efter en liten fördröjning för snyggare UX
                 setTimeout(() => {
-                    this.card.style.display = 'block';
-                    // Tvinga reflow
-                    this.card.offsetHeight; 
-                    this.card.classList.add('visible');
-                }, 2000);
+                    this.banner.classList.add('visible');
+                }, 1500);
             }
 
+            // 3. Lyssna på klick
             this.acceptBtn.addEventListener('click', () => {
                 this.acceptCookies();
             });
         }
 
         acceptCookies() {
+            // Animera ut bannern
+            this.banner.classList.remove('visible');
+            
             // Spara godkännandet
             localStorage.setItem(this.storageKey, 'true');
             
-            // Animera bort kortet
-            this.card.classList.remove('visible');
-            setTimeout(() => {
-                this.card.style.display = 'none';
-            }, 500); // Matcha CSS transition tid
+            // Valfritt: Om vi hade Google Analytics eller liknande som krävde
+            // explicit samtycke innan laddning, skulle vi initiera det här.
+            // Just nu laddas GA/Clarity direkt, så detta är främst informativt (Soft opt-in).
         }
     }
 
@@ -5054,8 +4996,8 @@
             this.arketyperData = [
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/Klara%20avatar%20closeup%20v.3.svg',
-                    title: 'Klara: Ett AI-First Catering-Ekosystem', 
-                    description: 'Mer än en agent – Klara är ett komplett, AI-drivet ekosystem för catering. Hon orkestrerar hela flödet, från offert och admin till intelligent menyplanering och logistik, vilket frigör er att fokusera på gästupplevelsen.',
+                    title: 'Klara', 
+                    description: 'Ett specialiserat AI-ekosystem för catering. Klara hanterar hela kedjan: från inkommande förfrågningar och offerering till inköpsunderlag och logistik. En autonom kollega som låter er fokusera på hantverket och gästen.',
                     signatures: [
                         { icon: 'ph-file-text', text: 'Offert & Admin' },
                         { icon: 'ph-fork-knife', text: 'Menyplanering' },
@@ -5067,18 +5009,18 @@
                     ctaLink: 'https://gushem.github.io/Landningsida-Nordsym-Klara-agent/'
                 },
                 {
-                    imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/Gra%CC%88vling%20flownode%20avatar.svg',
-                    title: 'FlowNode',
-                    description: 'Vår egenutvecklade kärnteknologi för att binda samman system, API:er och AI-modeller till ett sömlöst, intelligent nätverk. En kraftfull komponent för att bygga ett robust och skalbart ekosystem.',
+                    imageUrl: 'https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg',
+                    title: 'SEO Hälsovakt',
+                    description: 'Hitta dolda tekniska fel som sänker er ranking. Vår automatiserade hälsovakt scannar er webbplats och levererar en prioriterad teknisk åtgärdsplan på 5 minuter. Ingen inloggning krävs.',
                     signatures: [
-                        { icon: 'ph-arrows-split', text: 'Orkestrering' },
-                        { icon: 'ph-plugs-connected', text: 'Integration' },
-                        { icon: 'ph-brain', text: 'Logik' }
+                        { icon: 'ph-gauge', text: 'Prestanda' },
+                        { icon: 'ph-magnifying-glass', text: 'Analys' },
+                        { icon: 'ph-list-checks', text: 'Åtgärdsplan' }
                     ],
-                    indicator: 'Möjliggör portabilitet och framtidssäkrar er tekniska arkitektur.',
-                    ctaText: 'Utforska Demo',
-                    ctaIcon: 'ph-play-circle',
-                    ctaLink: 'https://gushem.github.io/FlowNode-Demo/' 
+                    indicator: 'En fristående Micro-SaaS för omedelbar teknisk insikt.',
+                    ctaText: 'Starta Analys',
+                    ctaIcon: 'ph-arrow-square-out',
+                    ctaLink: 'https://nordsym.github.io/Nordsym-Seo-Halsovakt/'
                 },
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/B%C3%A4ver%20byggledare.svg',
@@ -5093,6 +5035,20 @@
                     ctaText: 'Utforska Demo',
                     ctaIcon: 'ph-play-circle',
                     ctaAction: 'openComingSoonModal'
+                },
+                {
+                    imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/Gra%CC%88vling%20flownode%20avatar.svg',
+                    title: 'FlowNode',
+                    description: 'Vår egenutvecklade kärnteknologi för att binda samman system, API:er och AI-modeller till ett sömlöst, intelligent nätverk. En kraftfull komponent för att bygga ett robust och skalbart ekosystem.',
+                    signatures: [
+                        { icon: 'ph-arrows-split', text: 'Orkestrering' },
+                        { icon: 'ph-plugs-connected', text: 'Integration' },
+                        { icon: 'ph-brain', text: 'Logik' }
+                    ],
+                    indicator: 'Möjliggör portabilitet och framtidssäkrar er tekniska arkitektur.',
+                    ctaText: 'Utforska Demo',
+                    ctaIcon: 'ph-play-circle',
+                    ctaLink: 'https://gushem.github.io/FlowNode-Demo/' 
                 },
                 // NYA TILLAGDA KORT (Flyttade från Byggstenar)
                 {
@@ -5624,8 +5580,13 @@
             if (!this.formElement) return;
 
             this.container = this.formElement.closest('.form-container');
-            this.steps = this.formElement.querySelectorAll('.form-step');
-            this.progressBar = this.container.querySelector('.form-progress-bar-inner');
+            
+            // HARMONI-FIX: Auto-detektering av formulärtyp (Wizard vs. Enkel)
+            // Om inga .form-step hittas, behandla hela formuläret som ett enda steg.
+            const detectedSteps = this.formElement.querySelectorAll('.form-step');
+            this.steps = detectedSteps.length > 0 ? detectedSteps : [this.formElement];
+            
+            this.progressBar = this.container ? this.container.querySelector('.form-progress-bar-inner') : null;
             this.currentStep = 0;
             this.totalSteps = this.steps.length;
 
@@ -5635,7 +5596,10 @@
         init() {
             this.setupEventListeners();
             this.updateProgress();
-            this.steps[0].classList.add('active');
+            // Säkerställ att första steget är aktivt (säkrad åtkomst)
+            if (this.steps[0]) {
+                this.steps[0].classList.add('active');
+            }
         }
 
         setupEventListeners() {
