@@ -4926,15 +4926,18 @@
 
         createMeteor() {
             // Starta alltid ovanför skärmen eller långt till höger
-            const startX = Math.random() * this.width * 1.5 - (this.width * 0.25);
-            const startY = -100;
+            // Justerad spawn-zon för att täcka hela diagonalen med marginal
+            const startX = Math.random() * this.width * 1.5; 
+            const startY = -150;
             
             return {
                 x: startX,
                 y: startY,
-                length: Math.random() * 80 + 150, // Lång svans
-                speed: Math.random() * 15 + 10,   // Snabb
-                angle: Math.PI / 4, // 45 grader (höger-ner)
+                // REVIDERAD FYSIK: Mindre, tunnare och mjukare rörelse
+                length: Math.random() * 80 + 40,      // 40-120px (Tidigare 150-230px) - Känns mer avlägset
+                speed: Math.random() * 10 + 6,        // 6-16px/frame - Mjukare flöde
+                thickness: Math.random() * 1.5 + 0.5, // 0.5-2px bredd - Elegantare linjer
+                angle: Math.PI / 4 + (Math.random() * 0.1 - 0.05), // ~45 grader med minimal naturlig variation
                 opacity: 1
             };
         }
@@ -4965,30 +4968,22 @@
             for (let i = this.meteors.length - 1; i >= 0; i--) {
                 const m = this.meteors[i];
                 
-                // Uppdatera position (45 grader = lika mycket x som y)
-                m.x -= m.speed; // Åker VÄNSTER-NER (X-- Y++) för att matcha sidans flow?
-                // Vänta, specen sa "Random", men oftast ser "Ner-Vänster" eller "Ner-Höger" bäst ut.
-                // Låt oss köra Ner-Vänster för en dramatisk effekt mot läsriktningen, eller Ner-Höger.
-                // Standard "Starfall" brukar vara Ner-Höger. 
-                // Ändring: Vi kör X -= speed för att åka Ner-Vänster (ser snyggt ut mot loggan).
-                // Eller vänta, specen sa "angle approx 45".
-                // Låt oss köra: X -= m.speed * 0.7, Y += m.speed.
-                
-                m.x -= m.speed * 0.5; // Svag vinkel åt vänster
-                m.y += m.speed;
+                // KORRIGERAD RÖRELSE: Använd trigonometri för exakt bana
+                // Rör sig från Top-Höger mot Botten-Vänster
+                m.x -= m.speed * Math.cos(m.angle); 
+                m.y += m.speed * Math.sin(m.angle);
 
-                // Rita Meteor
-                // Gradient trail
-                // Beräkna svansens slutpunkt (bakåt i rörelseriktningen)
-                const tailX = m.x + m.length * 0.5; // Motsatt mot rörelse X
-                const tailY = m.y - m.length;       // Motsatt mot rörelse Y
+                // KORRIGERAD SVANS: Beräkna slutpunkten baserat på vinkeln
+                // Svansen pekar rakt bakåt i banan (Motsatt riktning: +X, -Y relativt huvudet)
+                const tailX = m.x + m.length * Math.cos(m.angle);
+                const tailY = m.y - m.length * Math.sin(m.angle);
 
                 const gradient = this.ctx.createLinearGradient(m.x, m.y, tailX, tailY);
                 gradient.addColorStop(0, this.config.colors.meteorHead); // Huvud (Cyan)
                 gradient.addColorStop(1, this.config.colors.meteorTrailEnd); // Svans (Transparent)
 
                 this.ctx.strokeStyle = gradient;
-                this.ctx.lineWidth = 2;
+                this.ctx.lineWidth = m.thickness;
                 this.ctx.lineCap = 'round';
                 
                 this.ctx.beginPath();
@@ -4996,8 +4991,8 @@
                 this.ctx.lineTo(tailX, tailY);
                 this.ctx.stroke();
 
-                // Ta bort om den är utanför skärmen
-                if (m.y > this.height + 100 || m.x < -100) {
+                // Ta bort om den är utanför skärmen (med god marginal för svansen)
+                if (m.y > this.height + 200 || m.x < -200) {
                     this.meteors.splice(i, 1);
                 }
             }
