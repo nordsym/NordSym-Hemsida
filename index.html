@@ -80,7 +80,6 @@
         .bg-sky-700\/50 { background-color: rgba(3, 105, 161, 0.5) !important; }
         .bg-sky-800\/50 { background-color: rgba(7, 89, 133, 0.5) !important; }
         .bg-sky-900\/70 { background-color: rgba(12, 74, 110, 0.7) !important; }
-        .bg-sky-900\/30 { background-color: rgba(12, 74, 110, 0.3) !important; }
         .border-sky-700\/50 { border-color: rgba(3, 105, 161, 0.5) !important; }
         .border-sky-800\/50 { border-color: rgba(7, 89, 133, 0.5) !important; }
         
@@ -617,23 +616,6 @@
         }
         body.light-theme #main-footer .border-sky-700\/50 {
             border-color: var(--nord-sym-blueprint-lines-faint) !important;
-        }
-
-        /* NYTT: Specifik fix för Footer CTA-knappen i Ljust läge */
-        body.light-theme #main-footer .footer-cta-btn {
-            background-color: transparent !important;
-            border-color: var(--nord-sym-blueprint-ink) !important;
-            color: var(--nord-sym-blueprint-ink) !important;
-            box-shadow: none !important;
-        }
-        body.light-theme #main-footer .footer-cta-btn:hover {
-            background-color: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1) !important;
-            border-color: var(--nord-sym-blueprint-cyan) !important;
-            color: var(--nord-sym-blueprint-cyan) !important;
-            box-shadow: 0 0 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2) !important;
-        }
-        body.light-theme #main-footer .footer-cta-text {
-            color: var(--nord-sym-blueprint-ink) !important;
         }
 
         /* --- FORMULÄR & MODALS (Blåkopia) --- */
@@ -2899,24 +2881,13 @@
         <div class="section-content-wrapper py-10 relative z-10">
             <div class="grid md:grid-cols-3 gap-8 text-sm">
                 <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
-                    <a href="#" onclick="window.nord.showPage('hero'); return false;" class="inline-block mb-6">
+                    <a href="#" onclick="window.nord.showPage('hero'); return false;" class="inline-block mb-4">
                         <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16" loading="lazy" decoding="async">
                     </a>
                     
-                    <!-- Återställd Slogan -->
-                    <p class="text-xs text-content-dark-bg mb-6">Framtidsförsäkra eran verksamhet</p>
-                    
-                    <!-- Uppgraderad Branding & CTA Sektion -->
-                    <div class="flex flex-col items-center md:items-start mb-8 gap-4">
-                        <p class="footer-cta-text text-sm font-medium text-sky-200" style="font-family: 'Comfortaa', sans-serif;">
-                            Redo att bli ett AI-First företag?
-                        </p>
-                        <button onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" 
-                                class="footer-cta-btn group flex items-center gap-2 rounded-full border border-sky-700/50 bg-sky-900/30 px-6 py-2 text-xs text-sky-100 backdrop-blur-sm transition-all hover:border-nord-sym-cyan hover:bg-sky-800/50 hover:text-white hover:shadow-[0_0_15px_rgba(0,212,255,0.3)]">
-                            Boka Strategisamtal 
-                            <i class="ph-phone-call text-base transition-transform group-hover:rotate-12"></i>
-                        </button>
-                    </div>
+                    <p class="text-sm font-bold text-white mb-1">Framtidsförsäkra eran verksamhet</p>
+                    <p class="text-xs text-sky-200 mb-4">Vi hjälper er att bli ett AI-First företag.</p>
+                    <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6">Boka Strategisamtal</a>
 
                 </div>
                 <div class="md:col-span-1 text-center md:text-left">
@@ -2929,12 +2900,11 @@
                     </div>
                 </div>
                 <div class="md:col-span-1 text-center md:text-left">
-                     <p class="font-semibold text-nord-sym-text-light mb-4">Följ Oss</p>
-                     <!-- Ändrat från rad till kolumn för vertikal stapling -->
-                     <div class="flex flex-col items-center md:items-start gap-4">
-                        <a href="https://www.linkedin.com/company/nordsym-ab/" target="_blank" rel="noopener noreferrer" class="footer-link text-2xl transition-transform hover:scale-110" aria-label="Besök oss på LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
-                        <a href="https://x.com/NordSym" target="_blank" rel="noopener noreferrer" class="footer-link text-2xl transition-transform hover:scale-110" aria-label="Följ oss på X"><i class="ph ph-twitter-logo"></i></a>
-                        <a href="https://www.instagram.com/nordsym_ab/" target="_blank" rel="noopener noreferrer" class="footer-link text-2xl transition-transform hover:scale-110" aria-label="Följ oss på Instagram"><i class="ph ph-instagram-logo"></i></a>
+                     <p class="font-semibold text-nord-sym-text-light mb-2">Följ Oss</p>
+                     <div class="footer-quicklinks">
+                        <a href="https://www.linkedin.com/company/nordsym-ab/" target="_blank" rel="noopener noreferrer" class="footer-link inline-flex items-center gap-2"><i class="ph-linkedin-logo"></i>LinkedIn</a>
+                        <a href="https://x.com/NordSym" target="_blank" rel="noopener noreferrer" class="footer-link inline-flex items-center gap-2"><i class="ph-twitter-logo"></i>X (Twitter)</a>
+                        <a href="https://www.instagram.com/nordsym_ab/" target="_blank" rel="noopener noreferrer" class="footer-link inline-flex items-center gap-2"><i class="ph-instagram-logo"></i>Instagram</a>
                     </div>
 
                     <!-- GDPR LOGO (Solid, Smaller & Clean) -->
