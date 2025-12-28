@@ -4678,7 +4678,7 @@
         constructor() {
             this.themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
             this.body = document.body;
-            this.currentTheme = localStorage.getItem('theme') || 'light';
+            this.currentTheme = localStorage.getItem('theme') || 'dark';
             
             this.init();
         }
@@ -4929,7 +4929,7 @@
         }
     }
 
-    /* --- NYTT: STARFALL MANAGER (CANVAS ENGINE) --- */
+    /* --- NYTT: STARFALL MANAGER (CANVAS ENGINE) - CLEAN VERSION --- */
     class StarfallManager {
         constructor() {
             this.canvas = document.getElementById('starfall');
@@ -4940,13 +4940,12 @@
             this.meteors = [];
             this.width = window.innerWidth;
             this.height = window.innerHeight;
-            this.meteorSpawnTimer = 0;
             this.isMobile = window.innerWidth < 768;
             
             // Konfiguration
             this.config = {
                 starCount: this.isMobile ? 150 : 400,
-                meteorChance: 0.008, // Chans per frame att spawna meteor
+                meteorChance: 0.008, // Tillbaka till original-frekvens
                 colors: {
                     star: '255, 255, 255',
                     meteorHead: '#00BFFF', // NordSym Cyan
@@ -4971,15 +4970,10 @@
             this.canvas.height = this.height;
             this.isMobile = this.width < 768;
             
-            // Justera stjärnantal vid stor förändring
             const targetCount = this.isMobile ? 150 : 400;
             if (this.stars.length < targetCount) {
-                // Lägg till fler om vi går från mobil till desktop
-                for (let i = this.stars.length; i < targetCount; i++) {
-                    this.stars.push(this.createStar());
-                }
+                for (let i = this.stars.length; i < targetCount; i++) this.stars.push(this.createStar());
             } else if (this.stars.length > targetCount) {
-                // Ta bort om vi går från desktop till mobil
                 this.stars.length = targetCount;
             }
         }
@@ -4988,7 +4982,7 @@
             return {
                 x: Math.random() * this.width,
                 y: Math.random() * this.height,
-                size: Math.random() * 1.5 + 0.5, // 0.5px till 2px
+                size: Math.random() * 1.5 + 0.5,
                 baseOpacity: Math.random() * 0.5 + 0.1,
                 pulseSpeed: Math.random() * 0.02 + 0.005,
                 pulseOffset: Math.random() * Math.PI * 2
@@ -5003,87 +4997,57 @@
         }
 
         createMeteor() {
-            // Starta alltid ovanför skärmen eller långt till höger
-            // Justerad spawn-zon för att täcka hela diagonalen med marginal
             const startX = Math.random() * this.width * 1.5; 
             const startY = -150;
-            
             return {
-                x: startX,
-                y: startY,
-                // REVIDERAD FYSIK: Mindre, tunnare och mjukare rörelse
-                length: Math.random() * 80 + 40,      // 40-120px (Tidigare 150-230px) - Känns mer avlägset
-                speed: Math.random() * 10 + 6,        // 6-16px/frame - Mjukare flöde
-                thickness: Math.random() * 1.5 + 0.5, // 0.5-2px bredd - Elegantare linjer
-                angle: Math.PI / 4 + (Math.random() * 0.1 - 0.05), // ~45 grader med minimal naturlig variation
-                opacity: 1
+                x: startX, y: startY,
+                length: Math.random() * 80 + 40,
+                speed: Math.random() * 10 + 6,
+                thickness: Math.random() * 1.5 + 0.5,
+                angle: Math.PI / 4 + (Math.random() * 0.1 - 0.05),
+                type: 'meteor'
             };
         }
 
         drawStars() {
             const time = Date.now();
-            
             for (let i = 0; i < this.stars.length; i++) {
                 const star = this.stars[i];
-                
-                // Pulsera opacitet
                 const pulse = Math.sin(time * 0.002 * star.pulseSpeed + star.pulseOffset);
-                const currentOpacity = star.baseOpacity + (pulse * 0.2); // Variera +/- 0.2
-                
+                const currentOpacity = star.baseOpacity + (pulse * 0.2);
                 this.ctx.fillStyle = `rgba(${this.config.colors.star}, ${Math.max(0, Math.min(1, currentOpacity))})`;
-                
-                // Rita fyrkant för prestanda (snabbare än arc)
                 this.ctx.fillRect(star.x, star.y, star.size, star.size);
             }
         }
 
         updateAndDrawMeteors() {
-            // Spawna nya meteorer slumpmässigt
             if (Math.random() < this.config.meteorChance && this.meteors.length < 5) {
                 this.meteors.push(this.createMeteor());
             }
-
             for (let i = this.meteors.length - 1; i >= 0; i--) {
                 const m = this.meteors[i];
-                
-                // KORRIGERAD RÖRELSE: Använd trigonometri för exakt bana
-                // Rör sig från Top-Höger mot Botten-Vänster
                 m.x -= m.speed * Math.cos(m.angle); 
                 m.y += m.speed * Math.sin(m.angle);
-
-                // KORRIGERAD SVANS: Beräkna slutpunkten baserat på vinkeln
-                // Svansen pekar rakt bakåt i banan (Motsatt riktning: +X, -Y relativt huvudet)
                 const tailX = m.x + m.length * Math.cos(m.angle);
                 const tailY = m.y - m.length * Math.sin(m.angle);
-
                 const gradient = this.ctx.createLinearGradient(m.x, m.y, tailX, tailY);
-                gradient.addColorStop(0, this.config.colors.meteorHead); // Huvud (Cyan)
-                gradient.addColorStop(1, this.config.colors.meteorTrailEnd); // Svans (Transparent)
-
+                gradient.addColorStop(0, this.config.colors.meteorHead); 
+                gradient.addColorStop(1, this.config.colors.meteorTrailEnd);
                 this.ctx.strokeStyle = gradient;
                 this.ctx.lineWidth = m.thickness;
                 this.ctx.lineCap = 'round';
-                
                 this.ctx.beginPath();
                 this.ctx.moveTo(m.x, m.y);
                 this.ctx.lineTo(tailX, tailY);
                 this.ctx.stroke();
-
-                // Ta bort om den är utanför skärmen (med god marginal för svansen)
-                if (m.y > this.height + 200 || m.x < -200) {
-                    this.meteors.splice(i, 1);
-                }
+                if (m.y > this.height + 200 || m.x < -200) this.meteors.splice(i, 1);
             }
         }
 
         animate() {
-            // Rensa canvas
             this.ctx.clearRect(0, 0, this.width, this.height);
-            
-            // Rita lager
             this.drawStars();
             this.updateAndDrawMeteors();
-            
             requestAnimationFrame(() => this.animate());
         }
     }
