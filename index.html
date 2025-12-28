@@ -686,6 +686,9 @@
                 transform: scale(1);
             }
         }
+        
+        /* Utility class för textfärg om den saknas i Tailwind-bygget */
+        .text-nord-sym-cyan { color: var(--nord-sym-cyan) !important; }
 
         body.light-theme #coming-soon-modal button,
         body.light-theme #free-agent-modal button {
@@ -2843,10 +2846,15 @@
             </button>
             <i id="modal-waitlist-icon" class="ph-rocket-launch text-4xl text-nord-sym-cyan mb-4"></i>
             <h3 id="modal-waitlist-title" class="text-2xl font-semibold text-white mb-2">Demonstration under utveckling</h3>
-            <p id="modal-waitlist-desc" class="text-sky-300 mb-6">Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.</p>
+            <p id="modal-waitlist-desc" class="text-sky-300 mb-4">Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.</p>
+            
+            <!-- DYNAMISK LÄNK (Tjuvkika) -->
+            <a id="modal-waitlist-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-block text-nord-sym-cyan hover:text-white transition-colors text-sm mb-6 font-medium underline decoration-dotted underline-offset-4 hidden">
+                <!-- Text injiceras via JS -->
+            </a>
             
             <!-- VÄNTELISTA FORMULÄR -->
-            <form id="waitlistForm" class="text-left mt-6">
+            <form id="waitlistForm" class="text-left mt-0">
                 <input type="hidden" id="modal-waitlist-subject" name="_subject" value="Ny anmälan: Väntelista">
                 <div class="space-y-4">
                     <div>
@@ -4547,14 +4555,16 @@
             flownode: {
                 icon: 'ph-arrows-split', // Workflow/Orchestration metaphor
                 title: 'FlowNode - AI Agent Orchestration',
-                desc: 'Den osynliga ryggraden för era AI-agenter. FlowNode orkestrerar komplexa flöden mellan modeller och API:er.',
+                desc: 'Vi utvecklar en visuell workflow-builder för att orkestrera AI-agenter. Målet är att förenkla skapandet av komplexa flöden mellan modeller och API:er.',
                 subject: 'Intresseanmälan: FlowNode'
             },
             seo: {
                 icon: 'ph-magnifying-glass', // Search/Analysis metaphor
                 title: 'SEO Hälsovakt - Kampanj',
                 desc: 'Vi bjuder på tekniska analyser fram till 1:a januari. Skriv upp dig nu så kör vi en fullständig scan av er webbplats manuellt och skickar rapporten.',
-                subject: 'Beställning: Gratis SEO-Analys'
+                subject: 'Beställning: Gratis SEO-Analys',
+                linkText: 'Tjuvkika på verktyget (Live Demo) →',
+                linkUrl: 'https://nordsym.github.io/Nordsym-Seo-Halsovakt/'
             }
         };
 
@@ -4570,11 +4580,23 @@
             const titleEl = document.getElementById('modal-waitlist-title');
             const descEl = document.getElementById('modal-waitlist-desc');
             const subjectEl = document.getElementById('modal-waitlist-subject');
+            const linkEl = document.getElementById('modal-waitlist-link');
 
             if (iconEl) iconEl.className = `${config.icon} text-4xl text-nord-sym-cyan mb-4`;
             if (titleEl) titleEl.textContent = config.title;
             if (descEl) descEl.textContent = config.desc;
             if (subjectEl) subjectEl.value = config.subject;
+
+            // Hantera extern länk (Tjuvkika)
+            if (linkEl) {
+                if (config.linkUrl && config.linkText) {
+                    linkEl.href = config.linkUrl;
+                    linkEl.textContent = config.linkText;
+                    linkEl.classList.remove('hidden');
+                } else {
+                    linkEl.classList.add('hidden');
+                }
+            }
 
             // Öppna modalen (återanvänder befintlig logik)
             window.nord.openComingSoonModal();
@@ -5225,7 +5247,7 @@
                         { icon: 'ph-truck', text: 'Logistik' },
                         { icon: 'ph-chart-line-up', text: 'Effektivitet' }
                     ],
-                    indicator: 'Drivs av en hybridmotor som förenar kraften från världsledande AI med precisionen från våra egna, skräddarsydda agenter.',
+                    indicator: 'Designad för att automatisera administration och frigöra tid för själva bygget.',
                     ctaText: 'Få Tidig Access',
                     ctaIcon: 'ph-play-circle',
                     ctaAction: 'openDynamicWaitlist',
@@ -5234,7 +5256,7 @@
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/Gra%CC%88vling%20flownode%20avatar.svg',
                     title: 'FlowNode',
-                    description: 'Visual workflow builder för AI-automationer och arbetsflöden. Bygg komplexa flöden mellan modeller och API:er utan kod.',
+                    description: 'Vi utvecklar en visuell workflow-builder för AI-automationer. Målet är att låta er bygga komplexa flöden mellan modeller och API:er utan kod.',
                     signatures: [
                         { icon: 'ph-arrows-split', text: 'Orkestrering' },
                         { icon: 'ph-plugs-connected', text: 'Integration' },
