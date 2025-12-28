@@ -676,6 +676,17 @@
              border-color: var(--nord-sym-blueprint-cyan); /* Gör att modalen poppar lite */
              box-shadow: 0 0 30px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
         }
+        
+        /* DYNAMIC WAITLIST VISUALS */
+        #coming-soon-modal.visible .modal-content-wrapper {
+            transform: scale(1) rotate(-1deg);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #coming-soon-modal.visible .modal-content-wrapper {
+                transform: scale(1);
+            }
+        }
+
         body.light-theme #coming-soon-modal button,
         body.light-theme #free-agent-modal button {
              opacity: 0.7; /* Tona ner texten i stäng-knappen */
@@ -2830,13 +2841,13 @@
             <button onclick="window.nord.closeComingSoonModal()" class="absolute top-4 right-4 text-sky-300 hover:text-nord-sym-cyan transition-colors text-2xl" aria-label="Stäng modal">
                 <i class="ph-x"></i>
             </button>
-            <i class="ph-rocket-launch text-4xl text-nord-sym-cyan mb-4"></i>
-            <h3 class="text-2xl font-semibold text-white mb-2">Demonstration under utveckling</h3>
-            <p class="text-sky-300 mb-6">Beaver är vårt system för byggbranschen. Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.</p>
+            <i id="modal-waitlist-icon" class="ph-rocket-launch text-4xl text-nord-sym-cyan mb-4"></i>
+            <h3 id="modal-waitlist-title" class="text-2xl font-semibold text-white mb-2">Demonstration under utveckling</h3>
+            <p id="modal-waitlist-desc" class="text-sky-300 mb-6">Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.</p>
             
             <!-- VÄNTELISTA FORMULÄR -->
             <form id="waitlistForm" class="text-left mt-6">
-                <input type="hidden" name="_subject" value="Ny anmälan: Väntelista Beaver Demo">
+                <input type="hidden" id="modal-waitlist-subject" name="_subject" value="Ny anmälan: Väntelista">
                 <div class="space-y-4">
                     <div>
                         <label for="waitlist-email" class="form-label sr-only">E-post</label>
@@ -4525,6 +4536,50 @@
             window.nord.showPage(initialPage, true);
         });
         
+        // --- DYNAMIC WAITLIST SYSTEM ---
+        const productWaitlistConfig = {
+            beaver: {
+                icon: 'ph-person-arms-spread', // Construction/Worker metaphor
+                title: 'Beaver - Byggbranschens Verktyg',
+                desc: 'Beaver är vårt system för byggbranschen. Vi håller på att färdigställa den interaktiva demon.',
+                subject: 'Intresseanmälan: Beaver'
+            },
+            flownode: {
+                icon: 'ph-arrows-split', // Workflow/Orchestration metaphor
+                title: 'FlowNode - AI Agent Orchestration',
+                desc: 'Den osynliga ryggraden för era AI-agenter. FlowNode orkestrerar komplexa flöden mellan modeller och API:er.',
+                subject: 'Intresseanmälan: FlowNode'
+            },
+            seo: {
+                icon: 'ph-magnifying-glass', // Search/Analysis metaphor
+                title: 'SEO Hälsovakt - Kampanj',
+                desc: 'Vi bjuder på tekniska analyser fram till 1:a januari. Skriv upp dig nu så kör vi en fullständig scan av er webbplats manuellt och skickar rapporten.',
+                subject: 'Beställning: Gratis SEO-Analys'
+            }
+        };
+
+        window.nord.openDynamicWaitlist = function(productKey) {
+            const config = productWaitlistConfig[productKey];
+            if (!config) {
+                console.warn(`[NordSym] Okänd produktnyckel för väntelista: ${productKey}`);
+                return;
+            }
+
+            // Uppdatera innehåll
+            const iconEl = document.getElementById('modal-waitlist-icon');
+            const titleEl = document.getElementById('modal-waitlist-title');
+            const descEl = document.getElementById('modal-waitlist-desc');
+            const subjectEl = document.getElementById('modal-waitlist-subject');
+
+            if (iconEl) iconEl.className = `${config.icon} text-4xl text-nord-sym-cyan mb-4`;
+            if (titleEl) titleEl.textContent = config.title;
+            if (descEl) descEl.textContent = config.desc;
+            if (subjectEl) subjectEl.value = config.subject;
+
+            // Öppna modalen (återanvänder befintlig logik)
+            window.nord.openComingSoonModal();
+        };
+
         // --- MODAL-LOGIK FÖR KOMMER SNART ---
         window.nord.openComingSoonModal = function() {
             const modal = document.getElementById('coming-soon-modal');
@@ -5135,16 +5190,17 @@
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg',
                     title: 'SEO Hälsovakt',
-                    description: 'Hitta dolda tekniska fel som sänker er ranking. Vår automatiserade hälsovakt scannar er webbplats och levererar en prioriterad teknisk åtgärdsplan på 5 minuter. Ingen inloggning krävs.',
+                    description: 'Hitta dolda tekniska fel som sänker er ranking. Vår automatiserade hälsovakt scannar er webbplats och levererar en prioriterad teknisk åtgärdsplan.',
                     signatures: [
                         { icon: 'ph-gauge', text: 'Prestanda' },
                         { icon: 'ph-magnifying-glass', text: 'Analys' },
                         { icon: 'ph-list-checks', text: 'Åtgärdsplan' }
                     ],
                     indicator: 'En fristående Micro-SaaS för omedelbar teknisk insikt.',
-                    ctaText: 'Starta Analys',
-                    ctaIcon: 'ph-arrow-square-out',
-                    ctaLink: 'https://nordsym.github.io/Nordsym-Seo-Halsovakt/'
+                    ctaText: 'Få Gratis Analys',
+                    ctaIcon: 'ph-file-search',
+                    ctaAction: 'openDynamicWaitlist',
+                    ctaActionParam: 'seo'
                 },
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/Klara%20avatar%20closeup%20v.3.svg',
@@ -5163,30 +5219,32 @@
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/B%C3%A4ver%20byggledare.svg',
                     title: 'Beaver',
-                    description: 'Byggbranschens intelligenta operativsystem. Synkroniserar projekt, logistik och team i en självlärande plattform.',
+                    description: 'Vi testar ett verktyg för byggbranschen som förenklar administration. Demo kommer snart – skriv upp dig för tidig access.',
                     signatures: [
                         { icon: 'ph-calendar-check', text: 'Planering' },
                         { icon: 'ph-truck', text: 'Logistik' },
                         { icon: 'ph-chart-line-up', text: 'Effektivitet' }
                     ],
                     indicator: 'Drivs av en hybridmotor som förenar kraften från världsledande AI med precisionen från våra egna, skräddarsydda agenter.',
-                    ctaText: 'Utforska Demo',
+                    ctaText: 'Få Tidig Access',
                     ctaIcon: 'ph-play-circle',
-                    ctaAction: 'openComingSoonModal'
+                    ctaAction: 'openDynamicWaitlist',
+                    ctaActionParam: 'beaver'
                 },
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/Gra%CC%88vling%20flownode%20avatar.svg',
                     title: 'FlowNode',
-                    description: 'Vår egenutvecklade kärnteknologi för att binda samman system, API:er och AI-modeller till ett sömlöst, intelligent nätverk. En kraftfull komponent för att bygga ett robust och skalbart ekosystem.',
+                    description: 'Visual workflow builder för AI-automationer och arbetsflöden. Bygg komplexa flöden mellan modeller och API:er utan kod.',
                     signatures: [
                         { icon: 'ph-arrows-split', text: 'Orkestrering' },
                         { icon: 'ph-plugs-connected', text: 'Integration' },
                         { icon: 'ph-brain', text: 'Logik' }
                     ],
                     indicator: 'Möjliggör portabilitet och framtidssäkrar er tekniska arkitektur.',
-                    ctaText: 'Utforska Demo',
+                    ctaText: 'Få Tidig Access',
                     ctaIcon: 'ph-play-circle',
-                    ctaLink: 'https://gushem.github.io/FlowNode-Demo/' 
+                    ctaAction: 'openDynamicWaitlist',
+                    ctaActionParam: 'flownode'
                 },
                 // NYA TILLAGDA KORT (Flyttade från Byggstenar)
                 {
@@ -5265,7 +5323,9 @@
                 const textHTML = `<span>${data.ctaText}</span>`;
                 
                 if (action) {
-                     ctaButton = `<a href="#" onclick="event.preventDefault(); window.nord['${action}']();" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
+                     // DYNAMIC ACTION HANDLER: Support for parameters
+                     const param = data.ctaActionParam ? `'${data.ctaActionParam}'` : '';
+                     ctaButton = `<a href="#" onclick="event.preventDefault(); window.nord['${action}'](${param});" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
                 } else if (isExternal) {
                     ctaButton = `<a href="${data.ctaLink}" target="_blank" rel="noopener noreferrer" class="archetype-cta btn-base">${iconHTML}${textHTML}</a>`;
                 } else if (pageId) {
