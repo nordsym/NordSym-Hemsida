@@ -2407,7 +2407,7 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased light-theme">
     <!-- Insert Starfall Canvas before Header -->
     <canvas id="starfall"></canvas>
 
@@ -3539,7 +3539,13 @@
                 document.body.appendChild(this.canvas);
                 this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
                 this.scene = new THREE.Scene();
-                this.scene.fog = new THREE.FogExp2(0x0c1427, 0.015);
+                
+                // NYTT: Kontrollera initialt tema för korrekt dimma direkt vid start
+                const isLight = document.body.classList.contains('light-theme');
+                const fogColor = isLight ? 0xFDFDFD : 0x0c1427;
+                const fogDensity = isLight ? 0.005 : 0.015;
+                this.scene.fog = new THREE.FogExp2(fogColor, fogDensity);
+
                 this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
                 
                 if (typeof THREE.EffectComposer !== 'undefined' && typeof THREE.UnrealBloomPass !== 'undefined') {
@@ -4745,7 +4751,8 @@
         constructor() {
             this.themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
             this.body = document.body;
-            this.currentTheme = localStorage.getItem('theme') || 'dark';
+            // UPPDATERAD: 'light' är nu standard om inget val sparats
+            this.currentTheme = localStorage.getItem('theme') || 'light';
             
             this.init();
         }
