@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NordSym bygger intelligenta system som bygger sig själva. Från enskilda agenter till skräddarsydda ekosystem för er framgång.">
-    <meta name="keywords" content="Systemautomation Sverige, intelligenta system, processautomation, skräddarsydda system, digital transformation, NordSym">
+    <meta name="description" content="NordSym AB är en byrå för systemautomation och AI-arkitektur. Vi optimerar er verksamhet för AEO (Answer Engine Optimization) och bygger intelligenta ekosystem.">
+    <meta name="keywords" content="Systemautomation Sverige, intelligenta system, AEO, GEO, AI-arkitektur, digital transformation, NordSym">
     <meta name="author" content="NordSym AB">
     <link rel="canonical" href="https://nordsym.com">
     <title>NordSym AB - System som växer med framtiden</title>
@@ -59,6 +59,112 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/shaders/LuminosityHighPassShader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/shaders/CopyShader.js"></script>
 
+
+    <!-- NORDSYM TRUTHLAYER (JSON-LD STRUCTURED DATA) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://nordsym.com/#organization",
+          "name": "NordSym AB",
+          "url": "https://nordsym.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg",
+            "width": 512,
+            "height": 512
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/nordsym-ab/",
+            "https://x.com/NordSym",
+            "https://www.instagram.com/nordsym_ab/"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "gustav@nordsym.com",
+            "contactType": "customer support"
+          },
+          "knowsAbout": [
+            "Systemautomation",
+            "AI-arkitektur",
+            "AEO (Answer Engine Optimization)",
+            "GEO (Generative Engine Optimization)",
+            "Intelligent Process Automation",
+            "Micro-SaaS Development"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://nordsym.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Vad menar ni med 'AI som operativsystem'?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "För oss är AI inte bara ett verktyg man lägger ovanpå gamla processer. Vi bygger om arkitekturen så att intelligens blir kärnan som driver flödena. Systemet förstår er affärslogik och agerar autonomt, snarare än att bara vänta på input."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Hur säkert är det? Äger vi vår egen data?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolut. Vi bygger systemen så att ni behåller fullt ägandeskap och kontroll över er data. Vi designar 'vallgravar' runt er kärnverksamhet och säkerställer att ingen känslig data tränar publika modeller utan ert medgivande."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Kan ni integrera med våra gamla system (Legacy)?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ja. En stor del av vår arkitektur handlar om att bygga bryggor mellan beprövade legacy-system (som affärssystem och databaser) och moderna AI-agenter. Vi moderniserar utan att ni behöver byta ut hela er infrastruktur dag ett."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Vad händer om AI-modellerna förändras?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vi bygger modulärt och modell-agnostiskt. Det betyder att vi snabbt kan byta ut 'hjärnan' (t.ex. från GPT-4 till Claude 3.5 eller en lokal modell) utan att behöva bygga om hela systemet. Er arkitektur är framtidssäkrad."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Hur snabbt ser vi ROI?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vårt mål är alltid snabb 'time-to-value'. Genom att börja med att automatisera tydliga flaskhalsar (t.ex. administration, kundtjänst eller dataanalys) ser våra kunder ofta en mätbar ROI inom 4-8 veckor efter driftsättning."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://nordsym.com/#service",
+          "name": "NordSym - Intelligent Systemarkitektur",
+          "url": "https://nordsym.com",
+          "parentOrganization": {
+            "@id": "https://nordsym.com/#organization"
+          },
+          "description": "Vi bygger framtidssäkra, intelligenta AI-arkitekturer och system som tänker med er.",
+          "priceRange": "75000 SEK - 500000+ SEK"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://nordsym.com/#website",
+          "url": "https://nordsym.com",
+          "name": "NordSym AB",
+          "description": "System som tänker med er. Vi bygger er framtidssäkra, intelligenta AI-arkitektur.",
+          "publisher": {
+            "@id": "https://nordsym.com/#organization"
+          }
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -2388,6 +2494,63 @@
             color: var(--nord-sym-blueprint-ink);
         }
 
+        /* --- FAQ STYLES --- */
+        details summary::-webkit-details-marker { display: none; }
+        details summary { list-style: none; }
+        details summary:focus { outline: none; }
+        
+        .faq-item {
+            background: linear-gradient(155deg, rgba(var(--nord-sym-deep-space-blue-rgb), 0.4), rgba(var(--nord-sym-mid-space-blue-rgb), 0.1));
+            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .faq-item:hover {
+            border-color: var(--nord-sym-cyan);
+            box-shadow: 0 0 15px rgba(var(--nord-sym-cyan-rgb), 0.1);
+        }
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-family: 'Comfortaa', sans-serif;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--nord-sym-text-light);
+        }
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            color: var(--nord-sym-text-medium);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.1);
+            margin-top: 0;
+            padding-top: 1rem;
+        }
+        details[open] .faq-icon { transform: rotate(180deg); }
+        .faq-icon { transition: transform 0.3s ease; color: var(--nord-sym-cyan); }
+
+        /* FAQ Light Theme */
+        body.light-theme .faq-item {
+            background: var(--nord-sym-blueprint-bg);
+            border: 1px solid var(--nord-sym-blueprint-lines);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+        }
+        body.light-theme .faq-item:hover {
+            border-color: var(--nord-sym-blueprint-cyan);
+            box-shadow: 0 0 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
+        }
+        body.light-theme .faq-question { color: var(--nord-sym-blueprint-ink); }
+        body.light-theme .faq-answer { 
+            color: var(--nord-sym-blueprint-ink); 
+            opacity: 0.8;
+            border-top-color: var(--nord-sym-blueprint-lines-faint);
+        }
+
         /* --- STARFALL BACKGROUND (NEW) --- */
         #starfall {
             position: fixed;
@@ -2619,7 +2782,10 @@
                     <h3 class="text-3xl md:text-4xl font-bold text-white mt-4">Välj er Ambitionsnivå</h3>
                      <p class="text-lg text-content-dark-bg max-w-3xl mx-auto mt-4">Från en <strong>Minimal Lovable Product</strong> till total marknadsdominans. Vi bygger system med <em>Vibe Code</em> – teknologi som känns organisk, inte mekanisk.</p>
                 </div>
+                
+                <!-- Pricing Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+                    <!-- ... Pricing Cards (Same as before) ... -->
                     <div class="pricing-card card-base">
                         <div class="pricing-card-header text-center">
                             <h3>GRUND</h3>
@@ -2720,10 +2886,65 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Support Text -->
                 <div class="text-center mt-16 max-w-3xl mx-auto">
                     <p class="text-lg text-sky-200"><strong>AI Ops & Evolution:</strong> 15k SEK/mån.</p>
                     <p class="text-md text-sky-300 mt-2">Vi driftar, säkrar och uppgraderar era agenter i takt med att AI-modellerna blir smartare. Er försäkring mot att bli obsolet.</p>
                 </div>
+
+                <!-- FAQ Section (NEW) -->
+                <div class="max-w-4xl mx-auto mt-24">
+                    <h3 class="text-3xl font-bold text-white text-center mb-10 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Vanliga frågor</h3>
+                    <div class="space-y-4">
+                        <details class="faq-item group">
+                            <summary class="faq-question">
+                                <span>Vad menar ni med "AI som operativsystem"?</span>
+                                <i class="ph-caret-down faq-icon"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                För oss är AI inte bara ett verktyg man lägger ovanpå gamla processer. Vi bygger om arkitekturen så att intelligens blir kärnan som driver flödena. Systemet förstår er affärslogik och agerar autonomt, snarare än att bara vänta på input.
+                            </div>
+                        </details>
+                        <details class="faq-item group">
+                            <summary class="faq-question">
+                                <span>Hur säkert är det? Äger vi vår egen data?</span>
+                                <i class="ph-caret-down faq-icon"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Absolut. Vi bygger systemen så att ni behåller fullt ägandeskap och kontroll över er data. Vi designar "vallgravar" runt er kärnverksamhet och säkerställer att ingen känslig data tränar publika modeller utan ert medgivande.
+                            </div>
+                        </details>
+                        <details class="faq-item group">
+                            <summary class="faq-question">
+                                <span>Kan ni integrera med våra gamla system (Legacy)?</span>
+                                <i class="ph-caret-down faq-icon"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Ja. En stor del av vår arkitektur handlar om att bygga bryggor mellan beprövade legacy-system (som affärssystem och databaser) och moderna AI-agenter. Vi moderniserar utan att ni behöver byta ut hela er infrastruktur dag ett.
+                            </div>
+                        </details>
+                        <details class="faq-item group">
+                            <summary class="faq-question">
+                                <span>Vad händer om AI-modellerna förändras?</span>
+                                <i class="ph-caret-down faq-icon"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Vi bygger modulärt och modell-agnostiskt. Det betyder att vi snabbt kan byta ut "hjärnan" (t.ex. från GPT-4 till Claude 3.5 eller en lokal modell) utan att behöva bygga om hela systemet. Er arkitektur är framtidssäkrad.
+                            </div>
+                        </details>
+                        <details class="faq-item group">
+                            <summary class="faq-question">
+                                <span>Hur snabbt ser vi ROI?</span>
+                                <i class="ph-caret-down faq-icon"></i>
+                            </summary>
+                            <div class="faq-answer">
+                                Vårt mål är alltid snabb "time-to-value". Genom att börja med att automatisera tydliga flaskhalsar (t.ex. administration, kundtjänst eller dataanalys) ser våra kunder ofta en mätbar ROI inom 4-8 veckor efter driftsättning.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
             </div>
         </section>
 
