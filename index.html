@@ -1348,14 +1348,28 @@
         }
         .pricing-card li {
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
+            align-items: flex-start; /* ÄNDRAD: Från center till flex-start för toppjustering */
+            gap: 1rem; /* ÄNDRAD: Ökad gap för luftighet */
+            margin-bottom: 1.5rem; /* ÄNDRAD: Mer avstånd mellan punkter */
             color: var(--nord-sym-text-medium);
+            line-height: 1.6; /* Bättre läsbarhet */
         }
         .pricing-card li i {
             color: var(--nord-sym-cyan);
-            font-size: 1.25rem;
+            font-size: 1.5rem; /* Lite större ikoner */
+            margin-top: 0.15rem; /* Finjustering för att linjera med textrubriken */
+            flex-shrink: 0; /* Förhindra att ikonen krymper */
+        }
+        /* NYTT: Tvinga rubriken i listan till egen rad */
+        .pricing-card li strong {
+            display: block;
+            color: var(--nord-sym-text-light);
+            margin-bottom: 0.25rem;
+            font-size: 1.05rem;
+        }
+        /* Light theme support för den nya strong-regeln */
+        body.light-theme .pricing-card li strong {
+            color: var(--nord-sym-blueprint-ink) !important;
         }
 
         #main-footer {
@@ -2602,20 +2616,38 @@
             <div class="section-content-wrapper flex-grow">
                 <div class="text-center mb-20">
                      <span class="inline-block bg-sky-800/50 text-sky-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">System</span>
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mt-4">En Transformation i Tre Steg</h3>
-                     <p class="text-lg text-content-dark-bg max-w-3xl mx-auto mt-4">Vår arsenal av beprövade system är er startpunkt. Härifrån bygger vi er unika evolution.</p>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mt-4">Välj er Ambitionsnivå</h3>
+                     <p class="text-lg text-content-dark-bg max-w-3xl mx-auto mt-4">Från en <strong>Minimal Lovable Product</strong> till total marknadsdominans. Vi bygger system med <em>Vibe Code</em> – teknologi som känns organisk, inte mekanisk.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
                     <div class="pricing-card card-base">
                         <div class="pricing-card-header text-center">
                             <h3>GRUND</h3>
-                             <p class="text-sm text-sky-300 mt-2">Från en process till bevisat värde.</p>
+                             <p class="text-sm text-sky-300 mt-2">Från idé till Minimal Lovable Product.</p>
                         </div>
                         <div class="price-display text-center">75k <span class="price-period">SEK</span></div>
                         <ul>
-                            <li><i class="ph-check-circle"></i> <strong>Enskild process-automation:</strong> Vi väljer *en* högvärdig process och transformerar den.</li>
-                            <li><i class="ph-check-circle"></i> <strong>Snabb validering:</strong> Bevisar konceptet och levererar mätbar ROI snabbt.</li>
-                            <li><i class="ph-check-circle"></i> <strong>Grundplatta:</strong> Etablerar den tekniska grunden för ert framtida, intelligenta ekosystem.</li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>Eliminera en flaskhals</strong>
+                                    <span>Vi automatiserar en kritisk, tidskrävande process och frigör omedelbart resurser.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>MLP, inte MVP</strong>
+                                    <span>Vi bygger en första version som era användare faktiskt älskar att använda.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>Teknisk Grund</strong>
+                                    <span>En robust, skalbar bas redo för framtida expansion.</span>
+                                </div>
+                            </li>
                         </ul>
                         <div class="mt-auto">
                             <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Starta med Grunden</a>
@@ -2624,29 +2656,64 @@
                     <div class="pricing-card card-base ignite-package">
                          <div class="pricing-card-header text-center">
                             <h3>STRUKTUR</h3>
-                             <p class="text-sm text-sky-300 mt-2">Från isolerade system till ett intelligent nätverk.</p>
+                             <p class="text-sm text-sky-300 mt-2">Bygg en maskin som skalar.</p>
                         </div>
                         <div class="price-display text-center">250k <span class="price-period">SEK</span></div>
                          <ul>
-                            <li><i class="ph-check-circle"></i> <strong>Multi-agent Ekosystem:</strong> Flera AI-agenter som samarbetar och delar kontext.</li>
-                            <li><i class="ph-check-circle"></i> <strong>Skalbar Arkitektur:</strong> En beprövad och framtidssäkrad plattform, designad för era unika systemkrav.</li>
-                            <li><i class="ph-check-circle"></i> <strong>Intelligent Gränssnitt:</strong> Ett skräddarsytt UI/dashboard för att styra och övervaka systemet.</li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>Digital Arbetsstyrka</strong>
+                                    <span>Ett team av samverkande AI-agenter som jobbar dygnet runt.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>Obegränsad Skalning</strong>
+                                    <span>Arkitektur designad för att hantera 10x volym utan att ni behöver anställa fler.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>Total Kontroll</strong>
+                                    <span>Ett "Mission Control"-gränssnitt för att styra och optimera flödet.</span>
+                                </div>
+                            </li>
                         </ul>
                          <div class="mt-auto">
-                            <p class="text-center text-xs text-sky-300 mb-3">ENDAST 1 PLATS KVAR FÖR 2025</p>
                             <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full">Forma er Struktur</a>
                         </div>
                     </div>
                     <div class="pricing-card card-base">
                          <div class="pricing-card-header text-center">
                             <h3>ARKITEKTUR</h3>
-                             <p class="text-sm text-sky-300 mt-2">Ert nya, självlärande operativsystem.</p>
+                             <p class="text-sm text-sky-300 mt-2">Äg er marknad. Definiera framtiden.</p>
                         </div>
                         <div class="price-display text-center">500k+ <span class="price-period">SEK</span></div>
                          <ul>
-                            <li><i class="ph-check-circle"></i> <strong>AI-First Transformation:</strong> Vi designar om er kärnverksamhet med AI som operativsystem.</li>
-                            <li><i class="ph-check-circle"></i> <strong>Full Autonomi:</strong> Ett komplett, självgående och evolverande ekosystem.</li>
-                            <li><i class="ph-check-circle"></i> <strong>Evig Evolution:</strong> Systemet är byggt för att kontinuerligt lära sig och integrera ny teknik.</li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>AI-First Strategi</strong>
+                                    <span>Hela verksamheten omdesignad runt intelligens.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>Marknadsdominans</strong>
+                                    <span>System som reagerar, lär sig och agerar snabbare än konkurrenterna.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="ph-check-circle"></i>
+                                <div>
+                                    <strong>Strategisk Vallgrav</strong>
+                                    <span>Unik, egenägd teknologi som inte går att kopiera.</span>
+                                </div>
+                            </li>
                         </ul>
                          <div class="mt-auto">
                             <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Etablera er Arkitektur</a>
@@ -2654,8 +2721,8 @@
                     </div>
                 </div>
                 <div class="text-center mt-16 max-w-3xl mx-auto">
-                    <p class="text-lg text-sky-200"><strong>15k SEK/månad</strong> för framtidsbevakning och kontinuerlig evolution.</p>
-                    <p class="text-md text-sky-300 mt-2 italic">"När teknologin tar ett språng, är er arkitektur redan designad för det."</p>
+                    <p class="text-lg text-sky-200"><strong>AI Ops & Evolution:</strong> 15k SEK/mån.</p>
+                    <p class="text-md text-sky-300 mt-2">Vi driftar, säkrar och uppgraderar era agenter i takt med att AI-modellerna blir smartare. Er försäkring mot att bli obsolet.</p>
                 </div>
             </div>
         </section>
