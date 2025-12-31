@@ -81,6 +81,20 @@
             "https://x.com/NordSym",
             "https://www.instagram.com/nordsym_ab/"
           ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rörläggarvägen 39",
+            "addressLocality": "Bromma",
+            "postalCode": "168 33",
+            "addressRegion": "Stockholm",
+            "addressCountry": "SE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 59.3390,
+            "longitude": 17.9380
+          },
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=Rörläggarvägen+39,+168+33+Bromma",
           "contactPoint": {
             "@type": "ContactPoint",
             "email": "gustav@nordsym.com",
@@ -93,6 +107,88 @@
             "GEO (Generative Engine Optimization)",
             "Intelligent Process Automation",
             "Micro-SaaS Development"
+          ]
+        },
+        {
+          "@type": "Service",
+          "@id": "https://nordsym.com/#service-ai-agenter",
+          "name": "AI-Agenter",
+          "description": "Design och implementering av autonoma digitala medarbetare för kundtjänst, research och administration.",
+          "provider": { "@id": "https://nordsym.com/#organization" },
+          "areaServed": [
+            { "@type": "Country", "name": "Sverige" },
+            { "@type": "AdministrativeArea", "name": "Stockholms län" }
+          ],
+          "serviceType": "Artificial Intelligence"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://nordsym.com/#service-ai-first",
+          "name": "AI-First Arkitektur",
+          "description": "Strategisk systemdesign där AI utgör kärnan i verksamhetens operativsystem för maximal skalbarhet.",
+          "provider": { "@id": "https://nordsym.com/#organization" },
+          "areaServed": [
+            { "@type": "Country", "name": "Sverige" },
+            { "@type": "AdministrativeArea", "name": "Stockholms län" }
+          ],
+          "serviceType": "Software Architecture"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://nordsym.com/#service-mcp",
+          "name": "Model Context Protocol",
+          "description": "Implementation av MCP för att säkerställa delad kontext och minne mellan olika AI-modeller och system.",
+          "provider": { "@id": "https://nordsym.com/#organization" },
+          "areaServed": [
+            { "@type": "Country", "name": "Sverige" },
+            { "@type": "AdministrativeArea", "name": "Stockholms län" }
+          ],
+          "serviceType": "System Integration"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://nordsym.com/#service-ui",
+          "name": "Intelligenta Gränssnitt",
+          "description": "Utveckling av adaptiva gränssnitt och dashboards som anpassar sig efter användarens kontext i realtid.",
+          "provider": { "@id": "https://nordsym.com/#organization" },
+          "areaServed": [
+            { "@type": "Country", "name": "Sverige" },
+            { "@type": "AdministrativeArea", "name": "Stockholms län" }
+          ],
+          "serviceType": "Web Development"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://nordsym.com/#service-automation",
+          "name": "Intelligent Automation",
+          "description": "End-to-end automation av affärsprocesser genom att koppla samman legacy-system med moderna AI-flöden.",
+          "provider": { "@id": "https://nordsym.com/#organization" },
+          "areaServed": [
+            { "@type": "Country", "name": "Sverige" },
+            { "@type": "AdministrativeArea", "name": "Stockholms län" }
+          ],
+          "serviceType": "Process Automation"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://nordsym.com/#service-data",
+          "name": "Data & Insikter",
+          "description": "Avancerad dataanalys och prediktiva insikter drivna av AI för att stödja strategiska beslut.",
+          "provider": { "@id": "https://nordsym.com/#organization" },
+          "areaServed": [
+            { "@type": "Country", "name": "Sverige" },
+            { "@type": "AdministrativeArea", "name": "Stockholms län" }
+          ],
+          "serviceType": "Data Analytics"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://nordsym.com/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Hem", "item": "https://nordsym.com" },
+            { "@type": "ListItem", "position": 2, "name": "Arkitektur", "item": "https://nordsym.com/#om-oss" },
+            { "@type": "ListItem", "position": 3, "name": "System", "item": "https://nordsym.com/#system" },
+            { "@type": "ListItem", "position": 4, "name": "Ritbordet", "item": "https://nordsym.com/#ritbordet" }
           ]
         },
         {
@@ -2571,10 +2667,22 @@
     </style>
 </head>
 <body class="antialiased light-theme">
+    <!-- CRAWLER NAVIGATION (AEO BOOST) -->
+    <nav id="crawler-nav" class="sr-only" aria-label="Sitemap för sökrobotar">
+        <ul>
+            <li><a href="#hero">Start</a></li>
+            <li><a href="#om-oss">Vår Arkitektur och Filosofi</a></li>
+            <li><a href="#system">Systempaket och Priser</a></li>
+            <li><a href="#ritbordet">Ritbordet och Process</a></li>
+            <li><a href="#atom-gallery-section">AI-Byggstenar och Produkter</a></li>
+            <li><a href="#karriar">Karriär och Rekrytering</a></li>
+        </ul>
+    </nav>
+
     <!-- Insert Starfall Canvas before Header -->
     <canvas id="starfall"></canvas>
 
-    <header id="header" class="fixed w-full top-0 left-0 right-0 z-40 bg-nord-sym-deep-space-blue/95 transition-all duration-300">
+    <header id="header" class="fixed w-full top-0 left-0 right-0 z-40 bg-nord-sym-deep-space-blue/95 transition-all duration-300" itemscope itemtype="https://schema.org/WPHeader">
         <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center"> 
             <a href="#" id="header-logo-link" onclick="window.nord.handleHeaderLogoClick(event); return false;" class="flex-shrink-0">
                 <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16 md:h-20 transition-all duration-300">
@@ -2614,7 +2722,7 @@
         </div>
     </header>
 
-    <main> 
+    <main itemscope itemtype="https://schema.org/WebPage"> 
         <section id="hero" class="space-background-section">
             <div class="section-content-wrapper">
                 <div class="flex flex-col items-center gap-y-8">
