@@ -2784,18 +2784,18 @@
                         
                         <!-- Knapparna (nu transparenta, ovanpå) -->
                         <button id="gallery-switch-byggstenar" 
-                                class="gallery-switch-btn active relative z-10 text-nord-sym-deep-space-blue rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
+                                class="gallery-switch-btn inactive relative z-10 text-sky-200 hover:text-white rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
                             Byggstenar
                         </button>
                         <button id="gallery-switch-galleri" 
-                                class="gallery-switch-btn inactive relative z-10 text-sky-200 hover:text-white rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
+                                class="gallery-switch-btn active relative z-10 text-nord-sym-deep-space-blue rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
                             Produkter
                         </button>
                     </div>
                     
                     <!-- JUSTERAD: <p>-tagg med ny ID och borttagen länk -->
                     <p id="gallery-description-text" class="text-center text-sky-200 max-w-3xl mx-auto mt-8 mb-8">
-                        Dessa är de beprövade grundelementen i vår arkitektur. Med dessa komponenter bygger vi allt från fokuserade Micro-SaaS-lösningar till fullskaliga, intelligenta arkitekturer.
+                        Här hittar du våra färdiga Produkter & Micro-SaaS. Kompletta, verifierade system byggda på vår arkitektur som genererar värde från dag ett.
                     </p>
                 </div>
                 <div class="gallery-container">
@@ -2809,7 +2809,7 @@
                     <button id="galleryPrev" aria-label="Föregående byggsten" class="gallery-control-btn">
                         <i class="ph-arrow-left-bold"></i>
                     </button>
-                    <span id="gallery-context-text" class="text-base sm:text-lg text-sky-300 select-none">Utforska byggstenarna</span>
+                    <span id="gallery-context-text" class="text-base sm:text-lg text-sky-300 select-none">Utforska produkterna</span>
                     <button id="galleryNext" aria-label="Nästa byggsten" class="gallery-control-btn">
                         <i class="ph-arrow-right-bold"></i>
                     </button>
@@ -5686,7 +5686,7 @@
                 }
             };
             
-            this.currentView = 'byggstenar'; // Startvy
+            this.currentView = 'galleri'; // Startvy
             // --- DATAHARMONISERING SLUT ---
             
             // BORTTAGEN: Den buggiga state-variabeln
