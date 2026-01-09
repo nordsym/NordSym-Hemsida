@@ -2742,8 +2742,8 @@
                             <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto">Utforska Ritbordet</a>
                         </div>
                          <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-4 text-sm text-sky-300 justify-center">
-                            <span>Kalibrerat för er verklighet</span>
-                            <span>Byggt på beprövade mönster</span>
+                            <span>Byggt för ständig evolution</span>
+                            <span>Säkrad för framtidens krav</span>
                             <span>🇸🇪 Svensk ingenjörskonst</span>
                         </div>
                     </div>
@@ -3748,6 +3748,7 @@
                 this.forceFactor = 0.0015;
                 this.MAX_INPUT_FORCE = 0.035;
             this.onboardingTimeout = null;
+            this.animationId = null; // Antifragile: Track animation loop
             this.activeParticleMorph = { from: null, to: null };
                 this.themeSwitchCooldown = 500; // Harmoni-fix: En "andningspaus" för temaväxling.
                 this.lastThemeSwitchTime = 0;
@@ -4281,7 +4282,7 @@
             hideFormName() { document.getElementById('form-name-display')?.classList.remove('visible'); }
 
             animate() {
-                requestAnimationFrame(this.animate);
+                this.animationId = requestAnimationFrame(this.animate);
                 const time = this.clock.getElapsedTime();
                 
                 this.interaction.actualRotationX += (this.interaction.targetRotationX - this.interaction.actualRotationX) * 0.1;
@@ -4869,10 +4870,11 @@
     
     // Anti-Fragile Initialization Sequence
         try {
-            window.UnifiedGeometryManager = new UnifiedGeometryManager();
-            window.UnifiedGeometryManager.init();
+            window.nord.unifiedGeometry = new UnifiedGeometryManager();
+            window.UnifiedGeometryManager = window.nord.unifiedGeometry; // Alias för bakåtkompatibilitet med HTML-handlers
+            window.nord.unifiedGeometry.init();
 
-            if (!window.UnifiedGeometryManager.initializationFailed) {
+            if (!window.nord.unifiedGeometry.initializationFailed) {
                 new RitbordetManager().init();
                 new GalleryManager().init();
                 
@@ -4959,6 +4961,12 @@
                 title: 'FlowNode - AI Agent Orchestration',
                 desc: 'Vi utvecklar en visuell workflow-builder för att orkestrera AI-agenter. Målet är att förenkla skapandet av komplexa flöden mellan modeller och API:er.',
                 subject: 'Intresseanmälan: FlowNode'
+            },
+            genprd: {
+                icon: 'ph-file-code',
+                title: 'GenPRD - AI Specifikationer',
+                desc: 'Generera tekniska kravspecifikationer optimerade för AI-agenter. Få databasscheman och user flows direkt.',
+                subject: 'Intresseanmälan: GenPRD'
             },
             seo: {
                 icon: 'ph-magnifying-glass', // Search/Analysis metaphor
@@ -5098,9 +5106,7 @@
             // Meddela UnifiedGeometryManager om det initiala temat
             // Vi lägger en liten fördröjning för att säkerställa att three.js har initierats
             setTimeout(() => {
-                if (window.UnifiedGeometryManager) {
-                    window.UnifiedGeometryManager.setGlobalTheme(this.currentTheme);
-                }
+                window.nord?.unifiedGeometry?.setGlobalTheme?.(this.currentTheme);
             }, 100);
         }
 
@@ -5118,10 +5124,8 @@
             localStorage.setItem('theme', theme);
             this.currentTheme = theme;
 
-            // Meddela UnifiedGeometryManager om ändringen
-            if (window.UnifiedGeometryManager) {
-                window.UnifiedGeometryManager.setGlobalTheme(theme);
-            }
+            // Meddela UnifiedGeometryManager om ändringen (Antifragile Pattern)
+            window.nord?.unifiedGeometry?.setGlobalTheme?.(theme);
 
             // Uppdatera ikon på båda knapparna
             const iconClass = theme === 'light' ? 'ph-moon' : 'ph-sun';
@@ -5588,7 +5592,21 @@
                     indicator: 'Är ditt varumärke redo för framtidens sök?',
                     ctaText: 'Gör Gratis Analys',
                     ctaIcon: 'ph-sparkle',
-                    ctaLink: 'https://nordsym.github.io/aeo-platform/'
+                    ctaLink: 'https://nordsym.github.io/development/'
+                },
+                {
+                    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/foxPRDthink.svg?alt=media&token=f22ea0fe-8edd-41de-84e0-b87e706ea07d',
+                    title: 'GenPRD',
+                    description: 'Sluta gissa, börja bygga. GenPRD omvandlar din produktidé till en detaljerad teknisk kravspecifikation (PRD) optimerad för AI-agenter. Få databasscheman, user flows och tech stacks på sekunder.',
+                    signatures: [
+                        { icon: 'ph-file-code', text: 'PRD-Generator' },
+                        { icon: 'ph-database', text: 'SQL-Schema' },
+                        { icon: 'ph-magic-wand', text: 'AI-Kontext' }
+                    ],
+                    indicator: 'Context-as-a-Service för snabbare AI-bygge.',
+                    ctaText: 'Testa GenPRD',
+                    ctaIcon: 'ph-lightning',
+                    ctaLink: 'https://genprd.se'
                 },
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/NordSym-Logga/refs/heads/main/B%C3%A4ver%20byggledare.svg',
@@ -5757,9 +5775,11 @@
             if (!btnByggstenar || !btnGalleri || !slider) return;
 
             const updateSwitchUI = (activeBtn, inactiveBtn) => {
-                // Flytta slidern
+                // Flytta slidern - Nu med exakt positionering (Height + Top)
                 slider.style.width = `${activeBtn.offsetWidth}px`;
                 slider.style.left = `${activeBtn.offsetLeft}px`;
+                slider.style.height = `${activeBtn.offsetHeight}px`;
+                slider.style.top = `${activeBtn.offsetTop}px`;
 
                 // Uppdatera textfärger
                 activeBtn.classList.remove('inactive', 'text-sky-200', 'hover:text-white');
