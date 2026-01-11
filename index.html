@@ -1357,18 +1357,17 @@
             transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .archetype-card {
-            /* MATTE UPDATE: Solidare bakgrund, mjukare känsla */
-            background: rgba(18, 20, 24, 0.75); 
-            /* BORTTAGET: Skarp gradient */
-            /* background: linear-gradient(145deg, rgba(var(--nord-sym-deep-space-blue-rgb), 0.5), rgba(var(--nord-sym-mid-space-blue-rgb), 0.15)); */
+            /* PREMIUM DARK GRADIENT: Djupare, rikare botten istället för platt grå */
+            background: linear-gradient(165deg, rgba(25, 30, 45, 0.8) 0%, rgba(10, 12, 16, 0.9) 100%);
             
-            /* MJUKARE KANT: Vit med låg opacitet istället för cyan */
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            /* GLAS-KANT: Tydligare highlight i toppen för 3D-känsla */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             
-            /* FROSTED FEEL: Ökad blur för matt yta */
+            /* FROSTED FEEL */
             backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             
-            /* RUNDARE HÖRN: 2rem (32px) istället för 1.5rem */
+            /* RUNDARE HÖRN */
             border-radius: 2rem;
             
             padding: 2.5rem 2rem;
@@ -1382,8 +1381,8 @@
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             overflow: hidden;
-            /* MJUKARE SKUGGA */
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+            /* ATMOSFÄRISK SKUGGA: Subtil blå ton i skuggan + inre liv */
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), inset 0 0 20px rgba(0, 212, 255, 0.03);
         }
         .archetype-card::before { /* Glow effect on hover */
             content: '';
@@ -1608,9 +1607,13 @@
 
         /* --- SYSTEM/PRICING CARD REJUVENATION (HARMONISERAD MED GALLERI) --- */
         .pricing-card {
-            /* MATTE UPDATE: Samma bas som .archetype-card */
-            background: rgba(18, 20, 24, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            /* PREMIUM DARK GRADIENT: Matchar galleriet */
+            background: linear-gradient(165deg, rgba(25, 30, 45, 0.8) 0%, rgba(10, 12, 16, 0.9) 100%);
+            
+            /* GLAS-KANT */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            
             backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             border-radius: 2rem; /* Matchar galleriet */
             padding: 2.5rem 2rem;
@@ -1620,7 +1623,8 @@
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+            /* ATMOSFÄRISK SKUGGA */
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), inset 0 0 20px rgba(0, 212, 255, 0.03);
         }
         .pricing-card::before {
             content: '';
@@ -1638,8 +1642,8 @@
         }
         .pricing-card:hover {
             transform: translateY(-8px) scale(1.02); /* Matchar galleriet */
-            box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6);
-            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.7), inset 0 0 30px rgba(0, 212, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         .pricing-card:hover::before {
             opacity: 1;
@@ -1647,18 +1651,19 @@
         
         /* Ignite Package (Mittenkortet) - Lite extra "pop" men inom samma stil */
         .pricing-card.ignite-package {
-            border-color: rgba(var(--nord-sym-cyan-rgb), 0.3); /* Något tydligare men inte neon */
-            box-shadow: 0 20px 60px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(var(--nord-sym-cyan-rgb), 0.1);
+            border-color: rgba(var(--nord-sym-cyan-rgb), 0.4); /* Tydligare kant */
+            /* Djupare glow och tydligare "hero"-gradient */
+            box-shadow: 0 25px 70px -12px rgba(0, 212, 255, 0.15), 0 0 0 1px rgba(var(--nord-sym-cyan-rgb), 0.1);
             transform: scale(1.05);
-            background: rgba(22, 26, 32, 0.85); /* Lite ljusare/solidare */
+            background: linear-gradient(165deg, rgba(30, 40, 60, 0.9) 0%, rgba(12, 20, 30, 0.95) 100%);
         }
         .pricing-card.ignite-package::before {
             opacity: 0.2; /* Alltid lite glow */
         }
         .pricing-card.ignite-package:hover {
             transform: scale(1.08) translateY(-8px);
-            border-color: rgba(var(--nord-sym-cyan-rgb), 0.5);
-            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.8);
+            border-color: rgba(var(--nord-sym-cyan-rgb), 0.6);
+            box-shadow: 0 35px 80px -15px rgba(0, 212, 255, 0.25);
         }
 
         .pricing-card-header h3 {
@@ -3704,7 +3709,6 @@
             <li><a href="#system">Systempaket och Priser</a></li>
             <li><a href="#ritbordet">Ritbordet och Process</a></li>
             <li><a href="#atom-gallery-section">AI-Byggstenar och Produkter</a></li>
-            <li><a href="#karriar">Karriär och Rekrytering</a></li>
         </ul>
     </nav>
 
@@ -3723,7 +3727,6 @@
                 <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium">Tjänster</a>
                 <!-- UPPDATERAT: Ritbordet -> R&D -->
                 <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="nav-link transition-colors font-medium">R&D</a>
-                <a href="#" onclick="window.nord.showPage('karriar'); return false;" data-nav="karriar" class="nav-link transition-colors font-medium">Gör din del</a>
             </nav>
             <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
                 <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm">Framtidsförsäkra er verksamhet</a>
@@ -3748,7 +3751,6 @@
             <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Tjänster</a>
             <!-- UPPDATERAT: Ritbordet -> R&D -->
             <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">R&D</a>
-            <a href="#" onclick="window.nord.showPage('karriar'); return false;" data-nav="karriar" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Gör din del</a>
             <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
                 <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow">Framtidsförsäkra er verksamhet</a>
             </div>
@@ -3762,10 +3764,30 @@
                     <div id="hero-logo-wrapper" onclick="window.nord.showPage('om-oss');">
                         <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" width="200" height="57">
                     </div>
-                    <!-- UPPDATERAT: Responsiv font-size fixad för mobil -->
-                    <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-bold leading-tight text-center hero-headline-glow px-2" style="color: var(--nord-sym-light-accent);">
-                        Framtidsförsäkra er verksamhet.
-                    </h1>
+                    
+                    <!-- BORTTAGET: Tagg "Framtidsförsäkra er verksamhet" raderad enligt önskemål (endast CTA nu) -->
+
+                    <!-- UPPDATERAT: H1 Design - Solid Matt Yta (Ingen glas/gradient-röra) -->
+                    <div class="relative inline-block group my-6">
+                        <!-- Bakomliggande Glow (Endast Dark Mode - Subtilare) -->
+                        <div class="absolute -inset-1 bg-nord-sym-cyan rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500 light-theme:hidden"></div>
+                        
+                        <!-- Själva Taggen -->
+                        <!-- Dark Mode: Solid Cyan + Graphite Text -->
+                        <!-- Light Mode: Nu enhetlig (Cyan + Graphite) istället för Svart + Cyan -->
+                        <!-- Ändrat font-bold till font-semibold för lugnare intryck -->
+                        <h1 class="relative px-8 py-4 md:px-12 md:py-6 rounded-full 
+                                   bg-nord-sym-cyan text-[#1f2937]
+                                   light-theme:bg-nord-sym-cyan light-theme:text-[#1f2937]
+                                   shadow-[0_0_25px_rgba(0,212,255,0.25)] light-theme:shadow-lg
+                                   border border-transparent light-theme:border-sky-300
+                                   text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight 
+                                   transition-all duration-300 transform group-hover:scale-[1.01]" 
+                            style="font-family: 'Outfit', sans-serif;">
+                            Bygg bort begränsningar.
+                        </h1>
+                    </div>
+
                     <!-- UPPDATERAT: Leading-loose för att hantera taggen på mobil -->
                     <p class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-loose md:leading-relaxed px-4">
                         <!-- UPPDATERAT: 'Vi' -> 'NordSym' för att etablera varumärket -->
@@ -4009,11 +4031,9 @@
             <div class="section-content-wrapper">
                 <!-- HERO SECTION -->
                 <div class="max-w-4xl mx-auto text-center mb-12">
-                    <span class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-widest uppercase rounded-full bg-sky-900/30 border border-sky-500/30 text-sky-300 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">NordSym R&D</span>
-                    <!-- UPPDATERAT: Från "Vår Plattform" till "Micro-SaaS" -->
-                    <h2 class="section-title text-4xl md:text-5xl mb-4 font-bold text-white light-theme:text-nord-sym-blueprint-ink">Micro-SaaS</h2>
-                    
-                    <!-- BORTTAGET: Det tidigare <p> stycket med "Proprietär teknologi..." -->
+                    <!-- UPPDATERAT: Tagg ändrad till Micro-SaaS -->
+                    <span class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-widest uppercase rounded-full bg-sky-900/30 border border-sky-500/30 text-sky-300 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Micro-SaaS</span>
+                    <!-- BORTTAGET: Rubrik "NordSym R&D" raderad enligt önskemål -->
                     
                     <!-- NYTT: FOUNDER BADGE (Uppdaterad till knapp + BALANSERAD) -->
                     <!-- Ändringar: Mjukare border i dark mode, tydligare hover i light mode -->
@@ -4246,8 +4266,8 @@
         <section id="system" class="space-background-section page-content-padding" style="display: none;">
             <div class="section-content-wrapper flex-grow">
                 <div class="text-center mb-20">
-                     <!-- UPPDATERAT: "Vårt Erbjudande" är nu taggen -->
-                     <span class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-widest uppercase rounded-full bg-sky-900/30 border border-sky-500/30 text-sky-300 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Vårt Erbjudande</span>
+                     <!-- UPPDATERAT: Taggen ändrad till "Bygg bort begränsningar" enligt önskemål -->
+                     <span class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-widest uppercase rounded-full bg-sky-900/30 border border-sky-500/30 text-sky-300 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Bygg bort begränsningar</span>
                     
                     <!-- UPPDATERAT: Nertonad huvudrubrik (Mindre storlek, tunnare vikt) -->
                     <h3 class="text-2xl md:text-3xl font-medium text-white mt-4 light-theme:text-nord-sym-blueprint-ink max-w-3xl mx-auto leading-relaxed">Intelligent mjukvara anpassad efter er verksamhet</h3>
@@ -4491,147 +4511,17 @@
                         </div>
 
                         <!-- Kort 3: Gaming Side Project -->
+                        <!-- UPPDATERAT: Länkar tillbaka till modal (väntelista) istället för X -->
                         <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-pointer" onclick="window.nord.openDynamicWaitlist('gaming')">
                             <i class="ph-game-controller text-4xl mb-4"></i>
                             <h4 class="text-xl font-bold mb-2">Gaming Side Project</h4>
-                            <!-- UPPDATERAT: Fas 2 Copy -->
-                            <p>Prototyper med AI-driven gameplay utvecklas kontinuerligt. Tidigt stadium, hög experimentlusta. Vill du följa resan?</p>
-                            <!-- UPPDATERAT: Översatt "Join Waitlist" till svenska -->
-                            <span class="text-sky-300 text-sm mt-4 inline-block group-hover:text-white font-semibold">Gå med i väntelistan →</span>
+                            <!-- UPPDATERAT: Avslappnad ton, kortare -->
+                            <p>Ett sidoprojekt som får kärlek när det finns tid över.</p>
+                            <!-- UPPDATERAT: Enkel text för intresselista -->
+                            <span class="text-sky-300 text-sm mt-4 inline-block group-hover:text-white font-semibold">Håll mig uppdaterad →</span>
                         </div>
 
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="karriar" class="space-background-section page-content-padding" style="display: none;">
-            <div class="section-content-wrapper">
-                <div class="flex flex-col items-center gap-y-8 text-center">
-                    <div class="flex justify-center space-x-2">
-                        <i class="ph-star-four nordsym-logo-star text-3xl" style="animation-delay: 0.1s;"></i>
-                        <i class="ph-star-four nordsym-logo-star text-4xl" style="animation-delay: 0.3s;"></i>
-                        <i class="ph-star-four nordsym-logo-star text-3xl" style="animation-delay: 0.5s;"></i>
-                    </div>
-                    <!-- UPPDATERAT: Premium-design på rubriken (Glassmorphism + Glow) -->
-                    <div class="inline-block mt-4 mb-2">
-                        <!-- UPPDATERAT: Light Mode - Mer sofistikerad "frostad" look med tydligare kant och skugga -->
-                        <h2 class="section-title inline-block px-8 py-5 rounded-2xl border border-sky-500/30 bg-sky-900/10 backdrop-blur-xl text-3xl md:text-5xl font-bold text-white shadow-[0_0_40px_rgba(0,212,255,0.1)] light-theme:bg-white/60 light-theme:border-nord-sym-blueprint-cyan/40 light-theme:text-nord-sym-blueprint-ink light-theme:shadow-[0_10px_40px_rgba(0,191,255,0.15)]">
-                            Bygg Intelligens. <span class="text-nord-sym-cyan">Inte bara Kod.</span>
-                        </h2>
-                    </div>
-                    
-                    <div class="max-w-3xl lg:max-w-4xl mx-auto">
-                        <p class="text-lg md:text-xl leading-relaxed text-sky-100 light-theme:text-nord-sym-blueprint-text-primary">
-                            Vi befinner oss i ett paradigmskifte. AI ritar om kartan för vad mjukvara är.
-                        </p>
-                        <!-- UPPDATERAT: Fas 2 Copy - AI-native, text-to-code, mindre zealot -->
-                        <p class="text-lg md:text-xl leading-relaxed mt-6 text-sky-200 light-theme:text-nord-sym-blueprint-text-secondary">
-                            Passiv mjukvara är historia. Hos NordSym designas system med agens – arkitekturer som agerar autonomt och förstår kontext. Det handlar mindre om syntax och mer om att instruera modeller på engelska. AI-native mindset krävs, men gedigen erfarenhet av systembygge skadar inte.
-                        </p>
-                    </div>
-                    <div>
-                        <!-- UPPDATERAT: Knapptext -->
-                        <a href="#" onclick="window.nord.showPage('vilka-ar-vi'); return false;" class="btn-base btn-secondary-on-dark px-10 py-4 text-lg lg:text-xl lg:px-12 lg:py-5">
-                            Hör av dig <i class="ph-paper-plane-tilt ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="vilka-ar-vi" class="space-background-section page-content-padding" style="display: none;">
-            <div class="section-content-wrapper text-center" id="vilka-ar-vi-content">
-                <!-- UPPDATERAT: Rubrik och intro -->
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Anslut till Protokollet</h2>
-                <div class="max-w-2xl mx-auto text-left text-sky-100">
-                     <p class="text-lg mb-10 text-center">
-                        Vi söker undantagen. De som vill definiera nästa generations systemarkitektur.
-                    </p>
-                </div>
-                <div id="jobApplicationFormContainer" class="form-container p-8 md:p-12 mt-4 max-w-2xl mx-auto text-left border-sky-500/50 shadow-[0_0_40px_rgba(0,212,255,0.15)]"> 
-                    <!-- UPPDATERAT: Form-titel -->
-                    <h3 class="text-xl font-mono text-nord-sym-cyan mb-6 text-center uppercase tracking-widest border-b border-sky-500/20 pb-4">>> Kompetens-injektering</h3>
-                    
-                    <div class="form-progress-bar">
-                        <div class="form-progress-bar-inner"></div>
-                    </div>
-                    
-                    <form id="jobApplicationForm">
-                        <input type="hidden" name="_subject" value="Ny profil: NordSym Protokollet">
-                        
-                        <!-- STEG 1: Identitet -->
-                        <div class="form-step active" data-step="1">
-                            <div class="space-y-6">
-                                <div>
-                                    <label class="form-label text-sky-300 text-xs uppercase tracking-wider mb-2">Välj Klass</label>
-                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                        <label class="cursor-pointer">
-                                            <input type="radio" name="role" value="Systemarkitekt" class="sr-only peer" required>
-                                            <div class="p-3 rounded-lg border border-sky-500/30 bg-sky-900/20 text-center text-sm font-semibold text-sky-200 peer-checked:bg-nord-sym-cyan peer-checked:text-nord-sym-deep-space-blue peer-checked:border-nord-sym-cyan transition-all hover:bg-sky-800/40">
-                                                Systemarkitekt
-                                            </div>
-                                        </label>
-                                        <label class="cursor-pointer">
-                                            <input type="radio" name="role" value="AI-Ingenjör" class="sr-only peer">
-                                            <div class="p-3 rounded-lg border border-sky-500/30 bg-sky-900/20 text-center text-sm font-semibold text-sky-200 peer-checked:bg-nord-sym-cyan peer-checked:text-nord-sym-deep-space-blue peer-checked:border-nord-sym-cyan transition-all hover:bg-sky-800/40">
-                                                AI-Ingenjör
-                                            </div>
-                                        </label>
-                                        <label class="cursor-pointer">
-                                            <input type="radio" name="role" value="3D-Kreatör" class="sr-only peer">
-                                            <div class="p-3 rounded-lg border border-sky-500/30 bg-sky-900/20 text-center text-sm font-semibold text-sky-200 peer-checked:bg-nord-sym-cyan peer-checked:text-nord-sym-deep-space-blue peer-checked:border-nord-sym-cyan transition-all hover:bg-sky-800/40">
-                                                3D-Kreatör
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="applicant-name" class="form-label">Kodnamn / Namn</label>
-                                        <input type="text" name="applicant-name" id="applicant-name" required class="form-input font-mono text-sm" placeholder="Ange fullständigt namn">
-                                    </div>
-                                    <div>
-                                        <label for="applicant-email" class="form-label">Kommunikationslänk (E-post)</label>
-                                        <input type="email" name="email" id="applicant-email" required class="form-input font-mono text-sm">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-navigation">
-                                <span></span> <!-- Spacer -->
-                                <button type="button" class="btn-base btn-cta-revised group">
-                                    Fortsätt <i class="ph-caret-right ml-1 group-hover:translate-x-1 transition-transform"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- STEG 2: Data -->
-                        <div class="form-step" data-step="2">
-                             <div class="space-y-6">
-                                <div>
-                                    <label for="applicant-linkedin" class="form-label">Digital Profil (LinkedIn/GitHub)</label>
-                                    <div class="relative">
-                                        <i class="ph-link absolute left-3 top-1/2 -translate-y-1/2 text-sky-500"></i>
-                                        <input type="url" name="linkedin" id="applicant-linkedin" class="form-input pl-10 font-mono text-sm" placeholder="https://...">
-                                    </div>
-                                </div>
-                                <div>
-                                    <!-- UPPDATERAT: "Din Signatur" -->
-                                    <label for="applicant-motivation" class="form-label">Din Signatur</label>
-                                    <textarea name="motivation" id="applicant-motivation" rows="4" class="form-textarea font-mono text-sm leading-relaxed" required placeholder="Vad bygger du helst? Vilken teknikstack föredrar du? Länka gärna till ett projekt du är stolt över."></textarea>
-                                </div>
-                            </div>
-                            <div class="form-navigation">
-                                <button type="button" class="btn-base btn-secondary-on-dark text-sm px-4">
-                                    <i class="ph-caret-left mr-1"></i> Tillbaka
-                                </button>
-                                <!-- UPPDATERAT: Knapptext -->
-                                <button type="submit" class="btn-base btn-cta-revised">
-                                    Kompilera Profil <i class="ph-check-circle ml-2"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </section>
@@ -4821,6 +4711,7 @@
     </div>
     
     <footer id="main-footer" class="relative bg-nord-sym-deep-space-blue">
+        <footer id="main-footer" class="relative bg-nord-sym-deep-space-blue">
         <div class="section-content-wrapper py-10 relative z-10">
             <div class="grid md:grid-cols-3 gap-8 text-sm">
                 <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
@@ -4841,7 +4732,6 @@
                         <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link">Tjänster</a>
                         <!-- UPPDATERAT: Ritbordet -> R&D -->
                         <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link">R&D</a>
-                        <a href="#" onclick="window.nord.showPage('karriar'); return false;" class="footer-link">Gör din del</a>
                         <!-- NYTT: Länk till FAQ -->
                         <a href="#" onclick="window.nord.showPage('system'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link">Vanliga frågor</a>
                     </div>
@@ -5146,8 +5036,6 @@
             'om-oss': { display: 'flex', hasFooter: true, navAlias: 'om-oss' },
             'system': { display: 'flex', hasFooter: true, navAlias: 'system' },
             'ritbordet': { display: 'flex', hasFooter: true, navAlias: 'ritbordet' },
-            'karriar': { display: 'flex', hasFooter: false, navAlias: 'karriar' },
-            'vilka-ar-vi': { display: 'flex', hasFooter: false, navAlias: 'karriar' },
             'boka-samtal-skraddarsydd': { display: 'flex', hasFooter: true, navAlias: 'system' },
             'privacy-policy-en': { display: 'flex', hasFooter: true, navAlias: 'hero' },
             'terms-of-service-en': { display: 'flex', hasFooter: true, navAlias: 'hero' },
@@ -6535,11 +6423,11 @@
                 desc: 'Generera tekniska kravspecifikationer optimerade för AI-agenter. Få databasscheman och user flows direkt.',
                 subject: 'Intresseanmälan: GenPRD'
             },
-            // NYTT: Konfiguration för Gaming Side Project
+            // NYTT: Konfiguration för Gaming Side Project (Uppdaterad text)
             gaming: {
                 icon: 'ph-game-controller',
                 title: 'R&D: Gaming Side Project',
-                desc: 'Vi experimenterar med AI-driven gameplay och procedurella världar. Skriv upp dig för att få uppdateringar om våra prototyper.',
+                desc: 'Vi bygger på detta när andan faller på. Skriv upp dig om du vill veta när vi har något spelbart.',
                 subject: 'Intresseanmälan: Gaming Side Project'
             },
             seo: {
@@ -6667,7 +6555,6 @@
         }
         
         new FormManager('formSkraddarsydd', 'xqabggao');
-        new FormManager('jobApplicationForm', 'xblypplz');
         // NY: Koppla vänteliste-formuläret (Återanvänder kontakt-ID tills vidare)
         new FormManager('waitlistForm', 'xqabggao'); 
         
