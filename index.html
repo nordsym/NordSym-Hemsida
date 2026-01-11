@@ -291,10 +291,10 @@
         .border-sky-800\/50 { border-color: rgba(51, 65, 85, 0.5) !important; }
         
         /* NÖD-FÄRGER (Mörkt läge som standard) */
-        .bg-nord-sym-deep-space-blue { background-color: #0c1427 !important; }
-        .bg-nord-sym-deep-space-blue\/95 { background-color: rgba(12, 20, 39, 0.95) !important; }
-        .bg-nord-sym-deep-space-blue\/80 { background-color: rgba(12, 20, 39, 0.8) !important; }
-        .bg-nord-sym-deep-space-blue\/50 { background-color: rgba(12, 20, 39, 0.5) !important; }
+        .bg-nord-sym-deep-space-blue { background-color: var(--nord-sym-deep-space-blue) !important; }
+        .bg-nord-sym-deep-space-blue\/95 { background-color: rgba(5, 6, 8, 0.95) !important; } /* Uppdaterad till Obsidian */
+        .bg-nord-sym-deep-space-blue\/80 { background-color: rgba(5, 6, 8, 0.8) !important; }
+        .bg-nord-sym-deep-space-blue\/50 { background-color: rgba(5, 6, 8, 0.5) !important; }
         
         .backdrop-blur-sm { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
         .backdrop-blur-md { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
@@ -323,7 +323,9 @@
         body {
             font-family: 'Inter', sans-serif; color: #E2E8F0; 
             padding-top: 80px; display: flex; flex-direction: column;
-            background-color: #0c1427;
+            background-color: var(--nord-sym-deep-space-blue); /* Använd variabel */
+            /* TEXTUR-UPPDATERING: Subtil noise-gradient för "griffeltavla"-känsla */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
             min-height: 100vh;
             overflow-y: auto; /* Harmoni-fix: Säkerställer vertikal scrollning på alla enheter. */
         }
@@ -338,7 +340,8 @@
             --nord-sym-cyan: #00D4FF;
             --nord-sym-orange: #FF8C00;
             --nord-sym-purple: #9370DB;
-            --nord-sym-deep-space-blue: #0c1427; 
+            /* MATT OBSIDIAN UPDATE: Djupare, mindre mättad svart */
+            --nord-sym-deep-space-blue: #050608; 
             --nord-sym-mid-space-blue: #1e3a8a; 
             --nord-sym-light-accent: #7dd3fc; 
             
@@ -350,7 +353,8 @@
 
             --nord-sym-cyan-rgb: 0, 212, 255;
             --nord-sym-light-accent-rgb: 125, 211, 252;
-            --nord-sym-deep-space-blue-rgb: 12, 20, 39;
+            /* UPPDATERAD RGB FÖR OBSIDIAN */
+            --nord-sym-deep-space-blue-rgb: 5, 6, 8;
             --nord-sym-mid-space-blue-rgb: 30, 58, 138;
             
             /* LIGHT MODE (Blåkopia) - SOFT GREY ADJUSTMENT */
@@ -1353,11 +1357,20 @@
             transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .archetype-card {
-            background: linear-gradient(145deg, rgba(var(--nord-sym-deep-space-blue-rgb), 0.5), rgba(var(--nord-sym-mid-space-blue-rgb), 0.15));
-            /* MJUKARE KANT: Sänkt från 0.2 till 0.1 och bytt till vit-baserad för mjukare look */
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
+            /* MATTE UPDATE: Solidare bakgrund, mjukare känsla */
+            background: rgba(18, 20, 24, 0.75); 
+            /* BORTTAGET: Skarp gradient */
+            /* background: linear-gradient(145deg, rgba(var(--nord-sym-deep-space-blue-rgb), 0.5), rgba(var(--nord-sym-mid-space-blue-rgb), 0.15)); */
+            
+            /* MJUKARE KANT: Vit med låg opacitet istället för cyan */
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            
+            /* FROSTED FEEL: Ökad blur för matt yta */
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            
+            /* RUNDARE HÖRN: 2rem (32px) istället för 1.5rem */
+            border-radius: 2rem;
+            
             padding: 2.5rem 2rem;
             display: flex;
             flex-direction: column;
@@ -1369,20 +1382,25 @@
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             overflow: hidden;
+            /* MJUKARE SKUGGA */
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
         }
         .archetype-card::before { /* Glow effect on hover */
             content: '';
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(var(--nord-sym-cyan-rgb), 0.2), transparent 70%);
+            /* SUBTILARE GLOW: Minskar intensiteten */
+            background: radial-gradient(circle at 50% 0%, rgba(var(--nord-sym-cyan-rgb), 0.15), transparent 60%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 0;
         }
         .archetype-card:hover {
-            box-shadow: 0 0 35px rgba(var(--nord-sym-cyan-rgb), 0.3), 0 8px 25px rgba(0,0,0,0.3);
-            border-color: var(--nord-sym-cyan);
+            /* MJUKARE HOVER: Inte lika skarp kantfärg */
+            border-color: rgba(255, 255, 255, 0.2); 
+            /* box-shadow: 0 0 35px rgba(var(--nord-sym-cyan-rgb), 0.3), 0 8px 25px rgba(0,0,0,0.3); */
+            box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6);
             transform: translateY(-8px) scale(1.02); /* Better */
         }
         .archetype-card:hover::before {
@@ -1590,11 +1608,11 @@
 
         /* --- SYSTEM/PRICING CARD REJUVENATION (HARMONISERAD MED GALLERI) --- */
         .pricing-card {
-            /* Samma bas som .archetype-card */
-            background: linear-gradient(145deg, rgba(var(--nord-sym-deep-space-blue-rgb), 0.5), rgba(var(--nord-sym-mid-space-blue-rgb), 0.15));
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-radius: 1.5rem; /* Matchar galleriet */
+            /* MATTE UPDATE: Samma bas som .archetype-card */
+            background: rgba(18, 20, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-radius: 2rem; /* Matchar galleriet */
             padding: 2.5rem 2rem;
             display: flex;
             flex-direction: column;
@@ -1602,13 +1620,14 @@
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
         }
         .pricing-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(var(--nord-sym-cyan-rgb), 0.2), transparent 70%);
+            background: radial-gradient(circle at 50% 0%, rgba(var(--nord-sym-cyan-rgb), 0.15), transparent 60%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 0;
@@ -1619,8 +1638,8 @@
         }
         .pricing-card:hover {
             transform: translateY(-8px) scale(1.02); /* Matchar galleriet */
-            box-shadow: 0 0 35px rgba(var(--nord-sym-cyan-rgb), 0.3), 0 8px 25px rgba(0,0,0,0.3);
-            border-color: var(--nord-sym-cyan);
+            box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         .pricing-card:hover::before {
             opacity: 1;
@@ -1628,18 +1647,18 @@
         
         /* Ignite Package (Mittenkortet) - Lite extra "pop" men inom samma stil */
         .pricing-card.ignite-package {
-            border-color: rgba(var(--nord-sym-cyan-rgb), 0.5);
-            box-shadow: 0 0 45px rgba(var(--nord-sym-cyan-rgb), 0.25), 0 10px 30px rgba(0,0,0,0.3);
+            border-color: rgba(var(--nord-sym-cyan-rgb), 0.3); /* Något tydligare men inte neon */
+            box-shadow: 0 20px 60px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(var(--nord-sym-cyan-rgb), 0.1);
             transform: scale(1.05);
-            background: linear-gradient(145deg, rgba(var(--nord-sym-deep-space-blue-rgb), 0.7), rgba(var(--nord-sym-mid-space-blue-rgb), 0.25));
+            background: rgba(22, 26, 32, 0.85); /* Lite ljusare/solidare */
         }
         .pricing-card.ignite-package::before {
-            opacity: 0.3; /* Alltid lite glow */
+            opacity: 0.2; /* Alltid lite glow */
         }
         .pricing-card.ignite-package:hover {
             transform: scale(1.08) translateY(-8px);
-            border-color: var(--nord-sym-cyan);
-            box-shadow: 0 0 55px rgba(var(--nord-sym-cyan-rgb), 0.4), 0 15px 40px rgba(0,0,0,0.4);
+            border-color: rgba(var(--nord-sym-cyan-rgb), 0.5);
+            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.8);
         }
 
         .pricing-card-header h3 {
@@ -1849,33 +1868,35 @@
             }
         }
         .ritbordet-card {
-            background: rgba(var(--nord-sym-deep-space-blue-rgb), 0.6);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.2);
+            background: rgba(18, 20, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             padding: 1.5rem; /* Behålls för icke-flippbara */
             text-align: left;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 1rem;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 1.5rem; /* Något mindre på mindre kort */
             transition: all 0.3s ease;
             position: relative; /* <-- Redan här */
             perspective: 1000px; /* <-- NYTT */
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.4);
         }
         .ritbordet-card.flippable {
             padding: 0; /* <-- NYTT: Nollställ padding för flippbara */
             cursor: pointer;
             background: transparent; /* Ta bort bakgrund från container */
             border: none; /* Ta bort border från container */
+            box-shadow: none;
         }
         .ritbordet-card:not(.flippable):hover { /* <-- NYTT: Begränsa hover-effekt */
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(var(--nord-sym-cyan-rgb), 0.25);
-            border-color: var(--nord-sym-cyan);
+            box-shadow: 0 15px 40px -5px rgba(0,0,0,0.5);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         .ritbordet-card.flippable:hover .flip-card-front { /* <-- NYTT: Hover-effekt för framsidan */
-             box-shadow: 0 0 25px rgba(var(--nord-sym-cyan-rgb), 0.25);
-             border-color: var(--nord-sym-cyan);
+             box-shadow: 0 15px 40px -5px rgba(0,0,0,0.5);
+             border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* --- NYTT: Flip Card Mekanik --- */
@@ -1897,25 +1918,26 @@
             height: 100%;
             -webkit-backface-visibility: hidden; /* Safari */
             backface-visibility: hidden;
-            border-radius: 1rem; /* Måste sitta här nu */
+            border-radius: 1.5rem; /* Måste sitta här nu */
             display: flex; 
             flex-direction: column;
             padding: 1.5rem; /* Återställ paddingen */
         }
         .flip-card-front {
-            background: rgba(var(--nord-sym-deep-space-blue-rgb), 0.6);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(18, 20, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             /* Behöver peka på innehållet */
             text-align: left;
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.4);
         }
         .flip-card-back {
-            background: rgba(var(--nord-sym-cyan-rgb), 0.1); 
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(var(--nord-sym-cyan-rgb), 0.05); /* Behåll en tint här för kontrast */
+            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.2);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             transform: rotateY(180deg);
             text-align: left;
         }
@@ -2297,20 +2319,22 @@
 
         /* --- ARKITEKTUR PAGE CARD STYLING --- */
         .arkitektur-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.15);
+            background: rgba(18, 20, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             padding: 2.5rem 2rem;
             text-align: left;
             display: flex;
             flex-direction: column;
-            border-radius: 1.5rem;
+            border-radius: 2rem;
             height: 100%;
             transition: all 0.3s ease;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
         }
         .arkitektur-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(var(--nord-sym-cyan-rgb), 0.2);
-            border-color: rgba(var(--nord-sym-cyan-rgb), 0.4);
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.6);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         .arkitektur-card i {
             color: var(--nord-sym-cyan);
@@ -2332,15 +2356,16 @@
 
         /* --- FORM MAKEOVER: QUANTUM HARMONY --- */
         .form-container {
-            background: rgba(var(--nord-sym-mid-space-blue-rgb), 0.1);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.25);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            background: rgba(18, 20, 24, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
-            border-radius: 1.5rem; /* Harmoni-fix: Matchar andra kort */
+            border-radius: 2rem; /* Harmoni-fix: Matchar andra kort */
+            box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5);
         }
         .form-container:hover {
-            box-shadow: 0 0 30px rgba(var(--nord-sym-cyan-rgb), 0.15);
-            border-color: rgba(var(--nord-sym-cyan-rgb), 0.4);
+            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.6);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         .form-label {
             display: block;
@@ -3733,27 +3758,28 @@
     <main itemscope itemtype="https://schema.org/WebPage"> 
         <section id="hero" class="space-background-section">
             <div class="section-content-wrapper">
-                <div class="flex flex-col items-center gap-y-8">
+                <div class="flex flex-col items-center gap-y-6 md:gap-y-8"> <!-- Minskat gap på mobil -->
                     <div id="hero-logo-wrapper" onclick="window.nord.showPage('om-oss');">
                         <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" width="200" height="57">
                     </div>
-                    <!-- UPPDATERAT: Ny bredare titel -->
-                    <h1 class="text-5xl md:text-6xl font-bold leading-tight text-center hero-headline-glow" style="color: var(--nord-sym-light-accent);">
+                    <!-- UPPDATERAT: Responsiv font-size fixad för mobil -->
+                    <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-bold leading-tight text-center hero-headline-glow px-2" style="color: var(--nord-sym-light-accent);">
                         Framtidsförsäkra er verksamhet.
                     </h1>
-                    <p class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-relaxed">
+                    <!-- UPPDATERAT: Leading-loose för att hantera taggen på mobil -->
+                    <p class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-loose md:leading-relaxed px-4">
                         <!-- UPPDATERAT: 'Vi' -> 'NordSym' för att etablera varumärket -->
                         NordSym automatiserar era processer och bygger digitala verktyg som 
-                        <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle">FAKTISKT</span> 
+                        <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FAKTISKT</span> 
                         gör skillnad.
                     </p>
-                    <div class="flex flex-col items-center gap-6">
-                        <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                            <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto">Framtidsförsäkra er verksamhet</a>
+                    <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4"> <!-- Tightare gap -->
+                        <div class="flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-auto"> <!-- Tightare gap -->
+                            <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5">Framtidsförsäkra er verksamhet</a> <!-- Lite högre touch target -->
                             <!-- UPPDATERAT: Utforska R&D -->
-                            <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto">Utforska R&D</a>
+                            <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5">Utforska R&D</a>
                         </div>
-                         <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-6 text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
+                         <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-6 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
                             <!-- UPPDATERAT: Skarpare taglines som matchar erbjudandet -->
                             <span>MICRO-SAAS</span>
                             <span class="hidden sm:block text-sky-500">•</span>
@@ -3897,27 +3923,32 @@
                     <!-- UPPDATERAT: Rubrik designad som en stor tagg -->
                     <div class="inline-block">
                         <h2 class="section-title inline-block px-6 py-3 md:px-10 md:py-5 rounded-full border border-sky-500/30 bg-sky-900/20 backdrop-blur-md text-2xl md:text-4xl font-bold text-white mb-6 shadow-[0_0_30px_rgba(0,212,255,0.1)] light-theme:bg-white/80 light-theme:border-sky-200 light-theme:text-nord-sym-blueprint-ink light-theme:shadow-sm">
-                            Er Logik. Vår Infrastruktur.
+                            Bygg bort begränsningar.
                         </h2>
                     </div>
                     
                     <p class="text-lg text-sky-200 mt-2 leading-relaxed light-theme:text-nord-sym-blueprint-text-primary">
-                        <!-- UPPDATERAT: Passiv form för att låta mer teknisk/system-orienterad -->
-                        Er expertis kodas in i systemet. Resultatet är ett operativsystem som följer era affärsregler, inte generisk AI.
+                        <!-- UPPDATERAT: Fas 2.5 Copy - Jordnära, skräddarsydd mjukvara + länk -->
+                        <!-- FIX: Rensat bort "Vi" och "Våra" för att passa Solo Founder -->
+                        Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla skräddarsydd mjukvara som automatiserar era unika flöden och frigör tid för expansion. 
+                        <a href="#" onclick="window.nord.showPage('system'); return false;" class="text-nord-sym-cyan font-semibold hover:text-white transition-colors underline decoration-dotted underline-offset-4 ml-1">Utforska tjänster →</a>
                     </p>
                 </div>
                 <div class="venn-diagram-container">
                     <div class="venn-diagram-wrapper">
                         <div class="venn-circle venn-circle-1">
-                            <!-- UPPDATERAT: Affärslogik -->
-                            <span class="venn-circle-text">Affärslogik</span>
+                            <!-- UPPDATERAT: "Er Metodik" - Fokus på deras unika sätt att jobba -->
+                            <span class="venn-circle-text">Er<br>Metodik</span>
                         </div>
                         <div class="venn-circle venn-circle-2">
-                             <!-- UPPDATERAT: Rätt Arkitektur (med radbrytning) -->
-                             <span class="venn-circle-text">Rätt<br>Arkitektur</span>
+                             <!-- UPPDATERAT: "Digital Hävstång" - Neutralt istället för "Vår" -->
+                             <span class="venn-circle-text">Digital<br>Hävstång</span>
                         </div>
-                        <!-- UPPDATERAT: Autonomi -->
-                        <div class="venn-overlap-text" onclick="window.nord.showPage('system'); return false;">Autonomi</div>
+                        <!-- UPPDATERAT: Symbol för oändlighet + Sparade Timmar -->
+                        <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('system'); return false;">
+                            <i class="ph ph-infinity text-4xl mb-1 text-nord-sym-light-accent"></i>
+                            <span class="text-sm md:text-base leading-tight">Sparade<br>Timmar</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -4430,8 +4461,9 @@
                     <span class="inline-block bg-sky-900/30 border border-sky-500/30 text-sky-300 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">R&D LAB</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Gaming + AI + Three.js</h2>
                     <p class="text-sky-100/80 max-w-3xl mx-auto text-lg leading-relaxed light-theme:text-nord-sym-blueprint-text-secondary">
-                        Spel är den perfekta testmiljön för AI-agenter: komplexa beslut, realtidsmotstånd och oändliga edge cases. 
-                        Just nu exploderar AI-utvecklingen inom gaming, där alla från OpenAI till Anthropic tränar sina modeller i spelvärldar.
+                        <!-- UPPDATERAT: Fas 2 Copy - Passiv form/NordSym -->
+                        Spel är den optimala testbänken för AI-agenter: komplexa beslut och oändliga edge cases. 
+                        NordSym experimenterar här med browser-native 3D och autonoma system för att förstå morgondagens gränssnitt.
                     </p>
                 </div>
                 
@@ -4462,7 +4494,8 @@
                         <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-pointer" onclick="window.nord.openDynamicWaitlist('gaming')">
                             <i class="ph-game-controller text-4xl mb-4"></i>
                             <h4 class="text-xl font-bold mb-2">Gaming Side Project</h4>
-                            <p>Prototyper med AI-driven gameplay byggs i mån av tid. Tidigt stadium och inga löften om release. Är du intresserad av att följa utvecklingen?</p>
+                            <!-- UPPDATERAT: Fas 2 Copy -->
+                            <p>Prototyper med AI-driven gameplay utvecklas kontinuerligt. Tidigt stadium, hög experimentlusta. Vill du följa resan?</p>
                             <!-- UPPDATERAT: Översatt "Join Waitlist" till svenska -->
                             <span class="text-sky-300 text-sm mt-4 inline-block group-hover:text-white font-semibold">Gå med i väntelistan →</span>
                         </div>
@@ -4490,16 +4523,17 @@
                     
                     <div class="max-w-3xl lg:max-w-4xl mx-auto">
                         <p class="text-lg md:text-xl leading-relaxed text-sky-100 light-theme:text-nord-sym-blueprint-text-primary">
-                            Vi befinner oss i ett paradigmskifte. AI ritar om kartan för vad mjukvara är. Vi söker dig som vill hålla i pennan.
+                            Vi befinner oss i ett paradigmskifte. AI ritar om kartan för vad mjukvara är.
                         </p>
-                        <!-- UPPDATERAT: Ny copy med fokus på Agens och Beteende -->
+                        <!-- UPPDATERAT: Fas 2 Copy - AI-native, text-to-code, mindre zealot -->
                         <p class="text-lg md:text-xl leading-relaxed mt-6 text-sky-200 light-theme:text-nord-sym-blueprint-text-secondary">
-                            Vi lämnar passiv mjukvara bakom oss. Hos NordSym bygger du system med agens – intelligenta arkitekturer som resonerar, minns och agerar självständigt. Här skriver du inte bara funktioner, du designar beteenden för framtidens autonoma verksamheter.
+                            Passiv mjukvara är historia. Hos NordSym designas system med agens – arkitekturer som agerar autonomt och förstår kontext. Det handlar mindre om syntax och mer om att instruera modeller på engelska. AI-native mindset krävs, men gedigen erfarenhet av systembygge skadar inte.
                         </p>
                     </div>
                     <div>
+                        <!-- UPPDATERAT: Knapptext -->
                         <a href="#" onclick="window.nord.showPage('vilka-ar-vi'); return false;" class="btn-base btn-secondary-on-dark px-10 py-4 text-lg lg:text-xl lg:px-12 lg:py-5">
-                            Initiera Kontakt <i class="ph-terminal-window ml-2"></i>
+                            Hör av dig <i class="ph-paper-plane-tilt ml-2"></i>
                         </a>
                     </div>
                 </div>
@@ -5645,8 +5679,8 @@
                     if (targetStateKey === 'PAGE') {
                         finalState.zoom = 60; 
                     } else if (targetStateKey === 'HERO') {
-                        finalState.zoom = 22; // Harmoni-fix: För geometrin närmare på mobil (endast 'Hem').
-                        finalState.y = 4; // Harmoni-fix: HÖJER kamerans blickpunkt för att SÄNKA geometrin under sidhuvudet.
+                        finalState.zoom = 20; // Harmoni-fix: Lite längre bort
+                        finalState.y = 6.5; // Harmoni-fix: HÖJER kameran (sänker objektet) rejält så det hamnar under CTAs
                     } else if (targetStateKey === 'WORKSHOP') {
                         finalState.y = 0; // Harmoni-fix: Perfekt vertikal centrering på mobil.
                         finalState.zoom = 24; // Harmoni-fix: Anpassad zoom för optimal visning på mobil.
@@ -7268,7 +7302,7 @@
                         { icon: 'ph-chart-line-up', text: 'Prediktion' },
                         { icon: 'ph-presentation-chart', text: 'Rapportering' }
                     ],
-                    indicator: 'Levererar sammansatt intelligens från 20+ modeller för dataanalys.'
+                    indicator: 'Levererar sammansatt intelligens från ledande AI-modeller för dataanalys.' // UPPDATERAT: Säkrare claim
                 },
                 {
                     icon: 'ph-books',
@@ -7290,7 +7324,7 @@
                         { icon: 'ph-binoculars', text: 'Övervakning' },
                         { icon: 'ph-graph', text: 'Skalbarhet' }
                     ],
-                    indicator: 'Byggt för 99.9% drifttid och proaktivt hotförsvar.'
+                    indicator: 'Byggt för hög tillgänglighet och proaktivt hotförsvar.' // UPPDATERAT: Säkrare claim
                 }
                 // BORTTAGNA: De två sista teaser-korten flyttas till 'arketyperData'
             ];
@@ -7377,13 +7411,13 @@
             // ÄNDRING: Refaktorisera textSources till objekt
             this.textSources = {
                 'byggstenar': {
-                    // UPPDATERAT: Skarpare copy för STACK
-                    description: 'Den tekniska ryggraden. Komponenterna som används för att bygga intelligent mjukvara: Från MCP och Agenter till Vektordatabaser.',
-                    context: 'Utforska tekniken'
+                    // UPPDATERAT: Fas 2 Copy - Stack & Ekosystem
+                    description: 'Tekniken under huven. Vi rör oss i ekosystemet av Claude, Gemini och OpenAI, orkestrerat av n8n och moderna vektordatabaser. Rätt verktyg för rätt kognitiv uppgift.',
+                    context: 'Utforska stacken'
                 },
                 'galleri': {
-                    // UPPDATERAT: Skarpare copy för VERKTYG
-                    description: 'Färdiga produkter redo att användas. Specialiserade Micro-SaaS lösningar för analys, specifikation och automation.',
+                    // UPPDATERAT: Fas 2 Copy - Verktyg
+                    description: 'Färdiga produkter och Micro-SaaS lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
                     context: 'Utforska verktygen'
                 }
             };
@@ -7489,12 +7523,29 @@
                 slider.style.height = `${activeBtn.offsetHeight}px`;
                 slider.style.top = `${activeBtn.offsetTop}px`;
 
-                // Uppdatera textfärger
+                // Uppdatera textfärger - TVINGA kontrastfärg för aktiv knapp
+                // I dark mode: Cyan slider -> Mörk text (deep-space-blue)
+                // I light mode: Cyan slider -> Vit text (för kontrast mot mörkare cyan) eller Mörk text beroende på design
+                // Vi använder 'text-nord-sym-deep-space-blue' som funkar bra på Cyan i Dark Mode.
+                
                 activeBtn.classList.remove('inactive', 'text-sky-200', 'hover:text-white');
                 activeBtn.classList.add('active', 'text-nord-sym-deep-space-blue');
+                
+                // Om vi är i light mode, kan vi behöva justera textfärgen på den aktiva knappen för bättre kontrast
+                if (document.body.classList.contains('light-theme')) {
+                     // I light mode är slidern en mörkare cyan/blå (#0284C7). Vit text är bäst.
+                     activeBtn.classList.remove('text-nord-sym-deep-space-blue');
+                     activeBtn.classList.add('text-white');
+                }
 
-                inactiveBtn.classList.remove('active', 'text-nord-sym-deep-space-blue');
+                inactiveBtn.classList.remove('active', 'text-nord-sym-deep-space-blue', 'text-white');
                 inactiveBtn.classList.add('inactive', 'text-sky-200', 'hover:text-white');
+                
+                // Light mode override för inaktiv text
+                if (document.body.classList.contains('light-theme')) {
+                    inactiveBtn.classList.remove('text-sky-200');
+                    inactiveBtn.classList.add('text-nord-sym-blueprint-ink');
+                }
             };
 
             // Sätt initialt läge (körs efter en kort fördröjning för att låta DOM renderas)
@@ -7518,6 +7569,10 @@
                 // NYTT: Anropa logik för att byta vy
                 this.switchView('galleri');
             });
+            
+            // Lyssna på tema-ändringar för att uppdatera textfärger live
+            // Enklast via en MutationObserver på body klassen eller genom att ThemeManager anropar en update
+            // För nu: Vi litar på CSS-variabler där det går, men JS-logiken ovan hanterar klick.
         }
         // --- NY FUNKTION SLUT ---
 
