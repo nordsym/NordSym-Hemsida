@@ -345,11 +345,11 @@
             --nord-sym-mid-space-blue: #1e3a8a; 
             --nord-sym-light-accent: #7dd3fc; 
             
-            /* DARK MODE (Standard) - Mjukare vit/grå för att undvika "bländning" */
-            --nord-sym-text-primary: #F3F4F6; /* Gray 100 (Mjukare vit) */
-            --nord-sym-text-secondary: #9CA3AF; /* Gray 400 (Neutral grå) */
-            --nord-sym-text-light: #F3F4F6; 
-            --nord-sym-text-medium: #9CA3AF; 
+            /* DARK MODE (Standard) - UPPDATERAD: Vit Krita (Whiter Text) */
+            --nord-sym-text-primary: #FFFFFF; /* Helt vit (Tidigare F3F4F6) */
+            --nord-sym-text-secondary: #E2E8F0; /* Mycket ljus grå/vit (Tidigare 9CA3AF) */
+            --nord-sym-text-light: #F8FAFC; 
+            --nord-sym-text-medium: #CBD5E1; /* Ljusare mellan-ton (Tidigare 9CA3AF) */
 
             --nord-sym-cyan-rgb: 0, 212, 255;
             --nord-sym-light-accent-rgb: 125, 211, 252;
@@ -400,35 +400,42 @@
         .btn-cta-revised {
             padding: 0.85rem 2.25rem;
             background: rgba(0, 31, 63, 0.8);
-            border: 2px solid var(--nord-sym-cyan);
-            color: var(--nord-sym-cyan);
+            border: 2px solid #ffffff; /* UPPDATERAT: Vit kant (Krita) */
+            color: #ffffff; /* UPPDATERAT: Vit text (Krita) */
             backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             font-weight: 600;
         }
         .btn-cta-revised:hover {
-            background: rgba(var(--nord-sym-cyan-rgb), 0.1);
-            box-shadow: 0 0 25px rgba(var(--nord-sym-cyan-rgb), 0.5);
+            background: rgba(255, 255, 255, 0.1); /* Vit tint vid hover */
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4); /* Vit glöd */
             transform: translateY(-3px) scale(1.03);
         }
         .btn-secondary-on-dark {
-            padding: 0.85rem 2.25rem; color: var(--nord-sym-text-light);
-            border: 2px solid var(--nord-sym-text-light);
+            /* UPPDATERAT: White Chalk Standard - Helt vit outline och text */
+            padding: 0.85rem 2.25rem; 
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            background: transparent;
         }
         .btn-secondary-on-dark:hover {
-            background-color: var(--nord-sym-text-light); color: var(--nord-sym-deep-space-blue);
+            background-color: #ffffff; 
+            color: var(--nord-sym-deep-space-blue);
             transform: translateY(-3px) scale(1.03);
-             box-shadow: 0px 10px 20px rgba(240, 244, 248, 0.25), 0px 5px 10px rgba(0,0,0,0.2),
-                        inset 0px -2px 2px rgba(255,255,255,0.03);
+             box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
         }
         .btn-service-cta { 
-            padding: 0.6rem 1.5rem; font-size: 0.875rem; background-color: transparent;
-            color: var(--nord-sym-cyan); border: 2px solid var(--nord-sym-cyan);
+            /* UPPDATERAT: White Chalk Standard för footer-knapp */
+            padding: 0.6rem 1.5rem; 
+            font-size: 0.875rem; 
+            background-color: transparent;
+            color: #ffffff; 
+            border: 1px solid #ffffff;
         }
         .btn-service-cta:hover {
-            background-color: var(--nord-sym-cyan); color: var(--nord-sym-deep-space-blue);
+            background-color: #ffffff; 
+            color: var(--nord-sym-deep-space-blue);
             transform: translateY(-2px) scale(1.02);
-            box-shadow: 0px 8px 18px rgba(var(--nord-sym-cyan-rgb), 0.35), 0px 4px 7px rgba(0,0,0,0.2),
-                        inset 0px -1px 2px rgba(255,255,255,0.08);
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
         }
         
         /* --- KNAPP FÖR LJUS/MÖRKT TEMA --- */
@@ -859,6 +866,18 @@
             color: var(--nord-sym-blueprint-cyan) !important;
             opacity: 1;
         }
+        /* Återställ footer-knapp för ljust läge */
+        body.light-theme .btn-service-cta {
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            color: var(--nord-sym-blueprint-ink) !important;
+        }
+        body.light-theme .btn-service-cta:hover {
+            background-color: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1) !important;
+            border-color: var(--nord-sym-blueprint-cyan) !important;
+            color: var(--nord-sym-blueprint-cyan) !important;
+            box-shadow: none !important;
+        }
+        
         body.light-theme #main-footer .border-sky-700\/50 {
             border-color: var(--nord-sym-blueprint-lines-faint) !important;
         }
@@ -1257,11 +1276,13 @@
             position: absolute;
             width: 280px; height: 280px;
             border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, rgba(var(--nord-sym-cyan-rgb), 0.05) 0%, rgba(var(--nord-sym-cyan-rgb), 0.15) 100%);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.3);
+            /* UPPDATERAT: Vit Krita-stil (White Chalk) - Neutral bas */
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             display: flex; 
             align-items: center;
-            box-shadow: inset 0 0 20px rgba(var(--nord-sym-cyan-rgb), 0.1), 0 0 15px rgba(var(--nord-sym-deep-space-blue), 0.5);
+            /* UPPDATERAT: Neutral skugga/glöd */
+            box-shadow: 0 0 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 255, 255, 0.02);
             animation: venn-pulse 8s infinite ease-in-out;
             transition: all 0.3s ease-in-out;
         }
@@ -1270,11 +1291,12 @@
         .venn-circle-text {
             font-family: 'Comfortaa', sans-serif;
             font-weight: 700;
-            color: var(--nord-sym-text-light);
+            color: #ffffff; /* Helt vit text */
             text-align: center;
             font-size: 1.1rem; /* Återställd storlek */
             max-width: 150px; /* Balanserad bredd för radbrytning */
             padding: 0 1rem;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         .venn-overlap-text {
             position: absolute;
@@ -1284,21 +1306,21 @@
             font-family: 'Comfortaa', sans-serif;
             font-weight: 700;
             font-size: 1.25rem; /* Desktop baseline */
-            color: var(--nord-sym-light-accent);
+            color: #ffffff; /* Vit text */
             cursor: pointer;
             transition: all 0.3s ease;
-            text-shadow: 0 0 10px rgba(var(--nord-sym-light-accent-rgb), 0.3);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
             width: 120px;
             text-align: center;
             line-height: 1.1; /* Harmoni-fix: Bättre line-height för multi-word text */
         }
         .venn-overlap-text:hover {
-            color: var(--nord-sym-cyan);
-            filter: drop-shadow(0 0 20px rgba(var(--nord-sym-cyan-rgb), 0.9));
+            color: #ffffff;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
             transform: translate(-50%, -50%) scale(1.05);
         }
         @keyframes venn-pulse {
-            50% { transform: scale(1.02); border-color: rgba(var(--nord-sym-cyan-rgb), 0.5); }
+            50% { transform: scale(1.02); border-color: rgba(255, 255, 255, 0.5); box-shadow: 0 0 50px rgba(0,0,0,0.6), inset 0 0 30px rgba(255, 255, 255, 0.05); }
         }
         
         /* Harmoni-fix: Responsiv typografi för Venn-diagrammet */
@@ -1357,15 +1379,15 @@
             transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .archetype-card {
-            /* PREMIUM DARK GRADIENT: Djupare, rikare botten istället för platt grå */
-            background: linear-gradient(165deg, rgba(25, 30, 45, 0.8) 0%, rgba(10, 12, 16, 0.9) 100%);
+            /* PREMIUM OBSIDIAN REDESIGN: Djupare, neutralare svart för bättre kontrast */
+            background: linear-gradient(180deg, rgba(12, 14, 18, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
             
-            /* GLAS-KANT: Tydligare highlight i toppen för 3D-känsla */
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            /* GLAS-KANT: Subtilare och krispigare */
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             
             /* FROSTED FEEL */
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             
             /* RUNDARE HÖRN */
             border-radius: 2rem;
@@ -1381,8 +1403,8 @@
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             overflow: hidden;
-            /* ATMOSFÄRISK SKUGGA: Subtil blå ton i skuggan + inre liv */
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), inset 0 0 20px rgba(0, 212, 255, 0.03);
+            /* ATMOSFÄRISK SKUGGA: Djupare skugga för att lyfta kortet från bakgrunden */
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8);
         }
         .archetype-card::before { /* Glow effect on hover */
             content: '';
@@ -1390,16 +1412,16 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             /* SUBTILARE GLOW: Minskar intensiteten */
-            background: radial-gradient(circle at 50% 0%, rgba(var(--nord-sym-cyan-rgb), 0.15), transparent 60%);
+            background: radial-gradient(circle at 50% 0%, rgba(var(--nord-sym-cyan-rgb), 0.1), transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 0;
         }
         .archetype-card:hover {
             /* MJUKARE HOVER: Inte lika skarp kantfärg */
-            border-color: rgba(255, 255, 255, 0.2); 
+            border-color: rgba(255, 255, 255, 0.15); 
             /* box-shadow: 0 0 35px rgba(var(--nord-sym-cyan-rgb), 0.3), 0 8px 25px rgba(0,0,0,0.3); */
-            box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
             transform: translateY(-8px) scale(1.02); /* Better */
         }
         .archetype-card:hover::before {
@@ -1460,16 +1482,17 @@
         }
         .archetype-card h4 {
             font-family: 'Comfortaa', sans-serif;
-            color: var(--nord-sym-light-accent);
+            color: #ffffff; /* UPPDATERAT: Vit Krita (Tidigare light-accent) */
             font-size: 1.375rem; /* Bigger title */
             margin-bottom: 1rem;
         }
         .archetype-card .description {
-            color: var(--nord-sym-text-medium);
+            color: #ffffff; /* UPPDATERAT: Vit Krita (Tidigare text-medium) */
             line-height: 1.65;
             font-size: 0.95rem; /* Slightly larger text */
             flex-grow: 1;
             margin-bottom: 1.5rem;
+            opacity: 0.9; /* Subtil mjukhet */
         }
         .tech-signature-container {
             display: flex;
@@ -1486,11 +1509,11 @@
         }
         .tech-signature-item i {
             font-size: 1.6rem;
-            color: var(--nord-sym-text-medium);
+            color: #ffffff; /* UPPDATERAT: Vit Krita */
         }
         .tech-signature-item span {
             font-size: 0.75rem;
-            color: var(--nord-sym-text-medium);
+            color: #ffffff; /* UPPDATERAT: Vit Krita */
             font-weight: 500;
         }
         .archetype-cta {
@@ -1498,21 +1521,21 @@
             padding: 0.6rem 1.5rem;
             font-size: 0.875rem;
             background: transparent;
-            border: 1px solid var(--nord-sym-text-medium);
-            color: var(--nord-sym-text-medium);
+            border: 1px solid #ffffff; /* UPPDATERAT: Vit Kant */
+            color: #ffffff; /* UPPDATERAT: Vit Text */
             box-shadow: none;
         }
         .archetype-cta:hover {
-            background: rgba(var(--nord-sym-cyan-rgb), 0.1);
-            border-color: var(--nord-sym-cyan);
-            color: var(--nord-sym-cyan);
+            background: #ffffff; /* Vit bakgrund vid hover */
+            border-color: #ffffff;
+            color: var(--nord-sym-deep-space-blue); /* Mörk text vid hover */
             transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(var(--nord-sym-cyan-rgb), 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Vit glöd */
         }
         .archetype-card .indicator {
             font-size: 0.8rem;
-            color: var(--nord-sym-text-medium);
-            border-top: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.2);
+            color: rgba(255, 255, 255, 0.8); /* UPPDATERAT: Vitare text */
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Vitare linje */
             padding-top: 1rem;
             width: 100%;
             margin-top: auto;
@@ -1607,14 +1630,14 @@
 
         /* --- SYSTEM/PRICING CARD REJUVENATION (HARMONISERAD MED GALLERI) --- */
         .pricing-card {
-            /* PREMIUM DARK GRADIENT: Matchar galleriet */
-            background: linear-gradient(165deg, rgba(25, 30, 45, 0.8) 0%, rgba(10, 12, 16, 0.9) 100%);
+            /* PREMIUM OBSIDIAN REDESIGN: Mycket mer solid svärta (95-98%) för att minska "glas-känslan" */
+            background: linear-gradient(180deg, rgba(10, 12, 16, 0.98) 0%, rgba(0, 0, 0, 1) 100%);
             
-            /* GLAS-KANT */
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            /* GLAS-KANT: Vit Krita (Chalk) - Tydligare, vitare kant */
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
             
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-radius: 2rem; /* Matchar galleriet */
             padding: 2.5rem 2rem;
             display: flex;
@@ -1624,14 +1647,15 @@
             position: relative;
             overflow: hidden;
             /* ATMOSFÄRISK SKUGGA */
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), inset 0 0 20px rgba(0, 212, 255, 0.03);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.9);
         }
         .pricing-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 0%, rgba(var(--nord-sym-cyan-rgb), 0.15), transparent 60%);
+            /* Byt ut cyan glow mot neutral vit/grå glow */
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
             z-index: 0;
@@ -1642,131 +1666,84 @@
         }
         .pricing-card:hover {
             transform: translateY(-8px) scale(1.02); /* Matchar galleriet */
-            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.7), inset 0 0 30px rgba(0, 212, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,1), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5); /* Starkare vit vid hover */
         }
         .pricing-card:hover::before {
             opacity: 1;
         }
         
-        /* Ignite Package (Mittenkortet) - Lite extra "pop" men inom samma stil */
+        /* Ignite Package (Mittenkortet) - FIX: Dark Mode ska vara MÖRKT */
         .pricing-card.ignite-package {
-            border-color: rgba(var(--nord-sym-cyan-rgb), 0.4); /* Tydligare kant */
-            /* Djupare glow och tydligare "hero"-gradient */
-            box-shadow: 0 25px 70px -12px rgba(0, 212, 255, 0.15), 0 0 0 1px rgba(var(--nord-sym-cyan-rgb), 0.1);
+            /* Återställd Dark Mode design (Obsidian + Vit Krita markering) */
+            background: linear-gradient(180deg, rgba(12, 16, 24, 0.98) 0%, rgba(5, 5, 10, 1) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.8); /* Tydlig vit markering */
+            box-shadow: 0 25px 70px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 255, 255, 0.1); /* Subtil vit glow */
             transform: scale(1.05);
-            background: linear-gradient(165deg, rgba(30, 40, 60, 0.9) 0%, rgba(12, 20, 30, 0.95) 100%);
-        }
-        .pricing-card.ignite-package::before {
-            opacity: 0.2; /* Alltid lite glow */
+            z-index: 2; /* Lyft fram kortet */
         }
         .pricing-card.ignite-package:hover {
-            transform: scale(1.08) translateY(-8px);
-            border-color: rgba(var(--nord-sym-cyan-rgb), 0.6);
-            box-shadow: 0 35px 80px -15px rgba(0, 212, 255, 0.25);
+             transform: scale(1.08) translateY(-8px);
+             box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 1), 0 0 40px rgba(255, 255, 255, 0.2);
+             border-color: #ffffff;
         }
 
-        .pricing-card-header h3 {
-            font-family: 'Comfortaa', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--nord-sym-light-accent);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-        .pricing-sub {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            color: var(--nord-sym-text-medium);
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-            display: block;
-            font-weight: 500;
-        }
-        
-        .price-display {
-            font-family: 'Comfortaa', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            /* text-shadow: 0 0 20px rgba(255,255,255,0.1); */ /* Renare utan skugga här för att matcha galleriet */
-        }
-        .price-period {
-            font-size: 1rem;
-            color: var(--nord-sym-text-medium);
-            font-weight: 400;
-        }
-        
-        .pricing-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2rem 0;
-            flex-grow: 1;
-        }
-        .pricing-card li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            color: var(--nord-sym-text-medium);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-        .pricing-card li i {
-            color: var(--nord-sym-cyan);
-            font-size: 1.5rem; /* Matchar galleriets ikonstorlek bättre */
-            margin-top: 0.1rem;
-            flex-shrink: 0;
-        }
-        .pricing-card li strong {
-            display: block;
-            color: var(--nord-sym-text-light); /* Ljusare rubrik */
-            margin-bottom: 0.25rem;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* Light Theme Overrides (Matchar Archetype Card Light) */
-        body.light-theme .pricing-card {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-            backdrop-filter: none;
-        }
-        body.light-theme .pricing-card:hover {
-            border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
-        }
+        /* LIGHT THEME OVERRIDES (Specifikt för detta kort) */
         body.light-theme .pricing-card.ignite-package {
             border-color: var(--nord-sym-blueprint-cyan);
             box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
             background: var(--nord-sym-blueprint-bg);
         }
+        
         body.light-theme .pricing-card-header h3 { color: var(--nord-sym-blueprint-ink); }
-        body.light-theme .pricing-sub { color: var(--nord-sym-blueprint-text-secondary); }
+        /* FIX: Tvinga mörk färg för pricing-sub i light mode så den syns */
+        body.light-theme .pricing-sub { color: var(--nord-sym-blueprint-ink) !important; opacity: 0.7; }
         body.light-theme .price-display { color: var(--nord-sym-blueprint-ink); }
         body.light-theme .pricing-card li strong { color: var(--nord-sym-blueprint-ink); }
         body.light-theme .pricing-card li { color: var(--nord-sym-blueprint-text-secondary); }
         body.light-theme .pricing-card li i { color: var(--nord-sym-blueprint-cyan); }
+        /* Återställ knappar i light mode */
+        body.light-theme .pricing-card .btn-base {
+             border: 2px solid var(--nord-sym-blueprint-ink) !important;
+             color: var(--nord-sym-blueprint-ink) !important;
+        }
+        body.light-theme .pricing-card .btn-base:hover {
+             border-color: var(--nord-sym-blueprint-cyan) !important;
+             color: var(--nord-sym-blueprint-cyan) !important;
+             background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1) !important;
+        }
 
         #main-footer {
-            border: 1px solid rgba(0, 191, 255, 0.3);
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.1);
+            /* UPPDATERAT: Vit Krita-linje (Ingen blå ton) */
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: none; border-left: none; border-right: none;
+            box-shadow: none;
+            background: rgba(5, 6, 8, 0.95); /* Obsidian */
         }
         body.labb-active #main-footer {
             display: none !important; /* Total immersion i verkstaden. */
         }
         .footer-quicklinks { display: flex; flex-direction: column; gap: 0.25rem; align-items: center; }
         @media (min-width: 768px) { .footer-quicklinks { align-items: flex-start; } }
-        .footer-link { color: var(--nord-sym-text-medium); transition: color 0.3s ease; padding: 0.1rem 0; }
-        .footer-link:hover { color: var(--nord-sym-cyan); }
+        
+        /* UPPDATERAT: Vita footer-länkar */
+        .footer-link { color: rgba(255, 255, 255, 0.6); transition: all 0.3s ease; padding: 0.1rem 0; }
+        .footer-link:hover { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        
         .nordsym-logo-star {
-            color: var(--nord-sym-light-accent);
+            color: #ffffff; /* Vit stjärna */
             animation: nordsym-logo-star-glow 3s infinite ease-in-out;
         }
-        @keyframes nordsym-logo-star-glow { 50% { filter: drop-shadow(0 0 12px rgba(var(--nord-sym-light-accent-rgb), 0.8)); } }
+        @keyframes nordsym-logo-star-glow { 50% { filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)); } }
+        
+        /* UPPDATERAT: Vita social-ikoner */
+        #main-footer .ph { color: rgba(255, 255, 255, 0.7); transition: all 0.3s ease; }
+        #main-footer a:hover .ph { color: #ffffff; transform: scale(1.1); }
+        
+        /* UPPDATERAT: GDPR Logo (Vit) */
+        #main-footer svg.text-nord-sym-text-light { color: rgba(255, 255, 255, 0.4); }
+        #main-footer:hover svg.text-nord-sym-text-light { color: #ffffff; opacity: 1; }
+
         .sr-only {
             position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
             overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
@@ -1873,19 +1850,70 @@
             }
         }
         .ritbordet-card {
-            background: rgba(18, 20, 24, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(12, 14, 18, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Vit Krita: Ökad synlighet från 0.06 */
             padding: 1.5rem; /* Behålls för icke-flippbara */
             text-align: left;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 1.5rem; /* Något mindre på mindre kort */
             transition: all 0.3s ease;
             position: relative; /* <-- Redan här */
             perspective: 1000px; /* <-- NYTT */
-            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.5);
+        }
+        .ritbordet-card.flippable {
+            padding: 0; /* <-- NYTT: Nollställ padding för flippbara */
+            cursor: pointer;
+            background: transparent; /* Ta bort bakgrund från container */
+            border: none; /* Ta bort border från container */
+            box-shadow: none;
+        }
+        .ritbordet-card:not(.flippable):hover { /* <-- NYTT: Begränsa hover-effekt */
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px -5px rgba(0,0,0,0.7);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .ritbordet-card.flippable:hover .flip-card-front { /* <-- NYTT: Hover-effekt för framsidan */
+             box-shadow: 0 15px 40px -5px rgba(0,0,0,0.7);
+             border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* --- NYTT: Flip Card Mekanik --- */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 250px; /* Säkerställ minsta höjd */
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-style: preserve-3d;
+        }
+        .ritbordet-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 1.5rem; /* Måste sitta här nu */
+            display: flex; 
+            flex-direction: column;
+            padding: 1.5rem; /* Återställ paddingen */
+        }
+        .flip-card-front {
+            background: rgba(12, 14, 18, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Vit Krita: Ökad synlighet */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            /* Behöver peka på innehållet */
+            text-align: left;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.5);
         }
         .ritbordet-card.flippable {
             padding: 0; /* <-- NYTT: Nollställ padding för flippbara */
@@ -1930,7 +1958,7 @@
         }
         .flip-card-front {
             background: rgba(18, 20, 24, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Vit Krita: Ökad synlighet */
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             /* Behöver peka på innehållet */
@@ -2324,8 +2352,8 @@
 
         /* --- ARKITEKTUR PAGE CARD STYLING --- */
         .arkitektur-card {
-            background: rgba(18, 20, 24, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(12, 14, 18, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Vit Krita: Ökad synlighet */
             padding: 2.5rem 2rem;
             text-align: left;
             display: flex;
@@ -2333,13 +2361,13 @@
             border-radius: 2rem;
             height: 100%;
             transition: all 0.3s ease;
-            backdrop-filter: blur(24px);
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.6);
         }
         .arkitektur-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.6);
-            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8);
+            border-color: rgba(255, 255, 255, 0.15);
         }
         .arkitektur-card i {
             color: var(--nord-sym-cyan);
@@ -2361,16 +2389,16 @@
 
         /* --- FORM MAKEOVER: QUANTUM HARMONY --- */
         .form-container {
-            background: rgba(18, 20, 24, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            background: rgba(12, 14, 18, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Vit Krita: Ökad synlighet */
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
             border-radius: 2rem; /* Harmoni-fix: Matchar andra kort */
-            box-shadow: 0 20px 60px -15px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 60px -15px rgba(0,0,0,0.6);
         }
         .form-container:hover {
-            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.6);
-            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.8);
+            border-color: rgba(255, 255, 255, 0.15);
         }
         .form-label {
             display: block;
@@ -2508,14 +2536,17 @@
             pointer-events: auto;
         }
         #chat-bubble {
-            background: radial-gradient(circle, var(--nord-sym-cyan) 0%, var(--nord-sym-mid-space-blue) 100%);
-            box-shadow: 0 0 25px rgba(var(--nord-sym-cyan-rgb), 0.4);
-            animation: chat-bubble-pulse 2.5s infinite ease-in-out;
+            /* UPPDATERAT: "FAKTISKT"-stil (Solid Cyan + Mörk Ikon + Krita-kant) */
+            background: var(--nord-sym-cyan);
+            color: var(--nord-sym-deep-space-blue);
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtil vit kant */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Djup skugga istället för glow */
+            animation: chat-bubble-pulse 3s infinite ease-in-out; /* Långsammare puls */
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
         #chat-bubble:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 35px rgba(var(--nord-sym-cyan-rgb), 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.3); /* Cyan skugga vid hover */
         }
         #chat-bubble.hidden {
             transform: scale(0);
@@ -2523,17 +2554,19 @@
             pointer-events: none;
         }
         @keyframes chat-bubble-pulse {
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.03); }
         }
 
         #chat-window {
-            background: rgba(var(--nord-sym-deep-space-blue-rgb), 0.85);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.3);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            /* PREMIUM OBSIDIAN REDESIGN: Matchar korten */
+            background: linear-gradient(180deg, rgba(12, 14, 18, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Vit krita-kant */
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             opacity: 0;
             transform: translateY(20px) scale(0.95);
             pointer-events: none;
             transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8); /* Massiv skugga */
         }
         #chat-window.visible {
             opacity: 1;
@@ -2552,11 +2585,12 @@
             transform: none !important;
             opacity: 1 !important;
             pointer-events: auto !important;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(var(--nord-sym-cyan-rgb), 0.1) !important;
-            background: rgba(12, 20, 39, 0.6) !important; /* Lite mer transparent för att smälta in */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+            background: rgba(12, 14, 18, 0.8) !important; /* Lite mer transparent för att smälta in */
             margin: 3rem auto 0 auto !important; /* Centrera och ge avstånd */
             border-radius: 16px !important;
             z-index: 10 !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
         }
         
         /* Light Mode Embedded */
@@ -2572,8 +2606,8 @@
         }
 
         #chat-header {
-            background: rgba(var(--nord-sym-mid-space-blue-rgb), 0.2);
-            border-bottom: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.2);
+            background: rgba(255, 255, 255, 0.03); /* Mycket subtil separation */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         #chat-messages {
@@ -2606,9 +2640,11 @@
             align-items: flex-start;
         }
         .bot-message p {
-            background: rgba(var(--nord-sym-mid-space-blue-rgb), 0.4);
+            /* UPPDATERAT: Mörkare och mer neutral bot-bubbla */
+            background: rgba(255, 255, 255, 0.08);
             color: var(--nord-sym-text-light);
             border-bottom-left-radius: 0.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .user-message {
             align-items: flex-end;
@@ -2657,17 +2693,17 @@
         }
 
         #chat-input-area {
-            border-top: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         #chat-input {
-            background-color: rgba(var(--nord-sym-deep-space-blue-rgb), 0.8);
-            border: 1px solid rgba(var(--nord-sym-text-light), 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--nord-sym-text-light);
         }
         #chat-input:focus {
             outline: none;
             border-color: var(--nord-sym-cyan);
-            box-shadow: 0 0 10px rgba(var(--nord-sym-cyan-rgb), 0.3);
+            box-shadow: 0 0 10px rgba(var(--nord-sym-cyan-rgb), 0.2);
         }
         
         #chat-send-btn {
@@ -2742,152 +2778,7 @@
             color: var(--nord-sym-cyan);
         }
 
-        /* --- NYTT: STEG 1.3 (CSS-regler för AI-First Spelet) --- */
-        /* BORTTAGET: Hela spel-sektionen raderad. */
-
-        /* --- GLASS BOX TERMINAL STYLES --- */
-        .glass-box-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        @media (min-width: 1024px) {
-            .glass-box-layout { grid-template-columns: 1fr 1fr; }
-        }
-
-        .terminal-window {
-            background: rgba(12, 20, 39, 0.85); /* Deep dark base */
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.3);
-            border-radius: 0.75rem;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
-            font-family: 'Source Code Pro', monospace;
-            overflow: hidden;
-            backdrop-filter: blur(12px);
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.5s ease;
-        }
-        .terminal-window:hover {
-            transform: perspective(1000px) rotateY(0deg) scale(1.02);
-            border-color: var(--nord-sym-cyan);
-        }
-        
-        .terminal-header {
-            background: rgba(255,255,255,0.05);
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-        .dot-red { background: #ff5f56; }
-        .dot-yellow { background: #ffbd2e; }
-        .dot-green { background: #27c93f; }
-        .terminal-title { margin-left: auto; font-size: 0.75rem; color: rgba(255,255,255,0.5); }
-
-        .terminal-body {
-            padding: 1.5rem;
-            height: 350px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; /* Nya loggar kommer underifrån */
-            position: relative;
-        }
-        /* Scanline effect */
-        .terminal-body::after {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
-
-        .log-entry {
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: slideInLog 0.3s forwards;
-            display: flex;
-            gap: 0.75rem;
-            line-height: 1.4;
-        }
-        @keyframes slideInLog {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .log-timestamp { color: #6b7280; flex-shrink: 0; }
-        .log-source { color: var(--nord-sym-purple); font-weight: bold; width: 60px; flex-shrink: 0; }
-        .log-message { color: #e2e8f0; }
-        .log-highlight { color: var(--nord-sym-cyan); }
-        .log-success { color: #4ade80; }
-        .log-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-            background: var(--nord-sym-cyan);
-            animation: blink 1s step-end infinite;
-            margin-left: 5px;
-            vertical-align: middle;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Light Theme Overrides for Terminal */
-        body.light-theme .terminal-window {
-            background: #ffffff;
-            border-color: var(--nord-sym-blueprint-lines);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        body.light-theme .terminal-header { background: #f3f4f6; border-bottom-color: #e5e7eb; }
-        body.light-theme .terminal-title { color: #6b7280; }
-        body.light-theme .log-timestamp { color: #9ca3af; }
-        body.light-theme .log-message { color: var(--nord-sym-blueprint-ink); }
-        body.light-theme .terminal-body::after { opacity: 0.3; } /* Svagare scanlines */
-
-        /* Feature List Styling */
-        .feature-item {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        .feature-icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: rgba(var(--nord-sym-cyan-rgb), 0.1);
-            border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--nord-sym-cyan);
-            font-size: 1.5rem;
-        }
-        .feature-text h3 {
-            font-family: 'Comfortaa', sans-serif;
-            font-size: 1.25rem;
-            color: var(--nord-sym-text-light);
-            margin-bottom: 0.5rem;
-        }
-        .feature-text p {
-            color: var(--nord-sym-text-medium);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        body.light-theme .feature-icon-box {
-            background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
-            border-color: var(--nord-sym-blueprint-cyan);
-            color: var(--nord-sym-blueprint-cyan);
-        }
-        body.light-theme .feature-text h3 { color: var(--nord-sym-blueprint-ink); }
-        body.light-theme .feature-text p { color: var(--nord-sym-blueprint-ink); opacity: 0.8; }
-
-        /* --- COOKIE CONSENT (HARMONISERAD) --- */
+        /* --- COOKIE CONSENT (HARMONISERAD - OBSIDIAN) --- */
         #cookie-consent {
             position: fixed;
             bottom: 2rem;
@@ -2896,13 +2787,13 @@
             max-width: 320px;
             z-index: 2050; /* Över det mesta */
             
-            /* Dark Theme Default */
-            background: rgba(12, 20, 39, 0.95); /* Lite högre opacitet för läsbarhet */
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            /* PREMIUM OBSIDIAN REDESIGN - VIT KRITA */
+            background: linear-gradient(180deg, rgba(12, 14, 18, 0.98) 0%, rgba(0, 0, 0, 1) 100%);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25); /* Tydlig vit kant */
             border-radius: 1rem;
             padding: 1.5rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
             
             /* Animation State */
             opacity: 0;
@@ -2917,6 +2808,10 @@
             transform: translateY(0) scale(1);
         }
 
+        #cookie-consent i {
+            color: #ffffff !important; /* Vit ikon */
+        }
+
         #cookie-consent p {
             font-size: 0.85rem;
             color: var(--nord-sym-text-medium);
@@ -2925,11 +2820,22 @@
         }
 
         #cookie-consent a {
-            color: var(--nord-sym-cyan);
+            color: #ffffff; /* Vit länk */
             text-decoration: underline;
             transition: color 0.2s;
         }
-        #cookie-consent a:hover { color: var(--nord-sym-light-accent); }
+        #cookie-consent a:hover { color: var(--nord-sym-text-medium); }
+        
+        #cookie-accept-btn {
+            border: 2px solid #ffffff !important;
+            background: transparent !important;
+            color: #ffffff !important;
+            box-shadow: none !important;
+        }
+        #cookie-accept-btn:hover {
+            background: #ffffff !important;
+            color: var(--nord-sym-deep-space-blue) !important;
+        }
 
         /* MOBIL ANPASSNING - Undvik krock med chattbubblan */
         @media (max-width: 768px) {
@@ -2946,6 +2852,18 @@
             background: rgba(253, 253, 253, 0.95);
             border: 1px solid var(--nord-sym-blueprint-lines);
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        body.light-theme #cookie-consent i { color: var(--nord-sym-blueprint-cyan) !important; }
+        body.light-theme #cookie-consent p { color: var(--nord-sym-blueprint-text-secondary); }
+        body.light-theme #cookie-consent a { color: var(--nord-sym-blueprint-cyan); }
+        body.light-theme #cookie-consent a:hover { color: var(--nord-sym-blueprint-ink); }
+        body.light-theme #cookie-accept-btn {
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            color: var(--nord-sym-blueprint-ink) !important;
+        }
+        body.light-theme #cookie-accept-btn:hover {
+            background: var(--nord-sym-blueprint-ink) !important;
+            color: #ffffff !important;
         }
         
         .bento-card:hover {
@@ -3305,18 +3223,28 @@
             box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05); /* Inre highlight */
         }
         
-        /* Premium Titel Design */
+        /* Premium Titel Design - UPPDATERAT: WHITE CHALK */
         .product-text-panel h3 {
             font-family: 'Comfortaa', sans-serif;
             font-weight: 800; /* Fetare */
-            /* NordSym Gradient Text */
-            background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 50%, #00d4ff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* Subtil Glöd */
-            filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.25));
+            color: #ffffff; /* Solid Vit */
+            background: none; /* Ingen gradient */
+            -webkit-text-fill-color: initial;
+            /* Subtil Vit Glöd */
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
             letter-spacing: 0.02em;
+        }
+        
+        /* UPPDATERAT: Vit text för kategorier (Ritning, Motor etc) */
+        .product-text-panel span.font-mono {
+            color: #ffffff !important;
+            border-bottom-color: rgba(255, 255, 255, 0.5) !important;
+        }
+        
+        /* UPPDATERAT: Vit brödtext */
+        .product-text-panel p {
+            color: #ffffff !important;
+            opacity: 0.9;
         }
 
         /* Justering av kortet för att hantera flex korrekt */
@@ -3446,7 +3374,7 @@
             padding: 1.5rem;
         }
 
-        /* Tech Badge */
+        /* Tech Badge - UPPDATERAT: WHITE CHALK */
         .tech-badge {
             display: inline-block;
             padding: 0.3rem 0.8rem;
@@ -3455,10 +3383,11 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            background: rgba(255, 255, 255, 0.05); /* Neutralare bakgrund */
-            color: var(--nord-sym-cyan);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent; /* Ingen bakgrund */
+            color: #ffffff; /* Vit text */
+            border: 1px solid #ffffff; /* Vit border */
             margin-left: 0.25rem; /* Gap fix */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Subtil vit glöd */
         }
 
         /* CTA Link */
@@ -3507,12 +3436,12 @@
             flex-direction: column;
             /* UPPDATERAT: Djupare, mer sofistikerad bakgrund */
             background: linear-gradient(160deg, rgba(22, 27, 34, 0.95) 0%, rgba(13, 17, 23, 0.98) 100%);
-            /* MJUKARE KANT: Ändrad från #30363d till en semitransparent vit */
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            /* MJUKARE KANT: Vit Krita - Tydligare vit kant */
+            border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 16px; /* Mer rundade hörn */
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            color: #c9d1d9;
+            color: #ffffff; /* Vit text */
             /* MASSIV SKUGGA FÖR TYNGD (Stack Effect) */
             box-shadow: 
                 0 0 0 1px rgba(255, 255, 255, 0.02),
@@ -3530,19 +3459,19 @@
         .gh-profile-card:hover {
             transform: translateY(-4px);
             box-shadow: 
-                0 0 0 1px rgba(0, 212, 255, 0.4), /* Cyan border vid hover */
+                0 0 0 1px rgba(255, 255, 255, 0.4), /* Vit border vid hover */
                 0 40px 80px -12px rgba(0, 0, 0, 1),
-                0 0 40px rgba(0, 212, 255, 0.15); /* Subtil cyan glow */
-            border-color: rgba(0, 212, 255, 0.4);
+                0 0 40px rgba(255, 255, 255, 0.15); /* Subtil vit glow */
+            border-color: #ffffff;
         }
         
-        /* Dekorativ topp-linje */
+        /* Dekorativ topp-linje - Vit Krita */
         .gh-profile-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
             opacity: 0.5;
         }
         
@@ -3550,7 +3479,7 @@
             padding: 32px; /* Luftigare padding */
             display: flex;
             gap: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Mjukare separator */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Vitare separator */
             align-items: center; /* Centrerad vertikalt */
             flex-wrap: wrap;
             background: rgba(22, 27, 34, 0.4); /* Semitransparent */
@@ -3559,7 +3488,7 @@
         .gh-avatar {
             width: 96px; height: 96px; /* Något större avatar */
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid #ffffff; /* Vit kant */
             box-shadow: 0 8px 24px rgba(0,0,0,0.5);
             background-color: #0d1117;
             flex-shrink: 0;
@@ -3568,36 +3497,36 @@
         
         /* Avatar Hover Effect */
         .gh-profile-header:hover .gh-avatar {
-            border-color: var(--nord-sym-cyan);
+            border-color: #ffffff;
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(var(--nord-sym-cyan-rgb), 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
         
         .gh-names { display: flex; flex-direction: column; margin-bottom: 4px; }
-        .gh-name { font-size: 26px; font-weight: 800; color: #f0f6fc; line-height: 1.1; letter-spacing: -0.02em; } 
-        .gh-username { font-size: 18px; font-weight: 300; color: #8b949e; line-height: 1.4; }
-        .gh-bio { font-size: 15px; margin: 12px 0 16px 0; color: #e6edf3; line-height: 1.6; max-width: 680px; opacity: 0.9; }
+        .gh-name { font-size: 26px; font-weight: 800; color: #ffffff; line-height: 1.1; letter-spacing: -0.02em; } 
+        .gh-username { font-size: 18px; font-weight: 300; color: rgba(255, 255, 255, 0.8); line-height: 1.4; }
+        .gh-bio { font-size: 15px; margin: 12px 0 16px 0; color: #ffffff; line-height: 1.6; max-width: 680px; opacity: 0.9; }
         
-        .gh-meta { display: flex; gap: 20px; font-size: 13px; color: #8b949e; flex-wrap: wrap; align-items: center; }
+        .gh-meta { display: flex; gap: 20px; font-size: 13px; color: #ffffff; flex-wrap: wrap; align-items: center; }
         .gh-meta-item { display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
-        .gh-meta-item i { font-size: 16px; color: #8b949e; transition: color 0.2s; }
-        /* NYTT: SVG-hantering för Octicons */
-        .gh-meta-item svg { fill: currentColor; color: #8b949e; transition: color 0.2s; }
-        .gh-meta-item a { color: #8b949e; text-decoration: none; transition: color 0.2s; }
-        .gh-meta-item:hover, .gh-meta-item:hover a, .gh-meta-item:hover i, .gh-meta-item:hover svg { color: var(--nord-sym-cyan); }
-        .gh-meta-item a:hover { text-decoration: none; }
+        .gh-meta-item i { font-size: 16px; color: #ffffff; transition: color 0.2s; }
+        /* NYTT: SVG-hantering för Octicons - Vita */
+        .gh-meta-item svg { fill: currentColor; color: #ffffff; transition: color 0.2s; }
+        .gh-meta-item a { color: #ffffff; text-decoration: none; transition: color 0.2s; }
+        .gh-meta-item:hover, .gh-meta-item:hover a, .gh-meta-item:hover i, .gh-meta-item:hover svg { color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
+        .gh-meta-item a:hover { text-decoration: underline; }
         
         .gh-btn {
-            background: rgba(255,255,255,0.05); color: #c9d1d9; border: 1px solid rgba(240,246,252,0.1);
+            background: transparent; color: #ffffff; border: 1px solid #ffffff; /* Vit Krita */
             padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600;
             transition: all 0.2s ease; display: inline-block; text-decoration: none;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+            box-shadow: none;
         }
-        .gh-btn:hover { background: rgba(255,255,255,0.1); border-color: #8b949e; color: #ffffff; transform: translateY(-1px); }
+        .gh-btn:hover { background: #ffffff; border-color: #ffffff; color: var(--nord-sym-deep-space-blue); transform: translateY(-1px); }
 
         .gh-pinned-title {
             padding: 24px 32px 16px 32px; /* Tightare */
-            font-size: 13px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em;
+            font-size: 13px; font-weight: 600; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em;
             display: flex; align-items: center; gap: 8px;
         }
         
@@ -3610,7 +3539,7 @@
         
         .gh-repo-card {
             background: rgba(13, 17, 23, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Vitare kant */
             border-radius: 8px;
             padding: 20px; /* Mindre padding */
             display: flex; flex-direction: column; justify-content: space-between;
@@ -3620,28 +3549,28 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .gh-repo-card:hover {
-            border-color: var(--nord-sym-cyan);
+            border-color: #ffffff;
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
             background: rgba(22, 27, 34, 0.8);
         }
         
         .gh-repo-name {
-            font-weight: 700; font-size: 15px; color: #58a6ff;
+            font-weight: 700; font-size: 15px; color: #ffffff;
             display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
             transition: color 0.2s;
         }
-        .gh-repo-card:hover .gh-repo-name { color: var(--nord-sym-cyan); }
+        .gh-repo-card:hover .gh-repo-name { color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
         
         .gh-repo-desc {
-            font-size: 13px; color: #8b949e; margin-bottom: 16px; line-height: 1.5; flex-grow: 1;
+            font-size: 13px; color: #ffffff; margin-bottom: 16px; line-height: 1.5; flex-grow: 1; opacity: 0.9;
         }
         .gh-repo-meta {
-            font-size: 12px; color: #8b949e; display: flex; align-items: center; gap: 16px;
+            font-size: 12px; color: #ffffff; display: flex; align-items: center; gap: 16px; opacity: 0.8;
         }
         .gh-lang-color {
             width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 6px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid #ffffff;
         }
 
         /* LIGHT THEME OVERRIDES FOR GITHUB CARD (Solid & Tung) */
@@ -4031,8 +3960,8 @@
             <div class="section-content-wrapper">
                 <!-- HERO SECTION -->
                 <div class="max-w-4xl mx-auto text-center mb-12">
-                    <!-- UPPDATERAT: Tagg ändrad till Micro-SaaS -->
-                    <span class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-widest uppercase rounded-full bg-sky-900/30 border border-sky-500/30 text-sky-300 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Micro-SaaS</span>
+                    <!-- UPPDATERAT: Designkoncept "Vit Krita" (White Chalk) - Matchar R&D-knappen -->
+                    <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Micro-SaaS</span>
                     <!-- BORTTAGET: Rubrik "NordSym R&D" raderad enligt önskemål -->
                     
                     <!-- NYTT: FOUNDER BADGE (Uppdaterad till knapp + BALANSERAD) -->
@@ -4266,14 +4195,14 @@
         <section id="system" class="space-background-section page-content-padding" style="display: none;">
             <div class="section-content-wrapper flex-grow">
                 <div class="text-center mb-20">
-                     <!-- UPPDATERAT: Taggen ändrad till "Bygg bort begränsningar" enligt önskemål -->
-                     <span class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-widest uppercase rounded-full bg-sky-900/30 border border-sky-500/30 text-sky-300 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Bygg bort begränsningar</span>
+                     <!-- UPPDATERAT: Designkoncept "Vit Krita" & Textändring till Tjänster -->
+                     <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">TJÄNSTER</span>
                     
                     <!-- UPPDATERAT: Nertonad huvudrubrik (Mindre storlek, tunnare vikt) -->
                     <h3 class="text-2xl md:text-3xl font-medium text-white mt-4 light-theme:text-nord-sym-blueprint-ink max-w-3xl mx-auto leading-relaxed">Intelligent mjukvara anpassad efter er verksamhet</h3>
                 </div>
                 
-                <!-- Pricing Grid -->
+                <!-- Pricing Grid - ÅTERSTÄLLD: 3 Kolumner -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
                     
                     <!-- PAKET 1: MLP (Tidigare MIKRO-SAAS) -->
@@ -4288,7 +4217,7 @@
                         
                         <!-- PITCH: Bredare scope - Vi bygger det ni behöver -->
                         <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2">
-                            Slipp standardlösningar som inte passar. Skräddarsydda verktyg och agenter som löser era specifika problem exakt så som ni vill ha det. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">se exempel</a>)
+                            Slipp standardlösningar som inte passar. Skräddarsydda verktyg som löser era specifika problem exakt så som ni vill ha det. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">se exempel</a>)
                         </p>
 
                         <!-- VISUELLA FEATURES (Signaturer) -->
@@ -4303,17 +4232,13 @@
                                 <i class="ph ph-target"></i>
                                 <span>Exakt Lösning</span>
                             </div>
-                            <div class="tech-signature-item">
-                                <!-- Ikon: Blixt/Snabbhet -->
-                                <i class="ph ph-lightning"></i>
-                                <span>Snabb Drift</span>
-                            </div>
                         </div>
 
                         <div class="mt-auto">
                             <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Starta Pilot</a>
                         </div>
                     </div>
+
                     <!-- PAKET 2: OPERATIVSYSTEM (Tidigare Central Intelligens) -->
                     <div class="pricing-card card-base ignite-package">
                          <div class="pricing-card-header text-center mb-4">
@@ -4326,7 +4251,7 @@
                         
                         <!-- PITCH: Fokus på "Hjärnan" och en egen plattform -->
                         <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2">
-                            En skräddarsydd mjukvaruplattform som blir bolagets hjärna. Den samlar er data, kopplar ihop systemen och låter AI agera autonomt.
+                            En skräddarsydd mjukvaruplattform som blir bolagets hjärna. Den samlar er data, kopplar ihop systemen och låter AI agera autonomt – men ger er full kontroll där mänskligt omdöme krävs.
                         </p>
 
                         <!-- VISUELLA FEATURES -->
@@ -4348,12 +4273,9 @@
                             </div>
                         </div>
                         
-                        <!-- NYTT: Separata DIY-länkar ("Bygg själv") -->
-                        <div class="mb-6 flex flex-col gap-1.5">
-                            <p class="text-center text-xs text-sky-300/70">
-                                Vill ni bygga internt? <a href="https://flowvault.se" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">Utforska FlowVault</a>
-                            </p>
-                            <p class="text-center text-xs text-sky-300/70">
+                        <!-- NYTT: GenPRD länk kvar -->
+                        <div class="mb-6 flex flex-col gap-1.5 text-center">
+                            <p class="text-xs text-sky-300/70">
                                 Behöver ni en ritning? <a href="https://genprd.se" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">Testa GenPRD</a>
                             </p>
                         </div>
@@ -4363,19 +4285,19 @@
                         </div>
                     </div>
 
-                    <!-- PAKET 3: AI-FIRST (Tidigare Enterprise) -->
+                    <!-- PAKET 3: STÖRRE PROJEKT (Tidigare AI-FIRST) -->
                     <div class="pricing-card card-base">
                          <div class="pricing-card-header text-center mb-4">
-                            <!-- UPPDATERAT: Ny titel enligt önskemål -->
-                            <h3>AI-FIRST</h3>
-                             <!-- UPPDATERAT: Transformation som sub -->
-                             <span class="pricing-sub">Transformation</span>
+                            <!-- UPPDATERAT: AI-FIRST -> STÖRRE PROJEKT -->
+                            <h3>STÖRRE PROJEKT</h3>
+                             <!-- UPPDATERAT: Transformation -> Enterprise -->
+                             <span class="pricing-sub">Enterprise</span>
                         </div>
                         <div class="price-display text-center">500k+ <span class="price-period">SEK</span></div>
                         
-                        <!-- PITCH: Öppen för diskussion, fokus på partnerskap och komplexitet -->
+                        <!-- PITCH: Fokus på scope och diskussion -->
                         <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2">
-                            När standardlösningar inte räcker. NordSym går in som teknisk partner och bygger den infrastruktur som krävs för att ni ska kunna skala obehindrat och säkert.
+                            För komplexa behov där standardlösningar inte räcker. Vi går in som teknisk partner och definierar leverans och omfattning helt baserat på ert unika scope och era affärsmål.
                         </p>
 
                         <!-- VISUELLA FEATURES -->
@@ -4386,19 +4308,48 @@
                                 <span>Strategi</span>
                             </div>
                             <div class="tech-signature-item">
-                                <!-- Ikon: Grupp/Team -->
-                                <i class="ph ph-users-three"></i>
-                                <span>Dedikerat Team</span>
+                                <!-- Ikon: Kompass/Arkitektur (Ersätter Dedikerat Team) -->
+                                <i class="ph ph-compass-tool"></i>
+                                <span>Arkitektur</span>
                             </div>
                             <div class="tech-signature-item">
-                                <!-- Ikon: Bankvalv/Säkerhet -->
-                                <i class="ph ph-shield-check"></i>
-                                <span>Säkerhet</span>
+                                <!-- Ikon: Handslag/Helhet (Ersätter Säkerhet) -->
+                                <i class="ph ph-handshake"></i>
+                                <span>Helhetsåtagande</span>
                             </div>
                         </div>
 
                          <div class="mt-auto">
                             <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Diskutera Behov</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KOMPAKT AGENT-MODUL (Under huvudpaketen) -->
+                <div class="max-w-4xl mx-auto mt-8">
+                    <div class="pricing-card flex flex-col md:flex-row items-center justify-between p-6 gap-6 md:gap-8 border border-white/20 hover:border-white/40 transition-colors">
+                        <!-- Vänster: Titel & Pris -->
+                        <div class="text-center md:text-left min-w-max">
+                            <h4 class="text-xl font-bold text-white mb-1" style="font-family: 'Comfortaa', sans-serif;">AI-AGENTER</h4>
+                            <p class="text-nord-sym-cyan font-mono text-sm tracking-wide">25k - 85k SEK</p>
+                        </div>
+
+                        <!-- Mitten: Beskrivning & FlowVault -->
+                        <div class="flex-grow text-center md:text-left border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-8">
+                            <p class="text-sky-200 text-sm mb-2">
+                                Digital arbetskraft för specifika roller (kundtjänst, research, admin). Konfigurerad och driftsatt snabbt.
+                            </p>
+                            <a href="https://flowvault.se" target="_blank" rel="noopener noreferrer" class="text-xs text-nord-sym-cyan hover:text-white transition-colors flex items-center justify-center md:justify-start gap-1.5 opacity-80 hover:opacity-100">
+                                <i class="ph ph-stack"></i>
+                                Vill ni bygga själva? Hämta ritningar i FlowVault
+                            </a>
+                        </div>
+
+                        <!-- Höger: CTA -->
+                        <div class="flex-shrink-0 w-full md:w-auto">
+                            <a href="#" onclick="window.nord.openFreeAgentModal(); return false;" class="btn-base btn-secondary-on-dark w-full text-sm py-2 px-6">
+                                Beställ Agent
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -4412,14 +4363,14 @@
 
                 <!-- NY PLACERING: FOUNDER BADGE (Ovanför FAQ) -->
                 <div class="text-center mt-20 mb-8">
-                    <!-- UPPDATERAT: Tog bort hårda borders, lade till mjukare skugga och hover-effekter -->
-                    <button onclick="window.nord.openFounderModal()" class="inline-flex items-center gap-3 bg-sky-900/30 rounded-full pr-6 pl-2 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-sky-800/50 hover:shadow-lg cursor-pointer light-theme:bg-white light-theme:shadow-md light-theme:hover:shadow-xl group">
+                    <!-- UPPDATERAT: Designkoncept "Vit Krita" (White Chalk) -->
+                    <button onclick="window.nord.openFounderModal()" class="inline-flex items-center gap-3 bg-transparent border border-white rounded-full pr-6 pl-2 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] cursor-pointer light-theme:bg-white light-theme:border-gray-200 light-theme:shadow-md light-theme:hover:shadow-xl group">
                         <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/T2ZJ4JKR_400x400.jpg?alt=media&token=b0449d0a-bedc-462d-98f9-1258890f2391" alt="Gustav Hemmingsson" class="w-10 h-10 rounded-full object-cover shadow-sm group-hover:shadow-md transition-shadow">
                         <div class="text-left">
                             <div class="text-white text-sm font-bold leading-none light-theme:text-gray-900">Gustav Hemmingsson</div>
-                            <div class="text-sky-400 text-[10px] uppercase tracking-wider font-mono mt-0.5 light-theme:text-sky-600 group-hover:text-sky-300 light-theme:group-hover:text-sky-700 transition-colors">Grundare</div>
+                            <div class="text-white/80 text-[10px] uppercase tracking-wider font-mono mt-0.5 light-theme:text-sky-600 group-hover:text-white light-theme:group-hover:text-sky-700 transition-colors">Grundare</div>
                         </div>
-                        <i class="ph-info text-sky-500/50 group-hover:text-sky-400 ml-1 text-lg light-theme:text-gray-400 light-theme:group-hover:text-sky-500 transition-colors"></i>
+                        <i class="ph-info text-white/70 group-hover:text-white ml-1 text-lg light-theme:text-gray-400 light-theme:group-hover:text-sky-500 transition-colors"></i>
                     </button>
                 </div>
 
@@ -4477,8 +4428,8 @@
         <section id="ritbordet" class="space-background-section" style="display: none;">
             <div id="ritbordet-lobby" class="section-content-wrapper">
                 <div class="text-center mb-16">
-                    <!-- ÄNDRAT: Badge och text för att fokusera på Spel/3D/AI -->
-                    <span class="inline-block bg-sky-900/30 border border-sky-500/30 text-sky-300 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4 light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">R&D LAB</span>
+                    <!-- UPPDATERAT: Designkoncept "Vit Krita" -->
+                    <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">R&D LAB</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Gaming + AI + Three.js</h2>
                     <p class="text-sky-100/80 max-w-3xl mx-auto text-lg leading-relaxed light-theme:text-nord-sym-blueprint-text-secondary">
                         <!-- UPPDATERAT: Fas 2 Copy - Passiv form/NordSym -->
@@ -4504,7 +4455,8 @@
                             <div class="w-20 h-20 bg-sky-900/50 rounded-full flex items-center justify-center mx-auto mb-6 border border-sky-400/30 group-hover:scale-110 transition-transform">
                                 <i class="ph ph-cube text-4xl text-nord-sym-cyan"></i>
                             </div>
-                            <h4 class="text-2xl font-bold mb-2 text-white">Testa Stacken</h4>
+                            <!-- UPPDATERAT: 'Testa Stacken' -> 'The Workshop' -->
+                            <h4 class="text-2xl font-bold mb-2 text-white">The Workshop</h4>
                             <p>Geometrin på denna sida renderas live med samma Three.js-motor. Ta kontroll: rotera, morfa och explodera partiklarna.</p>
                             <!-- UPPDATERAT: "Kör Demo" ändrat till "Starta Motorn" för att låta mer tekniskt och mindre säljande -->
                             <button class="mt-6 btn-base btn-cta-revised px-6">Starta Motorn</button>
@@ -4720,12 +4672,12 @@
                     </a>
                     
                     <p class="text-sm font-bold text-white mb-1">Framtidsförsäkra eran verksamhet</p>
-                    <p class="text-xs text-sky-200 mb-4">NordSym hjälper er att bli ett AI-First företag.</p>
+                    <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);">NordSym hjälper er att bli ett AI-First företag.</p>
                     <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6">Boka Strategisamtal</a>
 
                 </div>
                 <div class="md:col-span-1 text-center md:text-left">
-                    <p class="font-semibold text-nord-sym-text-light mb-2">Snabblänkar</p>
+                    <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;">Snabblänkar</p>
                     <div class="footer-quicklinks">
                         <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link">Micro-SaaS</a>
                         <!-- UPPDATERAT: System -> Tjänster -->
@@ -4738,7 +4690,7 @@
                 </div>
                 <div class="md:col-span-1 text-center md:text-left">
                      <!-- UPPDATERAT: Följ Oss -> Följ NordSym -->
-                     <p class="font-semibold text-nord-sym-text-light mb-4">Följ NordSym</p>
+                     <p class="font-semibold text-nord-sym-text-light mb-4" style="color: #ffffff;">Följ NordSym</p>
                      
                      <!-- UPPDATERAT: Endast ikoner, horisontell layout, större storlek (2xl) -->
                      <div class="flex gap-5 justify-center md:justify-start items-center">
@@ -4769,8 +4721,8 @@
 
                 </div>
             </div>
-            <div class="mt-8 border-t border-sky-700/50 pt-6 text-center text-xs text-content-dark-bg space-x-4">
-                <span>© <span id="currentYear"></span> NordSym.</span>
+            <div class="mt-8 border-t border-sky-700/50 pt-6 text-center text-xs text-content-dark-bg space-x-4" style="border-color: rgba(255,255,255,0.15);">
+                <span style="color: rgba(255,255,255,0.5);">© <span id="currentYear"></span> NordSym.</span>
                 <a href="#privacy-policy-en" onclick="window.nord.showPage('privacy-policy-en'); return false;" class="footer-link hover:underline ml-4">Privacy Policy</a>
                 <a href="#terms-of-service-en" onclick="window.nord.showPage('terms-of-service-en'); return false;" class="footer-link hover:underline">Terms of Service</a>
             </div>
@@ -6432,10 +6384,10 @@
                 subject: 'Intresseanmälan: Gaming Side Project'
             },
             seo: {
-                icon: 'ph-magnifying-glass', // Search/Analysis metaphor
-                title: 'SEO Hälsovakt - Kampanj',
-                desc: 'Vi bjuder på tekniska analyser fram till 1:a januari. Skriv upp dig nu så kör vi en fullständig scan av er webbplats manuellt och skickar rapporten.',
-                subject: 'Beställning: Gratis SEO-Analys',
+                icon: 'ph-globe-hemisphere-east', // Bytt ikon till global/geo
+                title: 'GEO/AEO Hälsovakt - Kampanj', // UPPDATERAT: SEO -> GEO/AEO
+                desc: 'Vi bjuder på tekniska analyser fram till 1:a januari. Skriv upp dig nu så kör vi en fullständig scan av er webbplats manuellt (med fokus på Generative Engine Optimization) och skickar rapporten.',
+                subject: 'Beställning: Gratis GEO/AEO-Analys', // UPPDATERAT
                 linkText: 'Tjuvkika på verktyget (Live Demo) →',
                 linkUrl: 'https://nordsym.github.io/Nordsym-Seo-Halsovakt/'
             }
@@ -7236,7 +7188,7 @@
                 {
                     imageUrl: 'https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg',
                     title: 'Syns du i AI-Sök?',
-                    description: 'Från SEO till AEO. Optimera din digitala närvaro för AI-sökmotorer som ChatGPT, Claude och Perplexity. Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på och citerar.',
+                    description: 'Från traditionellt sök till GEO och AEO. Optimera din digitala närvaro för AI-sökmotorer som ChatGPT, Claude och Perplexity. Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på och citerar.',
                     signatures: [
                         { icon: 'ph-brain', text: 'AEO & GEO' },
                         { icon: 'ph-chat-teardrop-text', text: 'Generativa Svar' },
