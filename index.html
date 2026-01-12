@@ -2117,37 +2117,57 @@
             position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
         }
 
+        /* --- JOYSTICK PORTALS (MOBIL KONTROLL) --- */
         .joystick-portal {
             position: fixed;
-            bottom: -100px;
-            width: 80px; height: 80px;
+            bottom: 30px; 
+            bottom: calc(30px + env(safe-area-inset-bottom));
+            width: 64px; 
+            height: 64px;
             border-radius: 50%;
-            z-index: 2006;
-            display: flex; align-items: center; justify-content: center;
-            transition: bottom 0.5s ease, opacity 0.3s ease;
-            background: rgba(12, 20, 39, 0.5);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(var(--nord-sym-text-medium), 0.3);
+            /* Z-Index: Måste ligga ÖVER verktygsfältet (..47) för att vara klickbara */
+            z-index: 2147483648; 
+            
+            display: none; /* Alltid dolda som standard */
+            align-items: center; 
+            justify-content: center;
+            
+            background: rgba(12, 20, 39, 0.85); /* Solidare bakgrund */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--nord-sym-text-medium);
-            /* Harmoni-fix: Utrotar scroll-konflikten genom att göra joysticks helt icke-interaktiva som standard. */
-            pointer-events: none;
-            opacity: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .joystick-portal.active { border-color: var(--nord-sym-cyan); color: var(--nord-sym-cyan); }
-        .joystick-portal i { font-size: 2rem; }
-        #joystick-portal-left { left: 2rem; }
-        #joystick-portal-right { right: 2rem; }
         
-        @media (max-width: 767px) {
+        .joystick-portal.active { 
+            border-color: var(--nord-sym-cyan); 
+            color: var(--nord-sym-cyan); 
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+            transform: scale(1.1);
+        }
+        
+        .joystick-portal i { font-size: 1.8rem; }
+        
+        #joystick-portal-left { left: 20px; }
+        #joystick-portal-right { right: 20px; }
+        
+        /* MOBIL & TABLET: Visa ENDAST när .labb-active finns */
+        @media (max-width: 1024px) {
             body.labb-active .joystick-portal { 
-                bottom: 1.5rem;
-                pointer-events: auto; /* Återaktiveras endast i verkstaden */
-                opacity: 1;
+                display: flex !important; /* TVINGA FRAM */
+                animation: joystick-pop 0.4s ease-out forwards;
             }
         }
         
-        /* UPPDATERAD: Dölj joysticks helt på desktop/tablet */
-        @media (min-width: 768px) {
+        @keyframes joystick-pop {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* DESKTOP: Göm ALLTID (Dubbel säkerhet) */
+        @media (min-width: 1025px) {
              .joystick-portal {
                 display: none !important;
             }
