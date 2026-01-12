@@ -2972,6 +2972,61 @@
             color: white;
         }
 
+        /* --- CHAT RESUME BUTTON (Liten notis under input) --- */
+        #chat-resume-btn {
+            margin-top: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--nord-sym-text-medium);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: none; /* Dold som standard */
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        #chat-resume-btn:hover {
+            border-color: var(--nord-sym-cyan);
+            color: var(--nord-sym-cyan);
+            background: rgba(var(--nord-sym-cyan-rgb), 0.1);
+            transform: translateY(-1px);
+        }
+        #chat-resume-btn.visible {
+            display: flex;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        .resume-pulse {
+            width: 6px; height: 6px;
+            background-color: #4ade80; /* Green */
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Light Theme Override för Resume Btn */
+        body.light-theme #chat-resume-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0,0,0,0.1);
+            color: var(--nord-sym-blueprint-text-secondary);
+        }
+        body.light-theme #chat-resume-btn:hover {
+            border-color: var(--nord-sym-blueprint-cyan);
+            color: var(--nord-sym-blueprint-cyan);
+        }
+
         /* --- MOBIL ANPASSNING --- */
         @media (max-width: 768px) {
             .chat-sidebar {
@@ -4268,8 +4323,13 @@
                                 </button>
                             </div>
                         </div>
-
-                        <!-- Gammalt Chat Window borttaget härifrån - Nu används Fullscreen Interface längst ner i body -->
+                        
+                        <!-- NYTT: RESUME BUTTON (Visas när historik finns) -->
+                        <button id="chat-resume-btn" onclick="window.nord.resumeChat()">
+                            <span class="resume-pulse"></span>
+                            <span>Aktiv session</span>
+                            <i class="ph-caret-up ml-1 text-xs opacity-70"></i>
+                        </button>
 
                     </div>
 
@@ -8159,6 +8219,7 @@
                 heroInputWrapper: document.getElementById('hero-input-wrapper'),
                 heroInput: document.getElementById('hero-chat-input-field'),
                 heroSendBtn: document.getElementById('hero-input-send'),
+                resumeBtn: document.getElementById('chat-resume-btn'), // NY
                 
                 fullscreenInterface: document.getElementById('fullscreen-chat-interface'),
                 messagesContainer: document.getElementById('fullscreen-chat-messages'),
@@ -8179,10 +8240,12 @@
             this.initEventListeners();
             this.initTypewriter(); 
             this.renderHistorySidebar(); // Rendera historik vid start
+            this.checkResumeStatus(); // NY: Kolla om resume-knappen ska visas direkt
             
             // Globala funktioner
             window.nord.closeFullscreenChat = () => this.closeChat();
             window.nord.clearChatHistory = () => this.clearHistory();
+            window.nord.resumeChat = () => this.resumeChat(); // NY
         }
 
         initTypewriter() {
@@ -8314,8 +8377,9 @@
             this.elements.fullscreenInterface.classList.add('visible');
             document.body.style.overflow = 'hidden'; // Lås scroll på bakgrunden
             
-            // Om det är en ny session och historiken är tom (eller vi vill rendera om)
-            // Här kan vi ladda in tidigare meddelanden om vi vill visa dem direkt
+            // Dölj resume-knappen när chatten är öppen
+            if (this.elements.resumeBtn) this.elements.resumeBtn.classList.remove('visible');
+            
             this.renderMessagesFromHistory();
         }
 
@@ -8330,6 +8394,30 @@
                 this.elements.heroInput.value = '';
                 this.hasSentMessage = false; 
             }
+            
+            // NYTT: Visa resume-knappen om det finns historik
+            this.checkResumeStatus();
+        }
+        
+        // NY FUNKTION: Återuppta chatt utan att skicka meddelande
+        resumeChat() {
+            // Dölj hero input (snyggare transition)
+            if (this.elements.heroInputWrapper) {
+                this.elements.heroInputWrapper.classList.add('hidden-input');
+            }
+            this.openChat();
+        }
+        
+        // NY FUNKTION: Kolla om Resume-knappen ska synas
+        checkResumeStatus() {
+            if (!this.elements.resumeBtn) return;
+            
+            if (this.chatHistory.length > 0) {
+                this.elements.resumeBtn.classList.add('visible');
+                // Uppdatera texten valfritt, t.ex. "3 meddelanden"
+            } else {
+                this.elements.resumeBtn.classList.remove('visible');
+            }
         }
 
         saveMessage(text, sender) {
@@ -8340,7 +8428,8 @@
             };
             this.chatHistory.push(messageObj);
             localStorage.setItem('nordsym_chat_history', JSON.stringify(this.chatHistory));
-            this.renderHistorySidebar(); // Uppdatera sidomenyn om vi vill visa "Sista meddelandet"
+            this.renderHistorySidebar(); 
+            // Resume-status kollas vid stängning, behöver ej köras här
         }
         
         clearHistory() {
@@ -8348,6 +8437,7 @@
             localStorage.removeItem('nordsym_chat_history');
             this.elements.messagesContainer.innerHTML = '';
             this.renderHistorySidebar();
+            this.checkResumeStatus(); // Uppdatera knapp (dölj den)
         }
 
         renderHistorySidebar() {
