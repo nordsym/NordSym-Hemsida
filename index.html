@@ -2728,10 +2728,269 @@
             color: white;
         }
 
-        #chat-window.visible {
+        /* --- NYTT: NORDGPT FULLSCREEN INTERFACE (Ersätter Chat Window) --- */
+        #fullscreen-chat-interface {
+            position: fixed;
+            inset: 0; /* Fullscreen */
+            z-index: 10000; /* Över allt annat */
+            background-color: var(--nord-sym-deep-space-blue); /* Solid Deep Space */
+            display: flex;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        #fullscreen-chat-interface.visible {
             opacity: 1;
-            transform: translateY(0) scale(1);
             pointer-events: auto;
+        }
+
+        /* SIDEBAR (Historik) */
+        .chat-sidebar {
+            width: 260px;
+            background: rgba(10, 12, 16, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        #fullscreen-chat-interface.visible .chat-sidebar {
+            transform: translateX(0);
+        }
+        
+        .chat-history-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            color: var(--nord-sym-text-medium);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.9rem;
+        }
+        .chat-history-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+        .chat-history-item.active {
+            background: rgba(var(--nord-sym-cyan-rgb), 0.1);
+            color: var(--nord-sym-cyan);
+        }
+
+        /* MAIN CHAT AREA */
+        .chat-main-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 212, 255, 0.03), transparent 70%); /* Subtil glöd */
+        }
+
+        /* TOP BAR (Close & Options) */
+        .chat-top-bar {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .chat-close-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--nord-sym-text-medium);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .chat-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* MESSAGES CONTAINER */
+        .chat-scroll-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrera kolumnen */
+            scroll-behavior: smooth;
+        }
+        
+        .chat-content-width {
+            width: 100%;
+            max-width: 768px; /* Optimal läsbredd (ChatGPT standard) */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* MESSAGE BUBBLES - CLEAN DESIGN */
+        .chat-message-row {
+            display: flex;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .chat-message-row.user {
+            justify-content: flex-end;
+        }
+        .chat-message-row.bot {
+            justify-content: flex-start;
+        }
+
+        .chat-bubble-content {
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            position: relative;
+            max-width: 85%;
+        }
+
+        /* USER BUBBLE: Cyan Accent */
+        .chat-message-row.user .chat-bubble-content {
+            background-color: rgba(0, 212, 255, 0.1); /* Svag cyan bakgrund */
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: var(--nord-sym-cyan);
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        /* BOT BUBBLE: Clean Text (Minimalist) */
+        .chat-message-row.bot .chat-bubble-content {
+            background-color: transparent; /* Ingen bakgrund för boten, ren text */
+            color: var(--nord-sym-text-light); /* Off-white */
+            padding-left: 0; /* Justera padding för ren text-look */
+            padding-top: 0;
+        }
+        
+        /* INPUT AREA (Sticky Bottom) */
+        .chat-input-wrapper {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to top, var(--nord-sym-deep-space-blue) 80%, transparent);
+        }
+        
+        .chat-main-input-container {
+            width: 100%;
+            max-width: 768px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: flex-end; /* För textarea expansion */
+            transition: all 0.3s ease;
+        }
+        .chat-main-input-container:focus-within {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        #chat-main-textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            resize: none;
+            max-height: 200px;
+            padding: 0.5rem;
+            outline: none;
+            line-height: 1.5;
+        }
+        
+        #chat-main-send-btn {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: var(--nord-sym-cyan);
+            color: var(--nord-sym-deep-space-blue);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        #chat-main-send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(var(--nord-sym-cyan-rgb), 0.4);
+        }
+        
+        /* LIGHT THEME OVERRIDES FOR NORDGPT */
+        body.light-theme #fullscreen-chat-interface {
+            background-color: #FDFDFD;
+        }
+        body.light-theme .chat-sidebar {
+            background: #F3F4F6;
+            border-right-color: #E5E7EB;
+        }
+        body.light-theme .chat-history-item {
+            color: #4B5563;
+        }
+        body.light-theme .chat-history-item:hover {
+            background: #E5E7EB;
+            color: #111827;
+        }
+        body.light-theme .chat-close-btn {
+            color: #4B5563;
+        }
+        body.light-theme .chat-close-btn:hover {
+            background: #E5E7EB;
+            color: #111827;
+            border-color: #D1D5DB;
+        }
+        body.light-theme .chat-message-row.user .chat-bubble-content {
+            background-color: #E0F2FE; /* Sky 100 */
+            border-color: #BAE6FD;
+            color: #0369A1; /* Sky 700 */
+        }
+        body.light-theme .chat-message-row.bot .chat-bubble-content {
+            color: #374151; /* Gray 700 */
+        }
+        body.light-theme .chat-input-wrapper {
+            background: linear-gradient(to top, #FDFDFD 80%, transparent);
+        }
+        body.light-theme .chat-main-input-container {
+            background: #FFFFFF;
+            border-color: #E5E7EB;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        body.light-theme #chat-main-textarea {
+            color: #111827;
+        }
+        body.light-theme #chat-main-send-btn {
+            background: var(--nord-sym-blueprint-cyan);
+            color: white;
+        }
+
+        /* --- MOBIL ANPASSNING --- */
+        @media (max-width: 768px) {
+            .chat-sidebar {
+                position: absolute;
+                z-index: 20;
+                height: 100%;
+                background: var(--nord-sym-deep-space-blue); /* Solidare bakgrund på mobil */
+            }
+            body.light-theme .chat-sidebar { background: #FDFDFD; }
+            
+            .chat-sidebar:not(.open) {
+                transform: translateX(-100%);
+            }
+            /* Hamburger för sidebar på mobil? Kanske senare */
+            .chat-sidebar { display: none; } /* Dölj sidebar på mobil för "Ultra Clean" första version */
+            
+            .chat-content-width {
+                padding-bottom: 80px; /* Mer plats för input på mobil */
+            }
         }
 
         /* --- NYTT: Embedded Chat (Hero Mode) --- */
@@ -3962,11 +4221,9 @@
                         <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" width="200" height="57">
                     </div>
                     
-                    <!-- RESTORED: Hero Copy (Rubrik, Text & Knappar) -->
+                    <!-- RESTORED: HERO CONTENT (Rubrik, Text & Knappar) -->
                     <div class="relative inline-block group my-6">
-                        <!-- Bakomliggande Glow (Endast Dark Mode - Subtilare) -->
                         <div class="absolute -inset-1 bg-nord-sym-cyan rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500 light-theme:hidden"></div>
-                        
                         <h1 class="relative px-8 py-4 md:px-12 md:py-6 rounded-full 
                                    bg-nord-sym-cyan text-[#1f2937]
                                    light-theme:bg-nord-sym-cyan light-theme:text-[#1f2937]
@@ -3984,12 +4241,13 @@
                         <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FAKTISKT</span> 
                         gör skillnad.
                     </p>
-                    <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4">
+                    
+                    <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4 mb-8">
                         <div class="flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-auto">
                             <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5">Framtidsförsäkra er verksamhet</a>
                             <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5">R&D</a>
                         </div>
-                         <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-6 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
+                         <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-2 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
                             <span>MICRO-SAAS</span>
                             <span class="hidden sm:block text-sky-500">•</span>
                             <span>INTELLIGENT ARKITEKTUR</span>
@@ -3997,9 +4255,9 @@
                             <span>INTELLIGENT AUTOMATION</span>
                         </div>
                     </div>
-
+                    
                     <!-- NYTT: HERO INPUT INTERFACE (Placerad under innehållet med marginal) -->
-                    <div id="hero-chat-mount" class="w-full relative z-20 min-h-[60px] flex flex-col items-center mt-8">
+                    <div id="hero-chat-mount" class="w-full relative z-20 min-h-[60px] flex flex-col items-center mt-4">
                         
                         <!-- Initial State: Clean Input Bar -->
                         <div id="hero-input-wrapper">
@@ -4011,41 +4269,7 @@
                             </div>
                         </div>
 
-                        <!-- Expanded State: Chat Window (Flyttad hit) -->
-                        <div id="chat-window" class="flex flex-col rounded-2xl shadow-2xl overflow-hidden origin-top">
-                            <!-- Header -->
-                            <div id="chat-header" class="flex items-center justify-between p-4 flex-shrink-0">
-                                <div class="flex items-center gap-3">
-                                    <div class="relative">
-                                        <i class="ph-robot text-2xl text-nord-sym-cyan"></i>
-                                        <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-[var(--nord-sym-deep-space-blue)]"></span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-bold text-base text-white">NordSym AI</h3>
-                                        <p class="text-xs text-green-400">Connected</p>
-                                    </div>
-                                </div>
-                                <!-- Stäng/Minimera knapp för att återgå till input-läget -->
-                                <button id="chat-close-btn" aria-label="Återställ" onclick="window.nord.resetChat()">
-                                    <i class="ph-x text-lg"></i>
-                                </button>
-                            </div>
-                    
-                            <!-- Messages -->
-                            <div id="chat-messages" class="flex-grow p-4 overflow-y-auto bg-black/20">
-                                <!-- Tomt från början -->
-                            </div>
-                    
-                            <!-- Input Area (Inside Window) -->
-                            <div id="chat-input-area" class="p-4 flex-shrink-0">
-                                <div class="relative">
-                                    <input type="text" id="chat-input" placeholder="Skriv ett svar..." class="w-full rounded-full py-3 pl-4 pr-12 text-sm">
-                                    <button id="chat-send-btn" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center" aria-label="Skicka meddelande">
-                                        <i class="ph-paper-plane-tilt-bold text-xl"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Gammalt Chat Window borttaget härifrån - Nu används Fullscreen Interface längst ner i body -->
 
                     </div>
 
@@ -4642,34 +4866,7 @@
                     </div>
                 </div>
 
-                <!-- KOMPAKT AGENT-MODUL (Under huvudpaketen) -->
-                <div class="max-w-4xl mx-auto mt-8">
-                    <div class="pricing-card flex flex-col md:flex-row items-center justify-between p-6 gap-6 md:gap-8 border border-white/20 hover:border-white/40 transition-colors">
-                        <!-- Vänster: Titel & Pris -->
-                        <div class="text-center md:text-left min-w-max">
-                            <h4 class="text-xl font-bold text-white mb-1" style="font-family: 'Comfortaa', sans-serif;">AI-AGENTER</h4>
-                            <p class="text-nord-sym-cyan font-mono text-sm tracking-wide">25k - 85k SEK</p>
-                        </div>
-
-                        <!-- Mitten: Beskrivning & FlowVault -->
-                        <div class="flex-grow text-center md:text-left border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-8">
-                            <p class="text-sky-200 text-sm mb-2">
-                                Digital arbetskraft för specifika roller (kundtjänst, research, admin). Konfigurerad och driftsatt snabbt.
-                            </p>
-                            <a href="https://flowvault.se" target="_blank" rel="noopener noreferrer" class="text-xs text-nord-sym-cyan hover:text-white transition-colors flex items-center justify-center md:justify-start gap-1.5 opacity-80 hover:opacity-100">
-                                <i class="ph ph-stack"></i>
-                                Vill ni bygga själva? Hämta ritningar i FlowVault
-                            </a>
-                        </div>
-
-                        <!-- Höger: CTA -->
-                        <div class="flex-shrink-0 w-full md:w-auto">
-                            <a href="#" onclick="window.nord.openFreeAgentModal(); return false;" class="btn-base btn-secondary-on-dark w-full text-sm py-2 px-6">
-                                Beställ Agent
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <!-- BORTTAGET: KOMPAKT AGENT-MODUL (Designa en gratis agent) -->
                 
                 <!-- Support Text -->
                 <div class="text-center mt-16 max-w-3xl mx-auto">
@@ -4958,31 +5155,7 @@
         </div>
     </div>
 
-    <div id="free-agent-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-nord-sym-deep-space-blue/80 backdrop-blur-sm opacity-0 pointer-events-none">
-        <div class="modal-content-wrapper form-container p-8 md:p-12 max-w-lg w-full m-4 relative scale-95">
-            <button onclick="window.nord.closeFreeAgentModal()" class="absolute top-4 right-4 text-sky-300 hover:text-nord-sym-cyan transition-colors text-2xl" aria-label="Stäng modal">
-                <i class="ph-x"></i>
-            </button>
-            <div id="free-agent-modal-content">
-                <h3 class="text-2xl font-semibold text-white mb-2 text-center">Designa er Kostnadsfria Agent</h3>
-                <p class="text-center text-sky-300 mb-6">Beskriv en uppgift ni vill automatisera, så bygger vi en prototyp utan kostnad.</p>
-                <form id="freeAgentForm">
-                    <input type="hidden" name="_subject" value="Förfrågan: Gratis AI-Agent prototyp">
-                    <div>
-                        <label for="agent-description" class="form-label">Agentens Uppgift</label>
-                        <textarea name="description" id="agent-description" rows="4" class="form-textarea" required placeholder="T.ex. 'Sammanfatta dagens branschnyheter från tre källor och skicka som ett mail kl 08:00 varje morgon.'"></textarea>
-                    </div>
-                     <div>
-                        <label for="agent-email" class="form-label mt-4">Er E-post</label>
-                        <input type="email" name="email" id="agent-email" required class="form-input" placeholder="Vi skickar resultatet hit">
-                    </div>
-                    <div class="mt-8 text-center">
-                        <button type="submit" class="btn-base btn-cta-revised w-full">Skicka min idé</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <!-- BORTTAGET: FREE AGENT MODAL -->
     
     <footer id="main-footer" class="relative bg-nord-sym-deep-space-blue">
         <!-- BORTTAGEN DUBBLETT AV FOOTER-TAGG HÄR -->
@@ -5066,6 +5239,54 @@
             <button id="cookie-accept-btn" class="btn-base btn-cta-revised w-full py-2 text-sm">
                 OK, jag förstår
             </button>
+        </div>
+    </div>
+
+    <!-- NORDGPT FULLSCREEN INTERFACE (Ligger utanför allt annat) -->
+    <div id="fullscreen-chat-interface">
+        <!-- Sidebar (Historik) -->
+        <div class="chat-sidebar">
+            <div class="flex items-center gap-2 mb-6 opacity-70">
+                <i class="ph-clock-counter-clockwise text-lg"></i>
+                <span class="text-xs font-bold uppercase tracking-widest">Tidigare Sessioner</span>
+            </div>
+            <div id="chat-history-list" class="flex flex-col overflow-y-auto flex-grow">
+                <!-- Dynamisk lista -->
+            </div>
+            <div class="mt-auto pt-4 border-t border-white/10">
+                <button onclick="window.nord.clearChatHistory()" class="text-xs text-red-400 hover:text-red-300 flex items-center gap-2 transition-colors">
+                    <i class="ph-trash"></i> Rensa historik
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Area -->
+        <div class="chat-main-area">
+            <!-- Top Bar -->
+            <div class="chat-top-bar">
+                <!-- UPPDATERAT: Tydligare Stäng-knapp med text -->
+                <button class="chat-close-btn flex items-center gap-2 px-4 w-auto rounded-full border border-white/10 hover:bg-white/10 transition-colors" onclick="window.nord.closeFullscreenChat()" aria-label="Stäng chatt">
+                    <span class="text-sm font-medium">Stäng</span>
+                    <i class="ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Scroll Container -->
+            <div class="chat-scroll-container" id="chat-scroll-container">
+                <div class="chat-content-width" id="fullscreen-chat-messages">
+                    <!-- Meddelanden renderas här -->
+                </div>
+            </div>
+
+            <!-- Sticky Input -->
+            <div class="chat-input-wrapper">
+                <div class="chat-main-input-container">
+                    <textarea id="chat-main-textarea" rows="1" placeholder="Skriv ett meddelande..." oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"></textarea>
+                    <button id="chat-main-send-btn">
+                        <i class="ph-paper-plane-right-fill text-lg"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -6802,32 +7023,7 @@
             });
         }
 
-        // --- MODAL-LOGIK FÖR GRATIS AGENT ---
-        window.nord.openFreeAgentModal = function() {
-            const modal = document.getElementById('free-agent-modal');
-            if (modal) {
-                document.body.style.overflow = 'hidden';
-                modal.classList.add('visible');
-            }
-        };
-
-        window.nord.closeFreeAgentModal = function() {
-            const modal = document.getElementById('free-agent-modal');
-            if (modal) {
-                document.body.style.overflow = '';
-                modal.classList.remove('visible');
-            }
-        };
-
-        const freeAgentModal = document.getElementById('free-agent-modal');
-        if (freeAgentModal) {
-            freeAgentModal.addEventListener('click', function(event) {
-                // Om klicket sker på den halvtransparenta bakgrunden, stäng rutan.
-                if (event.target === freeAgentModal) {
-                    window.nord.closeFreeAgentModal();
-                }
-            });
-        }
+        // --- BORTTAGET: MODAL-LOGIK FÖR GRATIS AGENT ---
         
         new FormManager('formSkraddarsydd', 'xqabggao');
         // NY: Koppla vänteliste-formuläret (Återanvänder kontakt-ID tills vidare)
@@ -7406,9 +7602,7 @@
                         { icon: 'ph-file-search', text: 'Research' }
                     ],
                     indicator: 'Bygger på en hybridarkitektur: kraften från branschledande automationssystem och precisionen från egna, egenutvecklade ramverk.',
-                    ctaText: 'Designa en gratis agent',
-                    ctaIcon: 'ph-pencil-line',
-                    ctaAction: 'openFreeAgentModal'
+                    // BORTTAGET: CTA för gratis agent
                 },
                 {
                     icon: 'ph-chart-pie-slice', // <-- ÄNDRAD IKON
@@ -7960,34 +8154,39 @@
 
     class ChatManager {
         constructor() {
-            // Updated elements reference for the new Hero Input system
+            // Referenser för NordGPT UI
             this.elements = {
                 heroInputWrapper: document.getElementById('hero-input-wrapper'),
                 heroInput: document.getElementById('hero-chat-input-field'),
                 heroSendBtn: document.getElementById('hero-input-send'),
                 
-                window: document.getElementById('chat-window'),
-                messages: document.getElementById('chat-messages'),
-                innerInput: document.getElementById('chat-input'),
-                innerSendBtn: document.getElementById('chat-send-btn'),
-                closeBtn: document.getElementById('chat-close-btn') // Nu "Återställ"
+                fullscreenInterface: document.getElementById('fullscreen-chat-interface'),
+                messagesContainer: document.getElementById('fullscreen-chat-messages'),
+                mainTextarea: document.getElementById('chat-main-textarea'),
+                mainSendBtn: document.getElementById('chat-main-send-btn'),
+                historyList: document.getElementById('chat-history-list')
             };
             
-            // NYTT: Lägg till sessionId-hantering
+            // Session & Storage
             this.sessionId = localStorage.getItem('nordsym_chat_session_id') || this.generateUUID();
             localStorage.setItem('nordsym_chat_session_id', this.sessionId);
             
-            this.hasSentMessage = false; // NYTT: State för att stoppa typewriter
+            // Hämta sparad historik från localStorage
+            this.chatHistory = JSON.parse(localStorage.getItem('nordsym_chat_history') || '[]');
+            
+            this.hasSentMessage = false;
 
             this.initEventListeners();
-            this.initTypewriter(); // Starta typewriter-effekten
+            this.initTypewriter(); 
+            this.renderHistorySidebar(); // Rendera historik vid start
             
-            // Global återställningsfunktion
-            window.nord.resetChat = () => this.resetChatState();
+            // Globala funktioner
+            window.nord.closeFullscreenChat = () => this.closeChat();
+            window.nord.clearChatHistory = () => this.clearHistory();
         }
 
         initTypewriter() {
-            const input = this.elements.heroInput; // Target Hero Input
+            const input = this.elements.heroInput;
             if (!input) return;
 
             const phrases = [
@@ -8045,7 +8244,7 @@
         }
 
         initEventListeners() {
-            // HERO INPUT HANDLERS
+            // HERO INPUT
             if (this.elements.heroSendBtn) {
                 this.elements.heroSendBtn.addEventListener('click', () => this.handleHeroSubmit());
             }
@@ -8058,63 +8257,132 @@
                 });
             }
 
-            // INNER WINDOW HANDLERS (Standard)
-            if (this.elements.innerSendBtn) {
-                this.elements.innerSendBtn.addEventListener('click', () => this.handleInnerSubmit());
+            // MAIN CHAT AREA (NordGPT)
+            if (this.elements.mainSendBtn) {
+                this.elements.mainSendBtn.addEventListener('click', () => this.handleMainSubmit());
             }
-            if (this.elements.innerInput) {
-                this.elements.innerInput.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
+            if (this.elements.mainTextarea) {
+                this.elements.mainTextarea.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();
-                        this.handleInnerSubmit();
+                        this.handleMainSubmit();
                     }
                 });
             }
         }
 
-        // TRANSFORMATION LOGIC
         handleHeroSubmit() {
             const text = this.elements.heroInput.value.trim();
             if (!text) return;
 
             this.hasSentMessage = true;
+            this.openChat(); // Öppna fullskärmsläget
             
-            // 1. Hide Hero Input
-            this.elements.heroInputWrapper.classList.add('hidden-input');
+            // Simulera att meddelandet skickas från main chat
+            this.processUserMessage(text);
             
-            // 2. Show Chat Window
-            this.elements.window.classList.add('active-conversation');
-            
-            // 3. Process Message
-            this.addMessage(text, 'user');
-            this.showTypingIndicator();
-            this.getBotResponse(text);
-            
-            // 4. Reset Hero Input (behind scenes)
+            // Rensa hero input
             this.elements.heroInput.value = '';
         }
 
-        handleInnerSubmit() {
-            const text = this.elements.innerInput.value.trim();
+        handleMainSubmit() {
+            const text = this.elements.mainTextarea.value.trim();
             if (!text) return;
+            
+            this.processUserMessage(text);
+            
+            // Återställ textarea
+            this.elements.mainTextarea.value = '';
+            this.elements.mainTextarea.style.height = 'auto'; // Reset height
+        }
 
-            this.addMessage(text, 'user');
-            this.elements.innerInput.value = '';
+        processUserMessage(text) {
+            // 1. Lägg till i UI
+            this.addMessageToUI(text, 'user');
+            
+            // 2. Spara i historik
+            this.saveMessage(text, 'user');
+            
+            // 3. Visa laddindikator
             this.showTypingIndicator();
+            
+            // 4. Hämta svar
             this.getBotResponse(text);
         }
-        
-        resetChatState() {
-            // Dölj chatten, visa input-fältet igen
-            this.elements.window.classList.remove('active-conversation');
-            this.elements.heroInputWrapper.classList.remove('hidden-input');
+
+        openChat() {
+            this.elements.fullscreenInterface.classList.add('visible');
+            document.body.style.overflow = 'hidden'; // Lås scroll på bakgrunden
             
-            // Not: Vi rensar inte historiken, så konversationen finns kvar om de öppnar den igen via input.
-            // Men för en "fresh start" känsla kan vi rensa:
-            // this.elements.messages.innerHTML = ''; 
+            // Om det är en ny session och historiken är tom (eller vi vill rendera om)
+            // Här kan vi ladda in tidigare meddelanden om vi vill visa dem direkt
+            this.renderMessagesFromHistory();
         }
 
-        // NYTT: Enkel UUID-generator
+        closeChat() {
+            this.elements.fullscreenInterface.classList.remove('visible');
+            document.body.style.overflow = ''; // Lås upp scroll
+            
+            // UPPDATERAT: Visa input-baren på hemsidan igen när chatten stängs
+            if (this.elements.heroInputWrapper) {
+                this.elements.heroInputWrapper.classList.remove('hidden-input');
+                // Valfritt: Rensa input-fältet eller återställ placeholder
+                this.elements.heroInput.value = '';
+                this.hasSentMessage = false; 
+            }
+        }
+
+        saveMessage(text, sender) {
+            const messageObj = {
+                text: text,
+                sender: sender,
+                timestamp: new Date().toISOString()
+            };
+            this.chatHistory.push(messageObj);
+            localStorage.setItem('nordsym_chat_history', JSON.stringify(this.chatHistory));
+            this.renderHistorySidebar(); // Uppdatera sidomenyn om vi vill visa "Sista meddelandet"
+        }
+        
+        clearHistory() {
+            this.chatHistory = [];
+            localStorage.removeItem('nordsym_chat_history');
+            this.elements.messagesContainer.innerHTML = '';
+            this.renderHistorySidebar();
+        }
+
+        renderHistorySidebar() {
+            if (!this.elements.historyList) return;
+            this.elements.historyList.innerHTML = '';
+            
+            // Visa bara de senaste 5 "startmeddelandena" eller sessionerna
+            // För enkelhetens skull visar vi bara ett dummy-objekt "Nuvarande session"
+            // I en fullskalig app skulle vi gruppera meddelanden per sessionID
+            
+            if (this.chatHistory.length > 0) {
+                const sessionEl = document.createElement('div');
+                sessionEl.className = 'chat-history-item active';
+                sessionEl.textContent = 'Pågående konversation';
+                this.elements.historyList.appendChild(sessionEl);
+            } else {
+                const emptyEl = document.createElement('div');
+                emptyEl.className = 'text-xs text-gray-500 p-4 italic';
+                emptyEl.textContent = 'Ingen historik än...';
+                this.elements.historyList.appendChild(emptyEl);
+            }
+        }
+        
+        renderMessagesFromHistory() {
+            // Rensa UI först för att inte dubblera
+            this.elements.messagesContainer.innerHTML = '';
+            
+            // Rendera allt från minnet
+            this.chatHistory.forEach(msg => {
+                this.addMessageToUI(msg.text, msg.sender);
+            });
+            
+            this.scrollToBottom();
+        }
+
         generateUUID() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -8122,76 +8390,90 @@
             });
         }
 
-        addMessage(text, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', `${sender}-message`);
+        addMessageToUI(text, sender) {
+            const row = document.createElement('div');
+            row.classList.add('chat-message-row', sender);
             
-            const p = document.createElement('p');
-            p.textContent = text;
-            messageElement.appendChild(p);
+            // Formatera texten (enkel radbrytning)
+            // Här skulle vi kunna lägga in Markdown-stöd i framtiden
+            const formattedText = text.replace(/\n/g, '<br>');
             
-            this.elements.messages.appendChild(messageElement);
+            row.innerHTML = `
+                <div class="chat-bubble-content">
+                    ${formattedText}
+                </div>
+            `;
+            
+            this.elements.messagesContainer.appendChild(row);
             this.scrollToBottom();
         }
 
         showTypingIndicator() {
-            const typingElement = document.createElement('div');
-            typingElement.classList.add('message', 'bot-message', 'typing-indicator');
-            typingElement.innerHTML = `<span></span><span></span><span></span>`;
-            this.elements.messages.appendChild(typingElement);
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'chat-typing-indicator';
+            typingDiv.classList.add('chat-message-row', 'bot');
+            typingDiv.innerHTML = `
+                <div class="chat-bubble-content">
+                    <span class="inline-block w-2 h-2 bg-gray-400 rounded-full animate-bounce mr-1"></span>
+                    <span class="inline-block w-2 h-2 bg-gray-400 rounded-full animate-bounce mr-1" style="animation-delay: 0.2s"></span>
+                    <span class="inline-block w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+                </div>
+            `;
+            this.elements.messagesContainer.appendChild(typingDiv);
             this.scrollToBottom();
         }
 
         removeTypingIndicator() {
-            const indicator = this.elements.messages.querySelector('.typing-indicator');
-            if (indicator) {
-                indicator.remove();
-            }
+            const indicator = document.getElementById('chat-typing-indicator');
+            if (indicator) indicator.remove();
         }
 
-        async getBotResponse(userInput) { // MODIFIED: Made async
+        async getBotResponse(userInput) { 
             const webhookUrl = "https://nordsym.app.n8n.cloud/webhook/399ddc2e-9a3c-4b72-9757-079b730a782c/chat";
 
             try {
                 const response = await fetch(webhookUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    // MODIFIERAD: Skicka med både meddelande och sessionId
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
                         message: userInput,
                         sessionId: this.sessionId 
                     })
                 });
 
-                this.removeTypingIndicator(); // Remove typing indicator *after* fetch
+                this.removeTypingIndicator(); 
 
-                if (!response.ok) {
-                    throw new Error(`Webhook response was not ok: ${response.statusText}`);
-                }
+                if (!response.ok) throw new Error(`Webhook error: ${response.statusText}`);
 
                 const data = await response.json();
-                
-                // MODIFIERAD: Parsa den nya, platta svarsstrukturen från n8n ("output")
                 const responseText = data?.output;
 
                 if (responseText) {
-                    this.addMessage(responseText, 'bot');
+                    this.addMessageToUI(responseText, 'bot');
+                    this.saveMessage(responseText, 'bot');
                 } else {
-                    console.error('Oväntat svarsformat från n8n:', data);
-                    this.addMessage("Kunde inte tolka svaret från assistenten. Försök igen.", 'bot');
+                    const errMsg = "Kunde inte tolka svaret. Försök igen.";
+                    this.addMessageToUI(errMsg, 'bot');
+                    this.saveMessage(errMsg, 'bot');
                 }
 
             } catch (error) {
-                this.removeTypingIndicator(); // Se till att ta bort den även vid fel
-                console.error("Fel vid anrop till webhook:", error);
-                this.addMessage("Ursäkta, jag har problem med anslutningen just nu. Försök igen om en liten stund.", 'bot');
+                this.removeTypingIndicator();
+                console.error("Chat Error:", error);
+                const netErrMsg = "Anslutningsproblem. Kontrollera nätverket.";
+                this.addMessageToUI(netErrMsg, 'bot');
+                this.saveMessage(netErrMsg, 'bot');
             }
         }
 
         scrollToBottom() {
-            this.elements.messages.scrollTop = this.elements.messages.scrollHeight;
+            const container = document.getElementById('chat-scroll-container');
+            if(container) {
+                // Smooth scroll to bottom
+                setTimeout(() => {
+                    container.scrollTop = container.scrollHeight;
+                }, 100);
+            }
         }
     }
 
