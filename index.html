@@ -699,27 +699,51 @@
             text-shadow: none;
         }
 
+        /* --- GALLERI-VÄXLARE: BAS-STILAR (DARK MODE) --- */
+        #gallery-switch-container {
+            background-color: rgba(12, 20, 39, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #gallery-switch-slider {
+            /* UPPDATERAT: Djupare blå (Sky 600) istället för Neon Cyan för att vit text ska synas */
+            background-color: #0284c7 !important; 
+            box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
+        }
+        .gallery-switch-btn {
+            color: var(--nord-sym-text-secondary); /* Inaktiv */
+            transition: all 0.3s ease;
+        }
+        .gallery-switch-btn:hover {
+            color: #ffffff;
+        }
+        .gallery-switch-btn.active {
+            color: #ffffff !important; /* Aktiv: Vit text */
+            font-weight: 800; /* Extra fet för tydlighet */
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
         /* NYTT: Stilar för Galleri-växlare (Blåkopia) */
         body.light-theme #gallery-switch-container {
-            background-color: var(--nord-sym-blueprint-lines-faint);
-            border: 1px solid var(--nord-sym-blueprint-lines);
+            background-color: #f1f5f9; /* Slate 100 - Tydligare ljus bakgrund */
+            border: 1px solid #cbd5e1; /* Slate 300 - Tydligare kant */
         }
         /* UPPDATERAD: Slider-elementet (Ljust läge) */
         body.light-theme #gallery-switch-slider {
             background-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
+            box-shadow: 0 4px 10px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
         }
         /* UPPDATERAD: Knappstilar (Ljust läge) */
         body.light-theme .gallery-switch-btn {
             background-color: transparent;
-            color: var(--nord-sym-blueprint-ink);
-            opacity: 0.7;
+            color: #64748b; /* Slate 500 - Tydlig inaktiv text */
+            opacity: 1; /* Full opacitet för läsbarhet */
         }
         body.light-theme .gallery-switch-btn.active {
-            color: var(--nord-sym-blueprint-ink);
+            color: #ffffff !important; /* VIKTIGT: Vit text på det blå pillret */
             opacity: 1;
         }
-        body.light-theme .gallery-switch-btn:hover {
+        body.light-theme .gallery-switch-btn:hover:not(.active) {
+            color: var(--nord-sym-blueprint-ink);
             opacity: 1;
         }
         body.light-theme #gallery-description-text {
@@ -2148,37 +2172,30 @@
             display: none; /* Dold som standard, visas bara i mobil-verktygsfältet */
         }
         @media (max-width: 767px) {
-             /* Åsidosätt den gamla topp-placeringen */
-            body.labb-active #elastic-toolbar {
-                top: 50%;
-                left: -200px; /* Börja utanför skärmen */
-                bottom: auto;
-                transform: translateY(-50%);
-                transition: left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-                width: auto; /* Harmoni-fix: Låt innehållet bestämma bredden. */
+             /* Åsidosätt den gamla topp-placeringen och använd rätt ID */
+            body.labb-active #workshop-toolbar {
+                bottom: 30px !important; /* Säkerställ att den syns ovanför bottenkanten */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%; /* Bredare på mobil */
+                max-width: none;
+                padding: 10px 15px; /* Lite tightare padding */
+                justify-content: flex-start; /* Låt knapparna flöda från vänster */
             }
-            body.labb-active.toolbar-open #elastic-toolbar {
-                left: 1rem; /* Glid in */
-            }
-            body.labb-active #elastic-toolbar .glass-control-group {
-                flex-direction: column;
-                padding: 0.75rem;
-                border-radius: 1rem; /* Harmoni-fix: Ger verktygsfältet en mjukare form. */
-            }
-            body.labb-active #toolbar-close {
-                display: flex;
-                margin-bottom: 0.5rem; /* Avstånd till de andra knapparna */
-            }
-
+            
+            /* Dölj toggles som inte behövs när vi kör fixed bottom bar */
             body.labb-active #toolbar-toggle {
-                display: flex; /* Visa bara i verkstadsläge på mobil */
+                display: none !important; 
             }
-            /* Harmoni-fix: Tog bort regeln som dolde knappen, nu transformeras den istället. */
 
-            /* Harmoni-fix: Dölj vänster joystick när verktygsfältet är öppet för att ge det andrum. */
-            body.labb-active.toolbar-open #joystick-portal-left {
-                opacity: 0;
-                pointer-events: none;
+            /* Anpassa knappstorlek för mobil */
+            #workshop-toolbar .geo-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            #workshop-toolbar .geo-btn-wrapper {
+                width: 44px;
             }
         }
         
@@ -2195,35 +2212,53 @@
         body.labb-active #joystick-portal-right .portal-icon-exit { display: block; }
         body.labb-active #joystick-portal-right .portal-icon-enter { display: none; }
 
-        #elastic-toolbar {
-            position: fixed; 
-            bottom: -100px; 
-            left: 50%; 
-            transform: translateX(-50%);
-            z-index: 2002;
-            transition: all 0.5s ease; /* Harmoni-fix: Ändrat till 'all' för att hantera både 'top' och 'bottom'. */
-        }
-        body.labb-active #elastic-toolbar { bottom: 2rem; }
+        /* --- VERKTYGSFÄLT (TOOLBAR) - ABSOLUT TVÅNG --- */
+        /* Rensat bort gammal #elastic-toolbar kod som skapade konflikter */
+        
+        /* VISA NÄR VERKSTADEN ÄR IGÅNG (Enda regeln som gäller) */
+        /* Denna regel är nu flyttad till #workshop-toolbar sektionen nedan */
+
         .glass-control-group {
-            display: flex; gap: 0.5rem;
-            background: rgba(12, 20, 39, 0.5); backdrop-filter: blur(10px);
-            padding: 0.75rem; border-radius: 99px;
-            border: 1px solid rgba(var(--nord-sym-text-light), 0.2);
-        }
-        .glass-btn {
-            width: 44px; height: 44px;
-            border-radius: 50%; border: none; background: transparent; color: var(--nord-sym-text-light);
-            display: flex; justify-content: center; align-items: center; font-size: 1.25rem;
-            cursor: pointer; transition: all 0.3s ease;
-        }
-        .glass-btn:hover { background: rgba(var(--nord-sym-cyan-rgb), 0.1); color: var(--nord-sym-cyan); }
-        .glass-btn.active { background: var(--nord-sym-cyan); color: var(--nord-sym-deep-space-blue); font-weight: bold; }
-        .glass-btn svg { width: 24px; height: 24px; }
-        #fractal-mode-toggle.glow {
-            box-shadow: 0 0 15px rgba(var(--nord-sym-cyan-rgb), 0.7), inset 0 0 5px rgba(var(--nord-sym-cyan-rgb), 0.5);
-            color: var(--nord-sym-cyan);
+            display: flex; 
+            gap: 16px;
+            align-items: center;
         }
         
+        .toolbar-btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .glass-btn {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.3); 
+            background: rgba(255,255,255,0.1); 
+            color: #ffffff;
+            display: flex; justify-content: center; align-items: center; font-size: 1.25rem;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .toolbar-btn-wrapper:hover .glass-btn { background: #ffffff; color: #000000; transform: scale(1.1); }
+        .glass-btn.active { background: #00D4FF; color: #000000; font-weight: bold; border-color: #00D4FF; box-shadow: 0 0 15px #00D4FF; }
+        
+        .toolbar-label {
+            font-size: 10px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Light Theme Fix */
+        body.light-theme #elastic-toolbar { background: #ffffff; border-color: #e2e8f0; }
+        body.light-theme .glass-btn { color: #334155; border-color: #cbd5e1; background: #f1f5f9; }
+        body.light-theme .toolbar-label { color: #334155; }
+        body.light-theme .glass-btn.active, 
+        body.light-theme .toolbar-btn-wrapper:hover .glass-btn { background: var(--nord-sym-blueprint-cyan); color: #ffffff; }
+
         /* --- UNIFIED CANVAS STYLES --- */
         #unified-geometry-canvas {
             position: fixed !important;
@@ -2242,24 +2277,23 @@
             cursor: grabbing;
         }
         
-        /* FORM NAME DISPLAY in Header */
+        /* FORM NAME DISPLAY (TAGGEN) - FLYTTAD TILL TOPPEN */
         #form-name-display {
-            position: fixed; /* UPPDATERAT: Låst till skärmen, inte headern */
-            top: auto;
-            bottom: 12%; /* Placera diskret nertill */
+            position: fixed;
+            top: 130px; /* Flyttad högt upp för att inte blockera verktyg */
+            bottom: auto; /* Nollställ botten */
             left: 50%;
             transform: translateX(-50%);
             width: max-content;
             max-width: 90vw;
             z-index: 30;
             
-            /* UPPDATERAT: "Vårt Erbjudande"-stil (Tag/Badge) */
+            /* Utseende */
             padding: 0.5rem 1.25rem;
             border-radius: 9999px;
-            background: rgba(12, 20, 39, 0.4);
+            background: rgba(12, 20, 39, 0.6);
             border: 1px solid rgba(var(--nord-sym-cyan-rgb), 0.3);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 
             color: var(--nord-sym-cyan);
@@ -2277,7 +2311,7 @@
         
         /* Light Theme Override för Form Display */
         body.light-theme #form-name-display {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.8);
             border-color: var(--nord-sym-blueprint-cyan);
             color: var(--nord-sym-blueprint-ink);
             box-shadow: 0 4px 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
@@ -2285,14 +2319,14 @@
 
         @media (max-width: 767px) {
             #form-name-display {
-                bottom: 18%; /* Högre upp på mobil för att undvika tummen */
+                top: 100px; /* Ännu högre på mobil */
                 font-size: 0.7rem;
                 padding: 0.4rem 1rem;
             }
         }
         body.labb-active #form-name-display.visible {
             opacity: 1;
-            transform: translateX(-50%) translateY(0); /* Återställ ev. rörelse */
+            transform: translateX(-50%) translateY(0);
         }
 
         /* NEW STYLES FOR LEGAL PAGES */
@@ -3633,10 +3667,133 @@
             box-shadow: 0 12px 24px rgba(0,0,0,0.1);
             background: #ffffff;
         }
-        body.light-theme .gh-repo-name { color: #0969da; }
-        body.light-theme .gh-repo-card:hover .gh-repo-name { color: var(--nord-sym-blueprint-cyan); }
+        /* --- VERKTYGSFÄLT (TOOLBAR) - JS STYRD --- */
         body.light-theme .gh-repo-desc { color: #57606a; }
         body.light-theme .gh-meta-item i { color: #57606a; }
+
+        /* --- VERKTYGSFÄLT (TOOLBAR) - KORRIGERAD ID-MATCHNING --- */
+        /* BULLETPROOF TOOLBAR CSS: "Hard Reset" Edition */
+        #workshop-toolbar {
+            /* Positionering */
+            position: fixed;
+            bottom: 30px; 
+            bottom: calc(30px + env(safe-area-inset-bottom)); /* Safe area support */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2147483647; /* Max z-index */
+            
+            /* Layout & Design */
+            display: none; /* Dold som standard */
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+            
+            background-color: #0f172a; 
+            border: 2px solid #00D4FF; 
+            border-radius: 24px;
+            padding: 12px 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.1);
+            
+            width: auto;
+            min-width: 320px; /* Bredden säkrad */
+            max-width: 95vw;
+            overflow-x: auto;
+            
+            /* Inga transitioner som kan strula till det */
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* ACTIVE STATE (När body har .labb-active) */
+        body.labb-active #workshop-toolbar {
+            display: flex !important; /* TVINGA FRAM DEN */
+        }
+        
+        /* Knapp-wrapper */
+        .geo-btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            width: 50px;
+            flex-shrink: 0; /* Förhindra att de krymper */
+        }
+
+        /* Knapp */
+        .geo-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 1.25rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .geo-btn-wrapper:hover .geo-btn {
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .geo-btn.active {
+            background: #00D4FF;
+            color: #000000;
+            border-color: #00D4FF;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .geo-label {
+            font-size: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+        
+        .geo-btn-wrapper:hover .geo-label,
+        .geo-btn.active + .geo-label {
+            color: #ffffff;
+        }
+        
+        /* Separator */
+        .geo-separator {
+            width: 1px;
+            height: 32px;
+            background: rgba(255,255,255,0.2);
+            margin: 0 4px;
+        }
+
+        /* Ljus Tema */
+        body.light-theme #workshop-toolbar {
+            background-color: #ffffff;
+            border-color: #00D4FF;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        body.light-theme .geo-btn {
+            background: #f1f5f9;
+            color: #334155;
+            border-color: #cbd5e1;
+        }
+        body.light-theme .geo-label { color: #64748b; }
+        body.light-theme .geo-btn.active,
+        body.light-theme .geo-btn-wrapper:hover .geo-btn {
+            background: var(--nord-sym-blueprint-cyan);
+            color: #ffffff;
+            border-color: var(--nord-sym-blueprint-cyan);
+        }
+        body.light-theme .geo-btn-wrapper:hover .geo-label { color: #0f172a; }
 
     </style>
 </head>
@@ -3806,7 +3963,8 @@
                                 <span class="tech-badge">Astra DB</span>
                                 <span class="tech-badge">Stripe</span>
                             </div>
-                            <a href="https://flowvault.se" target="_blank" class="btn-base btn-cta-revised text-sm px-8">Öppna Live System</a>
+                            <!-- UPPDATERAT: "Öppna Live System" -> "Öppna Valvet" (Renare) -->
+                            <a href="https://flowvault.se" target="_blank" class="btn-base btn-cta-revised text-sm px-8">Öppna Valvet</a>
                         </div>
                     </div>
 
@@ -3853,13 +4011,15 @@
                             </div>
                         </div>
                         <div class="monitor-info">
-                            <h3 class="text-2xl font-bold text-white mb-2 tracking-wide light-theme:text-nord-sym-blueprint-ink">AEO Platform</h3>
+                            <!-- UPPDATERAT: Namnbyte AEO Platform -> AEO & GEO -->
+                            <h3 class="text-2xl font-bold text-white mb-2 tracking-wide light-theme:text-nord-sym-blueprint-ink">AEO & GEO</h3>
                             <!-- UPPDATERAT: Pris-indikation -->
                             <p class="text-sky-300 text-sm uppercase tracking-wider font-semibold mb-4 light-theme:text-nord-sym-blueprint-text-secondary">AI-Search Optimization | Från 1,999 kr/mån</p>
                             <div class="flex gap-2 justify-center mb-6">
-                                <span class="tech-badge">DataForSEO</span>
-                                <span class="tech-badge">GPT-4o</span>
-                                <span class="tech-badge">n8n</span>
+                                <!-- UPPDATERAT: Tyngre, strategiska taggar istället för API-namn -->
+                                <span class="tech-badge">Knowledge Graph</span>
+                                <span class="tech-badge">Semantic Analysis</span>
+                                <span class="tech-badge">Multi-Model</span>
                             </div>
                             <a href="https://nordsym.github.io/aeo-platform/" target="_blank" class="btn-base btn-cta-revised text-sm px-8">Analysera Nu</a>
                         </div>
@@ -3973,7 +4133,7 @@
                 <!-- HERO SECTION -->
                 <div class="max-w-4xl mx-auto text-center mb-12">
                     <!-- UPPDATERAT: Designkoncept "Vit Krita" (White Chalk) - Matchar R&D-knappen -->
-                    <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Micro-SaaS</span>
+                    <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Micro-SaaS & Verktyg</span>
                     <!-- BORTTAGET: Rubrik "NordSym R&D" raderad enligt önskemål -->
                     
                     <!-- NYTT: FOUNDER BADGE (Uppdaterad till knapp + BALANSERAD) -->
@@ -3981,51 +4141,62 @@
                 <!-- GITHUB PROFILE SECTION (MOVED TO TOP) -->
                 <div class="max-w-5xl mx-auto mb-24">
                     <div class="gh-profile-card">
-                        <!-- Subtil GitHub-vattenstämpel i hörnet (Ökad opacitet för synlighet) -->
-                        <i class="ph ph-github-logo absolute top-6 right-6 text-7xl text-white opacity-5 pointer-events-none z-0"></i>
                         
                         <div class="gh-profile-header relative z-10" style="border-bottom: none;">
-                            <a href="https://github.com/nordsym" target="_blank" rel="noopener noreferrer">
-                                <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Avatar" class="gh-avatar">
-                            </a>
+                            <!-- BORTTAGET: Avatar/Bild raderad för en renare text-baserad layout -->
+                            
                             <div class="flex-grow min-w-[200px]">
                                 <div class="gh-names">
                                     <div class="flex items-center gap-3">
+                                        <!-- UPPDATERAT: Namnbyte till företagsnamnet -->
                                         <h1 class="gh-name">NordSym AB</h1>
                                     </div>
                                 </div>
-                                <!-- UPPDATERAT: Ny bio med fokus på Open Source och hjälp till självhjälp -->
+                                <!-- UPPDATERAT: Renare copy för SaaS vs Tjänst + Gratis Analys CTA -->
                                 <div class="gh-bio">
-                                    Open Source & Resources. Vi delar verktygen vi själva bygger med. Hämta workflows, agent-prototyper och arkitektur-mönster för att kickstarta din egen utveckling.
+                                    <p class="mb-3"><strong class="text-white">Micro-SaaS</strong> är fokuserad mjukvara för specifika problem.</p>
+                                    <p class="opacity-80 mb-2">
+                                        <!-- UPPDATERAT: Tog bort "freemium", mjukare formulering -->
+                                        <strong>GenPRD</strong> och <strong>FlowVault</strong> är våra Micro-SaaS. Ni kan börja använda dem direkt, helt utan kostnad.
+                                    </p>
+                                    <p class="opacity-80">
+                                        <!-- UPPDATERAT: Namnbyte AEO-plattformen -> AEO & GEO -->
+                                        <strong>AEO & GEO</strong> är ett gratis verktyg vi tagit fram för analys av ditt företags hemsida. Testa din synlighet i AI-sök direkt via knappen.
+                                    </p>
                                 </div>
-                                <div class="gh-meta">
+                                <div class="gh-meta mt-4">
                                     <span class="gh-meta-item">
-                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-location">
-                                            <path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"></path>
-                                        </svg>
-                                        Stockholm
+                                        <i class="ph ph-cube"></i>
+                                        Micro-SaaS
                                     </span>
-                                    <a href="https://nordsym.com" class="gh-meta-item hover:text-blue-400 hover:underline">
-                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-link">
-                                            <path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a2.002 2.002 0 0 0 0 2.83Z"></path>
-                                        </svg>
-                                        https://nordsym.com
-                                    </a>
-                                    <!-- UPPDATERAT: contact@nordsym.com för GitHub -->
-                                    <a href="mailto:contact@nordsym.com" class="gh-meta-item hover:text-blue-400 hover:underline">
-                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-mail">
-                                            <path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-7.501-6.5 3.75-6.5-3.75a.25.25 0 0 1 .25-.25h12.5c.138 0 .25.112.25.25Z"></path>
-                                        </svg>
-                                        contact@nordsym.com
-                                    </a>
+                                    <span class="gh-meta-item">
+                                        <i class="ph ph-compass-tool"></i>
+                                        Systemarkitektur
+                                    </span>
+                                    <span class="gh-meta-item">
+                                        <i class="ph ph-scroll"></i>
+                                        Ritningar
+                                    </span>
                                 </div>
                             </div>
-                            <div class="flex-shrink-0 w-full md:w-auto mt-4 md:mt-0 text-right">
-                                <!-- UPPDATERAT: Endast ikon för GitHub-knappen -->
-                                <a href="https://github.com/nordsym" target="_blank" rel="noopener noreferrer" class="gh-btn inline-flex items-center justify-center" aria-label="Visit GitHub">
-                                    <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" data-view-component="true" class="octicon octicon-mark-github" style="fill: currentColor;">
-                                        <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-1.02.38-1.01.53.05.19.42.88.83 1.13.4.2 1.25.73 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-                                    </svg>
+                            <!-- UPPDATERAT: Knappar på rad (flex-row) + AEO-knapp tillagd -->
+                            <div class="flex-shrink-0 w-full lg:w-auto mt-6 lg:mt-0 flex flex-row flex-wrap gap-3 justify-start lg:justify-end items-center">
+                                <a href="https://github.com/nordsym" target="_blank" rel="noopener noreferrer" class="gh-btn inline-flex items-center justify-center gap-2 flex-grow lg:flex-grow-0">
+                                    <i class="ph ph-github-logo"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://flowvault.se" target="_blank" rel="noopener noreferrer" class="gh-btn inline-flex items-center justify-center gap-2 flex-grow lg:flex-grow-0">
+                                    <i class="ph ph-stack"></i>
+                                    <span>FlowVault</span>
+                                </a>
+                                <a href="https://genprd.se" target="_blank" rel="noopener noreferrer" class="gh-btn inline-flex items-center justify-center gap-2 flex-grow lg:flex-grow-0">
+                                    <i class="ph ph-lightning"></i>
+                                    <span>GenPRD</span>
+                                </a>
+                                <!-- NYTT: AEO-knapp med uppdaterat namn -->
+                                <a href="https://nordsym.github.io/aeo-platform/" target="_blank" rel="noopener noreferrer" class="gh-btn inline-flex items-center justify-center gap-2 flex-grow lg:flex-grow-0">
+                                    <i class="ph ph-brain"></i>
+                                    <span>AEO & GEO</span>
                                 </a>
                             </div>
                         </div>
@@ -4074,13 +4245,11 @@
                                             <h3 class="text-2xl font-bold text-white tracking-wide">
                                                 <span class="genprd-brand-text">Gen<span class="genprd-text-prd">PRD</span></span>
                                             </h3>
-                                            <!-- UPPDATERAT: Ökat gap för att separera taggar -->
+                                            <!-- UPPDATERAT: Rensat bland taggar (3 st max för renhet) -->
                                             <div class="flex gap-3 flex-wrap justify-end">
                                                 <span class="tech-badge">n8n</span>
                                                 <span class="tech-badge">Supabase</span>
-                                                <span class="tech-badge">Stripe</span>
-                                                <span class="tech-badge">GPT-4o</span>
-                                                <span class="tech-badge">Claude 4.5 Sonnet</span>
+                                                <span class="tech-badge">AI-Native</span>
                                             </div>
                                         </div>
                                         <!-- UPPDATERAT: Copy - GenPRD tar din idé... -->
@@ -4121,13 +4290,11 @@
                                         </div>
                                         <div class="flex justify-between items-start mb-3">
                                             <h3 class="text-2xl font-bold text-white tracking-wide">FlowVault</h3>
-                                            <!-- UPPDATERAT: Ökat gap för att separera taggar -->
+                                            <!-- UPPDATERAT: Rensat bland taggar (3 st max för renhet) -->
                                             <div class="flex gap-3 flex-wrap justify-end">
                                                 <span class="tech-badge">n8n</span>
                                                 <span class="tech-badge">180+ Flows</span>
                                                 <span class="tech-badge">Multi-API</span>
-                                                <span class="tech-badge">GPT-4o</span>
-                                                <span class="tech-badge">Claude 4.5 Sonnet</span>
                                             </div>
                                         </div>
                                         <!-- UPPDATERAT: Pris-info i texten -->
@@ -4138,8 +4305,9 @@
                                     
                                     <div class="pt-4 border-t border-white/10 light-theme:border-gray-100 flex justify-end items-center mt-2">
                                         <!-- BORTTAGET: Status-text -->
+                                        <!-- UPPDATERAT: "Öppna Live" -> "Öppna Valvet" -->
                                         <a href="https://flowvault.se" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-nord-sym-cyan hover:text-white transition-colors flex items-center gap-1">
-                                            Öppna Live <i class="ph-arrow-right"></i>
+                                            Öppna Valvet <i class="ph-arrow-right"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -4167,12 +4335,13 @@
                                             <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1">Radar</span>
                                         </div>
                                         <div class="flex justify-between items-start mb-3">
-                                            <h3 class="text-2xl font-bold text-white tracking-wide">AEO Platform</h3>
-                                            <!-- UPPDATERAT: Ökat gap för att separera taggar -->
+                                            <!-- UPPDATERAT: Namnbyte AEO Platform -> AEO & GEO -->
+                                            <h3 class="text-2xl font-bold text-white tracking-wide">AEO & GEO</h3>
+                                            <!-- UPPDATERAT: Tyngre taggar här också för konsekvens -->
                                             <div class="flex gap-3 flex-wrap justify-end">
-                                                <span class="tech-badge">DataForSEO</span>
-                                                <span class="tech-badge">GPT-4o</span>
-                                                <span class="tech-badge">Claude 4.5 Sonnet</span>
+                                                <span class="tech-badge">Knowledge Graph</span>
+                                                <span class="tech-badge">Semantic Analysis</span>
+                                                <span class="tech-badge">Multi-Model</span>
                                             </div>
                                         </div>
                                         <!-- UPPDATERAT: Pris-info i texten -->
@@ -4291,7 +4460,8 @@
                         </div>
 
                          <div class="mt-auto flex flex-col items-center gap-4">
-                            <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full">Bygg Hjärnan</a>
+                            <!-- UPPDATERAT: "Starta Transformation" -> "Diskutera Behov" -->
+                            <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full">Diskutera Behov</a>
                             <!-- UPPDATERAT: Disclaimer -->
                             <span class="text-[10px] text-sky-300/50 italic text-center">Exakt arkitektur definieras tillsammans med kund</span>
                         </div>
@@ -4444,9 +4614,8 @@
                     <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">R&D LAB</span>
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Gaming + AI + Three.js</h2>
                     <p class="text-sky-100/80 max-w-3xl mx-auto text-lg leading-relaxed light-theme:text-nord-sym-blueprint-text-secondary">
-                        <!-- UPPDATERAT: Fas 2 Copy - Passiv form/NordSym -->
-                        Spel är den optimala testbänken för AI-agenter: komplexa beslut och oändliga edge cases. 
-                        NordSym experimenterar här med browser-native 3D och autonoma system för att förstå morgondagens gränssnitt.
+                        <!-- UPPDATERAT: Nertonad, saklig copy -->
+                        Här experimenterar vi med WebGL och AI. Vi testar gränserna för vad som är möjligt att köra direkt i en webbläsare, med fokus på spelmekanik och interaktiva gränssnitt.
                     </p>
                 </div>
                 
@@ -4454,35 +4623,41 @@
                     <!-- Förenklad Grid för både Desktop & Mobil -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         
-                        <!-- Kort 1: Tekniken -->
-                        <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-default">
-                            <i class="ph-monitor-play text-4xl mb-4"></i>
-                            <h4 class="text-xl font-bold mb-2">Browser-Native</h4>
-                            <p>Three.js ger oss full kontroll över GPU-rendering direkt i webbläsaren. Det möjliggör procedurell grafik, AI-genererade levels och instant gameplay utan nedladdningar.</p>
+                        <!-- Kort 1: Tekniken (Varför?) -->
+                        <!-- UPPDATERAT: Lade till onmouseenter för geometriner -->
+                        <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-default" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
+                            <i class="ph-code-block text-4xl mb-4"></i>
+                            <!-- UPPDATERAT: Fokus på teknisk nytta -->
+                            <h4 class="text-xl font-bold mb-2">Varför Three.js?</h4>
+                            <!-- UPPDATERAT: Saklig förklaring -->
+                            <p>Traditionell 3D kräver tunga nedladdningar. Med Three.js och AI kan vi generera innehåll direkt i webbläsaren ("procedurellt"). Det ger snabba, lättviktiga upplevelser tillgängliga överallt.</p>
                             <!-- Ingen CTA här, ren info -->
                         </div>
 
-                        <!-- Mitt: Verktyget (The Workshop) -->
-                        <div class="ritbordet-card card-base group border-sky-500 hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-300 cursor-pointer text-center py-10" onclick="window.UnifiedGeometryManager.enterBuilderMode()">
+                        <!-- Mitt: Verktyget (Prova själv) -->
+                        <!-- UPPDATERAT: Lade till onmouseenter för geometriner -->
+                        <div class="ritbordet-card card-base group border-sky-500 hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-300 cursor-pointer text-center py-10" onclick="window.UnifiedGeometryManager.enterBuilderMode()" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
                             <div class="w-20 h-20 bg-sky-900/50 rounded-full flex items-center justify-center mx-auto mb-6 border border-sky-400/30 group-hover:scale-110 transition-transform">
                                 <i class="ph ph-cube text-4xl text-nord-sym-cyan"></i>
                             </div>
-                            <!-- UPPDATERAT: 'Testa Stacken' -> 'The Workshop' -->
-                            <h4 class="text-2xl font-bold mb-2 text-white">The Workshop</h4>
-                            <p>Geometrin på denna sida renderas live med samma Three.js-motor. Ta kontroll: rotera, morfa och explodera partiklarna.</p>
-                            <!-- UPPDATERAT: "Kör Demo" ändrat till "Starta Motorn" för att låta mer tekniskt och mindre säljande -->
-                            <button class="mt-6 btn-base btn-cta-revised px-6">Starta Motorn</button>
+                            <!-- UPPDATERAT: Tydlig uppmaning -->
+                            <h4 class="text-2xl font-bold mb-2 text-white">Prova Tekniken</h4>
+                            <!-- UPPDATERAT: Förklara att det är live -->
+                            <p>Detta är en live-demonstration. Gå in i verkstaden för att rotera objektet, byta visuella teman och testa fysikmotorn i realtid.</p>
+                            <!-- UPPDATERAT: "Gå till Verkstaden" -> "Starta" (Mindre cringe) -->
+                            <button class="mt-6 btn-base btn-cta-revised px-6">Starta</button>
                         </div>
 
-                        <!-- Kort 3: Gaming Side Project -->
-                        <!-- UPPDATERAT: Länkar tillbaka till modal (väntelista) istället för X -->
-                        <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-pointer" onclick="window.nord.openDynamicWaitlist('gaming')">
+                        <!-- Kort 3: Gaming R&D -->
+                        <!-- UPPDATERAT: Länkar tillbaka till modal (väntelista) istället för X + onmouseenter -->
+                        <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-pointer" onclick="window.nord.openDynamicWaitlist('gaming')" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
                             <i class="ph-game-controller text-4xl mb-4"></i>
-                            <h4 class="text-xl font-bold mb-2">Gaming Side Project</h4>
-                            <!-- UPPDATERAT: Avslappnad ton, kortare -->
-                            <p>Ett sidoprojekt som får kärlek när det finns tid över.</p>
+                            <!-- UPPDATERAT: Saklig titel -->
+                            <h4 class="text-xl font-bold mb-2">Gaming R&D</h4>
+                            <!-- UPPDATERAT: Rensat bort den långa meningen om prototyper -->
+                            <p>AI-genererade spel är en sektor som växer snabbt.</p>
                             <!-- UPPDATERAT: Enkel text för intresselista -->
-                            <span class="text-sky-300 text-sm mt-4 inline-block group-hover:text-white font-semibold">Håll mig uppdaterad →</span>
+                            <span class="text-sky-300 text-sm mt-4 inline-block group-hover:text-white font-semibold">Följ projektet →</span>
                         </div>
 
                     </div>
@@ -4675,7 +4850,7 @@
     </div>
     
     <footer id="main-footer" class="relative bg-nord-sym-deep-space-blue">
-        <footer id="main-footer" class="relative bg-nord-sym-deep-space-blue">
+        <!-- BORTTAGEN DUBBLETT AV FOOTER-TAGG HÄR -->
         <div class="section-content-wrapper py-10 relative z-10">
             <div class="grid md:grid-cols-3 gap-8 text-sm">
                 <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
@@ -4830,18 +5005,49 @@
         <i class="ph-x portal-icon-exit"></i>
     </button>
 
-    <div id="elastic-toolbar">
-        <div class="glass-control-group">
-            <button class="glass-btn" data-theme="fundamental" title="Grundläggande">◎</button>
-            <button class="glass-btn" data-theme="struktur" title="Struktur">◉</button>
-            <button class="glass-btn" data-theme="flode" title="Flöde">◊</button>
-            <button class="glass-btn" data-theme="precision" title="Precision">Ψ</button>
-            <button class="glass-btn" data-theme="paradigm" title="Paradigm">∞</button>
-            <button class="glass-btn" data-theme="ekosystem" title="Ekosystem">⟠</button>
-            <button class="glass-btn" id="fractal-mode-toggle" title="Partikel-manifestation">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 C 17 7, 7 17, 2 12 C 7 7, 17 17, 22 12 C 17 7, 7 7, 12 2"></path></svg>
-            </button>
+    <!-- NYTT KORREKT ID: #workshop-toolbar -->
+    <div id="workshop-toolbar">
+        
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('fundamental')">
+            <div class="geo-btn" data-theme="fundamental">◎</div>
+            <span class="geo-label">Bas</span>
         </div>
+
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('struktur')">
+            <div class="geo-btn" data-theme="struktur">◉</div>
+            <span class="geo-label">Geometri</span>
+        </div>
+
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('flode')">
+            <div class="geo-btn" data-theme="flode">◊</div>
+            <span class="geo-label">Nätverk</span>
+        </div>
+
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('precision')">
+            <div class="geo-btn" data-theme="precision">Ψ</div>
+            <span class="geo-label">Kristall</span>
+        </div>
+
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('paradigm')">
+            <div class="geo-btn" data-theme="paradigm">∞</div >
+            <span class="geo-label">Abstrakt</span>
+        </div>
+
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('ekosystem')">
+            <div class="geo-btn" data-theme="ekosystem">⟠</div>
+            <span class="geo-label">Rymd</span>
+        </div>
+        
+        <div class="geo-separator"></div>
+        
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleParticleClick()">
+            <div class="geo-btn" id="fractal-mode-toggle">
+                <!-- Phosphor Icon: Sparkle -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M239.36,134.64l-29.12,29.12a8,8,0,0,1-11.31,0L176,140.85V184a8,8,0,0,1-8,8H132l-15.66,15.66a8,8,0,0,1-11.31,0l-16-16a8,8,0,0,1,0-11.31L104.69,164.69l-22.35-22.35a8,8,0,0,1,0-11.31L111.46,101.91l-15.66-15.66a8,8,0,0,1,0-11.31l16-16a8,8,0,0,1,11.31,0L138.77,74.59l22.35,22.35a8,8,0,0,1,0,11.31L138.11,131.25l22.35,22.35,22.35-22.35a8,8,0,0,1,11.31,0l22.91,22.91,22.91-22.91a8,8,0,0,1,11.32,11.32Z"></path></svg>
+            </div>
+            <span class="geo-label">Partiklar</span>
+        </div>
+
     </div>
     
     <script id="simplex-noise-glsl" type="x-shader/x-fragment">
@@ -5342,10 +5548,21 @@
                 
                 // Gemensamma listeners för både mobil och desktop
                 document.querySelectorAll('.glass-btn[data-theme]').forEach(btn => {
-                    btn.addEventListener('click', () => this.handleThemeClick(btn.dataset.theme));
+                    btn.addEventListener('click', () => {
+                        // AUTO-ENTER: Om användaren klickar på en form i lobbyn, starta verkstaden direkt.
+                        if (!this.isWorkshopBuilderActive && document.body.classList.contains('ritbordet-visible')) {
+                            this.enterBuilderMode();
+                        }
+                        this.handleThemeClick(btn.dataset.theme);
+                    });
                 });
 
-                document.getElementById('fractal-mode-toggle').addEventListener('click', () => this.handleParticleClick());
+                document.getElementById('fractal-mode-toggle').addEventListener('click', () => {
+                     if (!this.isWorkshopBuilderActive && document.body.classList.contains('ritbordet-visible')) {
+                        this.enterBuilderMode();
+                    }
+                    this.handleParticleClick();
+                });
 
                 window.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && this.isWorkshopBuilderActive) this.exitBuilderMode();
@@ -5576,12 +5793,15 @@
             // updateButtonUI() synkroniserar BARA knapparna med det aktiva läget.
             // updateViewState() gör allt (knappar OCH geometri-ändring).
             updateButtonUI() {
-                document.querySelectorAll('.glass-btn[data-theme]').forEach(btn => {
+                // UPPDATERAD SELEKTOR för nya #final-toolbar
+                document.querySelectorAll('.geo-btn[data-theme]').forEach(btn => {
+                    // Check parent wrapper or button itself
                     btn.classList.toggle('active', btn.dataset.theme === this.activeThemeKey);
                 });
                 const fractalBtn = document.getElementById('fractal-mode-toggle');
-                fractalBtn.classList.toggle('active', this.isParticleModeActive);
-                fractalBtn.classList.toggle('glow', this.isParticleModeActive && !!this.activeThemeKey);
+                if (fractalBtn) {
+                    fractalBtn.classList.toggle('active', this.isParticleModeActive);
+                }
             }
 
             updateViewState() {
@@ -5628,6 +5848,15 @@
                 this.transitionTo('WORKSHOP');
                 document.getElementById('joystick-portal-right')?.classList.add('active');
                 
+                // --- JS SÄKERHET ---
+                // Se till att vi inte har några inline styles som blockerar
+                const toolbar = document.getElementById('workshop-toolbar');
+                if (toolbar) {
+                    toolbar.style.display = ''; // Rensa inline style, låt CSS ta över
+                    toolbar.style.opacity = '';
+                    toolbar.style.visibility = '';
+                }
+                
                 // Gör canvasen interaktiv för musen på desktop
                 if (!window.matchMedia('(pointer: coarse)').matches) {
                     this.canvas.classList.add('interactive');
@@ -5664,6 +5893,9 @@
                 document.body.classList.remove('toolbar-open'); 
                 this.transitionTo(this.lastState === 'HIDDEN' ? 'HERO' : this.lastState);
                 
+                // --- CSS-STYRD DÖLJNING ---
+                // Borttagning av klassen på body triggar transitionen tillbaka till dolt läge.
+
                 // Nollställ mus-interaktion
                 this.isDragging = false;
                 this.canvas.classList.remove('interactive');
@@ -6388,12 +6620,12 @@
                 desc: 'Generera tekniska kravspecifikationer optimerade för AI-agenter. Få databasscheman och user flows direkt.',
                 subject: 'Intresseanmälan: GenPRD'
             },
-            // NYTT: Konfiguration för Gaming Side Project (Uppdaterad text)
+            // NYTT: Konfiguration för Gaming (Uppdaterad text för att matcha kortet)
             gaming: {
                 icon: 'ph-game-controller',
-                title: 'R&D: Gaming Side Project',
-                desc: 'Vi bygger på detta när andan faller på. Skriv upp dig om du vill veta när vi har något spelbart.',
-                subject: 'Intresseanmälan: Gaming Side Project'
+                title: 'R&D: AI-Gaming',
+                desc: 'AI-genererade spel är framtiden. Vi bygger prototyper i skärningspunkten mellan Three.js och LLM:er. Skriv upp dig för beta-access.',
+                subject: 'Intresseanmälan: AI-Gaming'
             },
             seo: {
                 icon: 'ph-globe-hemisphere-east', // Bytt ikon till global/geo
@@ -7375,29 +7607,16 @@
                 slider.style.height = `${activeBtn.offsetHeight}px`;
                 slider.style.top = `${activeBtn.offsetTop}px`;
 
-                // Uppdatera textfärger - TVINGA kontrastfärg för aktiv knapp
-                // I dark mode: Cyan slider -> Mörk text (deep-space-blue)
-                // I light mode: Cyan slider -> Vit text (för kontrast mot mörkare cyan) eller Mörk text beroende på design
-                // Vi använder 'text-nord-sym-deep-space-blue' som funkar bra på Cyan i Dark Mode.
+                // Uppdatera klasser - Enkelt: Active eller ej. CSS sköter färgerna.
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('inactive');
                 
-                activeBtn.classList.remove('inactive', 'text-sky-200', 'hover:text-white');
-                activeBtn.classList.add('active', 'text-nord-sym-deep-space-blue');
+                inactiveBtn.classList.remove('active');
+                inactiveBtn.classList.add('inactive');
                 
-                // Om vi är i light mode, kan vi behöva justera textfärgen på den aktiva knappen för bättre kontrast
-                if (document.body.classList.contains('light-theme')) {
-                     // I light mode är slidern en mörkare cyan/blå (#0284C7). Vit text är bäst.
-                     activeBtn.classList.remove('text-nord-sym-deep-space-blue');
-                     activeBtn.classList.add('text-white');
-                }
-
-                inactiveBtn.classList.remove('active', 'text-nord-sym-deep-space-blue', 'text-white');
-                inactiveBtn.classList.add('inactive', 'text-sky-200', 'hover:text-white');
-                
-                // Light mode override för inaktiv text
-                if (document.body.classList.contains('light-theme')) {
-                    inactiveBtn.classList.remove('text-sky-200');
-                    inactiveBtn.classList.add('text-nord-sym-blueprint-ink');
-                }
+                // Rensa bort gamla manuella färgklasser som kan störa
+                activeBtn.classList.remove('text-sky-200', 'text-nord-sym-deep-space-blue', 'text-white');
+                inactiveBtn.classList.remove('text-sky-200', 'text-nord-sym-deep-space-blue', 'text-white');
             };
 
             // Sätt initialt läge (körs efter en kort fördröjning för att låta DOM renderas)
@@ -7406,6 +7625,17 @@
                 const inactiveBtn = activeBtn === btnByggstenar ? btnGalleri : btnByggstenar;
                 updateSwitchUI(activeBtn, inactiveBtn);
             }, 100);
+            
+            // Lyssna även på window resize för att justera pillret om texten bryts om
+            window.addEventListener('resize', () => {
+                 const activeBtn = document.querySelector('.gallery-switch-btn.active') || btnByggstenar;
+                 if(activeBtn) {
+                    slider.style.width = `${activeBtn.offsetWidth}px`;
+                    slider.style.left = `${activeBtn.offsetLeft}px`;
+                    slider.style.height = `${activeBtn.offsetHeight}px`;
+                    slider.style.top = `${activeBtn.offsetTop}px`;
+                 }
+            });
 
             // Lägg till klick-lyssnare
             btnByggstenar.addEventListener('click', () => {
@@ -7421,15 +7651,10 @@
                 // NYTT: Anropa logik för att byta vy
                 this.switchView('galleri');
             });
-            
-            // Lyssna på tema-ändringar för att uppdatera textfärger live
-            // Enklast via en MutationObserver på body klassen eller genom att ThemeManager anropar en update
-            // För nu: Vi litar på CSS-variabler där det går, men JS-logiken ovan hanterar klick.
         }
         // --- NY FUNKTION SLUT ---
 
-        // --- NY FUNKTION START (ÅTERSTÄLLD FRÅN PLANEN) ---
-        // Denna funktion saknades, vilket orsakade 'TypeError'
+        // --- ÅTERSTÄLLD FUNKTION: switchView (Fixar TypeError) ---
         switchView(viewName) {
             if (this.currentView === viewName || !gsap) return;
             this.currentView = viewName;
@@ -7492,7 +7717,6 @@
                 }
             });
         }
-        // --- NY FUNKTION SLUT ---
 
         // ÄNDRING: Helt omstrukturerad för att hantera "stale closures"
         // Logiken är utbruten till klassmetoder, setup körs bara en gång.
