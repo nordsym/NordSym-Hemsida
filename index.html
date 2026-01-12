@@ -3751,21 +3751,7 @@
             transform: scale(1.05);
         }
         
-        .geo-label {
-            font-size: 10px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            color: rgba(255,255,255,0.7);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-            transition: color 0.2s;
-        }
-        
-        .geo-btn-wrapper:hover .geo-label,
-        .geo-btn.active + .geo-label {
-            color: #ffffff;
-        }
+        /* BORTTAGET: .geo-label och relaterade regler för en renare look */
         
         /* Separator */
         .geo-separator {
@@ -3786,15 +3772,14 @@
             color: #334155;
             border-color: #cbd5e1;
         }
-        body.light-theme .geo-label { color: #64748b; }
+        /* BORTTAGET: Light theme label colors */
         body.light-theme .geo-btn.active,
         body.light-theme .geo-btn-wrapper:hover .geo-btn {
             background: var(--nord-sym-blueprint-cyan);
             color: #ffffff;
             border-color: var(--nord-sym-blueprint-cyan);
         }
-        body.light-theme .geo-btn-wrapper:hover .geo-label { color: #0f172a; }
-
+        
     </style>
 </head>
 <body class="antialiased light-theme">
@@ -5008,44 +4993,37 @@
     <!-- NYTT KORREKT ID: #workshop-toolbar -->
     <div id="workshop-toolbar">
         
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('fundamental')">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('fundamental')" title="Bas">
             <div class="geo-btn" data-theme="fundamental">◎</div>
-            <span class="geo-label">Bas</span>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('struktur')">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('struktur')" title="Geometri">
             <div class="geo-btn" data-theme="struktur">◉</div>
-            <span class="geo-label">Geometri</span>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('flode')">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('flode')" title="Nätverk">
             <div class="geo-btn" data-theme="flode">◊</div>
-            <span class="geo-label">Nätverk</span>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('precision')">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('precision')" title="Kristall">
             <div class="geo-btn" data-theme="precision">Ψ</div>
-            <span class="geo-label">Kristall</span>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('paradigm')">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('paradigm')" title="Abstrakt">
             <div class="geo-btn" data-theme="paradigm">∞</div >
-            <span class="geo-label">Abstrakt</span>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('ekosystem')">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('ekosystem')" title="Rymd">
             <div class="geo-btn" data-theme="ekosystem">⟠</div>
-            <span class="geo-label">Rymd</span>
         </div>
         
         <div class="geo-separator"></div>
         
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleParticleClick()">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleParticleClick()" title="Partiklar">
             <div class="geo-btn" id="fractal-mode-toggle">
                 <!-- Phosphor Icon: Sparkle -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M239.36,134.64l-29.12,29.12a8,8,0,0,1-11.31,0L176,140.85V184a8,8,0,0,1-8,8H132l-15.66,15.66a8,8,0,0,1-11.31,0l-16-16a8,8,0,0,1,0-11.31L104.69,164.69l-22.35-22.35a8,8,0,0,1,0-11.31L111.46,101.91l-15.66-15.66a8,8,0,0,1,0-11.31l16-16a8,8,0,0,1,11.31,0L138.77,74.59l22.35,22.35a8,8,0,0,1,0,11.31L138.11,131.25l22.35,22.35,22.35-22.35a8,8,0,0,1,11.31,0l22.91,22.91,22.91-22.91a8,8,0,0,1,11.32,11.32Z"></path></svg>
             </div>
-            <span class="geo-label">Partiklar</span>
         </div>
 
     </div>
