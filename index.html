@@ -7653,32 +7653,32 @@
             // NYTT: Data uppdelad i två källor
             this.komponenterData = [
                 {
+                    icon: 'ph-cpu',
+                    title: 'Core Intelligence',
+                    description: 'NordSym bygger inte på gårdagens teknik. Systemen orkestrerar dynamiskt marknadens vassaste modeller för varje unik uppgift. Gemini för kontext, Claude för kod, Sonnet för nyans.',
+                    signatures: [
+                        { icon: 'ph-lightning', text: 'Gemini 3.0' },
+                        { icon: 'ph-terminal-window', text: 'Claude Code' },
+                        { icon: 'ph-brain', text: 'Sonnet 4.5' }
+                    ],
+                    indicator: 'Multi-Model Orkestrering. Alltid State-of-the-Art.',
+                    indicatorColor: 'text-nord-sym-cyan'
+                },
+                {
+                    icon: 'ph-stack',
+                    title: 'Arkitektur & Setup',
+                    description: 'En modern, händelsestyrd setup utan legacy. Modeller kopplas samman via n8n workflows och minnet säkras i vektordatabaser. Skalbart, serverlöst och blixtsnabbt.',
+                    signatures: [
+                        { icon: 'ph-arrows-split', text: 'n8n Flows' },
+                        { icon: 'ph-database', text: 'Supabase' },
+                        { icon: 'ph-globe', text: 'Vercel' }
+                    ],
+                    indicator: 'Infrastruktur designad för autonoma agenter.'
+                },
+                {
                     icon: 'ph-robot',
                     title: 'AI-Agenter',
-                    description: 'Design och implementation av autonoma AI-agenter för allt från research till kunddialog. De kan integreras i ett större ekosystem eller driftsättas som kraftfulla, fristående lösningar.',
-                    signatures: [
-                        { icon: 'ph-brain', text: 'Intelligens' },
-                        { icon: 'ph-chats-circle', text: 'Dialog' },
-                        { icon: 'ph-file-search', text: 'Research' }
-                    ],
-                    indicator: 'Bygger på en hybridarkitektur: kraften från branschledande automationssystem och precisionen från egna, egenutvecklade ramverk.',
-                    // BORTTAGET: CTA för gratis agent
-                },
-                {
-                    icon: 'ph-chart-pie-slice', // <-- ÄNDRAD IKON
-                    title: 'AI-First Arkitektur', // <-- ÄNDRAD
-                    description: 'Design av system där AI inte är ett tillägg, utan kärnan. Varje process och datapunkt utvärderas för sin potential att tränas, automatiseras eller agera autonomt.', // <-- ÄNDRAD
-                     signatures: [ // <-- ÄNDRAD (anpassad till objektformat)
-                        { icon: 'ph-brain', text: 'Kärnlogik' },
-                        { icon: 'ph-compass-tool', text: 'Agent-design' },
-                        { icon: 'ph-sparkle', text: 'Proaktivt' }
-                    ],
-                    indicator: 'Arkitektur', // <-- ÄNDRAD
-                    indicatorColor: 'text-rose-400' // <-- NY EGENSKAP
-                },
-                {
-                    icon: 'ph-cube', // <-- ÄNDRAD (Bytt från 'ph-server' för att garantera rendering)
-                    title: 'Model Context Protocol', // <-- Behållen
+                    description: 'Design och implementation av autonoma digitala medarbetare för allt från research till kunddialog. De kan integreras i ett större ekosystem eller driftsättas som kraftfulla, fristående lösningar.',
                     description: 'Intern arkitektur för att hantera och \'streama\' kontext mellan AI-modeller. NordSym bygger och driftar egna MCP-servrar som säkerställer att agenter har delat, persistent minne oavsett vilken AI-modell som anropas.', // <-- Behållen
                     signatures: [ // <-- ÄNDRAD
                         { icon: 'ph-database', text: 'Persistent Minne' },
@@ -7828,7 +7828,7 @@
             this.textSources = {
                 'byggstenar': {
                     // UPPDATERAT: Fas 2 Copy - Stack & Ekosystem
-                    description: 'Tekniken under huven. Vi rör oss i ekosystemet av Claude, Gemini och OpenAI, orkestrerat av n8n och moderna vektordatabaser. Rätt verktyg för rätt kognitiv uppgift.',
+                    description: 'Tekniken under huven. Arkitekturen baseras på ett ekosystem av Claude, Gemini och OpenAI, orkestrerat av n8n och moderna vektordatabaser. Rätt verktyg för rätt kognitiv uppgift.',
                     context: 'Utforska stacken'
                 },
                 'galleri': {
