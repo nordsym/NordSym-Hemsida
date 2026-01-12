@@ -4317,7 +4317,7 @@
                         <!-- Initial State: Clean Input Bar -->
                         <div id="hero-input-wrapper">
                             <div class="relative">
-                                <input type="text" id="hero-chat-input-field" placeholder="Fråga NordSyms AI..." autocomplete="off">
+                                <input type="text" id="hero-chat-input-field" placeholder="Fråga NordSym..." autocomplete="off">
                                 <button id="hero-input-send" aria-label="Skicka">
                                     <i class="ph-paper-plane-right-fill text-lg"></i>
                                 </button>
@@ -8253,6 +8253,7 @@
             if (!input) return;
 
             const phrases = [
+                "Fråga NordSym...",
                 "Hur kan vi effektivisera admin?",
                 "Vad kostar en AI-pilot?",
                 "Kan ni integrera med Fortnox?",
@@ -8267,7 +8268,7 @@
 
             const tick = () => {
                 if (this.hasSentMessage) {
-                    input.setAttribute('placeholder', 'Fråga NordSyms AI...');
+                    input.setAttribute('placeholder', 'Fråga NordSym...');
                     return;
                 }
 
