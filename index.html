@@ -881,6 +881,17 @@
         body.light-theme #main-footer .border-sky-700\/50 {
             border-color: var(--nord-sym-blueprint-lines-faint) !important;
         }
+        
+        /* FIX: Synliggör social-ikoner i Light Mode */
+        body.light-theme #main-footer .ph {
+            color: var(--nord-sym-blueprint-ink) !important;
+            opacity: 0.7;
+        }
+        body.light-theme #main-footer a:hover .ph {
+            color: var(--nord-sym-blueprint-cyan) !important;
+            opacity: 1;
+            transform: scale(1.1);
+        }
 
         /* --- FORMULÄR & MODALS (Blåkopia) --- */
         body.light-theme .form-container {
