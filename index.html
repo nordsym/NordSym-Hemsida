@@ -381,14 +381,23 @@
             background: transparent !important;
             position: relative; overflow: hidden; width: 100%; 
             display: flex; flex-direction: column; align-items: center;
+            /* SCROLL-SAKERHET: Se till att ankarlänkar inte hamnar under headern */
+            scroll-margin-top: 120px; 
         }
         #hero {
              min-height: calc(100vh - 80px); min-height: calc(100dvh - 80px); /* MODERNISERING FÖR IOS */
-             justify-content: center; padding-top: 4rem; padding-bottom: 4rem;
+             justify-content: center; 
+             /* UPPDATERAT: Mer luft i toppen (8rem) på mobil för att undvika header-klipp */
+             padding-top: 8rem; 
+             padding-bottom: 4rem;
              position: relative; /* For canvas positioning */
         }
         @media (min-width: 1024px) { 
-            #hero { min-height: calc(100vh - 116px); min-height: calc(100dvh - 116px); /* MODERNISERING FÖR IOS */ } 
+            /* Återställ till normal padding på desktop där vi har mer kontroll */
+            #hero { 
+                min-height: calc(100vh - 116px); min-height: calc(100dvh - 116px); 
+                padding-top: 4rem;
+            } 
         }
         .section-content-wrapper { 
             position: relative; z-index: 1; width: 100%; max-width: 1280px; 
