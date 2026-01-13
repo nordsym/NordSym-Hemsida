@@ -7122,6 +7122,11 @@
         });
 
         window.addEventListener('load', () => { 
+            // SCROLL LOCK: Lösning för "stympad" logga på mobil
+            // Vi tvingar webbläsaren att glömma tidigare position och starta på 0.
+            if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+            window.scrollTo(0, 0);
+
             const hash = window.location.hash.substring(1); 
             const initialPage = pageConfig[hash] ? hash : 'hero';
 
@@ -7130,6 +7135,11 @@
 
             // Visa sidan utan att skapa en ny historik-post
             window.nord.showPage(initialPage, true);
+            
+            // DUBBELKOLL: En fördröjd tvingning för att kontra iOS adressfälts-animationer
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
         });
         
         // --- DYNAMIC WAITLIST SYSTEM ---
