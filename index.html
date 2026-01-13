@@ -6179,8 +6179,10 @@
                     if (targetStateKey === 'PAGE') {
                         finalState.zoom = 60; 
                     } else if (targetStateKey === 'HERO') {
-                        finalState.zoom = 20; // Harmoni-fix: Lite längre bort
-                        finalState.y = 6.5; // Harmoni-fix: HÖJER kameran (sänker objektet) rejält så det hamnar under CTAs
+                        finalState.zoom = 18; // Lite tightare zoom på mobil
+                        /* UPPDATERAT: Lyft upp geometrin rejält från 6.5 till -1.5 */
+                        /* Detta placerar den visuellt mellan topp-loggan och rubriken */
+                        finalState.y = -1.5; 
                     } else if (targetStateKey === 'WORKSHOP') {
                         finalState.y = 0; // Harmoni-fix: Perfekt vertikal centrering på mobil.
                         finalState.zoom = 24; // Harmoni-fix: Anpassad zoom för optimal visning på mobil.
@@ -7122,10 +7124,14 @@
         });
 
         window.addEventListener('load', () => { 
-            // SCROLL LOCK: Lösning för "stympad" logga på mobil
-            // Vi tvingar webbläsaren att glömma tidigare position och starta på 0.
+            // SCROLL LOCK: Aggressiv lösning för "stympad" logga på mobil
             if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-            window.scrollTo(0, 0);
+            
+            // Funktion för att tvinga toppen
+            const forceTop = () => window.scrollTo(0, 0);
+            
+            // Kör direkt
+            forceTop();
 
             const hash = window.location.hash.substring(1); 
             const initialPage = pageConfig[hash] ? hash : 'hero';
@@ -7136,10 +7142,18 @@
             // Visa sidan utan att skapa en ny historik-post
             window.nord.showPage(initialPage, true);
             
-            // DUBBELKOLL: En fördröjd tvingning för att kontra iOS adressfälts-animationer
-            setTimeout(() => {
+            // KASKAD: Tvinga scrollen upprepade gånger under laddningen för att besegra UI-animationer (adressfält etc)
+            requestAnimationFrame(forceTop);
+            setTimeout(forceTop, 50);
+            setTimeout(forceTop, 100);
+            setTimeout(forceTop, 300);
+        });
+        
+        // NYTT: Hantera "Back/Forward"-cache (bfcache) på iOS/Safari
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
                 window.scrollTo(0, 0);
-            }, 100);
+            }
         });
         
         // --- DYNAMIC WAITLIST SYSTEM ---
