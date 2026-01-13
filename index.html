@@ -2702,21 +2702,22 @@
             width: 2.5rem;
             height: 2.5rem;
             border-radius: 50%;
-            /* KRITA-UPDATE: Transparent med vit kant */
-            background: transparent; 
+            /* KRITA-UPDATE v2: Levande och tydlig */
+            background: rgba(255, 255, 255, 0.15); /* Tydligare fyllning direkt */
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid #ffffff; /* Krispig vit kant */
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Djup */
         }
         #hero-input-send:hover {
-            transform: translateY(-50%) scale(1.1);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #ffffff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.15); /* Lite mer pop */
+            background: #ffffff; /* Solid vit (Krita) */
+            color: var(--nord-sym-deep-space-blue); /* Inverterad ikonfärg för kontrast */
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* Kraftig vit glöd */
         }
 
         /* Light Mode Override */
