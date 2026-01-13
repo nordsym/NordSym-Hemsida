@@ -2120,8 +2120,8 @@
         /* --- JOYSTICK PORTALS (MOBIL KONTROLL) --- */
         .joystick-portal {
             position: fixed;
-            bottom: 30px; 
-            bottom: calc(30px + env(safe-area-inset-bottom));
+            bottom: 120px; 
+            bottom: calc(120px + env(safe-area-inset-bottom));
             width: 64px; 
             height: 64px;
             border-radius: 50%;
@@ -2671,12 +2671,14 @@
 
         #hero-chat-input-field {
             width: 100%;
-            background: rgba(12, 14, 18, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* KRITA-UPDATE: Mer transparent */
+            background: rgba(12, 14, 18, 0.4); 
+            /* KRITA-UPDATE: Vit krit-linje */
+            border: 1px solid rgba(255, 255, 255, 0.25); 
             border-radius: 9999px; /* Pill shape */
             padding: 1rem 1.5rem;
             padding-right: 3.5rem; /* Plats för knapp */
-            color: white;
+            color: #ffffff;
             font-size: 1rem;
             backdrop-filter: blur(12px);
             transition: all 0.3s ease;
@@ -2685,9 +2687,11 @@
         
         #hero-chat-input-field:focus {
             outline: none;
-            border-color: var(--nord-sym-cyan);
-            background: rgba(12, 14, 18, 0.85);
-            box-shadow: 0 0 0 1px var(--nord-sym-cyan), 0 20px 40px -10px rgba(0,0,0,0.8);
+            /* KRITA-UPDATE: Vit border vid fokus */
+            border-color: #ffffff; 
+            background: rgba(12, 14, 18, 0.7);
+            /* KRITA-UPDATE: Vit glow istället för cyan */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); 
         }
         
         #hero-input-send {
@@ -2698,17 +2702,21 @@
             width: 2.5rem;
             height: 2.5rem;
             border-radius: 50%;
-            background: var(--nord-sym-cyan);
-            color: var(--nord-sym-deep-space-blue);
+            /* KRITA-UPDATE: Transparent med vit kant */
+            background: transparent; 
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.2s ease;
-            border: none;
+            transition: all 0.2s ease;
         }
         #hero-input-send:hover {
             transform: translateY(-50%) scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
         /* Light Mode Override */
@@ -2733,13 +2741,28 @@
             position: fixed;
             inset: 0; /* Fullscreen */
             z-index: 10000; /* Över allt annat */
-            background-color: var(--nord-sym-deep-space-blue); /* Solid Deep Space */
+            /* CINEMA MODE: Semitransparent Obsidian för djup */
+            background-color: rgba(5, 6, 8, 0.65); 
+            backdrop-filter: blur(12px); /* Lyxig frostning */
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
+        /* CINEMA FOCUS: Dölj distraktioner när chatten är aktiv */
+        body.chat-active #header,
+        body.chat-active main,
+        body.chat-active #main-footer,
+        body.chat-active #workshop-toolbar,
+        body.chat-active #hero-input-wrapper {
+            opacity: 0.1; /* Tona ner nästan helt */
+            filter: blur(4px); /* Fokusera på chatten */
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
         #fullscreen-chat-interface.visible {
             opacity: 1;
             pointer-events: auto;
@@ -2748,8 +2771,8 @@
         /* SIDEBAR (Historik) */
         .chat-sidebar {
             width: 260px;
-            background: rgba(10, 12, 16, 0.5);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(5, 6, 8, 0.4); /* Mer transparent */
+            border-right: 1px solid rgba(255, 255, 255, 0.1); /* Kritstreck */
             display: flex;
             flex-direction: column;
             padding: 1.5rem;
@@ -2764,21 +2787,24 @@
             padding: 0.75rem 1rem;
             margin-bottom: 0.5rem;
             border-radius: 0.5rem;
-            color: var(--nord-sym-text-medium);
+            color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
             transition: all 0.2s ease;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: 0.9rem;
+            border: 1px solid transparent;
         }
         .chat-history-item:hover {
             background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2); /* Krit-outline vid hover */
             color: white;
         }
         .chat-history-item.active {
-            background: rgba(var(--nord-sym-cyan-rgb), 0.1);
-            color: var(--nord-sym-cyan);
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         /* MAIN CHAT AREA */
@@ -2787,7 +2813,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            background: radial-gradient(circle at 50% 30%, rgba(0, 212, 255, 0.03), transparent 70%); /* Subtil glöd */
+            background: transparent; /* Låt geometrin synas igenom! */
         }
 
         /* TOP BAR (Close & Options) */
@@ -2798,18 +2824,20 @@
             align-items: center;
         }
         .chat-close-btn {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--nord-sym-text-medium);
+            width: auto; height: 40px;
+            padding: 0 1.5rem;
+            border-radius: 9999px;
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
             transition: all 0.2s ease;
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Kritstreck */
+            background: transparent;
         }
         .chat-close-btn:hover {
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            border-color: rgba(255, 255, 255, 0.1);
+            border-color: white;
         }
 
         /* MESSAGES CONTAINER */
@@ -2825,17 +2853,17 @@
         
         .chat-content-width {
             width: 100%;
-            max-width: 768px; /* Optimal läsbredd (ChatGPT standard) */
+            max-width: 700px; /* Lite smalare för läsbarhet */
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 2rem; /* Luftigare mellan meddelanden */
         }
 
-        /* MESSAGE BUBBLES - CLEAN DESIGN */
+        /* MESSAGE BUBBLES - ARCHITECT EDITION */
         .chat-message-row {
             display: flex;
             width: 100%;
-            margin-bottom: 1rem;
+            margin-bottom: 0; /* Styrs av gap i container */
         }
         .chat-message-row.user {
             justify-content: flex-end;
@@ -2846,60 +2874,66 @@
 
         .chat-bubble-content {
             padding: 1rem 1.5rem;
-            border-radius: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.05rem; /* Något större text */
+            line-height: 1.7;
             position: relative;
-            max-width: 85%;
+            max-width: 90%;
         }
 
-        /* USER BUBBLE: Cyan Accent */
+        /* USER: Krit-outline (Ingen fyllning) */
         .chat-message-row.user .chat-bubble-content {
-            background-color: rgba(0, 212, 255, 0.1); /* Svag cyan bakgrund */
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            color: var(--nord-sym-cyan);
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Tydligare kritstreck */
+            color: #ffffff;
+            border-radius: 1.5rem;
             border-bottom-right-radius: 0.25rem;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05); /* Mycket svag glow */
         }
 
-        /* BOT BUBBLE: Clean Text (Minimalist) */
+        /* BOT: Ren text på tavlan (Ingen bubbla) */
         .chat-message-row.bot .chat-bubble-content {
-            background-color: transparent; /* Ingen bakgrund för boten, ren text */
-            color: var(--nord-sym-text-light); /* Off-white */
-            padding-left: 0; /* Justera padding för ren text-look */
-            padding-top: 0;
+            background-color: transparent;
+            border: none; /* Inga gränser */
+            color: #E2E8F0; /* Off-white för läsbarhet */
+            padding-left: 0; /* Justera mot vänsterkanten */
+            border-left: 2px solid rgba(0, 212, 255, 0.5); /* NordSym Cyan accentlinje */
+            border-radius: 0;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
         }
         
-        /* INPUT AREA (Sticky Bottom) */
+        /* INPUT AREA (Sticky Bottom) - Floating Chalk Bar */
         .chat-input-wrapper {
             padding: 2rem;
             display: flex;
             justify-content: center;
-            background: linear-gradient(to top, var(--nord-sym-deep-space-blue) 80%, transparent);
+            background: transparent; /* Ingen gradient, helt öppet */
         }
         
         .chat-main-input-container {
             width: 100%;
-            max-width: 768px;
+            max-width: 700px;
             position: relative;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(12, 14, 18, 0.4); /* Transparent */
+            border: 1px solid rgba(255, 255, 255, 0.25); /* Kritstreck */
             border-radius: 1.5rem;
             padding: 0.75rem 1rem;
             display: flex;
-            align-items: flex-end; /* För textarea expansion */
+            align-items: flex-end;
             transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
         }
         .chat-main-input-container:focus-within {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            background: rgba(12, 14, 18, 0.7);
+            border-color: rgba(255, 255, 255, 0.6); /* Lyser upp vid fokus */
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
         }
 
         #chat-main-textarea {
             width: 100%;
             background: transparent;
             border: none;
-            color: white;
+            color: #ffffff;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             resize: none;
@@ -2910,19 +2944,22 @@
         }
         
         #chat-main-send-btn {
-            width: 36px; height: 36px;
-            border-radius: 8px;
-            background: var(--nord-sym-cyan);
-            color: var(--nord-sym-deep-space-blue);
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             cursor: pointer;
             transition: all 0.2s ease;
             flex-shrink: 0;
         }
         #chat-main-send-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(var(--nord-sym-cyan-rgb), 0.4);
+            transform: scale(1.1);
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
         
         /* LIGHT THEME OVERRIDES FOR NORDGPT */
@@ -5712,6 +5749,8 @@
                 HERO: { zoom: 15, y: 0, opacity: 0.3, rotSpeed: 0.05 }, 
                 PAGE: { zoom: 40, y: 5, opacity: 0.15, rotSpeed: 0.02 }, // Mycket svagare på undersidor
                 WORKSHOP: { zoom: 22, y: 0, opacity: 1.0, rotSpeed: 0.2 },
+                // CINEMA MODE: Zoomar in objektet bakom chatten, centrerat, med högre opacitet
+                CHAT: { zoom: 18, y: 0, opacity: 0.6, rotSpeed: 0.1 }, 
                 HIDDEN: { zoom: 60, y: 0, opacity: 0.0, rotSpeed: 0.0 }
             };
             this.currentState = 'HIDDEN';
@@ -6018,8 +6057,10 @@
             }
 
             handleJoystickTouchStart(e, side) {
-                // Harmoni-fix: e.preventDefault() är borttagen härifrån för att tillåta
-                // webbläsaren att initiera en scroll-gest även om den startar på en joystick.
+                // Harmoni-fix: Återinför preventDefault för att garantera att joysticken "greppar" direkt
+                // och förhindrar att sidan scrollar när man försöker styra.
+                if(e.cancelable) e.preventDefault();
+                
                 const touch = e.changedTouches[0];
                 this.joystick[side].active = true;
                 this.joystick[side].id = touch.identifier;
@@ -8381,13 +8422,24 @@
             // 3. Visa laddindikator
             this.showTypingIndicator();
             
-            // 4. Hämta svar
+            // 4. Kognitiv Visualisering: Få geometrin att "tänka" (pulsera)
+            if (window.UnifiedGeometryManager) {
+                window.UnifiedGeometryManager.nudgeGeometry();
+            }
+            
+            // 5. Hämta svar
             this.getBotResponse(text);
         }
 
         openChat() {
             this.elements.fullscreenInterface.classList.add('visible');
+            document.body.classList.add('chat-active'); // Trigga Cinema Mode (tonar ner bakgrunden)
             document.body.style.overflow = 'hidden'; // Lås scroll på bakgrunden
+            
+            // Trigga Geometry Cinema State
+            if (window.UnifiedGeometryManager) {
+                window.UnifiedGeometryManager.transitionTo('CHAT');
+            }
             
             // Dölj resume-knappen när chatten är öppen
             if (this.elements.resumeBtn) this.elements.resumeBtn.classList.remove('visible');
@@ -8397,7 +8449,15 @@
 
         closeChat() {
             this.elements.fullscreenInterface.classList.remove('visible');
+            document.body.classList.remove('chat-active'); // Avsluta Cinema Mode
             document.body.style.overflow = ''; // Lås upp scroll
+            
+            // Återställ Geometry State (till HERO eller PAGE beroende på var vi är)
+            if (window.UnifiedGeometryManager) {
+                // Enkel logik: Om vi är på startsidan -> HERO, annars -> PAGE
+                const targetState = window.nord.currentPage === 'hero' ? 'HERO' : 'PAGE';
+                window.UnifiedGeometryManager.transitionTo(targetState);
+            }
             
             // UPPDATERAT: Visa input-baren på hemsidan igen när chatten stängs
             if (this.elements.heroInputWrapper) {
