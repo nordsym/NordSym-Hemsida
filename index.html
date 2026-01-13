@@ -2747,26 +2747,37 @@
             position: fixed;
             inset: 0; /* Fullscreen */
             z-index: 10000; /* Över allt annat */
-            /* CINEMA MODE: Semitransparent Obsidian för djup */
-            background-color: rgba(5, 6, 8, 0.65); 
-            backdrop-filter: blur(12px); /* Lyxig frostning */
-            -webkit-backdrop-filter: blur(12px);
+            /* CINEMA MODE (DARK): Maximal transparens (0.05) - nästan osynligt glas */
+            background-color: rgba(5, 6, 8, 0.05); 
+            /* UPPDATERAT: Mindre blur (5px) för att se geometrin tydligt */
+            backdrop-filter: blur(5px); 
+            -webkit-backdrop-filter: blur(5px);
             display: flex;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
-        /* CINEMA FOCUS: Dölj distraktioner när chatten är aktiv */
+        /* CINEMA FOCUS: Total utradering av distraktioner (Blackout) */
         body.chat-active #header,
         body.chat-active main,
         body.chat-active #main-footer,
         body.chat-active #workshop-toolbar,
-        body.chat-active #hero-input-wrapper {
-            opacity: 0.1; /* Tona ner nästan helt */
-            filter: blur(4px); /* Fokusera på chatten */
-            pointer-events: none;
-            transition: all 0.5s ease;
+        body.chat-active #hero-input-wrapper,
+        body.chat-active #form-name-display,
+        body.chat-active #cookie-consent,
+        body.chat-active #workshop-ghost-hints,      /* Scrolla/Dra hints */
+        body.chat-active #mobile-enter-workshop-btn, /* Mobilknapp */
+        body.chat-active #toolbar-toggle,            /* Verktygstoggle */
+        body.chat-active .joystick-portal,           /* Joysticks */
+        body.chat-active #coming-soon-modal,         /* Modals */
+        body.chat-active #founder-modal,
+        body.chat-active #free-agent-modal {
+            opacity: 0 !important; /* Helt osynligt */
+            filter: blur(20px); /* Diffusera bort det helt */
+            transform: scale(0.95); /* Tryck bakåt */
+            pointer-events: none !important;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); /* Mjuk, dramatisk exit */
         }
 
         #fullscreen-chat-interface.visible {
@@ -2970,14 +2981,15 @@
         
         /* LIGHT THEME OVERRIDES FOR NORDGPT */
         body.light-theme #fullscreen-chat-interface {
-            /* FIX: Semitransparent för att se geometrin */
-            background-color: rgba(253, 253, 253, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            /* CINEMA MODE (LIGHT): Maximal transparens (0.05) */
+            background-color: rgba(255, 255, 255, 0.05);
+            /* UPPDATERAT: Mindre blur (5px) även här */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
         body.light-theme .chat-sidebar {
-            background: rgba(243, 244, 246, 0.85); /* Semitransparent sidebar */
-            border-right-color: #E5E7EB;
+            background: rgba(243, 244, 246, 0.5); /* Mer transparent sidebar */
+            border-right-color: rgba(0,0,0,0.05);
         }
         body.light-theme .chat-history-item {
             color: #4B5563;
@@ -5763,9 +5775,8 @@
                 HERO: { zoom: 15, y: 0, opacity: 0.3, rotSpeed: 0.05 }, 
                 PAGE: { zoom: 40, y: 5, opacity: 0.15, rotSpeed: 0.02 }, // Mycket svagare på undersidor
                 WORKSHOP: { zoom: 22, y: 0, opacity: 1.0, rotSpeed: 0.2 },
-                // CINEMA MODE: Zoomar in objektet bakom chatten, centrerat, med högre opacitet
-                // UPPDATERAT: Högre opacitet (0.8) för bättre synlighet
-                CHAT: { zoom: 18, y: 0, opacity: 0.85, rotSpeed: 0.1 }, 
+                // CINEMA MODE: Geometrin på MAX (1.0) styrka för att synas genom glaset
+                CHAT: { zoom: 18, y: 0, opacity: 1.0, rotSpeed: 0.1 }, 
                 HIDDEN: { zoom: 60, y: 0, opacity: 0.0, rotSpeed: 0.0 }
             };
             this.currentState = 'HIDDEN';
@@ -5774,8 +5785,9 @@
             
             // State Management Refactor
             // LÅST TEMA: Vi startar med en lugn, stabil form istället för partikel-kaos
-            this.activeThemeKey = 'struktur'; 
-            this.isParticleModeActive = false; // Stäng av partiklar som default
+            /* UPPDATERAT: Standardtema ändrat från 'struktur' (◉) till 'ekosystem' (⟠) */
+            this.activeThemeKey = 'ekosystem'; 
+            this.isParticleModeActive = false; // Stäng av partiklar som default (men Ekosystem tvingar fram dem ändå)
             this.attractorParams = { a: 10, b: 28, c: 8.0 / 3.0, dt: 0.01 };
             
             this.isMorphing = false;
@@ -5807,6 +5819,9 @@
                     creatorMode: false,
                     rightTapTimeout: null
                 };
+            
+            // NYTT: State för Thinking Mode
+            this.thinkingState = { active: false, originalShape: null, pulseTween: null };
 
                 this.boundWheelHandler = this.handleWheel.bind(this);
             this.boundJoystickTouchStart = this.handleJoystickTouchStart.bind(this);
@@ -6348,12 +6363,114 @@
             
             hideFormName() { document.getElementById('form-name-display')?.classList.remove('visible'); }
 
+            // --- NYA METODER: AI THINKING MODE ---
+            startThinkingMode() {
+                if (this.thinkingState.active) return;
+                this.thinkingState.active = true;
+                
+                // Spara nuvarande form för att kunna återgå
+                const theme = VISUAL_ASSET_LIBRARY[this.activeThemeKey || 'ekosystem'];
+                this.thinkingState.originalShape = this.activeShape || theme.forms[theme.currentIndex];
+
+                // KNUFFEN: Geometrin rycker till för att signalera "Tanke startad"
+                this.interaction.actualRotationY += 0.5; // Direkt impuls
+                
+                // HARMONISK MEN KRAFTFULL: Snabbare, djupare andning
+                if (this.elasticGeometry.isParticleSystem) {
+                    this.elasticGeometry.setMorph(this.thinkingState.originalShape.name, 'fibonacci_sphere', 0);
+                    
+                    // Yoyo-loop med mer "svung" (Power3)
+                    this.thinkingState.morphTween = gsap.to(this.elasticGeometry.mesh.material.uniforms.morphProgress, {
+                        value: 1,
+                        duration: 1.5, // Snabbare tempo (1.5s)
+                        ease: "power3.inOut", // Skarpare kurva (tydligare rörelse)
+                        yoyo: true,
+                        repeat: -1
+                    });
+                } else {
+                    this.elasticGeometry.morphToShape('fibonacci_sphere'); 
+                }
+                
+                // Puls med hög energi
+                const mat = this.elasticGeometry.mesh.material;
+                if(mat.uniforms?.pulseIntensity) {
+                    this.thinkingState.pulseTween = gsap.to(mat.uniforms.pulseIntensity, { 
+                        value: 2.2, // Mycket ljusare
+                        duration: 1.5, // Synkad med morf
+                        yoyo: true, 
+                        repeat: -1,
+                        ease: "power3.inOut" 
+                    });
+                }
+            }
+
+            stopThinkingMode() {
+                if (!this.thinkingState.active) return;
+                this.thinkingState.active = false;
+
+                // Stoppa puls mjukt
+                if (this.thinkingState.pulseTween) {
+                    this.thinkingState.pulseTween.kill();
+                    const mat = this.elasticGeometry.mesh.material;
+                    if(mat.uniforms?.pulseIntensity) {
+                        gsap.to(mat.uniforms.pulseIntensity, { value: 1.0, duration: 1.5 });
+                    }
+                }
+
+                // EVOLUTION: Välj en helt NY form att landa i
+                const theme = VISUAL_ASSET_LIBRARY[this.activeThemeKey || 'ekosystem'];
+                let nextIndex;
+                
+                // Slumpa fram en ny form (undvik samma som vi kom ifrån för att garantera förändring)
+                do {
+                    nextIndex = Math.floor(Math.random() * theme.forms.length);
+                } while (nextIndex === theme.currentIndex && theme.forms.length > 1);
+                
+                theme.currentIndex = nextIndex;
+                this.activeShape = theme.forms[nextIndex];
+
+                // Återgå mjukt till den NYA formen (inte ursprunget)
+                if (this.elasticGeometry.isParticleSystem) {
+                    if (this.thinkingState.morphTween) this.thinkingState.morphTween.kill();
+                    
+                    // SMART MORFNING: "Landning"
+                    // Vi befinner oss visuellt vid 'fibonacci_sphere' (progress ~1).
+                    // Vi vill landa i den NYA formen (this.activeShape).
+                    // 1. Vi sätter den NYA formen som bas (position 0).
+                    // 2. Vi sätter 'fibonacci_sphere' som mål (position 1).
+                    // 3. Vi tvingar progress till 1 direkt (så vi stannar kvar visuellt vid sfären).
+                    // 4. Vi animerar progress från 1 till 0 -> Vi "glider hem" till den nya formen.
+                    
+                    this.elasticGeometry.setMorph(this.activeShape.name, 'fibonacci_sphere', 1);
+                    
+                    gsap.to(this.elasticGeometry.mesh.material.uniforms.morphProgress, {
+                        value: 0,
+                        duration: 2.5, // Mjuk, tydlig evolution
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            this.activeParticleMorph = { from: null, to: null };
+                        }
+                    });
+                } else {
+                    // För solida former
+                    this.elasticGeometry.morphToShape(this.activeShape.name);
+                }
+            }
+
             animate() {
                 this.animationId = requestAnimationFrame(this.animate);
                 const time = this.clock.getElapsedTime();
                 
-                this.interaction.actualRotationX += (this.interaction.targetRotationX - this.interaction.actualRotationX) * 0.1;
-                this.interaction.actualRotationY += (this.interaction.targetRotationY - this.interaction.actualRotationY) * 0.1;
+                // Hantera rotation: Snabbare rotation under tankeprocessen
+                if (this.thinkingState.active) {
+                    this.interaction.actualRotationY += 0.03; // Betydligt snabbare spinn
+                    this.interaction.actualRotationX += 0.01; // Mer liv i X-led
+                } else {
+                    // Normal inbromsning/kontroll
+                    this.interaction.actualRotationX += (this.interaction.targetRotationX - this.interaction.actualRotationX) * 0.1;
+                    this.interaction.actualRotationY += (this.interaction.targetRotationY - this.interaction.actualRotationY) * 0.1;
+                }
+                
                 this.interaction.actualZoom += (this.interaction.targetZoom - this.interaction.actualZoom) * 0.05;
                 this.interaction.actualY += (this.interaction.targetY - this.interaction.actualY) * 0.05;
                 
@@ -8437,9 +8554,9 @@
             // 3. Visa laddindikator
             this.showTypingIndicator();
             
-            // 4. Kognitiv Visualisering: Få geometrin att "tänka" (pulsera)
+            // 4. Kognitiv Visualisering: Starta "Hjärnan"
             if (window.UnifiedGeometryManager) {
-                window.UnifiedGeometryManager.nudgeGeometry();
+                window.UnifiedGeometryManager.startThinkingMode();
             }
             
             // 5. Hämta svar
@@ -8640,6 +8757,11 @@
                 const netErrMsg = "Anslutningsproblem. Kontrollera nätverket.";
                 this.addMessageToUI(netErrMsg, 'bot');
                 this.saveMessage(netErrMsg, 'bot');
+            } finally {
+                // 6. Kognitiv Visualisering: Återgå till viloläge
+                if (window.UnifiedGeometryManager) {
+                    window.UnifiedGeometryManager.stopThinkingMode();
+                }
             }
         }
 
