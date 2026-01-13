@@ -364,17 +364,17 @@
             --nord-sym-deep-space-blue-rgb: 5, 6, 8;
             --nord-sym-mid-space-blue-rgb: 30, 58, 138;
             
-            /* LIGHT MODE (Blåkopia) - SOFT GREY ADJUSTMENT */
-            --nord-sym-blueprint-bg: #FDFDFD; 
-            --nord-sym-blueprint-ink: #111827; /* Gray 900 (Mjukare svart än Slate 950) */
-            --nord-sym-blueprint-text-primary: #374151; /* Gray 700 (Mörkgrå men mjuk, inte hård) */
-            --nord-sym-blueprint-text-secondary: #6B7280; /* Gray 500 (Mjukare sekundärtext) */
-            --nord-sym-blueprint-lines: #E5E7EB; /* Gray 200 */
-            --nord-sym-blueprint-lines-faint: #F3F4F6; /* Gray 100 */
-            --nord-sym-blueprint-cyan: #0284C7; 
+            /* LIGHT MODE (Blåkopia / Arkitekt) - NY PALETT */
+            --nord-sym-blueprint-bg: #F0F4F8; /* Tekniskt Papper (Slate 50/100 mix) */
+            --nord-sym-blueprint-ink: #0F172A; /* Slate 900 (Bläck) */
+            --nord-sym-blueprint-text-primary: #1E293B; /* Slate 800 */
+            --nord-sym-blueprint-text-secondary: #475569; /* Slate 600 */
+            --nord-sym-blueprint-lines: #94A3B8; /* Slate 400 (Linjer) */
+            --nord-sym-blueprint-lines-faint: #CBD5E1; /* Slate 300 (Rutnät) */
+            --nord-sym-blueprint-cyan: #0284C7; /* Sky 600 (Ingenjörsblå) */
             --nord-sym-blueprint-cyan-rgb: 2, 132, 199;
-            --nord-sym-blueprint-bg-rgb: 253, 253, 253; 
-            --nord-sym-blueprint-ink-rgb: 17, 24, 39; 
+            --nord-sym-blueprint-bg-rgb: 240, 244, 248; 
+            --nord-sym-blueprint-ink-rgb: 15, 23, 42; 
         }
         .nord-accent-text { color: var(--nord-sym-cyan); }
         h1, h2, .section-title { font-family: 'Comfortaa', sans-serif; }
@@ -454,97 +454,137 @@
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
         }
         
-        /* --- KNAPP FÖR LJUS/MÖRKT TEMA --- */
-        .theme-toggle-btn {
-            width: 44px; height: 44px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--nord-sym-text-medium);
-            background-color: transparent;
-            font-size: 1.5rem; /* 24px */
-            transition: all 0.3s ease;
-            cursor: pointer;
-            flex-shrink: 0; /* Förhindra att knappen krymper */
-        }
-        .theme-toggle-btn:hover {
-            color: var(--nord-sym-cyan);
-            background-color: rgba(var(--nord-sym-mid-space-blue-rgb), 0.5);
-            transform: scale(1.1) rotate(15deg);
-        }
-        .theme-toggle-btn i {
-             transition: transform 0.3s ease-out;
-        }
-        .theme-toggle-btn:hover i {
-            transform: scale(1.1);
-        }
+        /* --- KNAPP FÖR LJUS/MÖRKT TEMA (ERSATT MED SWITCH) --- */
+        /* Behåller .theme-toggle-btn class för mobil-knappen tills vidare, men desktop får ny */
 
-        /* --- STILAR FÖR LIGHT THEME (BLÅKOPIA) --- */
-        /* Här kommer vi att lägga till alla våra ljusa temastilar sen */
+        /* --- STILAR FÖR LIGHT THEME (BLÅKOPIA - ARKITEKT EDITION) --- */
         body.light-theme {
             background-color: var(--nord-sym-blueprint-bg);
             color: var(--nord-sym-blueprint-ink);
+            /* Bakgrunden hanteras nu av .blueprint-grid div */
+            background-image: none; 
             
-            /* Det svaga rutnätet från vår vision */
-            background-image: 
-                linear-gradient(var(--nord-sym-blueprint-lines-faint) 1px, transparent 1px),
-                linear-gradient(to right, var(--nord-sym-blueprint-lines-faint) 1px, transparent 1px);
-            background-size: 40px 40px;
-            background-position: center center;
+            /* GLOBAL TEXT VARIABLE REMAPPING FOR LIGHT MODE */
+            /* Detta säkerställer att alla element som använder dessa variabler automatiskt blir mörka */
+            --nord-sym-text-primary: var(--nord-sym-blueprint-text-primary);
+            --nord-sym-text-secondary: var(--nord-sym-blueprint-text-secondary);
+            --nord-sym-text-light: var(--nord-sym-blueprint-text-primary);
+            --nord-sym-text-medium: var(--nord-sym-blueprint-text-secondary);
         }
+
+        /* Blueprint Grid (Light Mode Only) */
+        .blueprint-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -6; pointer-events: none;
+            opacity: 0; transition: opacity 0.5s ease;
+        }
+        body.light-theme .blueprint-grid { opacity: 1; }
         
         /* Header */
         body.light-theme #header {
-            background-color: var(--nord-sym-blueprint-bg) !important; /* VIKTIGT: Tvinga vit bakgrund */
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
+            background-color: rgba(240, 244, 248, 0.95) !important; /* Matcha papper */
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--nord-sym-blueprint-lines);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02); /* Mycket subtil skugga */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
         }
         
         /* Nav-länkar */
         body.light-theme .nav-link {
-            color: var(--nord-sym-blueprint-ink) !important; /* VIKTIGT: Tvinga mörk text */
-            opacity: 0.8;
+            color: var(--nord-sym-blueprint-text-primary) !important; /* Mörkare (Slate 800) för tydlighet */
+            font-weight: 600; /* Lite fetare */
         }
         body.light-theme .nav-link:hover {
             color: var(--nord-sym-blueprint-cyan) !important;
-            opacity: 1;
         }
         body.light-theme .nav-link.active {
             color: var(--nord-sym-blueprint-cyan) !important;
-            font-weight: 700;
-            opacity: 1;
-        }
-        
-        /* Temaknapp (Ljust läge) */
-        body.light-theme .theme-toggle-btn {
-            color: var(--nord-sym-blueprint-ink) !important; /* VIKTIGT: Synlig ikon */
-            opacity: 0.7;
-        }
-        body.light-theme .theme-toggle-btn:hover {
-            color: var(--nord-sym-blueprint-cyan) !important;
-            background-color: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
-            transform: scale(1.1) rotate(-15deg); /* Roterar åt andra hållet */
-            opacity: 1;
+            font-weight: 800;
         }
         
         /* Header CTA-knapp */
         body.light-theme .btn-cta-revised {
-            background: transparent;
+            background: var(--nord-sym-blueprint-ink); /* Mörk knapp för kontrast */
             border: 2px solid var(--nord-sym-blueprint-ink);
-            color: var(--nord-sym-blueprint-ink) !important;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            box-shadow: none;
+            color: #ffffff !important;
+            box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.4); /* Hård skugga */
+            border-radius: 6px; /* Lite kantigare */
         }
         body.light-theme .btn-cta-revised:hover {
-            background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px rgba(148, 163, 184, 0.6);
+            background: var(--nord-sym-blueprint-cyan);
             border-color: var(--nord-sym-blueprint-cyan);
-            color: var(--nord-sym-blueprint-cyan) !important;
-            box-shadow: 0 0 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
-            transform: translateY(-3px) scale(1.03); /* Behåll hover-effekt */
         }
         
+        /* NYTT: Secondary Button (Light Mode - Blueprint Style) */
+        body.light-theme .btn-secondary-on-dark {
+            color: var(--nord-sym-blueprint-ink);
+            border: 2px solid var(--nord-sym-blueprint-ink);
+            background: transparent;
+            box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.4);
+        }
+        body.light-theme .btn-secondary-on-dark:hover {
+            background-color: var(--nord-sym-blueprint-ink);
+            color: #ffffff;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px rgba(148, 163, 184, 0.6);
+        }
+
+        /* --- DAY/NIGHT SWITCH CSS (Från Varvet) --- */
+        .theme-switch {
+            --toggle-size: 10px; 
+            --container-width: 5.625em;
+            --container-height: 2.5em;
+            --container-radius: 6.25em;
+            --container-light-bg: #3D7EAE;
+            --container-night-bg: #0f172a; /* Matchar deep space */
+            --circle-container-diameter: 3.375em;
+            --sun-moon-diameter: 2.125em;
+            --sun-bg: #ECCA2F;
+            --moon-bg: #C4C9D1;
+            --spot-color: #959DB1;
+            --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
+            --stars-color: #fff;
+            --clouds-color: #F3FDFF;
+            --back-clouds-color: #AACADF;
+            --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
+            --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
+        }
+
+        .theme-switch, .theme-switch *, .theme-switch *::before, .theme-switch *::after {
+            -webkit-box-sizing: border-box; box-sizing: border-box; margin: 0; padding: 0; font-size: var(--toggle-size);
+        }
+
+        .theme-switch__container {
+            width: var(--container-width); height: var(--container-height);
+            background-color: var(--container-light-bg); border-radius: var(--container-radius);
+            overflow: hidden; cursor: pointer;
+            box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+            transition: var(--transition); position: relative; border: 1px solid rgba(255,255,255,0.2); 
+        }
+        /* ... (Resten av Theme Switch CSS är identisk med Varvet, inbäddad för att spara plats i chatten men fullt implementerad i filen) ... */
+        .theme-switch__checkbox { display: none; }
+        .theme-switch__circle-container { width: var(--circle-container-diameter); height: var(--circle-container-diameter); background-color: rgba(255, 255, 255, 0.1); position: absolute; left: var(--circle-container-offset); top: var(--circle-container-offset); border-radius: var(--container-radius); box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1); display: flex; transition: var(--circle-transition); pointer-events: none; }
+        .theme-switch__sun-moon-container { pointer-events: auto; position: relative; z-index: 2; width: var(--sun-moon-diameter); height: var(--sun-moon-diameter); margin: auto; border-radius: var(--container-radius); background-color: var(--sun-bg); box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset; filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25)); overflow: hidden; transition: var(--transition); }
+        .theme-switch__moon { transform: translateX(100%); width: 100%; height: 100%; background-color: var(--moon-bg); border-radius: inherit; box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset; transition: var(--transition); position: relative; }
+        .theme-switch__spot { position: absolute; top: 0.75em; left: 0.312em; width: 0.75em; height: 0.75em; border-radius: var(--container-radius); background-color: var(--spot-color); box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset; }
+        .theme-switch__spot:nth-of-type(2) { width: 0.375em; height: 0.375em; top: 0.937em; left: 1.375em; }
+        .theme-switch__spot:nth-last-of-type(3) { width: 0.25em; height: 0.25em; top: 0.312em; left: 0.812em; }
+        .theme-switch__clouds { width: 1.25em; height: 1.25em; background-color: var(--clouds-color); border-radius: var(--container-radius); position: absolute; bottom: -0.625em; left: 0.312em; box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color), 1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color), 2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color), 2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color), 3.625em -0.062em var(--clouds-color), 2.625em 0em var(--back-clouds-color), 4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color), 4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color), 4.125em -2.125em 0 0.437em var(--back-clouds-color); transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25); }
+        .theme-switch__stars-container { position: absolute; color: var(--stars-color); top: -100%; left: 0.312em; width: 2.75em; height: auto; transition: var(--transition); }
+        .theme-switch__checkbox:checked + .theme-switch__container { background-color: var(--container-night-bg); border-color: rgba(255,255,255,0.1); }
+        .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container { left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter)); }
+        .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container:hover { left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em) }
+        .theme-switch__circle-container:hover { left: calc(var(--circle-container-offset) + 0.187em); }
+        .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__moon { transform: translate(0); }
+        .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__clouds { bottom: -4.062em; }
+        .theme-switch__checkbox:checked + .theme-switch__container .theme-switch__stars-container { top: 50%; transform: translateY(-50%); }
+
+
         /* Mobilmeny-bakgrund */
         body.light-theme #mobile-menu {
             background-color: var(--nord-sym-blueprint-bg) !important;
@@ -561,107 +601,13 @@
             opacity: 1;
         }
 
-        /* Allmänna sektionsstilar (Blåkopia) */
-        body.light-theme .section-title {
-            color: var(--nord-sym-blueprint-ink);
-        }
-        body.light-theme .section-title-accent {
-            color: var(--nord-sym-blueprint-cyan);
-            text-shadow: none; /* Ta bort glöd */
-        }
-        
-        /* UPPDATERAD TEXT-HANTERING FÖR LIGHT THEME */
-        body.light-theme p,
-        body.light-theme span,
-        body.light-theme li,
-        body.light-theme .text-sky-100,
-        body.light-theme .text-sky-200,
-        body.light-theme .text-white,
-        body.light-theme .text-content-dark-bg {
-            color: var(--nord-sym-blueprint-text-primary) !important; /* Mörkare (Slate 800) */
-            opacity: 1 !important;
-        }
-        
-        body.light-theme .text-sky-300,
-        body.light-theme .text-medium {
-             color: var(--nord-sym-blueprint-text-secondary) !important; /* Lite ljusare (Slate 600) */
-        }
-        
-        /* Undantag för specifika element som behöver behålla sin färg */
-        body.light-theme .btn-cta-revised,
-        body.light-theme .btn-cta-revised span {
-             color: var(--nord-sym-blueprint-cyan) !important;
-        }
-        body.light-theme .btn-cta-revised:hover,
-        body.light-theme .btn-cta-revised:hover span {
-             color: #FDFDFD !important; /* Vit text vid hover med fylld bakgrund */
-        }
-
-        body.light-theme .text-lg,
-        body.light-theme .text-xl {
-             color: var(--nord-sym-blueprint-text-secondary);
-        }
-        body.light-theme .text-sky-100,
-        body.light-theme .text-sky-200,
-        body.light-theme .text-sky-300,
-        body.light-theme .text-white {
-            /* Använder !important för att säkert skriva över Tailwind utility-klasser */
-            color: var(--nord-sym-blueprint-ink) !important;
-            opacity: 0.9;
-        }
-        body.light-theme .text-lg,
-        body.light-theme .text-xl {
-             color: var(--nord-sym-blueprint-ink);
-        }
-        body.light-theme .hero-headline-glow {
-            color: var(--nord-sym-blueprint-ink); /* Huvudrubrik */
-            animation: none; /* Ta bort glöd */
-        }
-        body.light-theme .btn-secondary-on-dark {
-            background: transparent;
-            border: 2px solid var(--nord-sym-blueprint-ink);
-            color: var(--nord-sym-blueprint-ink);
-            box-shadow: none;
-        }
-        body.light-theme .btn-secondary-on-dark:hover {
-            background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
-            border-color: var(--nord-sym-blueprint-cyan);
-            color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
-            transform: translateY(-3px) scale(1.03);
-        }
-        body.light-theme .inline-block.bg-sky-800\/50 { /* "Vår Arkitektur" / "System" badge */
-             background-color: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1) !important;
-             color: var(--nord-sym-blueprint-cyan) !important;
-        }
-
-        /* Venn Diagram (Blåkopia) */
-        body.light-theme .venn-circle {
-            background: transparent;
-            border: 2px solid var(--nord-sym-blueprint-ink);
-            box-shadow: none;
-            animation: none; /* Ta bort puls */
-        }
-        body.light-theme .venn-circle-text {
-            color: var(--nord-sym-blueprint-ink);
-            opacity: 0.8;
-        }
-        body.light-theme .venn-overlap-text {
-            color: var(--nord-sym-blueprint-cyan);
-            text-shadow: none;
-        }
-        body.light-theme .venn-overlap-text:hover {
-            color: var(--nord-sym-blueprint-cyan);
-            filter: none;
-            transform: translate(-50%, -50%) scale(1.05);
-        }
-
-        /* Atom Gallery (Blåkopia) */
+        /* Atom Gallery (Blåkopia / Arkitekt) - SOLIDA KORT */
         body.light-theme .archetype-card {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
+            background: #ffffff; /* Solid vit */
+            border: 2px solid var(--nord-sym-blueprint-lines); /* Skarp kant */
             backdrop-filter: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2); /* Hård skugga */
+            border-radius: 12px; /* Mindre rundade */
         }
         body.light-theme .archetype-card::before { /* Ta bort glöd */
             background: none;
@@ -669,8 +615,8 @@
         }
         body.light-theme .archetype-card:hover {
             border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
-            transform: translateY(-8px) scale(1.02);
+            box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2); /* Hårdare blå skugga */
+            transform: translate(-2px, -2px); /* Mekaniskt lyft */
         }
         body.light-theme .archetype-card > i {
             color: var(--nord-sym-blueprint-cyan);
@@ -686,33 +632,28 @@
             opacity: 0.8;
         }
         body.light-theme .archetype-card .avatar-image {
-             filter: drop-shadow(0 0 3px rgba(var(--nord-sym-blueprint-ink), 0.2));
+             filter: none; /* Ingen skugga på bilder */
+             border: 2px solid var(--nord-sym-blueprint-lines-faint);
         }
         body.light-theme .archetype-card:hover > i,
         body.light-theme .archetype-card:hover > .avatar-image {
-            filter: drop-shadow(0 0 10px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.7));
+            filter: none;
+            border-color: var(--nord-sym-blueprint-cyan);
         }
         body.light-theme .archetype-card .indicator {
             border-top-color: var(--nord-sym-blueprint-lines-faint);
         }
         body.light-theme .archetype-cta {
-            border-color: var(--nord-sym-blueprint-lines);
+            border: 2px solid var(--nord-sym-blueprint-ink); /* Solid knapp */
             color: var(--nord-sym-blueprint-ink);
             box-shadow: none;
+            font-weight: 700;
         }
         body.light-theme .archetype-cta:hover {
             border-color: var(--nord-sym-blueprint-cyan);
-            color: var(--nord-sym-blueprint-cyan);
-            background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
-            box-shadow: 0 0 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
-        }
-        body.light-theme .archetype-card.teaser > * {
-            filter: blur(4px);
-            opacity: 0.3;
-        }
-        body.light-theme .archetype-card.teaser::after { /* "Under utveckling" text */
-            color: rgba(var(--nord-sym-blueprint-ink-rgb), 0.05);
-            text-shadow: none;
+            color: #ffffff;
+            background: var(--nord-sym-blueprint-cyan);
+            box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.4);
         }
 
         /* --- GALLERI-VÄXLARE: BAS-STILAR (DARK MODE) --- */
@@ -740,13 +681,13 @@
 
         /* NYTT: Stilar för Galleri-växlare (Blåkopia) */
         body.light-theme #gallery-switch-container {
-            background-color: #f1f5f9; /* Slate 100 - Tydligare ljus bakgrund */
-            border: 1px solid #cbd5e1; /* Slate 300 - Tydligare kant */
+            background-color: #ffffff; /* Ren vit */
+            border: 2px solid var(--nord-sym-blueprint-lines); /* Tydlig kant */
         }
         /* UPPDATERAD: Slider-elementet (Ljust läge) */
         body.light-theme #gallery-switch-slider {
             background-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 4px 10px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
+            box-shadow: none; /* Platt design */
         }
         /* UPPDATERAD: Knappstilar (Ljust läge) */
         body.light-theme .gallery-switch-btn {
@@ -763,89 +704,63 @@
             opacity: 1;
         }
         body.light-theme #gallery-description-text {
-            color: var(--nord-sym-blueprint-ink) !important; /* Tailwind override */
-            opacity: 0.9;
+            color: var(--nord-sym-blueprint-text-secondary) !important;
+            font-weight: 500;
         }
 
         /* Galleri-kontroller (Blåkopia) */
         body.light-theme .gallery-control-btn {
-            background: transparent;
-            border: 1px solid var(--nord-sym-blueprint-lines);
+            background: #ffffff;
+            border: 2px solid var(--nord-sym-blueprint-lines);
             color: var(--nord-sym-blueprint-ink);
-            opacity: 0.7;
+            opacity: 1;
+            box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.2);
         }
         body.light-theme .gallery-control-btn:hover:not(.disabled) {
-            background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1);
+            background: var(--nord-sym-blueprint-cyan);
             border-color: var(--nord-sym-blueprint-cyan);
-            color: var(--nord-sym-blueprint-cyan);
+            color: #ffffff;
             opacity: 1;
+            box-shadow: 4px 4px 0px rgba(2, 132, 199, 0.2);
+            transform: translate(-1px, -1px);
         }
-        body.light-theme .gallery-control-btn.disabled {
-            background: transparent;
-            opacity: 0.3;
-        }
-        body.light-theme .gallery-pagination-dot {
-            background-color: var(--nord-sym-blueprint-lines-faint);
-            border-color: var(--nord-sym-blueprint-lines);
-        }
-        body.light-theme .gallery-pagination-dot:hover {
-            background-color: var(--nord-sym-blueprint-lines);
-        }
-        body.light-theme .gallery-pagination-dot.active {
-            background-color: var(--nord-sym-blueprint-cyan);
-            border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 10px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.5);
-        }
-
+        
         /* Om Oss / Arkitektur-sida (Blåkopia) */
-        body.light-theme #om-oss .arkitektur-grid .arkitektur-card {
-             /* Tailwind .content-card-transparent ersätts */
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
-        }
         body.light-theme .arkitektur-card {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            background: #ffffff;
+            border: 2px solid var(--nord-sym-blueprint-lines);
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2);
             backdrop-filter: none;
+            border-radius: 12px;
         }
         body.light-theme .arkitektur-card:hover {
             border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
-            transform: translateY(-5px) scale(1.01); /* Subtilare än galleriet */
-        }
-        body.light-theme .arkitektur-card h3 {
-            color: var(--nord-sym-blueprint-ink);
-        }
-        body.light-theme .arkitektur-card i,
-        body.light-theme #om-oss .arkitektur-list i {
-            color: var(--nord-sym-blueprint-cyan);
-        }
-        body.light-theme .arkitektur-card p,
-        body.light-theme #om-oss .arkitektur-list li {
-            color: var(--nord-sym-blueprint-ink);
-            opacity: 0.8;
+            box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2);
+            transform: translate(-2px, -2px);
         }
 
         /* System / Pris-sida (Blåkopia) */
         body.light-theme .pricing-card {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
+            background: #ffffff;
+            border: 2px solid var(--nord-sym-blueprint-lines);
             backdrop-filter: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
         }
         body.light-theme .pricing-card:hover {
             border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
+            box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2);
+            transform: translate(-2px, -2px);
         }
         body.light-theme .pricing-card.ignite-package { /* "Struktur"-paketet */
             border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
-            transform: scale(1.05);
+            box-shadow: 10px 10px 0px rgba(2, 132, 199, 0.15);
+            transform: scale(1.02);
+            background: #F8FAFC; /* Lite tint */
         }
         body.light-theme .pricing-card.ignite-package:hover {
-            transform: scale(1.08) translateY(-8px);
+            transform: scale(1.04) translate(-2px, -2px);
+            box-shadow: 14px 14px 0px rgba(2, 132, 199, 0.25);
         }
         body.light-theme .pricing-card-header h3,
         body.light-theme .price-display {
@@ -854,20 +769,42 @@
         body.light-theme .price-period,
         body.light-theme .pricing-card li,
         body.light-theme .pricing-card .text-sky-300 {
-            color: var(--nord-sym-blueprint-ink) !important; /* Tailwind override */
-            opacity: 0.8;
+            color: var(--nord-sym-blueprint-text-primary) !important; 
+            opacity: 1;
         }
         body.light-theme .pricing-card li i {
             color: var(--nord-sym-blueprint-cyan);
             opacity: 1;
         }
+        /* Återställ knappar i light mode */
+        body.light-theme .pricing-card .btn-base {
+             border: 2px solid var(--nord-sym-blueprint-ink) !important;
+             color: var(--nord-sym-blueprint-ink) !important;
+             box-shadow: none;
+        }
+        body.light-theme .pricing-card .btn-base:hover {
+             border-color: var(--nord-sym-blueprint-cyan) !important;
+             color: var(--nord-sym-blueprint-cyan) !important;
+             background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.1) !important;
+        }
+        /* FIX: Tvinga "Diskutera Behov" (CTA) att vara fylld och synlig i Light Mode */
+        body.light-theme .pricing-card .btn-cta-revised {
+            background: var(--nord-sym-blueprint-ink) !important;
+            color: #ffffff !important; /* Vit text på mörk knapp */
+            border-color: var(--nord-sym-blueprint-ink) !important;
+        }
+        body.light-theme .pricing-card .btn-cta-revised:hover {
+            background: var(--nord-sym-blueprint-cyan) !important;
+            border-color: var(--nord-sym-blueprint-cyan) !important;
+            color: #ffffff !important;
+        }
 
         /* Juridiska sidor (Blåkopia) */
         body.light-theme .legal-content-card {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
+            background: #ffffff;
+            border: 2px solid var(--nord-sym-blueprint-lines);
             backdrop-filter: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2);
         }
         body.light-theme .legal-content-container h4 {
             color: var(--nord-sym-blueprint-ink);
@@ -875,8 +812,8 @@
         body.light-theme .legal-content-container p,
         body.light-theme .legal-content-container ul,
         body.light-theme .legal-content-container a {
-            color: var(--nord-sym-blueprint-ink);
-            opacity: 0.8;
+            color: var(--nord-sym-blueprint-text-primary);
+            opacity: 1;
         }
         body.light-theme .legal-content-container a:hover {
             color: var(--nord-sym-blueprint-cyan);
@@ -885,9 +822,93 @@
 
         /* Footer (Blåkopia) */
         body.light-theme #main-footer {
-            background-color: var(--nord-sym-blueprint-bg) !important; /* VIKTIGT: Tvinga vit bakgrund */
-            border: 1px solid var(--nord-sym-blueprint-lines);
-            border-top: 1px solid var(--nord-sym-blueprint-lines); /* Dubbel spec. för säkerhet */
+            background-color: #ffffff !important; /* VIKTIGT: Tvinga vit bakgrund */
+            border-top: 2px solid var(--nord-sym-blueprint-lines); 
+            box-shadow: none;
+        }
+        body.light-theme .footer-quicklinks .font-semibold,
+        body.light-theme .nordsym-logo-star {
+            color: var(--nord-sym-blueprint-ink) !important;
+            animation: none; /* Ta bort stjärn-glöd */
+        }
+        body.light-theme .footer-link,
+        body.light-theme #main-footer .text-xs,
+        body.light-theme #main-footer p,
+        body.light-theme #main-footer span {
+            color: var(--nord-sym-blueprint-text-secondary) !important; 
+            opacity: 1;
+        }
+        body.light-theme .footer-link:hover {
+            color: var(--nord-sym-blueprint-cyan) !important;
+            opacity: 1;
+            text-shadow: none;
+        }
+        /* Återställ footer-knapp för ljust läge */
+        body.light-theme .btn-service-cta {
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            color: var(--nord-sym-blueprint-ink) !important;
+        }
+        body.light-theme .btn-service-cta:hover {
+            background-color: var(--nord-sym-blueprint-ink) !important;
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            color: #ffffff !important;
+            box-shadow: none !important;
+        }
+        
+        body.light-theme #main-footer .border-sky-700\/50 {
+            border-color: var(--nord-sym-blueprint-lines-faint) !important;
+        }
+        
+        /* FIX: Synliggör social-ikoner i Light Mode */
+        body.light-theme #main-footer .ph {
+            color: var(--nord-sym-blueprint-text-secondary) !important;
+            opacity: 1;
+        }
+        body.light-theme #main-footer a:hover .ph {
+            color: var(--nord-sym-blueprint-cyan) !important;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* --- FORMULÄR & MODALS (Blåkopia) --- */
+        body.light-theme .form-container {
+            background: #ffffff;
+            border: 2px solid var(--nord-sym-blueprint-lines);
+            backdrop-filter: none;
+            box-shadow: 10px 10px 0px rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+        }
+        body.light-theme .form-container:hover {
+            box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2);
+            border-color: var(--nord-sym-blueprint-cyan);
+        }
+        body.light-theme .form-label {
+            color: var(--nord-sym-blueprint-ink);
+            font-weight: 600;
+        }
+        body.light-theme .form-input, 
+        body.light-theme .form-textarea {
+            background-color: #F8FAFC;
+            border: 2px solid var(--nord-sym-blueprint-lines-faint);
+            color: var(--nord-sym-blueprint-ink);
+            border-radius: 6px;
+        }
+        body.light-theme .form-input::placeholder, 
+        body.light-theme .form-textarea::placeholder {
+            color: var(--nord-sym-blueprint-text-secondary);
+            opacity: 0.6;
+        }
+        body.light-theme .form-input:focus, 
+        body.light-theme .form-textarea:focus {
+            border-color: var(--nord-sym-blueprint-cyan);
+            box-shadow: 4px 4px 0px rgba(2, 132, 199, 0.1);
+            background-color: #ffffff; 
+        }
+        body.light-theme .form-progress-bar {
+            background-color: var(--nord-sym-blueprint-lines-faint);
+        }
+        body.light-theme .form-progress-bar-inner {
+            background: var(--nord-sym-blueprint-cyan);
             box-shadow: none;
         }
         body.light-theme .footer-quicklinks .font-semibold,
@@ -1173,32 +1194,65 @@
 
         /* --- RITBORDET LOBBY (Blåkopia) --- */
         body.light-theme .ritbordet-card {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
+            background: #ffffff; /* Ändrat från blueprint-bg till ren vit */
+            border: 2px solid var(--nord-sym-blueprint-lines); /* 2px solid kant */
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2); /* Hård skugga */
+            border-radius: 12px; /* Matchar Tjänster */
         }
         body.light-theme .ritbordet-card:not(.flippable):hover {
             border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
+            box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2); /* Hårdare blå skugga vid hover */
+            transform: translate(-2px, -2px);
         }
+        /* Fix för flippable hover effect container */
         body.light-theme .ritbordet-card.flippable:hover .flip-card-front {
              border-color: var(--nord-sym-blueprint-cyan);
-             box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
+             box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2);
+             transform: translate(-2px, -2px); /* Flytta hela fronten */
+        }
+
+        /* FIX: R&D Cube Icon Container i Light Mode (Ink Style) */
+        body.light-theme .ritbordet-card .bg-sky-900\/50 {
+            background-color: #f1f5f9 !important; /* Slate 100 */
+            border-color: var(--nord-sym-blueprint-ink) !important;
+        }
+        /* FIX: R&D Cube Icon Color i Light Mode */
+        body.light-theme .ritbordet-card .text-nord-sym-cyan {
+            color: var(--nord-sym-blueprint-ink) !important;
+        }
+        /* Hover effekt för cirkeln i light mode */
+        body.light-theme .ritbordet-card:hover .bg-sky-900\/50 {
+            background-color: var(--nord-sym-blueprint-ink) !important;
+            border-color: var(--nord-sym-blueprint-ink) !important;
+        }
+        body.light-theme .ritbordet-card:hover .text-nord-sym-cyan {
+            color: #ffffff !important;
         }
 
         /* --- NYTT: Flip Card Mekanik (LJUST TEMA) --- */
         body.light-theme .flip-card-front {
-            background: var(--nord-sym-blueprint-bg);
-            border: 1px solid var(--nord-sym-blueprint-lines);
+            background: #ffffff; /* Ren vit */
+            border: 2px solid var(--nord-sym-blueprint-lines);
             backdrop-filter: none;
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2); /* Hård skugga */
+            border-radius: 12px;
         }
+        /* Ta bort border från containern om den är flippable för att undvika dubbla kanter */
+        body.light-theme .ritbordet-card.flippable {
+            border: none;
+            background: transparent;
+            box-shadow: none;
+        }
+        
         body.light-theme .flip-card-back {
-            background: rgba(var(--nord-sym-blueprint-cyan-rgb), 0.05);
-            border: 1px solid var(--nord-sym-blueprint-cyan);
+            background: #ffffff; /* Vit bakgrund för baksidan också för läsbarhet */
+            border: 2px solid var(--nord-sym-blueprint-cyan); /* Cyan kant för baksidan */
             backdrop-filter: none;
             transform: rotateY(180deg);
+            box-shadow: 8px 8px 0px rgba(2, 132, 199, 0.2);
+            border-radius: 12px;
         }
         body.light-theme .flip-card-back h5 {
             color: var(--nord-sym-blueprint-cyan);
@@ -1239,6 +1293,13 @@
             border-color: var(--nord-sym-blueprint-cyan);
             box-shadow: 0 0 30px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
         }
+        
+        /* HERO RUBRIK OVERRIDE FOR LIGHT MODE */
+        body.light-theme h1 {
+            color: var(--nord-sym-blueprint-ink) !important;
+            text-shadow: 4px 4px 0px rgba(148, 163, 184, 0.2) !important;
+        }
+
         body.light-theme #geometry-cta i {
             color: var(--nord-sym-blueprint-ink);
             transition: all 0.3s ease; /* Säkerställ transition */
@@ -1319,6 +1380,26 @@
             display: flex; justify-content: center; align-items: center;
             min-height: 350px;
         }
+        /* LIGHT THEME VENN DIAGRAM FIX */
+        body.light-theme .venn-circle {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--nord-sym-blueprint-lines);
+            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+        }
+        body.light-theme .venn-circle-text {
+            color: var(--nord-sym-blueprint-ink) !important;
+            text-shadow: none;
+            font-weight: 800;
+        }
+        body.light-theme .venn-overlap-text {
+            color: var(--nord-sym-blueprint-ink) !important;
+            text-shadow: 2px 2px 0px #ffffff; /* Outline effekt för läsbarhet vid överlapp */
+            font-weight: 900;
+        }
+        body.light-theme .venn-overlap-text i {
+            color: var(--nord-sym-blueprint-cyan) !important;
+        }
+
         .venn-diagram-wrapper {
             position: relative; width: 440px; height: 280px;
             transition: all 0.3s ease-in-out;
@@ -2574,34 +2655,101 @@
             transform: scale(1);
         }
 
-        /* --- FOUNDER MODAL (NY) --- */
-        #founder-modal {
-            transition: opacity 0.3s ease;
+        /* --- SYSTEM (TJÄNSTER) LIGHT MODE FIXES --- */
+        body.light-theme #system h3.text-white {
+            color: var(--nord-sym-blueprint-ink) !important;
+            font-weight: 700;
         }
-        #founder-modal .modal-content-wrapper {
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        #founder-modal.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        #founder-modal.visible .modal-content-wrapper {
-            transform: scale(1);
+        body.light-theme #system span.border-white {
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            color: var(--nord-sym-blueprint-ink) !important;
+            background: rgba(255, 255, 255, 0.8) !important;
         }
 
-        /* --- KOMMER SNART-MODAL --- */
-        #coming-soon-modal {
-            transition: opacity 0.3s ease;
+        /* FIX: Operativsystem-knapp (Ignite Package) synlighet */
+        body.light-theme .pricing-card.ignite-package .btn-cta-revised {
+            background-color: var(--nord-sym-blueprint-ink) !important;
+            color: #ffffff !important;
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            opacity: 1 !important;
         }
-        #coming-soon-modal .modal-content-wrapper {
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        body.light-theme .pricing-card.ignite-package .btn-cta-revised:hover {
+            background-color: var(--nord-sym-blueprint-cyan) !important;
+            border-color: var(--nord-sym-blueprint-cyan) !important;
         }
-        #coming-soon-modal.visible {
-            opacity: 1;
-            pointer-events: auto;
+
+        /* FIX: "Gaming + AI + Three.js" Rubrik i R&D */
+        body.light-theme #ritbordet-lobby h2 {
+            color: var(--nord-sym-blueprint-ink) !important;
         }
-        #coming-soon-modal.visible .modal-content-wrapper {
-            transform: scale(1);
+        body.light-theme #ritbordet-lobby p.text-sky-100\/80 {
+            color: var(--nord-sym-blueprint-text-secondary) !important;
+            opacity: 1 !important;
+        }
+
+        /* FIX: "Micro-SaaS & Verktyg" Tagg - Uppdaterad till Ink Style (Matchar TJÄNSTER) */
+        body.light-theme #om-oss .text-center > span.inline-block {
+            color: var(--nord-sym-blueprint-ink) !important;
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            box-shadow: none !important;
+        }
+
+        /* FIX: "R&D" Tagg - Uppdaterad till Ink Style */
+        body.light-theme #ritbordet-lobby .text-center > span.inline-block {
+            color: var(--nord-sym-blueprint-ink) !important;
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            box-shadow: none !important;
+        }
+
+        /* FIX: "Frigör er potential" Tagg-rubrik */
+        body.light-theme #home-diagram-section h2 {
+            color: var(--nord-sym-blueprint-ink) !important;
+            border-color: var(--nord-sym-blueprint-cyan) !important;
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+        }
+        
+        /* FIX: Textlänk "Utforska tjänster" i Light Mode */
+        body.light-theme #home-diagram-section p a {
+            color: var(--nord-sym-blueprint-cyan) !important;
+            border-bottom-color: var(--nord-sym-blueprint-cyan) !important;
+        }
+        body.light-theme #home-diagram-section p a:hover {
+            color: var(--nord-sym-blueprint-ink) !important;
+            border-bottom-color: var(--nord-sym-blueprint-ink) !important;
+        }
+
+        /* FIX: Digital Integritet (Cookie Banner) */
+        body.light-theme #cookie-consent span.font-bold {
+            color: var(--nord-sym-blueprint-ink) !important;
+        }
+
+        /* --- FOUNDER BADGE LIGHT MODE FIXES --- */
+        /* Target the founder button specifically */
+        body.light-theme #om-oss button.border-white, 
+        body.light-theme #system button.border-white {
+            border-color: var(--nord-sym-blueprint-lines) !important;
+            background: #ffffff !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+        }
+        body.light-theme #om-oss button .text-white,
+        body.light-theme #system button .text-white {
+            color: var(--nord-sym-blueprint-ink) !important;
+        }
+        body.light-theme #om-oss button .text-white\/80,
+        body.light-theme #system button .text-white\/80 {
+            color: var(--nord-sym-blueprint-text-secondary) !important;
+        }
+        body.light-theme #om-oss button .text-white\/70,
+        body.light-theme #system button .text-white\/70 {
+            color: var(--nord-sym-blueprint-lines) !important;
+        }
+        body.light-theme #om-oss button:hover,
+        body.light-theme #system button:hover {
+            border-color: var(--nord-sym-blueprint-cyan) !important;
+            box-shadow: 0 4px 15px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.15) !important;
         }
 
         /* --- CHAT WIDGET STYLES --- */
@@ -3802,43 +3950,27 @@
         /* Light Theme Overrides */
         body.light-theme .product-card {
             background: #ffffff !important;
-            /* Stack Effect Light Mode - Vertikal */
-            box-shadow: 
-                0 0 0 1px rgba(0,0,0,0.08), 
-                0 20px 40px -10px rgba(0,0,0,0.1),
-                
-                /* Layer 1 */
-                0 8px 0 -2px #ffffff,
-                0 8px 0 -1px rgba(0,0,0,0.06),
-                
-                /* Layer 2 */
-                0 16px 0 -4px #ffffff,
-                0 16px 0 -3px rgba(0,0,0,0.04);
+            border: 2px solid var(--nord-sym-blueprint-lines); /* 2px solid kant */
+            border-radius: 12px; /* Matchar Tjänster */
+            /* Ersätt Stack Effect med Hård Skugga */
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2) !important;
             opacity: 1 !important;
         }
         body.light-theme .product-card:hover {
-            box-shadow: 
-                0 0 0 1px var(--nord-sym-blueprint-cyan),
-                0 30px 60px -12px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.15),
-                
-                /* Layer 1 Hover */
-                0 10px 0 -2px #ffffff,
-                0 10px 0 -1px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3),
-                
-                /* Layer 2 Hover */
-                0 20px 0 -4px #ffffff,
-                0 20px 0 -3px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.15);
+            border-color: var(--nord-sym-blueprint-cyan);
+            box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2) !important;
+            transform: translate(-2px, -2px);
         }
         body.light-theme .product-screenshot-container {
             background: #f8fafc;
-            border-bottom-color: var(--nord-sym-blueprint-lines);
+            border-bottom: 2px solid var(--nord-sym-blueprint-lines); /* Matchar yttre kant */
         }
         
         /* SPECIFIK FIX FÖR TEXTPANEL I LJUST LÄGE */
         body.light-theme .product-text-panel {
             background-color: #ffffff;
             background-image: none; /* Inga stjärnor i ljust läge */
-            border-top: 1px solid var(--nord-sym-blueprint-lines);
+            border-top: none; /* Rensa gammal border */
         }
         body.light-theme .product-text-panel h3 {
             background: none; /* Ingen gradient */
@@ -3849,13 +3981,23 @@
         body.light-theme .product-text-panel p {
             color: #334155 !important; /* Slate 700 - Tvinga mörk brödtext */
         }
+        /* UPPDATERAT: Tech Badge i Light Mode till "Ink Style" (Renare) */
         body.light-theme .product-text-panel .tech-badge {
-            background-color: #e0f2fe; /* Sky 100 */
-            color: #0284c7; /* Sky 600 */
-            border-color: #bae6fd; /* Sky 200 */
+            background-color: transparent !important;
+            color: var(--nord-sym-blueprint-ink) !important;
+            border-color: var(--nord-sym-blueprint-ink) !important;
+            box-shadow: none !important;
         }
         body.light-theme .product-text-panel span.text-xs {
             color: #64748b !important; /* Slate 500 - Status text */
+        }
+        
+        /* FIX: Product Card CTAs (Öppna Verktyg etc) i Light Mode */
+        body.light-theme .product-text-panel a {
+            color: var(--nord-sym-blueprint-cyan) !important;
+        }
+        body.light-theme .product-text-panel a:hover {
+            color: var(--nord-sym-blueprint-ink) !important;
         }
         
         /* --- NYA NAVIGATIONSKNAPPAR (MED TYNGD & STABILITET) --- */
@@ -4119,51 +4261,63 @@
         /* LIGHT THEME OVERRIDES FOR GITHUB CARD (Solid & Tung) */
         body.light-theme .gh-profile-card {
             background: #ffffff;
-            border: 1px solid #d0d7de;
-            color: #24292f;
-            /* Ljusare men fortfarande tung skugga */
-            box-shadow: 
-                0 0 0 1px rgba(0,0,0,0.03),
-                0 25px 50px -12px rgba(0, 0, 0, 0.15),
-                0 0 20px rgba(0, 0, 0, 0.05);
+            border: 2px solid var(--nord-sym-blueprint-lines); /* 2px solid kant */
+            color: var(--nord-sym-blueprint-ink); /* Bläck-svart text */
+            border-radius: 12px; /* Matchar Tjänster */
+            /* Ersätt mjuk skugga med Hård Skugga */
+            box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2);
         }
         body.light-theme .gh-profile-card:hover {
-            box-shadow: 
-                0 0 0 1px var(--nord-sym-blueprint-cyan),
-                0 30px 60px -12px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.2);
+            box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2);
             border-color: var(--nord-sym-blueprint-cyan);
+            transform: translate(-2px, -2px);
         }
         body.light-theme .gh-profile-header {
-            background: #f6f8fa;
-            border-bottom-color: #d0d7de;
+            background: rgba(248, 250, 252, 0.5); /* Mycket lätt tint */
+            border-bottom: 2px solid var(--nord-sym-blueprint-lines); /* Matcha yttre kant */
         }
+        /* Uppdatera textfärger i GH-kortet för Light Mode */
+        body.light-theme .gh-names .text-white { color: var(--nord-sym-blueprint-ink) !important; }
+        body.light-theme .gh-bio strong.text-white { color: var(--nord-sym-blueprint-ink) !important; }
+        
         body.light-theme .gh-avatar {
             background-color: #ffffff;
-            border-color: #d0d7de;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--nord-sym-blueprint-lines);
+            box-shadow: none;
         }
-        body.light-theme .gh-name { color: #24292f; }
+        body.light-theme .gh-name { color: var(--nord-sym-blueprint-ink); }
         body.light-theme .gh-username, 
         body.light-theme .gh-bio, 
         body.light-theme .gh-meta,
-        body.light-theme .gh-pinned-title { color: #57606a; }
+        body.light-theme .gh-pinned-title { color: var(--nord-sym-blueprint-text-secondary); }
+        
         /* NYTT: Se till att SVG-ikoner får rätt färg i ljust läge */
-        body.light-theme .gh-meta-item svg { color: #57606a; }
+        body.light-theme .gh-meta-item svg { color: var(--nord-sym-blueprint-text-secondary); }
         body.light-theme .gh-meta-item:hover svg, body.light-theme .gh-meta-item:hover { color: var(--nord-sym-blueprint-cyan); }
         
         body.light-theme .gh-btn {
-            background: #ffffff; border-color: rgba(27,31,36,0.15); color: #24292f;
-            box-shadow: 0 1px 0 rgba(27,31,36,0.04);
+            background: #ffffff; 
+            border: 2px solid var(--nord-sym-blueprint-ink); /* Matchar sekundära knappar */
+            color: var(--nord-sym-blueprint-ink);
+            box-shadow: none;
+            font-weight: 600;
         }
-        body.light-theme .gh-btn:hover { background: #f3f4f6; }
+        body.light-theme .gh-btn:hover { 
+            background: var(--nord-sym-blueprint-ink); 
+            color: #ffffff;
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px rgba(148, 163, 184, 0.4);
+        }
         body.light-theme .gh-repo-card {
-            background: #ffffff; border-color: #d0d7de;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: #ffffff; 
+            border: 2px solid var(--nord-sym-blueprint-lines);
+            box-shadow: none;
         }
         body.light-theme .gh-repo-card:hover {
             border-color: var(--nord-sym-blueprint-cyan);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            box-shadow: 4px 4px 0px rgba(2, 132, 199, 0.2);
             background: #ffffff;
+            transform: translate(-1px, -1px);
         }
         /* --- VERKTYGSFÄLT (TOOLBAR) - JS STYRD --- */
         body.light-theme .gh-repo-desc { color: #57606a; }
@@ -4292,8 +4446,9 @@
         </ul>
     </nav>
 
-    <!-- Insert Starfall Canvas before Header -->
     <canvas id="starfall"></canvas>
+    <!-- NYTT: Blueprint Grid för Light Mode -->
+    <div class="blueprint-grid"></div>
 
     <header id="header" class="fixed w-full top-0 left-0 right-0 z-40 bg-nord-sym-deep-space-blue/95 transition-all duration-300" itemscope itemtype="https://schema.org/WPHeader">
         <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center"> 
@@ -4310,13 +4465,32 @@
             </nav>
             <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
                 <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm">Framtidsförsäkra er verksamhet</a>
-                <!-- NY TEMAKNAPP (DESKTOP) -->
-                <button id="theme-toggle-btn-desktop" class="theme-toggle-btn" aria-label="Växla ljus/mörkt tema">
-                    <i class="ph ph-sun"></i>
-                </button>
+                
+                <!-- NY TEMAKNAPP (SWITCH) -->
+                <label class="theme-switch">
+                    <input type="checkbox" class="theme-switch__checkbox" id="theme-switch-input" checked>
+                    <div class="theme-switch__container">
+                        <div class="theme-switch__clouds"></div>
+                        <div class="theme-switch__stars-container">
+                            <!-- SVG STAR ICON -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="theme-switch__circle-container">
+                            <div class="theme-switch__sun-moon-container">
+                                <div class="theme-switch__moon">
+                                    <div class="theme-switch__spot"></div>
+                                    <div class="theme-switch__spot"></div>
+                                    <div class="theme-switch__spot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </label>
             </div>
             
-            <!-- NY TEMAKNAPP (MOBIL) -->
+            <!-- MOBIL TEMAKNAPP (BEHÅLLD TILLS VIDARE, MEN KAN UPPDATERAS TILL SWITCH) -->
             <button id="theme-toggle-btn-mobile" class="theme-toggle-btn md:hidden" aria-label="Växla ljus/mörkt tema">
                 <i class="ph ph-sun"></i>
             </button>
@@ -4642,12 +4816,6 @@
                             <!-- BORTTAGET: Avatar/Bild raderad för en renare text-baserad layout -->
                             
                             <div class="flex-grow min-w-[200px]">
-                                <div class="gh-names">
-                                    <div class="flex items-center gap-3">
-                                        <!-- UPPDATERAT: Namnbyte till företagsnamnet -->
-                                        <h1 class="gh-name">NordSym AB</h1>
-                                    </div>
-                                </div>
                                 <!-- UPPDATERAT: Renare copy för SaaS vs Tjänst + Gratis Analys CTA -->
                                 <div class="gh-bio">
                                     <p class="mb-3"><strong class="text-white">Micro-SaaS</strong> är fokuserad mjukvara för specifika problem.</p>
@@ -7331,63 +7499,59 @@
 
     class ThemeManager {
         constructor() {
-            this.themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
+            // UPPDATERAT: Lyssna på Checkboxen (Desktop) och Knappen (Mobil)
+            this.themeCheckbox = document.getElementById('theme-switch-input');
+            this.themeBtnMobile = document.getElementById('theme-toggle-btn-mobile');
             this.body = document.body;
-            // UPPDATERAD: 'light' är nu standard om inget val sparats
+            
+            // Standard: Light Mode (Om inget sparats)
             this.currentTheme = localStorage.getItem('theme') || 'light';
             
             this.init();
         }
 
         init() {
-            // Sätt det sparade temat direkt vid laddning
             this.setTheme(this.currentTheme);
 
-            // Lägg till klick-lyssnare på båda knapparna
-            this.themeToggleBtns.forEach(btn => {
-                btn.addEventListener('click', () => this.toggleTheme());
-            });
+            // Desktop Switch Handler
+            if (this.themeCheckbox) {
+                this.themeCheckbox.addEventListener('change', () => {
+                    const newTheme = this.themeCheckbox.checked ? 'dark' : 'light';
+                    this.setTheme(newTheme);
+                });
+            }
+
+            // Mobile Button Handler
+            if (this.themeBtnMobile) {
+                this.themeBtnMobile.addEventListener('click', () => {
+                    const newTheme = this.body.classList.contains('light-theme') ? 'dark' : 'light';
+                    this.setTheme(newTheme);
+                });
+            }
             
-            // Meddela UnifiedGeometryManager om det initiala temat
-            // Vi lägger en liten fördröjning för att säkerställa att three.js har initierats
             setTimeout(() => {
                 window.nord?.unifiedGeometry?.setGlobalTheme?.(this.currentTheme);
             }, 100);
         }
 
-        toggleTheme() {
-            const newTheme = this.body.classList.contains('light-theme') ? 'dark' : 'light';
-            this.setTheme(newTheme);
-        }
-
         setTheme(theme) {
-            // Ta bort gammal klass, lägg till ny
             this.body.classList.remove('light-theme', 'dark-theme');
             this.body.classList.add(`${theme}-theme`);
             
-            // Spara valet
             localStorage.setItem('theme', theme);
             this.currentTheme = theme;
 
-            // Meddela UnifiedGeometryManager om ändringen (Antifragile Pattern)
+            // Synka UI (Checkbox & Mobilknapp)
+            if (this.themeCheckbox) {
+                // Dark = Checked, Light = Unchecked
+                this.themeCheckbox.checked = (theme === 'dark');
+            }
+            
+            if (this.themeBtnMobile) {
+                this.themeBtnMobile.innerHTML = theme === 'light' ? '<i class="ph ph-moon"></i>' : '<i class="ph ph-sun"></i>';
+            }
+
             window.nord?.unifiedGeometry?.setGlobalTheme?.(theme);
-
-            // Uppdatera ikon på båda knapparna
-            const iconClass = theme === 'light' ? 'ph-moon' : 'ph-sun';
-            this.themeToggleBtns.forEach(btn => {
-                btn.innerHTML = `<i class="ph ${iconClass}"></i>`;
-            });
-
-            // Uppdatera aria-label för tillgänglighet
-            const newLabel = theme === 'light' ? 'Växla till mörkt tema' : 'Växla till ljust tema';
-            this.themeToggleBtns.forEach(btn => {
-                btn.setAttribute('aria-label', newLabel);
-            });
-
-            // Meddela UnifiedGeometryManager om ändringen (vi bygger denna funktion sen)
-            // if (window.UnifiedGeometryManager) {
-            //     window.UnifiedGeometryManager.setGlobalTheme(theme);
-            // }
         }
     }
 
@@ -7850,6 +8014,13 @@
         }
 
         animate() {
+            // OPTIMERING: Pausa rendering i Light Mode för att spara prestanda och dölja stjärnorna
+            if (document.body.classList.contains('light-theme')) {
+                this.ctx.clearRect(0, 0, this.width, this.height);
+                requestAnimationFrame(() => this.animate());
+                return;
+            }
+
             this.ctx.clearRect(0, 0, this.width, this.height);
             this.drawStars();
             this.updateAndDrawMeteors();
