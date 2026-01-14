@@ -3895,12 +3895,31 @@
         .product-screenshot-container {
             position: relative;
             width: 100%;
-            height: 70%; /* Balanserad bildyta */
+            height: 70%; /* Balanserad bildyta för Desktop */
             overflow: hidden;
             background: #080c14; /* Mjukare svart */
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             flex-shrink: 0;
             z-index: 1;
+        }
+
+        /* MOBIL FIX: Mer plats för text, mindre bild */
+        @media (max-width: 768px) {
+            .product-screenshot-container {
+                height: 45% !important; /* Minska bildytan drastiskt på mobil */
+            }
+            /* Justera textpanelen för att hantera innehållet bättre */
+            .product-text-panel {
+                padding: 1.25rem !important;
+                justify-content: flex-start !important; /* Låt innehållet flöda uppifrån */
+                gap: 1rem;
+            }
+            /* Säkerställ att texten inte är för stor */
+            .product-text-panel p {
+                font-size: 0.85rem !important;
+                line-height: 1.5 !important;
+                -webkit-line-clamp: 6 !important; /* Tillåt fler rader */
+            }
         }
         
         .product-screenshot {
@@ -3914,6 +3933,43 @@
             z-index: 10;
             display: block !important;
             opacity: 1 !important;
+            cursor: zoom-in; /* NYTT: Indikerar att bilden kan förstoras */
+            transition: transform 0.3s ease;
+        }
+        
+        .product-screenshot:hover {
+            transform: scale(1.02); /* Subtil zoom vid hover */
+        }
+
+        /* LIGHTBOX STYLES (Enkel bildvisare) */
+        #image-lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000; /* Över allt annat */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            cursor: zoom-out;
+        }
+        #image-lightbox.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #lightbox-img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        #image-lightbox.visible #lightbox-img {
+            transform: scale(1);
         }
 
         /* Text Panel - Deep Void Glass (Alt 1) */
@@ -4906,7 +4962,8 @@
                                 <div class="product-screenshot-container">
                                     <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/Ska%CC%88rmavbild%202026-01-10%20kl.%2013.18.43.png?alt=media&token=43b8aecb-ff77-4724-932e-9a3d3a0e835a" 
                                          alt="GenPRD Interface" 
-                                         class="product-screenshot">
+                                         class="product-screenshot"
+                                         onclick="window.nord.openLightbox(this.src)"> <!-- NYTT: OnClick -->
                                 </div>
                                 
                                 <!-- TEXT (KOMPRIMERAD LAYOUT: 20-25% Yta) - UPPDATERAD KLASS: product-text-panel -->
@@ -4954,7 +5011,8 @@
                                 <div class="product-screenshot-container">
                                     <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/Ska%CC%88rmavbild%202026-01-10%20kl.%2013.18.25.png?alt=media&token=a2556036-81de-4d96-837d-62754b4a0f90" 
                                          alt="FlowVault Interface" 
-                                         class="product-screenshot">
+                                         class="product-screenshot"
+                                         onclick="window.nord.openLightbox(this.src)"> <!-- NYTT: OnClick -->
                                 </div>
                                 
                                 <!-- TEXT (KOMPRIMERAD LAYOUT) - UPPDATERAD KLASS: product-text-panel -->
@@ -5000,7 +5058,8 @@
                                 <div class="product-screenshot-container">
                                     <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/Ska%CC%88rmavbild%202026-01-10%20kl.%2013.18.13.png?alt=media&token=4c664812-a77f-4592-b2a1-a31010c4dfb1" 
                                          alt="AEO Audit Tool" 
-                                         class="product-screenshot">
+                                         class="product-screenshot"
+                                         onclick="window.nord.openLightbox(this.src)"> <!-- NYTT: OnClick -->
                                 </div>
                                 
                                 <!-- TEXT (KOMPRIMERAD LAYOUT) - UPPDATERAD KLASS: product-text-panel -->
@@ -5469,7 +5528,12 @@
                     <i class="ph ph-instagram-logo text-2xl"></i>
                 </a>
             </div>
-        </div>
+
+            <!-- NYTT: Tydlig Stäng-knapp för bättre UX på mobil -->
+            <button onclick="window.nord.closeFounderModal()" class="mt-6 text-sm text-sky-300 hover:text-white underline decoration-dotted underline-offset-4 transition-colors light-theme:text-gray-500 light-theme:hover:text-black">
+    <!-- LIGHTBOX (ENKEL BILDVISARE) -->
+    <div id="image-lightbox" onclick="window.nord.closeLightbox()">
+        <img id="lightbox-img" src="" alt="Förstorad vy">
     </div>
 
     <!-- BORTTAGET: FREE AGENT MODAL -->
@@ -7532,6 +7596,25 @@
                 }
             });
         }
+
+        /* --- NYTT: LIGHTBOX LOGIK --- */
+        window.nord.openLightbox = function(src) {
+            const lb = document.getElementById('image-lightbox');
+            const img = document.getElementById('lightbox-img');
+            if (lb && img) {
+                img.src = src;
+                lb.classList.add('visible');
+                document.body.style.overflow = 'hidden'; // Lås scroll
+            }
+        };
+
+        window.nord.closeLightbox = function() {
+            const lb = document.getElementById('image-lightbox');
+            if (lb) {
+                lb.classList.remove('visible');
+                document.body.style.overflow = ''; // Lås upp scroll
+            }
+        };
 
         // --- BORTTAGET: MODAL-LOGIK FÖR GRATIS AGENT ---
         
