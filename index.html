@@ -7565,9 +7565,9 @@
 
     class ThemeManager {
         constructor() {
-            // UPPDATERAT: Lyssna på Checkboxen (Desktop) och Knappen (Mobil)
+            // UPPDATERAT: Lyssna på Checkboxen (Desktop) och ALLA toggle-knappar (Mobil + Chat)
             this.themeCheckbox = document.getElementById('theme-switch-input');
-            this.themeBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+            this.toggleBtns = document.querySelectorAll('.theme-toggle-btn');
             this.body = document.body;
             
             // Standard: Light Mode (Om inget sparats)
@@ -7587,13 +7587,13 @@
                 });
             }
 
-            // Mobile Button Handler
-            if (this.themeBtnMobile) {
-                this.themeBtnMobile.addEventListener('click', () => {
+            // General Button Handlers (Mobile Header + Chat Interface)
+            this.toggleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
                     const newTheme = this.body.classList.contains('light-theme') ? 'dark' : 'light';
                     this.setTheme(newTheme);
                 });
-            }
+            });
             
             setTimeout(() => {
                 window.nord?.unifiedGeometry?.setGlobalTheme?.(this.currentTheme);
@@ -7607,15 +7607,16 @@
             localStorage.setItem('theme', theme);
             this.currentTheme = theme;
 
-            // Synka UI (Checkbox & Mobilknapp)
+            // Synka UI (Checkbox)
             if (this.themeCheckbox) {
                 // Dark = Checked, Light = Unchecked
                 this.themeCheckbox.checked = (theme === 'dark');
             }
             
-            if (this.themeBtnMobile) {
-                this.themeBtnMobile.innerHTML = theme === 'light' ? '<i class="ph ph-moon"></i>' : '<i class="ph ph-sun"></i>';
-            }
+            // Synka UI (Alla knappar: Mobil + Chat)
+            this.toggleBtns.forEach(btn => {
+                btn.innerHTML = theme === 'light' ? '<i class="ph ph-moon"></i>' : '<i class="ph ph-sun"></i>';
+            });
 
             window.nord?.unifiedGeometry?.setGlobalTheme?.(theme);
         }
