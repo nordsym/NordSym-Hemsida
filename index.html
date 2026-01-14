@@ -2234,8 +2234,8 @@
         /* --- JOYSTICK PORTALS (MOBIL KONTROLL) --- */
         .joystick-portal {
             position: fixed;
-            bottom: 120px; 
-            bottom: calc(120px + env(safe-area-inset-bottom));
+            bottom: 140px; /* UPPDATERAT: Höjt från 120px för bättre separation från verktygslådan */
+            bottom: calc(140px + env(safe-area-inset-bottom));
             width: 64px; 
             height: 64px;
             border-radius: 50%;
@@ -2272,6 +2272,26 @@
             body.labb-active .joystick-portal { 
                 display: flex !important; /* TVINGA FRAM */
                 animation: joystick-pop 0.4s ease-out forwards;
+            }
+        }
+
+        /* --- NYTT: LANDSKAPS-LÄGE OPTIMERING ("FLIP SCREEN") --- */
+        /* När skärmen roteras blir höjden liten. Vi flyttar isär kontrollerna för maximal sikt. */
+        @media (max-width: 900px) and (orientation: landscape) {
+            /* Flytta ner joysticks i hörnen för bättre tum-åtkomst */
+            .joystick-portal {
+                bottom: 20px !important;
+                bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+            }
+            /* Flytta verktygslådan till toppen så den inte är i vägen för styrningen */
+            body.labb-active #workshop-toolbar {
+                bottom: auto !important;
+                top: 20px !important;
+                padding: 8px 16px !important; /* Lite kompaktare */
+            }
+            /* Dölj headern helt i landskaps-verkstad för att spara pixlar */
+            body.labb-active #header {
+                display: none !important;
             }
         }
         
@@ -5423,9 +5443,9 @@
             <h3 class="text-3xl font-bold text-white mb-1 light-theme:text-gray-900" style="font-family: 'Comfortaa', sans-serif;">Gustav Hemmingsson</h3>
             <p class="text-nord-sym-cyan font-mono text-xs uppercase tracking-widest mb-6 light-theme:text-sky-600">Grundare</p>
             
-            <!-- UPPDATERAT: Skarpare grundar-pitch (Jantelags-säkrad: Modern istället för Marknadsledande) -->
+            <!-- UPPDATERAT: Skarpare grundar-pitch (AI-Native: Svenska som kodspråk via prompts) -->
             <p class="text-sky-200 leading-relaxed mb-8 light-theme:text-gray-600 text-sm md:text-base">
-                Jag hanterar tekniken, ni skördar resultaten. Min uppgift är att bygga en modern, intelligent infrastruktur som ger er ett försprång – utan att ni behöver bli experter på koden under huven.
+                Min bakgrund är allt annat än linjär – från älgguide och musiklärare till ledande roller på techbolag och Head of Recruitment i europeiska koncerner. Den bredden har lärt mig att förstå både människor och system. När AI gjorde det möjligt att bygga avancerad mjukvara genom prompts istället för kod, blev svenska plötsligt mitt främsta programmeringsspråk. Jag grundade NordSym som en AI-Native verksamhet för att skapa intelligent mjukvara som gör verklig nytta.
             </p>
             
             <!-- NYTT: Direktlänk till Scheduler -->
@@ -5621,33 +5641,33 @@
     <!-- NYTT KORREKT ID: #workshop-toolbar -->
     <div id="workshop-toolbar">
         
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('fundamental')" title="Bas">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('fundamental')">
             <div class="geo-btn" data-theme="fundamental">◎</div>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('struktur')" title="Geometri">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('struktur')">
             <div class="geo-btn" data-theme="struktur">◉</div>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('flode')" title="Nätverk">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('flode')">
             <div class="geo-btn" data-theme="flode">◊</div>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('precision')" title="Kristall">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('precision')">
             <div class="geo-btn" data-theme="precision">Ψ</div>
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('paradigm')" title="Abstrakt">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('paradigm')">
             <div class="geo-btn" data-theme="paradigm">∞</div >
         </div>
 
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('ekosystem')" title="Rymd">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleThemeClick('ekosystem')">
             <div class="geo-btn" data-theme="ekosystem">⟠</div>
         </div>
         
         <div class="geo-separator"></div>
         
-        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleParticleClick()" title="Partiklar">
+        <div class="geo-btn-wrapper" onclick="window.nord.unifiedGeometry.handleParticleClick()">
             <div class="geo-btn" id="fractal-mode-toggle">
                 <!-- Phosphor Icon: Sparkle -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M239.36,134.64l-29.12,29.12a8,8,0,0,1-11.31,0L176,140.85V184a8,8,0,0,1-8,8H132l-15.66,15.66a8,8,0,0,1-11.31,0l-16-16a8,8,0,0,1,0-11.31L104.69,164.69l-22.35-22.35a8,8,0,0,1,0-11.31L111.46,101.91l-15.66-15.66a8,8,0,0,1,0-11.31l16-16a8,8,0,0,1,11.31,0L138.77,74.59l22.35,22.35a8,8,0,0,1,0,11.31L138.11,131.25l22.35,22.35,22.35-22.35a8,8,0,0,1,11.31,0l22.91,22.91,22.91-22.91a8,8,0,0,1,11.32,11.32Z"></path></svg>
