@@ -7036,7 +7036,53 @@
                 this.materials = {
                     neural: new THREE.ShaderMaterial({ uniforms: { time: { value: 0 }, rotation: { value: 0 }, opacity: { value: 1.0 }, thickness: { value: 0.1 } }, vertexShader: `uniform float rotation; void main() { vec3 p = position; mat2 rot = mat2(cos(rotation), -sin(rotation), sin(rotation), cos(rotation)); p.xz = rot * p.xz; gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0); }`, fragmentShader: `uniform float opacity; uniform float thickness; void main() { gl_FragColor = vec4(0.0, 0.83, 1.0, 0.5 * opacity); }`, wireframe: true, transparent: true }),
                     organic: new THREE.ShaderMaterial({ uniforms: { time: { value: 0 }, rotation: { value: 0}, opacity: { value: 1.0 }, displacement: { value: 0.0 } }, vertexShader: `uniform float time; uniform float rotation; uniform float displacement; varying vec3 vNormal; void main() { vNormal = normal; float d = sin(position.y * 2.0 + time * 3.0) * displacement + cos(position.x * 2.0 + time * 2.0) * displacement; vec3 newPosition = position + normal * d; mat2 rot = mat2(cos(rotation), -sin(rotation), sin(rotation), cos(rotation)); newPosition.xz = rot * newPosition.xz; gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0); }`, fragmentShader: `varying vec3 vNormal; uniform float opacity; void main() { float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0); gl_FragColor = vec4(vec3(0.5, 0.8, 1.0) * intensity, opacity); }`, wireframe: true, transparent: true }),
-                    crystal: new THREE.ShaderMaterial({ uniforms: { time: { value: 0 }, rotation: { value: 0}, opacity: { value: 1.0 }, fresnelPower: { value: 2.0 } }, vertexShader: `uniform float rotation; varying vec3 vNormal; varying vec3 vViewPosition; void main() { vNormal = normalize(normalMatrix * normal); vec3 p = position; mat2 rot = mat2(cos(rotation), -sin(rotation), sin(rotation), cos(rotation)); p.xz = rot * p.xz; vec4 mvPosition = modelViewMatrix * vec4(p, 1.0); vViewPosition = -mvPosition.xyz; gl_Position = projectionMatrix * mvPosition; }`, fragmentShader: `uniform float fresnelPower; varying vec3 vNormal; varying vec3 vViewPosition; uniform float opacity; void main() { vec3 viewDir = normalize(vViewPosition); float fresnel = 1.0 - dot(viewDir, vNormal); fresnel = pow(fresnel, fresnelPower); vec3 iceColor = vec3(0.9, 0.95, 1.0); vec3 shadowColor = vec3(0.7, 0.85, 1.0); vec3 color = mix(shadowColor, iceColor, fresnel); float frost = sin(vNormal.y * 10.0) * 0.05 + 0.95; gl_FragColor = vec4(color * frost, (0.9 + fresnel * 0.1) * opacity); }`, transparent: true, side: THREE.DoubleSide }),
+                    /* UPPDATERAT: Crystal Shader med Temastöd (Ice vs Sapphire) */
+                    crystal: new THREE.ShaderMaterial({ 
+                        uniforms: { 
+                            time: { value: 0 }, 
+                            rotation: { value: 0}, 
+                            opacity: { value: 1.0 }, 
+                            fresnelPower: { value: 2.0 },
+                            u_isLightTheme: { value: 0.0 } // NYTT: Styr färgen
+                        }, 
+                        vertexShader: `uniform float rotation; varying vec3 vNormal; varying vec3 vViewPosition; void main() { vNormal = normalize(normalMatrix * normal); vec3 p = position; mat2 rot = mat2(cos(rotation), -sin(rotation), sin(rotation), cos(rotation)); p.xz = rot * p.xz; vec4 mvPosition = modelViewMatrix * vec4(p, 1.0); vViewPosition = -mvPosition.xyz; gl_Position = projectionMatrix * mvPosition; }`, 
+                        fragmentShader: `
+                            uniform float fresnelPower; 
+                            uniform float u_isLightTheme;
+                            varying vec3 vNormal; 
+                            varying vec3 vViewPosition; 
+                            uniform float opacity; 
+                            
+                            void main() { 
+                                vec3 viewDir = normalize(vViewPosition); 
+                                float fresnel = 1.0 - dot(viewDir, vNormal); 
+                                fresnel = pow(fresnel, fresnelPower); 
+                                
+                                // DARK MODE COLORS (Ice / Glow)
+                                vec3 darkBase = vec3(0.7, 0.85, 1.0);
+                                vec3 darkHigh = vec3(0.9, 0.95, 1.0);
+                                
+                                // LIGHT MODE COLORS (Sapphire / Ink)
+                                // Mörkblå bas (Slate 900) + Cyan Highlight
+                                vec3 lightBase = vec3(0.05, 0.15, 0.3); 
+                                vec3 lightHigh = vec3(0.0, 0.6, 0.9);
+                                
+                                // Mixa baserat på tema (0.0 = Dark, 1.0 = Light)
+                                vec3 baseColor = mix(darkBase, lightBase, u_isLightTheme);
+                                vec3 highlightColor = mix(darkHigh, lightHigh, u_isLightTheme);
+                                
+                                vec3 color = mix(baseColor, highlightColor, fresnel); 
+                                float frost = sin(vNormal.y * 10.0) * 0.05 + 0.95; 
+                                
+                                // Lite mer transparens i light mode för "glas"-effekt
+                                float alphaBase = 0.9 - (u_isLightTheme * 0.15);
+                                
+                                gl_FragColor = vec4(color * frost, (alphaBase + fresnel * 0.1) * opacity); 
+                            }
+                        `, 
+                        transparent: true, 
+                        side: THREE.DoubleSide 
+                    }),
                     quantum: new THREE.ShaderMaterial({ uniforms: { time: { value: 0 }, rotation: { value: 0}, opacity: { value: 1.0 }, flickerIntensity: { value: 0.2 } }, vertexShader: `uniform float rotation; varying vec3 vNormal; varying vec3 vViewPosition; void main() { vNormal = normalize(normalMatrix * normal); vec3 p = position; mat2 rot = mat2(cos(rotation), -sin(rotation), sin(rotation), cos(rotation)); p.xz = rot * p.xz; vec4 mvPosition = modelViewMatrix * vec4(p, 1.0); vViewPosition = -mvPosition.xyz; gl_Position = projectionMatrix * mvPosition; }`, fragmentShader: `uniform float time; uniform float flickerIntensity; varying vec3 vNormal; varying vec3 vViewPosition; uniform float opacity; void main() { vec3 viewDir = normalize(vViewPosition); float fresnel = 1.0 - dot(viewDir, vNormal); fresnel = pow(fresnel, 4.0); float flicker = 0.8 + sin(vNormal.x * 10.0 + time * 2.0) * flickerIntensity; vec3 baseColor = vec3(0.1, 0.15, 0.3) * flicker; vec3 rimColor = vec3(0.6, 0.8, 1.0); vec3 color = mix(baseColor, rimColor, fresnel); gl_FragColor = vec4(color, (fresnel * 0.5 + 0.3) * opacity); }`, transparent: true, blending: THREE.AdditiveBlending }),
                     nebula: new THREE.ShaderMaterial(nebulaShader)
                 };
@@ -7077,15 +7123,23 @@
             }
 
             updateMaterialsForTheme(isLight) {
+                const themeVal = isLight ? 1.0 : 0.0;
+
+                // Nebula (Partiklar)
                 const nebulaMat = this.materials.nebula;
-                if (!nebulaMat) return;
-    
-                if (isLight) {
-                    nebulaMat.blending = THREE.NormalBlending;
-                    nebulaMat.uniforms.u_isLightTheme.value = 1.0;
-                } else {
-                    nebulaMat.blending = THREE.AdditiveBlending;
-                    nebulaMat.uniforms.u_isLightTheme.value = 0.0;
+                if (nebulaMat) {
+                    if (isLight) {
+                        nebulaMat.blending = THREE.NormalBlending;
+                    } else {
+                        nebulaMat.blending = THREE.AdditiveBlending;
+                    }
+                    nebulaMat.uniforms.u_isLightTheme.value = themeVal;
+                }
+
+                // Crystal (Geod/Prisma) - NYTT: Uppdatera uniform
+                const crystalMat = this.materials.crystal;
+                if (crystalMat && crystalMat.uniforms.u_isLightTheme) {
+                    crystalMat.uniforms.u_isLightTheme.value = themeVal;
                 }
             }
 
