@@ -4,7 +4,7 @@
 # Sitemap location
 Sitemap: https://nordsym.com/sitemap.xml
 
-# Allow all crawlers
+# Allow all crawlers (default)
 User-agent: *
 Allow: /
 
@@ -30,7 +30,7 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
-# Standard search engines
+# Standard search engines (redundant but explicit)
 User-agent: Googlebot
 Allow: /
 
@@ -39,3 +39,7 @@ Allow: /
 
 User-agent: DuckDuckBot
 Allow: /
+
+# Block if needed (currently none)
+# Disallow: /admin/
+# Disallow: /api/internal/
