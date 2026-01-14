@@ -1,1 +1,68 @@
-NordSym AB - AEO & GEO Optimized Configurationhttps://nordsym.comSitemap locationSitemap: https://nordsym.com/sitemap.xmlAllow all crawlers by defaultUser-agent: *Allow: /--- AI & LLM CRAWLERS (Explicitly Welcome) ---Vi välkomnar indexering för modellträning och Answer Engine Optimization.OpenAI (ChatGPT)User-agent: GPTBotAllow: /User-agent: ChatGPT-UserAllow: /Google (Gemini/SGE)User-agent: Google-ExtendedAllow: /Anthropic (Claude)User-agent: anthropic-aiAllow: /User-agent: Claude-WebAllow: /Perplexity AIUser-agent: PerplexityBotAllow: /Apple IntelligenceUser-agent: ApplebotAllow: /Common Crawl (Grunddata för många LLMs)User-agent: CCBotAllow: /ByteDance (TikTok/Doubao)User-agent: BytespiderAllow: /--- STANDARD SEARCH ENGINES ---User-agent: GooglebotAllow: /User-agent: BingbotAllow: /User-agent: DuckDuckBotAllow: /
+NordSym AB - AEO & GEO Optimized Configuration
+
+https://nordsym.com
+
+Sitemap location
+
+Sitemap: https://nordsym.com/sitemap.xml
+
+Allow all crawlers by default
+
+User-agent: *
+Allow: /
+
+--- AI & LLM CRAWLERS (Explicitly Welcome) ---
+
+Vi välkomnar indexering för modellträning och Answer Engine Optimization.
+
+OpenAI (ChatGPT)
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+Google (Gemini/SGE)
+
+User-agent: Google-Extended
+Allow: /
+
+Anthropic (Claude)
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+Perplexity AI
+
+User-agent: PerplexityBot
+Allow: /
+
+Apple Intelligence
+
+User-agent: Applebot
+Allow: /
+
+Common Crawl (Grunddata för många LLMs)
+
+User-agent: CCBot
+Allow: /
+
+ByteDance (TikTok/Doubao)
+
+User-agent: Bytespider
+Allow: /
+
+--- STANDARD SEARCH ENGINES ---
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
