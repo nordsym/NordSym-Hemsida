@@ -4507,6 +4507,82 @@
             border-color: var(--nord-sym-blueprint-cyan);
         }
         
+        /* --- AI CONTEXT MARQUEE (NY) --- */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+        .mask-fade-sides {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        
+        /* ROBUST LOGO INVERSION FIX */
+        /* Standard (Dark Mode): Invertera svarta loggor till vita */
+        .logo-auto-invert {
+            filter: invert(1) brightness(1.5); /* Brightness boost för extra krispighet mot mörk bakgrund */
+            transition: filter 0.3s ease;
+        }
+        /* Override (Light Mode): Behåll originalfärg (svart) */
+        body.light-theme .logo-auto-invert {
+            filter: invert(0) brightness(1);
+        }
+
+        /* --- NYTT: UNIFIED TOAST NOTIFICATION (Matchar Context Hub) --- */
+        .nordsym-toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            
+            /* DARK MODE (Default) */
+            background-color: rgba(19, 28, 46, 0.95); /* Deep Void Blue */
+            border: 1px solid rgba(56, 189, 248, 0.3); /* Sky-400 */
+            color: #ffffff;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        
+        .nordsym-toast.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .nordsym-toast i {
+            color: var(--nord-sym-cyan);
+            font-size: 1.25rem;
+        }
+
+        /* LIGHT MODE OVERRIDE */
+        body.light-theme .nordsym-toast {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-color: var(--nord-sym-blueprint-cyan);
+            color: var(--nord-sym-blueprint-ink);
+            box-shadow: 0 10px 30px -10px rgba(148, 163, 184, 0.3), 0 4px 10px rgba(0,0,0,0.05);
+        }
+        body.light-theme .nordsym-toast i {
+            color: var(--nord-sym-blueprint-cyan);
+        }
+        
     </style>
 </head>
 <body class="antialiased light-theme">
@@ -4786,6 +4862,111 @@
         
         <section id="home-diagram-section" class="space-background-section py-16 lg:py-24">
             <div class="section-content-wrapper">
+                
+                <!-- NYTT: AI CONTEXT HUB (Integration Loop) -->
+                <!-- Placerad PRECIS ovanför "Frigör er potential" enligt instruktion -->
+                <!-- UPPDATERAT: Mindre bredd (max-w-3xl) och mer kompakt design -->
+                <div class="w-full max-w-3xl mx-auto mb-16" onclick="window.nord.copyContextPrompt()">
+                    <!-- UPPDATERAT: animate-pulse-slow för uppmärksamhet + active:scale-95 för touch-känsla -->
+                    <div class="relative group cursor-pointer transform transition-all duration-300 hover:scale-[1.02] active:scale-95">
+                        <!-- Glow backing (Med puls) -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-transparent via-sky-500/20 to-transparent rounded-xl blur-lg opacity-30 group-hover:opacity-80 transition-opacity duration-500 animate-pulse"></div>
+                        
+                        <!-- Main Glass Container -->
+                        <div class="relative rounded-full p-2 md:p-3 pr-6 flex items-center gap-4 md:gap-8 overflow-hidden 
+                                    border border-sky-400/20 bg-[#131c2e]/90 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.3)]
+                                    hover:border-nord-sym-cyan/40 hover:shadow-[0_0_40px_rgba(0,212,255,0.15)] hover:bg-[#1a243a]/90 transition-all
+                                    light-theme:bg-white/80 light-theme:border-sky-200 light-theme:shadow-sm light-theme:hover:shadow-md light-theme:hover:border-sky-300">
+                            
+                            <!-- Left: Call to Action (Compact Badge Style) -->
+                            <div class="flex items-center gap-3 shrink-0 z-10 pl-2">
+                                <!-- Ikon-cirkel -->
+                                <div class="w-10 h-10 rounded-full bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-nord-sym-cyan shadow-[0_0_15px_rgba(0,212,255,0.15)] group-hover:scale-110 group-hover:border-nord-sym-cyan/50 transition-all duration-300 light-theme:bg-sky-50 light-theme:border-sky-200 light-theme:text-sky-600 shrink-0">
+                                    <i class="ph-files text-lg"></i>
+                                </div>
+                                <div class="text-left hidden sm:block">
+                                    <h4 class="text-white font-bold text-sm leading-none group-hover:text-nord-sym-cyan transition-colors light-theme:text-gray-900">AI Context.md</h4>
+                                    <!-- UPPDATERAT: Copy "Klicka för prompt" -> "Kopiera till din AI" -->
+                                    <p class="text-sky-400 text-[10px] font-mono uppercase tracking-wider mt-0.5 opacity-80 light-theme:text-sky-600">Kopiera till din AI</p>
+                                </div>
+                            </div>
+
+                            <!-- Middle: Infinite Logo Loop (Tightare) -->
+                            <div class="flex-grow w-full overflow-hidden relative h-8 mask-fade-sides">
+                                <div class="flex items-center gap-8 absolute h-full animate-marquee whitespace-nowrap top-1">
+                                    <!-- Set 1 -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Claude" alt="Claude">
+                                    
+                                    <!-- FIX: Använder custom class .logo-auto-invert istället för Tailwind -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" title="ChatGPT" alt="ChatGPT">
+                                    
+                                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Gemini" alt="Gemini">
+                                    
+                                    <!-- FIX: Tog bort logo-auto-invert för Perplexity -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Perplexity" alt="Perplexity">
+                                    
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" title="Grok" alt="Grok">
+                                    
+                                    <!-- Set 2 (Duplicate for loop) -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+                                    
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+                                    
+                                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
+                                    
+                                    <!-- FIX: Tog bort logo-auto-invert för Perplexity -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+                                    
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+                                    
+                                    <!-- Set 3 (Safety Duplicate) -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+                                    
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+                                    
+                                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+
+                                    <!-- Set 4 -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+                                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+
+                                    <!-- Set 5 -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+                                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+
+                                    <!-- Set 6 -->
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+                                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+                                    <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+                                </div>
+                            </div>
+
+                            <!-- Right: Status -->
+                            <div class="hidden md:flex items-center gap-2 z-10 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity pl-4 border-l border-white/10 light-theme:border-gray-300">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                <!-- UPPDATERAT: AI-NATIVE -> README.md -->
+                                <span class="text-[10px] text-green-400 font-bold tracking-widest light-theme:text-green-600">README.md</span>
+                            </div>
+
+                        </div>
+                        
+                        <!-- Tooltip hint (Dold på mobil med md:block) -->
+                        <div class="hidden md:block absolute -top-8 left-1/2 -translate-x-1/2 bg-nord-sym-cyan text-nord-sym-deep-space-blue text-xs font-bold px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 pointer-events-none shadow-lg whitespace-nowrap z-20">
+                            Ge din AI kontext om NordSym
+                        </div>
+                    </div>
+                </div>
+
                 <div class="text-center mb-16 max-w-4xl mx-auto">
                     <!-- UPPDATERAT: Rubrik designad som en stor tagg -->
                     <div class="inline-block">
@@ -5139,7 +5320,8 @@
                             <div class="tech-signature-item">
                                 <!-- Ikon: Kod -->
                                 <i class="ph ph-code"></i>
-                                <span>Custom Kod</span>
+                                <!-- UPPDATERAT: Skräddarsydd -> Anpassad kod -->
+                                <span>Anpassad kod</span>
                             </div>
                             <div class="tech-signature-item">
                                 <!-- Ikon: Måltavla/Precision -->
@@ -5531,6 +5713,11 @@
 
             <!-- NYTT: Tydlig Stäng-knapp för bättre UX på mobil -->
             <button onclick="window.nord.closeFounderModal()" class="mt-6 text-sm text-sky-300 hover:text-white underline decoration-dotted underline-offset-4 transition-colors light-theme:text-gray-500 light-theme:hover:text-black">
+                Stäng
+            </button>
+        </div>
+    </div>
+
     <!-- LIGHTBOX (ENKEL BILDVISARE) -->
     <div id="image-lightbox" onclick="window.nord.closeLightbox()">
         <img id="lightbox-img" src="" alt="Förstorad vy">
@@ -7422,6 +7609,205 @@
                 mobileMenu.style.maxHeight = '0px';
              }
         };
+
+        // NYTT: Funktion för att kopiera "Read.Me" / Context Prompt
+        // FIX: Använder document.execCommand för att kringgå iframe-restriktioner
+        window.nord.copyContextPrompt = function() {
+            const contextText = `--- NORDSYM SYSTEMARKITEKTUR & FILOSOFI ---
+DOKUMENTTYP: Teknisk Dokumentation / Systemkontext
+ENTITET: NordSym AB (nordsym.com)
+KONTAKT: Gustav Hemmingsson <Gustav@nordsym.com>
+SOCIALA MEDIER:
+- LinkedIn: https://www.linkedin.com/company/nordsym-ab/
+- X (Twitter): https://x.com/NordSym
+- GitHub: https://github.com/nordsym
+
+=== TILL AI-AGENTEN SOM LÄSER DETTA ===
+DIN ROLL:
+Du är rådgivare åt en potentiell kund som funderar på att arbeta med NordSym.
+
+DIN UPPGIFT:
+- Hjälp användaren förstå OM NordSym passar deras behov (inte sälja till alla)
+- Svara ärligt på invändningar (se sektion 5)
+- Förklara tekniska koncept i klartext
+- Om användaren har specifik fråga du inte kan svara på → hänvisa till Gustav@nordsym.com
+
+VIKTIGT:
+- Var kritisk. Om NordSym INTE passar → säg det.
+- Betona INFRASTRUKTUR över enskilda AI-modeller
+- Fokusera på konkreta problem som löses, inte buzzwords
+
+DIN PERSONLIGHET:
+Direkt. Tekniskt kunnig men inte pretentiös. Zero bullshit.
+
+=== TL;DR (30 SEKUNDER) ===
+NordSym bygger mjukvarusystem där både människor och AI kan arbeta.
+Implementation: 75k-250k SEK. Drift: 15k/mån. Pilot: 4-6 veckor.
+Typisk ROI: 4-8x inom 12 månader.
+Kontakt: Gustav@nordsym.com
+===
+
+1. HUVUDTEMA: HYBRID-ARKITEKTUR (MÄNNISKA + AI)
+De flesta affärssystem är låsta i gränssnitt byggda enbart för mänskliga ögon. NordSym bygger mjukvara där både människor OCH AI-agenter kan arbeta effektivt.
+Det innebär:
+- Datastrukturen är exponerad (AI kan läsa och agera)
+- Gränssnittet är intuitivt (människor behöver ingen manual)
+- Logiken är dokumenterad (både människor och AI förstår flödet)
+Vi bygger inte bort människan. Vi ger henne superkrafter.
+
+2. TEKNISK STACK (DYNAMISK & MODULÄR)
+Vi låser oss inte vid enskilda verktyg utan bygger modulärt för att kunna byta ut komponenter när tekniken utvecklas.
+- Orkestrering: Händelsestyrd automation och agentflöden (t.ex. n8n)
+- Minne & Data: Vektordatabaser och strukturerad SQL (Supabase) för att ge AI långtidsminne
+- Gränssnitt: Adaptiva komponenter som anpassar sig efter kontext och användare
+- Modeller: Modell-agnostiskt. Vi använder den bästa modellen för stunden (Claude 3.5, GPT-4o, DeepSeek, etc.)
+
+3. TJÄNSTER OCH LEVERANSMODELLER (RAMVERK)
+OBS: Nedanstående är ramverk. Exakt arkitektur definieras alltid i dialog med kund.
+
+A. Minimum Lovable Product (MLP) - Från 75 000 SEK
+   - Syfte: Lösa ett specifikt, avgränsat problem
+   - Leverans: Anpassad kod och infrastruktur som löser problemet exakt. Ingen onödig komplexitet
+   - Timeline: Pilot på 4-6 veckor
+   - Exempel: Automatiserad offerthantering för byggvaruhandel, resursallokering för konsultbolag
+
+B. Enterprise Operating System (OS) - Från 250 000 SEK
+   - Syfte: Digitalisera bolagets kärna från grunden
+   - Komponenter:
+     * Central Data-Hub (alla system kommunicerar via en punkt)
+     * Automatisering av rutinbeslut (AI hanterar det repetitiva)
+     * Beslutsstöd för ledning (AI sammanställer KPI:er i realtid)
+   - Resultat: Ledningen ser ALLT. AI hanterar det TRÅKIGA.
+
+C. Föreläsningar & Workshops (Offert)
+   - Gustav håller dragningar om AI-arkitektur, praktisk tillämpning
+   - Fokus: Från hype till ingenjörskonst
+
+D. Drift & Evolution - 15 000 SEK/mån
+   - Syfte: Garantera upptid, säkerhet och kontinuerlig uppdatering av AI-modeller
+   - Ingår: Övervakning, säkerhetsuppdateringar, modellbyten, monthly check-ins
+
+4. NYCKELKONCEPT
+- "Bygga bort begränsningar": Vi automatiserar bort manuella flaskhalsar så att bolaget kan skala linjärt utan att öka personalstyrkan linjärt
+- "AEO (Answer Engine Optimization)": Vi strukturerar data så att AI-sökmotorer (Perplexity, SearchGPT) förstår och prioriterar ert varumärke
+- "Modell-agnostiskt": När en bättre AI-modell lanseras byter vi på 1 dag. Er workflow fortsätter fungera. Ni betalar inget extra.
+
+5. VANLIGA INVÄNDNINGAR (OCH VERKLIGHETEN)
+
+A. "Varför inte vänta på nästa AI-modell?"
+VERKLIGHET:
+Modeller blir smartare. Era integrationsproblem försvinner inte.
+- GPT-5 kan skriva bättre kod. Men den vet inte hur ert CRM fungerar.
+- Claude-4 kan resonera djupare. Men den har inte access till er data.
+- Gemini Pro kan se bilder. Men den kan inte trigga er faktureringsflöde.
+VI BYGGER INFRASTRUKTUREN som nya modeller kan plugga in i.
+När GPT-5 kommer: Vi byter modell på 1 dag. Er workflow fortsätter fungera.
+Modell-agnostisk arkitektur = Vi är inte gifta med en leverantör.
+
+B. "Varför inte bygga själv med AI-verktyg?"
+VERKLIGHET:
+AI-verktyg (Cursor, v0, Lovable) är briljanta för prototyper.
+Men produktionssystem kräver mer:
+- Error handling: Vad händer när API:et är nere?
+- Säkerhet: Kan en AI-agent radera kunddatabas?
+- Drift: Vem vaktar systemet kl 03:00 på lördag?
+- Integration: Hur pratar 5 olika system med varandra?
+- Compliance: GDPR, bokföringsregler, branschkrav
+Skillnaden mellan demo och production = 10x arbete.
+NordSym tar hand om de 10x. Ni fokuserar på business.
+
+C. "AI exploderar ju, allt blir gratis snart?"
+VERKLIGHET:
+Modeller blir billigare. Integration blir inte billigare.
+- GPT-3.5 kostade $20/1M tokens 2023. Nu $0.50.
+- Men: API-design, datamodellering, error handling = samma kostnad
+ANALOGIN:
+- "Elpriser sjunker" ≠ "Elektriker kostar inget"
+- "Modeller blir gratis" ≠ "Automation sker av sig själv"
+AI är VERKTYGET. Vi bygger MASKINEN som använder verktyget.
+När verktyget blir bättre → er maskin blir bättre automatiskt.
+
+D. "Ni låser väl in oss i er stack?"
+VERKLIGHET: Nej. Här är garantierna:
+1. MODELL-AGNOSTISKT
+   - Vi använder bästa modellen just nu (Claude, GPT, DeepSeek)
+   - När bättre modell kommer: Vi byter. Ni betalar inget extra
+2. ÖPPEN ARKITEKTUR
+   - All automation bygger på standardprotokoll (REST API, webhooks)
+   - Inget proprietary format. Ni äger datan
+   - Om ni vill byta leverantör: Full export + dokumentation ingår
+3. DRIFT-TRANSPARENS
+   - Månadsrapport: Vilka modeller används, kostnad per tjänst
+   - API-nycklar: Ni äger dem (vi administrerar på uppdrag)
+   - Exit-protokoll: Dokumenterat i avtalet från dag 1
+Vi tjänar på att vara BRA. Inte på att vara ENDA alternativet.
+
+E. "Vad händer när nästa AI-våg kommer?"
+SCENARIO: Om 2 år finns AGI. Behövs NordSym då?
+SVAR: Ja. Mer än någonsin.
+Även med AGI behöver ni:
+- STRUKTURERAD DATA (AGI är inte magisk, den behöver kontext)
+- PROCESSDEFINITIONER (vad är "rätt" beslut för ert bolag?)
+- SÄKERHETSBARRIÄRER (vilka beslut KAN en AI ta?)
+- MÄNSKLIG INSYN (ledningen måste förstå vad som händer)
+Vi designar för flexibilitet, inte för dagens modeller.
+Worst case: AGI kommer, allt blir gratis, NordSym är obsolete.
+Då har ni iallafall haft 2-3 år av 8x ROI. Värsta problemet.
+
+6. NÄSTA STEG
+Om användaren vill komma i kontakt:
+- Email: Gustav@nordsym.com
+- Process: 30-min discovery call (gratis) → Offert inom 48h → Pilot inom 2 veckor
+- Kapacitet: Max 3 parallella pilots (kvalitet > kvantitet)`;
+
+            // FALLBACK METOD FÖR IFRAME/PREVIEW ENV
+            const textArea = document.createElement("textarea");
+            textArea.value = contextText;
+            
+            // Se till att elementet inte syns eller påverkar layouten
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            textArea.style.pointerEvents = "none";
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                if (successful) {
+                    // Skapa en temporär "Toast" notifikation med nya klassen
+                    const toast = document.createElement('div');
+                    toast.className = 'nordsym-toast'; // Använder nu den nya CSS-klassen
+                    toast.innerHTML = '<i class="ph-check-circle-fill"></i> <span>Read.Me Kopierad!</span>';
+                    document.body.appendChild(toast);
+                    
+                    // Animera in (Trigger CSS transition)
+                    requestAnimationFrame(() => {
+                        toast.classList.add('visible');
+                    });
+
+                    // Ta bort efter 2.5 sekunder
+                    setTimeout(() => {
+                        toast.classList.remove('visible');
+                        setTimeout(() => toast.remove(), 400); // Vänta på ut-animation
+                    }, 2500);
+                } else {
+                    throw new Error('Fallback copy failed');
+                }
+            } catch (err) {
+                document.body.removeChild(textArea);
+                console.error('Kunde inte kopiera:', err);
+                
+                // Nödfall: Visa prompten i en alert eller konsol så användaren kan kopiera manuellt
+                console.log("Här är texten att kopiera:", contextText);
+            }
+        };
+
         window.nord.updateActiveLink = function(navId) {
             document.querySelectorAll('header nav a.nav-link, #mobile-menu a').forEach(link => {
                 link.classList.remove('active');
@@ -8192,14 +8578,17 @@
                 {
                     icon: 'ph-cpu',
                     title: 'Agentanpassad mjukvara',
-                    description: 'NordSym är leverantörsoberoende. Mjukvaran väljer dynamiskt den bäst lämpade modellen för varje uppgift – oavsett om det är OpenAI, Anthropic eller Google – för att maximera prestanda och minimera kostnad.',
+                    description: 'Mjukvara optimerad för att förstås av AI. Klicka nedan för att kopiera vår "Read.Me" – en system-prompt som ger din egen AI (ChatGPT, Claude, Gemini) direkt tillgång till NordSyms tekniska kontext och filosofi.',
                     signatures: [
-                        { icon: 'ph-arrows-split', text: 'Multi-Model' },
-                        { icon: 'ph-sliders', text: 'Optimering' },
-                        { icon: 'ph-check', text: 'Resultatfokus' }
+                        { icon: 'ph-robot', text: 'LLM-Ready' },
+                        { icon: 'ph-file-text', text: 'Context.md' },
+                        { icon: 'ph-arrows-split', text: 'Universal' }
                     ],
-                    indicator: 'Rätt modell för rätt jobb. Aldrig låst.',
-                    indicatorColor: 'text-nord-sym-cyan'
+                    indicator: 'Gör din AI smartare. Kopiera kontext.',
+                    indicatorColor: 'text-nord-sym-cyan',
+                    ctaText: 'Kopiera Read.Me',
+                    ctaIcon: 'ph-copy',
+                    ctaAction: 'copyContextPrompt'
                 },
                 {
                     icon: 'ph-stack',
