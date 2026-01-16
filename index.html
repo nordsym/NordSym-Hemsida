@@ -1421,12 +1421,15 @@
         }
 
         .venn-diagram-wrapper {
-            position: relative; width: 440px; height: 280px;
+            position: relative; 
+            width: 600px; /* UPPDATERAT: Maximerad bredd för desktop */ 
+            height: 380px; /* UPPDATERAT: Maximerad höjd */
             transition: all 0.3s ease-in-out;
         }
         .venn-circle {
             position: absolute;
-            width: 280px; height: 280px;
+            width: 380px; /* UPPDATERAT: Större cirklar (380px) */ 
+            height: 380px;
             border-radius: 50%;
             /* UPPDATERAT: Vit Krita-stil (White Chalk) - Neutral bas */
             background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
@@ -1438,16 +1441,17 @@
             animation: venn-pulse 8s infinite ease-in-out;
             transition: all 0.3s ease-in-out;
         }
-        .venn-circle-1 { top: 0; left: 0; animation-delay: 0s; justify-content: flex-start; }
-        .venn-circle-2 { top: 0; right: 0; animation-delay: -4s; justify-content: flex-end; }
+        /* UPPDATERAT: Balanserad padding (2.5rem) för att centrera texten i "månen" utan att klippa kanter */
+        .venn-circle-1 { top: 0; left: 0; animation-delay: 0s; justify-content: flex-start; padding-left: 2.5rem; }
+        .venn-circle-2 { top: 0; right: 0; animation-delay: -4s; justify-content: flex-end; padding-right: 2.5rem; }
+        
         .venn-circle-text {
             font-family: 'Comfortaa', sans-serif;
             font-weight: 700;
             color: #ffffff; /* Helt vit text */
             text-align: center;
-            font-size: 1.1rem; /* Återställd storlek */
-            max-width: 150px; /* Balanserad bredd för radbrytning */
-            padding: 0 1rem;
+            font-size: 1.15rem; /* UPPDATERAT: Något mindre text för att undvika överlapp */
+            max-width: 180px; /* UPPDATERAT: Begränsad bredd för bättre radbrytning */
             text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
         .venn-overlap-text {
@@ -1477,51 +1481,43 @@
         
         /* Harmoni-fix: Responsiv typografi för Venn-diagrammet */
         @media (max-width: 768px) {
-            .venn-diagram-wrapper { width: 320px; height: 200px; }
-            .venn-circle { width: 200px; height: 200px; }
-            .venn-circle-text { font-size: 0.9rem; max-width: 100px; padding: 0 1.5rem; }
+            .venn-diagram-wrapper { width: 450px; height: 280px; }
+            .venn-circle { width: 280px; height: 280px; }
+            .venn-circle-text { font-size: 1.1rem; max-width: 140px; }
+            .venn-circle-1 { padding-left: 2rem; }
+            .venn-circle-2 { padding-right: 2rem; }
             .venn-overlap-text { 
-                font-size: 0.8rem !important; /* Kraftigare minskning */
-                width: 85px; 
-                line-height: 1.0; 
-                word-wrap: break-word;
-                overflow-wrap: break-word; /* Extra säkerhet */
-                hyphens: auto; /* Automatisk orddelning */
+                font-size: 0.95rem !important;
+                width: 100px; 
             }
         }
         @media (max-width: 480px) {
-            /* UPPDATERAT: Rejäl ökning av bredd och höjd för att garantera plats åt "Agentanpassad" */
-            .venn-diagram-wrapper { width: 340px; height: 220px; }
-            .venn-circle { width: 200px; height: 200px; }
+            /* UPPDATERAT: Maximerad mobilvy */
+            .venn-diagram-wrapper { width: 100%; max-width: 380px; height: 240px; }
+            .venn-circle { width: 240px; height: 240px; }
             
-            /* UPPDATERAT: Finjusterad textstorlek för att rymma långa ord */
+            /* UPPDATERAT: Finjusterad textstorlek och padding för mobil */
             .venn-circle-text { 
-                font-size: 0.65rem; /* Något mindre för säkerhets skull */
-                max-width: 160px; /* Mer utrymme i sidled (upp från 140px) */
-                padding: 0 0.25rem; 
-                word-break: normal; 
-                line-height: 1.2;
+                font-size: 0.75rem; /* Mindre text för att rymmas */
+                max-width: 120px; 
+                line-height: 1.3;
             }
+            /* Tryck texten inåt från kanterna, men inte för mycket */
+            .venn-circle-1 { padding-left: 1rem; }
+            .venn-circle-2 { padding-right: 1rem; }
+            
             .venn-overlap-text { 
-                font-size: 0.7rem !important;
+                font-size: 0.75rem !important;
                 width: 80px; 
-                line-height: 1.0; 
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                text-align: center;
-                hyphens: auto;
             }
         }
         @media (max-width: 360px) {
-            /* Fallback för mycket små skärmar */
-            .venn-diagram-wrapper { width: 290px; height: 190px; }
-            .venn-circle { width: 180px; height: 180px; }
-            .venn-circle-text { font-size: 0.6rem; }
-            .venn-overlap-text { 
-                font-size: 0.6rem !important;
-                width: 60px;
-                line-height: 0.9;
-            }
+            /* Fallback för mycket små skärmar (iPhone SE etc) */
+            .venn-diagram-wrapper { height: 220px; }
+            .venn-circle { width: 210px; height: 210px; }
+            .venn-circle-text { font-size: 0.7rem; max-width: 110px; }
+            .venn-circle-1 { padding-left: 1rem; }
+            .venn-circle-2 { padding-right: 1rem; }
         }
         @media (hover: none) and (pointer: coarse) {
             .venn-overlap-text:hover {
@@ -5028,8 +5024,8 @@
                             <span class="venn-circle-text">Unika<br>Flöden</span>
                         </div>
                         <div class="venn-circle venn-circle-2">
-                             <!-- UPPDATERAT: Agentanpassad Mjukvara (Nu med plats i cirkeln) -->
-                             <span class="venn-circle-text">Agentanpassad<br>Mjukvara</span>
+                             <!-- UPPDATERAT: Soft hyphen (&shy;) för att tillåta brytning vid extrem platsbrist -->
+                             <span class="venn-circle-text">Agent&shy;anpassad<br>Mjukvara</span>
                         </div>
                         <!-- UPPDATERAT: Symbol för oändlighet + Sparade Timmar -->
                         <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('system'); return false;">
