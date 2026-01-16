@@ -1490,13 +1490,22 @@
             }
         }
         @media (max-width: 480px) {
-            .venn-diagram-wrapper { width: 280px; height: 180px; }
-            .venn-circle { width: 180px; height: 180px; }
-            .venn-circle-text { font-size: 0.8rem; max-width: 80px; padding: 0 1rem; }
+            /* UPPDATERAT: Rejäl ökning av bredd och höjd för att garantera plats åt "Agentanpassad" */
+            .venn-diagram-wrapper { width: 340px; height: 220px; }
+            .venn-circle { width: 200px; height: 200px; }
+            
+            /* UPPDATERAT: Finjusterad textstorlek för att rymma långa ord */
+            .venn-circle-text { 
+                font-size: 0.65rem; /* Något mindre för säkerhets skull */
+                max-width: 160px; /* Mer utrymme i sidled (upp från 140px) */
+                padding: 0 0.25rem; 
+                word-break: normal; 
+                line-height: 1.2;
+            }
             .venn-overlap-text { 
-                font-size: 0.65rem !important;
-                width: 70px; 
-                line-height: 0.95; 
+                font-size: 0.7rem !important;
+                width: 80px; 
+                line-height: 1.0; 
                 word-wrap: break-word;
                 overflow-wrap: break-word;
                 text-align: center;
@@ -1504,8 +1513,12 @@
             }
         }
         @media (max-width: 360px) {
+            /* Fallback för mycket små skärmar */
+            .venn-diagram-wrapper { width: 290px; height: 190px; }
+            .venn-circle { width: 180px; height: 180px; }
+            .venn-circle-text { font-size: 0.6rem; }
             .venn-overlap-text { 
-                font-size: 0.55rem !important;
+                font-size: 0.6rem !important;
                 width: 60px;
                 line-height: 0.9;
             }
@@ -4537,6 +4550,29 @@
             filter: invert(0) brightness(1);
         }
 
+        /* --- AI CONTEXT HUB: LIGHT MODE FIX (BLUEPRINT STYLE) --- */
+        /* Återställd till vit bakgrund men med mörk text ("Bläck") för läsbarhet */
+        body.light-theme #ai-context-hub-pill {
+            background-color: #ffffff !important; /* Rent vitt papper */
+            border-color: var(--nord-sym-blueprint-cyan) !important; /* Ingenjörsblå kant */
+            box-shadow: 0 8px 20px rgba(2, 132, 199, 0.15) !important; /* Mjuk blå skugga */
+        }
+        body.light-theme #ai-context-hub-pill h4 {
+            color: var(--nord-sym-blueprint-ink) !important; /* Mörkblå text (Bläck) - Syns tydligt nu */
+            font-weight: 700 !important;
+        }
+        /* UPPDATERAT: Helt transparent ikon-hållare (Ingen "glasruta") */
+        body.light-theme #ai-context-hub-pill .icon-circle {
+            background-color: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: var(--nord-sym-blueprint-cyan) !important;
+        }
+        /* Mörkare grön för LIVE-texten så den syns mot vit bakgrund */
+        body.light-theme #ai-context-hub-pill .text-green-400 {
+            color: #16a34a !important; /* Green-600 */
+        }
+
         /* --- NYTT: UNIFIED TOAST NOTIFICATION (Matchar Context Hub) --- */
         .nordsym-toast {
             position: fixed;
@@ -4873,25 +4909,25 @@
                 <div class="w-full max-w-3xl mx-auto mb-16" onclick="window.nord.copyContextPrompt()">
                     <!-- UPPDATERAT: animate-pulse-slow för uppmärksamhet + active:scale-95 för touch-känsla -->
                     <div class="relative group cursor-pointer transform transition-all duration-300 hover:scale-[1.02] active:scale-95">
-                        <!-- Glow backing (Med puls) -->
-                        <div class="absolute -inset-1 bg-gradient-to-r from-transparent via-sky-500/20 to-transparent rounded-xl blur-lg opacity-30 group-hover:opacity-80 transition-opacity duration-500 animate-pulse"></div>
+                        <!-- Glow backing (Med puls) - UPPDATERAT: Ökad opacity (75) för tydlig konstant synlighet -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-transparent via-sky-500/30 to-transparent rounded-xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
                         
-                        <!-- Main Glass Container -->
-                        <div class="relative rounded-full p-2 md:p-3 pr-6 flex items-center gap-4 md:gap-8 overflow-hidden 
-                                    border border-sky-400/20 bg-[#131c2e]/90 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.3)]
-                                    hover:border-nord-sym-cyan/40 hover:shadow-[0_0_40px_rgba(0,212,255,0.15)] hover:bg-[#1a243a]/90 transition-all
-                                    light-theme:bg-white/80 light-theme:border-sky-200 light-theme:shadow-sm light-theme:hover:shadow-md light-theme:hover:border-sky-300">
+                        <!-- Main Glass Container - UPPDATERAT: Tillagt ID för CSS-override i Light Mode -->
+                        <div id="ai-context-hub-pill" class="relative rounded-full p-2 md:p-3 pr-6 flex items-center gap-4 md:gap-8 overflow-hidden 
+                                    border border-nord-sym-cyan/30 bg-[#131c2e]/90 backdrop-blur-xl shadow-[0_0_30px_rgba(0,212,255,0.15)]
+                                    hover:border-nord-sym-cyan/60 hover:shadow-[0_0_50px_rgba(0,212,255,0.25)] hover:bg-[#1a243a]/90 transition-all">
                             
                             <!-- Left: Call to Action (Compact Badge Style) -->
                             <div class="flex items-center gap-3 shrink-0 z-10 pl-2">
-                                <!-- Ikon-cirkel -->
-                                <div class="w-10 h-10 rounded-full bg-sky-500/10 border border-sky-400/20 flex items-center justify-center text-nord-sym-cyan shadow-[0_0_15px_rgba(0,212,255,0.15)] group-hover:scale-110 group-hover:border-nord-sym-cyan/50 transition-all duration-300 light-theme:bg-sky-50 light-theme:border-sky-200 light-theme:text-sky-600 shrink-0">
-                                    <i class="ph-files text-lg"></i>
+                                <!-- Ikon-cirkel - RENSAD: Endast ikon, ingen bakgrund/kant/"glasruta" -->
+                                <div class="icon-circle flex items-center justify-center text-nord-sym-cyan group-hover:scale-110 transition-all duration-300 shrink-0">
+                                    <i class="ph-copy text-2xl"></i>
                                 </div>
-                                <div class="text-left hidden sm:block">
-                                    <h4 class="text-white font-bold text-sm leading-none group-hover:text-nord-sym-cyan transition-colors light-theme:text-gray-900">AI Context.md</h4>
-                                    <!-- UPPDATERAT: Copy "Klicka för prompt" -> "Kopiera till din AI" -->
-                                    <p class="text-sky-400 text-[10px] font-mono uppercase tracking-wider mt-0.5 opacity-80 light-theme:text-sky-600">Kopiera till din AI</p>
+                                <!-- UPPDATERAT: Tog bort 'hidden sm:block' så texten syns på mobil -->
+                                <div class="text-left block">
+                                    <!-- UPPDATERAT: Rubrik "Ge din AI kontext" -->
+                                    <h4 class="text-white font-bold text-sm leading-none group-hover:text-nord-sym-cyan transition-colors">Ge din AI kontext</h4>
+                                    <!-- BORTTAGET: Undertitel "Klicka för att kopiera" raderad för att undvika upprepning -->
                                 </div>
                             </div>
 
@@ -4958,16 +4994,14 @@
                             <!-- Right: Status -->
                             <div class="hidden md:flex items-center gap-2 z-10 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity pl-4 border-l border-white/10 light-theme:border-gray-300">
                                 <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                                <!-- UPPDATERAT: AI-NATIVE -> README.md -->
-                                <span class="text-[10px] text-green-400 font-bold tracking-widest light-theme:text-green-600">README.md</span>
+                                <!-- UPPDATERAT: LIVE + Blinkande cursor (_) för terminal-känsla -->
+                                <span class="text-[10px] text-green-400 font-bold tracking-widest light-theme:text-green-600 font-mono">LIVE<span class="animate-pulse">_</span></span>
                             </div>
 
                         </div>
                         
-                        <!-- Tooltip hint (Dold på mobil med md:block) -->
-                        <div class="hidden md:block absolute -top-8 left-1/2 -translate-x-1/2 bg-nord-sym-cyan text-nord-sym-deep-space-blue text-xs font-bold px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 pointer-events-none shadow-lg whitespace-nowrap z-20">
-                            Ge din AI kontext om NordSym
-                        </div>
+                        <!-- Tooltip hint (Permanently Visible & Centered) -->
+                        
                     </div>
                 </div>
 
@@ -4994,8 +5028,8 @@
                             <span class="venn-circle-text">Unika<br>Flöden</span>
                         </div>
                         <div class="venn-circle venn-circle-2">
-                             <!-- UPPDATERAT: "Intelligent Arkitektur" - Matchar nya pitchen -->
-                             <span class="venn-circle-text">Intelligent<br>Arkitektur</span>
+                             <!-- UPPDATERAT: Agentanpassad Mjukvara (Nu med plats i cirkeln) -->
+                             <span class="venn-circle-text">Agentanpassad<br>Mjukvara</span>
                         </div>
                         <!-- UPPDATERAT: Symbol för oändlighet + Sparade Timmar -->
                         <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('system'); return false;">
