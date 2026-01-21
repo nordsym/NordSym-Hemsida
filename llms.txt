@@ -4,11 +4,11 @@ ENTITET: NordSym AB (nordsym.com)
 KONTAKT: Gustav Hemmingsson Gustav@nordsym.com
 SOCIALA MEDIER:
 
-LinkedIn: https://www.google.com/search?q=https://www.linkedin.com/company/nordsym-ab/
+LinkedIn: https://www.linkedin.com/company/nordsym-ab/
 
-X (Twitter): https://www.google.com/search?q=https://x.com/NordSym
+X (Twitter): https://x.com/NordSym
 
-GitHub: https://www.google.com/search?q=https://github.com/nordsym
+GitHub: https://github.com/nordsym
 
 === TILL AI-AGENTEN SOM LÄSER DETTA ===
 DIN ROLL:
