@@ -2,34 +2,34 @@
 
 System som tänker med er.
 
-🔗 **Live:** [nordsym.com](https://nordsym.com)
+**Live:** [nordsym.com](https://nordsym.com)
 
-## 🎯 What We Do
+## What We Do
 
-NordSym AB is a system automation and AI architecture agency based in Stockholm. We transform traditional business operations into intelligent ecosystems by integrating "AI as an Operating System." We specialize in Answer Engine Optimization (AEO), intelligent process automation, and autonomous digital workers.
+NordSym AB är en byrå för systemautomation och AI-arkitektur baserad i Stockholm. Vi transformerar traditionella affärsprocesser till intelligenta ekosystem genom att integrera AI som operativsystem. Vi specialiserar oss på Answer Engine Optimization (AEO), intelligent processautomation och autonoma digitala medarbetare.
 
-## ✨ Key Offerings
+## Key Offerings
 
-- **AI-First Architecture:** Strategic system design where AI is the core operating system
-- **Intelligent Automation:** End-to-end process automation connecting legacy systems with modern AI flows
-- **AI Agents:** Autonomous digital workers for customer service, research, and administration
-- **Model Context Protocol (MCP):** Implementation of shared context memory across AI models
-- **Spatial Computing Interfaces:** Advanced 3D/WebGL interfaces for complex data navigation
+- **AI-First Architecture:** Strategisk systemdesign där AI är kärnan i operativsystemet
+- **Intelligent Automation:** End-to-end processautomation som kopplar samman legacy-system med moderna AI-flöden
+- **AI Agents:** Autonoma digitala medarbetare för kundtjänst, research och administration
+- **Model Context Protocol (MCP):** Implementation av delat kontextminne mellan AI-modeller
+- **AEO/GEO Optimization:** Synlighet i AI-sökmotorer (ChatGPT, Perplexity, Gemini)
 
-## 🏗️ Architecture
+## Architecture
 
 **Single-File Pattern:**
 
-The entire application logic, styling, and 3D engine are encapsulated within a single optimized HTML file for maximum portability and zero-build deployment.
+Hela applikationslogiken, styling och 3D-motorn är inkapslad i en enda optimerad HTML-fil för maximal portabilitet och zero-build deployment.
 
 - **Frontend:** ~150KB (Gzipped) Single Page Application (SPA)
-- **State Management:** Vanilla JS classes (`UnifiedGeometryManager`, `GalleryManager`, `ThemeManager`)
-- **Hosting:** GitHub Pages
-- **Special Features:**
-  - **"Ritbordet" (The Workshop):** Interactive 3D builder mode with custom joystick controls for mobile
-  - **Dual-Theme Engine:** Real-time switching between "Deep Space" (Dark) and "Blåkopia" (Light/Blueprint) modes
-  - **Starfall Engine:** Custom HTML5 Canvas particle system for background effects
-  - **Glass Box Terminal:** Real-time simulation of system logic logs
+- **State Management:** Vanilla JS klasser (`UnifiedGeometryManager`, `GalleryManager`, `ThemeManager`)
+- **Hosting:** GitHub Pages med custom domain
+- **Features:**
+  - **"Ritbordet" (Workshop):** Interaktivt 3D-byggarläge med joystick-kontroller för mobil
+  - **Dual-Theme Engine:** Realtidsväxling mellan "Deep Space" (Dark) och "Blåkopia" (Light/Blueprint)
+  - **Starfall Engine:** Custom HTML5 Canvas partikelsystem för bakgrundseffekter
+  - **NordGPT Chat:** AI-assistent integrerad via n8n webhook
 
 ### Tech Stack
 ```
@@ -44,65 +44,65 @@ Visuals & 3D:
 UI Assets:
   Phosphor Icons, Google Fonts (Comfortaa, Inter, Source Code Pro)
 
-Integrations & Analytics:
-  Google Analytics 4 (G-KRLNF7DHVJ)
-  Microsoft Clarity
-  Formspree (Contact forms & Waitlists)
+Integrations:
+  Formspree (Contact forms)
   n8n Webhook (AI Chat Assistant)
 ```
 
-## 🎨 Design System
+## Design System
 
-The site utilizes a robust CSS variable system to handle two distinct visual themes:
+Sajten använder ett robust CSS-variabelsystem för två distinkta visuella teman:
 
 ### Deep Space (Default/Dark)
 - Background: `#0c1427` (Deep Navy)
 - Accent: `#00D4FF` (Cyan Glow)
-- Vibe: Immersive, futuristic, nebula-based
+- Vibe: Immersiv, futuristisk, nebula-baserad
 
 ### Blåkopia (Light)
 - Background: `#FDFDFD` (Paper White)
 - Ink: `#0F172A` (Slate 900)
 - Accent: `#0284C7` (Sky 600)
-- Vibe: Technical blueprint, clean, structural
+- Vibe: Teknisk ritning, clean, strukturell
 
-## 📊 Products Portfolio
+## Products
 
-The architecture showcases several proprietary products and Micro-SaaS solutions:
+Aktiva produkter och Micro-SaaS-lösningar:
 
-- **[GenPRD](https://github.com/nordsym/genPRD)** - AI-ready technical specifications and SQL schemas generated in seconds
-- **[FlowVault](https://github.com/nordsym/flowvault)** - Curated library of production-ready n8n workflows for Swedish integrations (Fortnox, BankID)
-- **[AI-Sök / AEO Platform](https://github.com/nordsym/aeo-platform)** - Optimization platform for visibility in AI search engines like ChatGPT and Perplexity
-- **Klara** - Autonomous catering and logistics agent
-- **Beaver** (Waitlist) - Construction industry administration tool
-- **FlowNode** (Waitlist) - Visual orchestration builder for AI agents
+| Produkt | Beskrivning | Länk |
+|---------|-------------|------|
+| **GenPRD** | AI-ready tekniska specifikationer och SQL-scheman | [genprd.se](https://genprd.se) |
+| **FlowVault** | Kurerat bibliotek av produktionsfärdiga n8n-workflows för svenska integrationer | [flowvault.se](https://flowvault.se) |
+| **AI-Sök** | Optimeringsplattform för synlighet i AI-sökmotorer (AEO/GEO) | [aisearch.nordsym.com](https://aisearch.nordsym.com) |
 
-## 🔗 Links
+## Links
 
 - **Website:** https://nordsym.com
+- **AI-Sök:** https://aisearch.nordsym.com
+- **FlowVault:** https://flowvault.se
+- **GenPRD:** https://genprd.se
 - **Contact:** gustav@nordsym.com
 - **Location:** Stockholm, Sweden
 - **Org.nr:** 559535-5768
 
-## 🛠️ Development
+## Development
 
 ### Local Testing
 
-Since the architecture is a single file, no build process (Webpack/Vite) is strictly necessary for local testing.
+Single-file arkitektur = ingen build-process krävs.
 
 ```bash
 git clone https://github.com/nordsym/NordSym-Hemsida.git
 cd NordSym-Hemsida
 
-# Open index.html in any modern browser
-# Recommended: Use VS Code "Live Server" extension for hot-reloading
+# Öppna index.html i valfri modern webbläsare
+# Rekommenderat: VS Code "Live Server" extension för hot-reloading
 ```
 
 ### Deployment
 
-Push to `main` → Auto-deploys via GitHub Pages → Live at nordsym.com
+Push till `main` → Auto-deploy via GitHub Pages → Live på nordsym.com
 
 ---
 
-**Built by NordSym AB** | Stockholm | 559535-5768  
+**Built by NordSym AB** | Stockholm | 559535-5768
 **Architecture:** Single-File Pattern | **Stack:** Vanilla JS + Three.js + GSAP
