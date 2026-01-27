@@ -4978,90 +4978,98 @@
   <div class="section-content-wrapper">
    <!-- Social Proof Header -->
    <div class="text-center mb-16">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-nord-sym-cyan/10 border border-nord-sym-cyan/20 text-nord-sym-cyan text-xs font-bold uppercase tracking-widest mb-6">
-     <span class="w-2 h-2 rounded-full bg-nord-sym-cyan animate-pulse"></span>
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.2); color: var(--nord-sym-cyan);">
+     <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--nord-sym-cyan);"></span>
      Beprövad i praktiken
     </div>
     <h2 class="text-3xl md:text-5xl tracking-tighter mb-4 text-white light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Vad säger kunderna?</h2>
-    <p class="opacity-60 text-sm text-sky-200 light-theme:text-nord-sym-blueprint-text-secondary">Svenska företag som byggt med NordSym</p>
+    <p class="text-sm light-theme:text-nord-sym-blueprint-text-secondary" style="opacity: 0.6; color: #bfdbfe;">Svenska företag som byggt med NordSym</p>
    </div>
 
    <!-- Testimonials Grid -->
-   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+   <div class="max-w-5xl mx-auto" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+    <style>
+     @media (min-width: 768px) {
+      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+     }
+    </style>
+    <div class="testimonials-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
 
     <!-- Testimonial 1: Emma H. -->
-    <div class="group relative rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] cursor-default"
-         style="background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="group relative p-6 transition-all duration-300 cursor-default"
+         style="background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem;">
      <!-- Quote Icon -->
      <div class="mb-4">
-      <i class="ph-quotes text-3xl text-nord-sym-cyan opacity-50"></i>
+      <i class="ph-quotes" style="font-size: 1.875rem; color: var(--nord-sym-cyan); opacity: 0.5;"></i>
      </div>
 
      <!-- Testimonial Text -->
-     <p class="text-sky-100 text-sm leading-relaxed mb-6 light-theme:text-nord-sym-blueprint-text-primary">
+     <p class="text-sm leading-relaxed mb-6 light-theme:text-nord-sym-blueprint-text-primary" style="color: #f0f9ff;">
       De automatiserade vårt mest tidskrävande flöde. Sparar oss timmar varje vecka och setupen fungerar fortfarande smidigt.
      </p>
 
      <!-- Author -->
-     <div class="flex items-center gap-3 pt-4 border-t border-white/10 light-theme:border-gray-300">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-nord-sym-cyan to-nord-sym-purple flex items-center justify-center text-white font-bold text-sm">
+     <div class="flex items-center pt-4" style="gap: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="flex items-center justify-center text-white font-bold" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; background: linear-gradient(to bottom right, var(--nord-sym-cyan), var(--nord-sym-purple)); font-size: 0.875rem;">
        EH
       </div>
       <div>
-       <p class="text-white font-semibold text-sm light-theme:text-nord-sym-blueprint-ink">Emma H.</p>
-       <p class="text-sky-300 text-xs light-theme:text-nord-sym-blueprint-text-secondary">Grundare, Tech-startup</p>
+       <p class="text-white font-semibold light-theme:text-nord-sym-blueprint-ink" style="font-size: 0.875rem;">Emma H.</p>
+       <p class="light-theme:text-nord-sym-blueprint-text-secondary" style="font-size: 0.75rem; color: #7dd3fc;">Grundare, Tech-startup</p>
       </div>
      </div>
     </div>
 
     <!-- Testimonial 2: David M. -->
-    <div class="group relative rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] cursor-default"
-         style="background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="group relative p-6 transition-all duration-300 cursor-default"
+         style="background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem;">
      <!-- Quote Icon -->
      <div class="mb-4">
-      <i class="ph-quotes text-3xl text-nord-sym-purple opacity-50"></i>
+      <i class="ph-quotes" style="font-size: 1.875rem; color: var(--nord-sym-purple); opacity: 0.5;"></i>
      </div>
 
      <!-- Testimonial Text -->
-     <p class="text-sky-100 text-sm leading-relaxed mb-6 light-theme:text-nord-sym-blueprint-text-primary">
+     <p class="text-sm leading-relaxed mb-6 light-theme:text-nord-sym-blueprint-text-primary" style="color: #f0f9ff;">
       NordSym förstod våra processer snabbt. N8n-integrationerna de byggde kopplar ihop våra system på ett sätt vi inte trodde var möjligt.
      </p>
 
      <!-- Author -->
-     <div class="flex items-center gap-3 pt-4 border-t border-white/10 light-theme:border-gray-300">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-nord-sym-purple to-nord-sym-orange flex items-center justify-center text-white font-bold text-sm">
+     <div class="flex items-center pt-4" style="gap: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="flex items-center justify-center text-white font-bold" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; background: linear-gradient(to bottom right, var(--nord-sym-purple), var(--nord-sym-orange)); font-size: 0.875rem;">
        DM
       </div>
       <div>
-       <p class="text-white font-semibold text-sm light-theme:text-nord-sym-blueprint-ink">David M.</p>
-       <p class="text-sky-300 text-xs light-theme:text-nord-sym-blueprint-text-secondary">VD, Konsultbolag</p>
+       <p class="text-white font-semibold light-theme:text-nord-sym-blueprint-ink" style="font-size: 0.875rem;">David M.</p>
+       <p class="light-theme:text-nord-sym-blueprint-text-secondary" style="font-size: 0.75rem; color: #7dd3fc;">VD, Konsultbolag</p>
       </div>
      </div>
     </div>
 
     <!-- Testimonial 3: Linda S. -->
-    <div class="group relative rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] cursor-default"
-         style="background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="group relative p-6 transition-all duration-300 cursor-default"
+         style="background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem;">
      <!-- Quote Icon -->
      <div class="mb-4">
-      <i class="ph-quotes text-3xl text-nord-sym-orange opacity-50"></i>
+      <i class="ph-quotes" style="font-size: 1.875rem; color: var(--nord-sym-orange); opacity: 0.5;"></i>
      </div>
 
      <!-- Testimonial Text -->
-     <p class="text-sky-100 text-sm leading-relaxed mb-6 light-theme:text-nord-sym-blueprint-text-primary">
+     <p class="text-sm leading-relaxed mb-6 light-theme:text-nord-sym-blueprint-text-primary" style="color: #f0f9ff;">
       Skräddarsydd lösning som gör precis vad vi behöver. Inget överkill, bara rätt funktionalitet för vårt sätt att jobba.
      </p>
 
      <!-- Author -->
-     <div class="flex items-center gap-3 pt-4 border-t border-white/10 light-theme:border-gray-300">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-nord-sym-orange to-nord-sym-cyan flex items-center justify-center text-white font-bold text-sm">
+     <div class="flex items-center pt-4" style="gap: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="flex items-center justify-center text-white font-bold" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; background: linear-gradient(to bottom right, var(--nord-sym-orange), var(--nord-sym-cyan)); font-size: 0.875rem;">
        LS
       </div>
       <div>
-       <p class="text-white font-semibold text-sm light-theme:text-nord-sym-blueprint-ink">Linda S.</p>
-       <p class="text-sky-300 text-xs light-theme:text-nord-sym-blueprint-text-secondary">Produktchef, E-handel</p>
+       <p class="text-white font-semibold light-theme:text-nord-sym-blueprint-ink" style="font-size: 0.875rem;">Linda S.</p>
+       <p class="light-theme:text-nord-sym-blueprint-text-secondary" style="font-size: 0.75rem; color: #7dd3fc;">Produktchef, E-handel</p>
       </div>
      </div>
+    </div>
+
     </div>
 
    </div>
