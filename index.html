@@ -5447,6 +5447,9 @@
    <!-- Carousel JavaScript -->
    <script>
     (function() {
+     // Skip desktop carousel on mobile - mobile uses scroll-snap instead
+     if (window.innerWidth <= 768) return;
+     
      const track = document.querySelector('.testimonial-carousel-track');
      const slides = document.querySelectorAll('.testimonial-slide');
      const dots = document.querySelectorAll('.testimonial-dot');
@@ -5545,13 +5548,25 @@
        const dots = document.querySelectorAll('.testimonial-dot');
        const prevBtn = document.querySelector('.testimonial-nav-prev');
        const nextBtn = document.querySelector('.testimonial-nav-next');
+       const progressBar = document.getElementById('testimonial-progress-bar');
        
        if (!inner || !track || slides.length === 0) return;
        
+       // Disable transform-based animation
        track.style.transform = 'none';
        track.style.transition = 'none';
        
        let currentIndex = 0;
+       let autoRotateInterval;
+       let userInteracting = false;
+       
+       function resetProgress() {
+         if (progressBar) {
+           progressBar.style.animation = 'none';
+           progressBar.offsetHeight;
+           progressBar.style.animation = 'testimonialProgress 6s linear infinite';
+         }
+       }
        
        function scrollToSlide(index) {
          if (index < 0) index = slides.length - 1;
@@ -5560,8 +5575,21 @@
          const slideWidth = inner.offsetWidth;
          inner.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
          dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+         resetProgress();
        }
        
+       function startAutoRotate() {
+         stopAutoRotate();
+         autoRotateInterval = setInterval(() => {
+           if (!userInteracting) scrollToSlide(currentIndex + 1);
+         }, 6000);
+       }
+       
+       function stopAutoRotate() {
+         clearInterval(autoRotateInterval);
+       }
+       
+       // Sync dots with manual scroll
        let scrollTimeout;
        inner.addEventListener('scroll', function() {
          clearTimeout(scrollTimeout);
@@ -5571,15 +5599,23 @@
            if (newIndex !== currentIndex && newIndex >= 0 && newIndex < slides.length) {
              currentIndex = newIndex;
              dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+             resetProgress();
            }
          }, 50);
        }, { passive: true });
        
+       // Touch handling - pause auto-rotate during interaction
+       inner.addEventListener('touchstart', () => { userInteracting = true; stopAutoRotate(); }, { passive: true });
+       inner.addEventListener('touchend', () => { userInteracting = false; setTimeout(startAutoRotate, 2000); }, { passive: true });
+       
+       // Button handlers
        if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scrollToSlide(currentIndex - 1); });
        if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scrollToSlide(currentIndex + 1); });
        dots.forEach((dot, index) => dot.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scrollToSlide(index); }));
        
+       // Initialize
        scrollToSlide(0);
+       startAutoRotate();
        console.log('[NordSym] Mobile testimonial carousel initialized');
      }
    })();
