@@ -5203,6 +5203,148 @@
    body.light-theme .testimonial-progress-bar {
     background: var(--nord-sym-blueprint-cyan);
    }
+   
+   /* ===========================================
+      MOBIL: Native Scroll-Snap Carousel Fix
+      =========================================== */
+   @media (max-width: 768px) {
+     .testimonial-carousel {
+       padding: 0 1rem !important;
+     }
+     
+     .testimonial-carousel-inner {
+       overflow-x: auto !important;
+       overflow-y: hidden !important;
+       scroll-snap-type: x mandatory !important;
+       -webkit-overflow-scrolling: touch !important;
+       scrollbar-width: none !important;
+       -ms-overflow-style: none !important;
+     }
+     
+     .testimonial-carousel-inner::-webkit-scrollbar {
+       display: none !important;
+     }
+     
+     .testimonial-carousel-track {
+       display: flex !important;
+       flex-wrap: nowrap !important;
+     }
+     
+     .testimonial-slide {
+       min-width: 100% !important;
+       width: 100% !important;
+       flex: 0 0 100% !important;
+       scroll-snap-align: start !important;
+       scroll-snap-stop: always !important;
+       padding: 0.25rem !important;
+       box-sizing: border-box !important;
+     }
+     
+     .testimonial-card {
+       padding: 1.25rem !important;
+       max-height: 320px !important;
+       height: auto !important;
+       overflow: hidden !important;
+       display: flex !important;
+       flex-direction: column !important;
+     }
+     
+     .testimonial-quote-icon {
+       font-size: 1.75rem !important;
+       margin-bottom: 0.75rem !important;
+     }
+     
+     .testimonial-text {
+       font-size: 0.9rem !important;
+       line-height: 1.5 !important;
+       margin-bottom: 1rem !important;
+       flex: 1 !important;
+       overflow: hidden !important;
+     }
+     
+     .testimonial-author {
+       padding-top: 0.75rem !important;
+       gap: 0.75rem !important;
+     }
+     
+     .testimonial-avatar {
+       width: 2.75rem !important;
+       height: 2.75rem !important;
+       font-size: 0.85rem !important;
+     }
+     
+     .testimonial-name {
+       font-size: 0.9rem !important;
+     }
+     
+     .testimonial-role {
+       font-size: 0.75rem !important;
+     }
+     
+     .testimonial-nav-btn {
+       width: 36px !important;
+       height: 36px !important;
+       font-size: 1rem !important;
+     }
+     
+     .testimonial-nav-prev {
+       left: -0.25rem !important;
+     }
+     
+     .testimonial-nav-next {
+       right: -0.25rem !important;
+     }
+     
+     .testimonial-dots {
+       margin-top: 1.5rem !important;
+       gap: 0.75rem !important;
+     }
+     
+     .testimonial-dot {
+       width: 10px !important;
+       height: 10px !important;
+     }
+     
+     .testimonial-progress {
+       margin-top: 1rem !important;
+     }
+   }
+   
+   @media (max-width: 375px) {
+     .testimonial-card {
+       padding: 1rem !important;
+       max-height: 300px !important;
+     }
+     
+     .testimonial-text {
+       font-size: 0.85rem !important;
+       line-height: 1.45 !important;
+     }
+     
+     .testimonial-quote-icon {
+       font-size: 1.5rem !important;
+       margin-bottom: 0.5rem !important;
+     }
+     
+     .testimonial-author {
+       padding-top: 0.5rem !important;
+     }
+     
+     .testimonial-avatar {
+       width: 2.5rem !important;
+       height: 2.5rem !important;
+     }
+   }
+   
+   @media (min-width: 390px) and (max-width: 768px) {
+     .testimonial-card {
+       max-height: 340px !important;
+     }
+     
+     .testimonial-text {
+       font-size: 0.925rem !important;
+     }
+   }
   </style>
   
   <div class="section-content-wrapper">
@@ -5381,6 +5523,66 @@
       startAutoRotate();
      });
     })();
+   </script>
+   
+   <!-- Mobile Testimonial Scroll-Snap Fix -->
+   <script>
+   (function() {
+     'use strict';
+     if (document.readyState === 'loading') {
+       document.addEventListener('DOMContentLoaded', initMobileTestimonials);
+     } else {
+       initMobileTestimonials();
+     }
+     
+     function initMobileTestimonials() {
+       const isMobile = window.innerWidth <= 768;
+       if (!isMobile) return;
+       
+       const inner = document.querySelector('.testimonial-carousel-inner');
+       const track = document.querySelector('.testimonial-carousel-track');
+       const slides = document.querySelectorAll('.testimonial-slide');
+       const dots = document.querySelectorAll('.testimonial-dot');
+       const prevBtn = document.querySelector('.testimonial-nav-prev');
+       const nextBtn = document.querySelector('.testimonial-nav-next');
+       
+       if (!inner || !track || slides.length === 0) return;
+       
+       track.style.transform = 'none';
+       track.style.transition = 'none';
+       
+       let currentIndex = 0;
+       
+       function scrollToSlide(index) {
+         if (index < 0) index = slides.length - 1;
+         if (index >= slides.length) index = 0;
+         currentIndex = index;
+         const slideWidth = inner.offsetWidth;
+         inner.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+         dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+       }
+       
+       let scrollTimeout;
+       inner.addEventListener('scroll', function() {
+         clearTimeout(scrollTimeout);
+         scrollTimeout = setTimeout(function() {
+           const slideWidth = inner.offsetWidth;
+           const newIndex = Math.round(inner.scrollLeft / slideWidth);
+           if (newIndex !== currentIndex && newIndex >= 0 && newIndex < slides.length) {
+             currentIndex = newIndex;
+             dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+           }
+         }, 50);
+       }, { passive: true });
+       
+       if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scrollToSlide(currentIndex - 1); });
+       if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scrollToSlide(currentIndex + 1); });
+       dots.forEach((dot, index) => dot.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); scrollToSlide(index); }));
+       
+       scrollToSlide(0);
+       console.log('[NordSym] Mobile testimonial carousel initialized');
+     }
+   })();
    </script>
   </div>
  </section>
