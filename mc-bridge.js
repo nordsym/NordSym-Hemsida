@@ -308,6 +308,10 @@
           console.log('[MC-Bridge] ✓ Connected to NordSym geometry');
           this.initialized = true;
 
+          // Set initial shape to fibonacci_sphere (default) to avoid unnecessary morph on first load
+          this.lastAppliedShape = 'fibonacci_sphere';
+          console.log('[MC-Bridge] Initial shape set to: fibonacci_sphere');
+
           // Hook into geometry's morphToShape to detect user interaction
           const geo = this.getGeometry();
           const originalMorphToShape = geo.morphToShape.bind(geo);
