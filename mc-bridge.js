@@ -26,32 +26,33 @@
     initialized: false,
     
     // Activity type → Geometry + Material mapping
+    // Each event type gets UNIQUE geometry to ensure visible morphs
     ACTIVITY_MAP: {
-      // task (pending) → idle state
-      'task_pending': { geometry: 'fibonacci_sphere', material: 'neural' },
-      // task (done) → executing state
+      // task (pending) → structured work
+      'task_pending': { geometry: 'structure', material: 'neural' },
+      // task (done) → completed dimension
       'task_done': { geometry: 'tesseract', material: 'crystal' },
       // task (default) → maps based on status in event
-      'task': { geometry: 'fibonacci_sphere', material: 'neural' },
-      // research → thinking state
+      'task': { geometry: 'structure', material: 'neural' },
+      // research → thinking/exploration state
       'research': { geometry: 'lorenz_attractor', material: 'quantum' },
-      // commit → executing state
-      'commit': { geometry: 'tesseract', material: 'crystal' },
-      // communication types → communicating state
+      // commit → crystallized execution
+      'commit': { geometry: 'stellated_dodecahedron', material: 'crystal' },
+      // communication types → each gets unique geometry
       'email': { geometry: 'relation', material: 'neural' },
-      'meeting': { geometry: 'relation', material: 'neural' },
+      'meeting': { geometry: 'torus', material: 'organic' },
       'call': { geometry: 'relation', material: 'neural' },
-      // notification → idle state
-      'notification': { geometry: 'fibonacci_sphere', material: 'organic' },
-      // approval_request → blocked state
+      // notification → adaptive response
+      'notification': { geometry: 'adaptation', material: 'organic' },
+      // approval_request → crystalline decision point
       'approval_request': { geometry: 'geode', material: 'quantum' },
-      // stage_change → executing state
-      'stage_change': { geometry: 'tesseract', material: 'crystal' },
+      // stage_change → brilliant transition
+      'stage_change': { geometry: 'diamond_brilliant', material: 'crystal' },
       // deal outcomes
       'deal_won': { geometry: 'nebula_cloud', material: 'organic' },
       'deal_lost': { geometry: 'geode', material: 'crystal' },
-      // note type (common in logs)
-      'note': { geometry: 'fibonacci_sphere', material: 'organic' }
+      // note type → flowing thoughts
+      'note': { geometry: 'flower_of_life', material: 'organic' }
     },
 
     // Get unified geometry reference
