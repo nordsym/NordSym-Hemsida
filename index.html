@@ -7450,6 +7450,7 @@
  this.elasticGeometry.setMorph(this.thinkingState.originalShape.name, 'fibonacci_sphere', 0);
  
  // Yoyo-loop med mer "svung" (Power3)
+        if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.material.uniforms.morphProgress) {
  this.thinkingState.morphTween = gsap.to(this.elasticGeometry.mesh.material.uniforms.morphProgress, {
  value: 1,
  duration: 1.5, // Snabbare tempo (1.5s)
@@ -7457,6 +7458,7 @@
  yoyo: true,
  repeat: -1
  });
+        }
  } else {
  this.elasticGeometry.morphToShape('fibonacci_sphere'); 
  }
@@ -7513,6 +7515,7 @@
  
  this.elasticGeometry.setMorph(this.activeShape.name, 'fibonacci_sphere', 1);
  
+if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.material.uniforms.morphProgress) {
  gsap.to(this.elasticGeometry.mesh.material.uniforms.morphProgress, {
  value: 0,
  duration: 2.5, // Mjuk, tydlig evolution
@@ -7522,6 +7525,7 @@
  }
  });
  } else {
+}
  // För solida former
  this.elasticGeometry.morphToShape(this.activeShape.name);
  }
@@ -7561,7 +7565,9 @@
  this.activeParticleMorph.to = toShape.name;
  }
  // I varje frame uppdaterar vi endast progress-värdet i grafikprocessorn, vilket ger en helt mjuk animation.
- this.elasticGeometry.mesh.material.uniforms.morphProgress.value = this.currentMorphProgress;
+      if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.material.uniforms.morphProgress) {
+        this.elasticGeometry.mesh.material.uniforms.morphProgress.value = this.currentMorphProgress;
+      }
  } else {
  // Solida geometrier använder en annan fysikbaserad morfning.
  this.elasticGeometry.setMorph(fromShape.name, toShape.name, this.currentMorphProgress);
@@ -8154,7 +8160,10 @@
  this.geometry.attributes.position.needsUpdate = true;
  this.geometry.attributes.morphTarget.needsUpdate = true;
  this.geometry.attributes.color.needsUpdate = true;
- this.mesh.material.uniforms.morphProgress.value = progress;
+  // Null-check: Only set morphProgress if uniform exists
+  if (this.mesh.material.uniforms && this.mesh.material.uniforms.morphProgress) {
+    this.mesh.material.uniforms.morphProgress.value = progress;
+  }
  } else {
  // Solid geometry morphing logic (physics-based)
  const fromPos = fromGeo.attributes.position.array;
