@@ -6132,11 +6132,10 @@
  <div id="ritbordet-lobby" class="section-content-wrapper">
  <div class="text-center mb-16">
  <!-- Designkoncept "Vit Krita" -->
- <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">R&D</span>
- <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Gaming + AI + Three.js</h2>
+ <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">LEVANDE SYSTEM</span>
+ <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Agenter behöver rum att tänka</h2>
  <p class="text-sky-100/80 max-w-3xl mx-auto text-lg leading-relaxed light-theme:text-nord-sym-blueprint-text-secondary">
- <!-- Nertonad, saklig copy -->
- Här experimenterar vi med WebGL och AI. Vi testar gränserna för vad som är möjligt att köra direkt i en webbläsare, med fokus på spelmekanik och interaktiva gränssnitt.
+        Varje form är ett aktivt system. Geometrin är inte dekoration, den är infrastruktur.
  </p>
  </div>
  
@@ -6147,11 +6146,10 @@
  <!-- Kort 1: Tekniken (Varför?) -->
  <!-- Lade till onmouseenter för geometriner -->
  <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-default" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
- <i class="ph-code-block text-4xl mb-4"></i>
+ <i class="ph-cube text-4xl mb-4 text-nord-sym-cyan"></i>
  <!-- Fokus på teknisk nytta -->
- <h4 class="text-xl font-bold mb-2">Varför Three.js?</h4>
- <!-- Saklig förklaring -->
- <p>Traditionell 3D kräver tunga nedladdningar. Med Three.js och AI kan vi generera innehåll direkt i webbläsaren ("procedurellt"). Det ger snabba, lättviktiga upplevelser tillgängliga överallt.</p>
+ <h4 class="text-xl font-bold mb-2">Precisionsmotor</h4>
+          <p>Strukturerad problemlösning. Kristallen processar data i lager, varje fasett en beräkningsyta.</p>
  <!-- Ingen CTA här, ren info -->
  </div>
 
@@ -6162,23 +6160,20 @@
  <i class="ph ph-cube text-4xl text-nord-sym-cyan"></i>
  </div>
  <!-- Tydlig uppmaning -->
- <h4 class="text-2xl font-bold mb-2 text-white">Prova Tekniken</h4>
+          <h4 class="text-2xl font-bold mb-2 text-white">Kreativ yta</h4>
  <!-- Förklara att det är live -->
- <p>Detta är en live-demonstration. Gå in i verkstaden för att rotera objektet, byta visuella teman och testa fysikmotorn i realtid.</p>
- 
+          <p>Ostrukturerat sökande. Molnet utforskar möjligheter innan det finns en fråga.</p>
  <button class="mt-6 btn-base btn-cta-revised px-6">Starta</button>
  </div>
 
- <!-- Kort 3: Gaming R&D -->
+ <!-- Kort 3: Relationslogik -->
  <!-- Länkar tillbaka till modal (väntelista) istället för X + onmouseenter -->
- <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-pointer" onclick="window.nord.openDynamicWaitlist('gaming')" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
- <i class="ph-game-controller text-4xl mb-4"></i>
+ <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-default" onclick="return false;" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
+ <i class="ph-graph text-4xl mb-4"></i>
  <!-- Saklig titel -->
- <h4 class="text-xl font-bold mb-2">Gaming R&D</h4>
+ <h4 class="text-xl font-bold mb-2">Relationslogik</h4>
  <!-- Rensat bort den långa meningen om prototyper -->
- <p>AI-genererade spel är en sektor som växer snabbt.</p>
- <!-- Enkel text för intresselista -->
- <span class="text-sky-300 text-sm mt-4 inline-block group-hover:text-white font-semibold">Följ projektet →</span>
+          <p>Mönster mellan punkter. Nätverket ser kopplingar som kristallen missar.</p>
  </div>
 
  </div>
@@ -8504,7 +8499,7 @@ Om användaren vill komma i kontakt:
  },
  // Konfiguration för Gaming (Uppdaterad text för att matcha kortet)
  gaming: {
- icon: 'ph-game-controller',
+ icon: 'ph-graph',
  title: 'R&D: AI-Gaming',
  desc: 'AI-genererade spel är framtiden. Vi bygger prototyper i skärningspunkten mellan Three.js och LLM:er. Skriv upp dig för beta-access.',
  subject: 'Intresseanmälan: AI-Gaming'

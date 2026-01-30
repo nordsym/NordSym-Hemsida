@@ -13,11 +13,14 @@
   const MC_BRIDGE = {
     // Config
     CONVEX_URL: 'https://agile-crane-840.convex.cloud',
-    POLL_INTERVAL: 5000, // 5 seconds
+    POLL_INTERVAL: 15000, // 15 seconds (reduced from 5s for performance)
+    USER_INTERACTION_PAUSE: 30000, // 30 seconds pause after user interaction
     IDLE_THRESHOLD: 15 * 60 * 1000, // 15 minutes
-    
+
     // State
     lastEventId: null,
+    lastAppliedShape: null, // Track last applied shape to avoid redundant morphs
+    lastUserInteraction: 0, // Timestamp of last user morph
     isIdle: false,
     idleAnimationId: null,
     initialized: false,
@@ -131,10 +134,16 @@
         return false;
       }
 
+      // Skip if shape hasn't changed
+      if (this.lastAppliedShape === mapping.geometry) {
+        return false; // No change needed
+      }
+
       try {
         // Morph to shape
         if (mapping.geometry && typeof geo.morphToShape === 'function') {
           geo.morphToShape(mapping.geometry);
+          this.lastAppliedShape = mapping.geometry;
           console.log(`[MC-Bridge] Morphed to: ${mapping.geometry}`);
         }
 
@@ -197,6 +206,14 @@
     // Main poll cycle
     async poll() {
       try {
+        // Respect user interaction - pause MC updates for 30s after manual morph
+        const timeSinceUserInteraction = Date.now() - this.lastUserInteraction;
+        if (timeSinceUserInteraction < this.USER_INTERACTION_PAUSE) {
+          const remainingPause = Math.ceil((this.USER_INTERACTION_PAUSE - timeSinceUserInteraction) / 1000);
+          console.log(`[MC-Bridge] Paused (user is interacting, ${remainingPause}s remaining)`);
+          return;
+        }
+
         // Fetch events and stats in parallel
         const [events, stats] = await Promise.all([
           this.fetchLatestEvents(),
@@ -216,12 +233,13 @@
         // Check for new events
         if (events.length > 0) {
           const latestEvent = events[0];
-          
+
+          // Only process if it's a NEW event
           if (latestEvent.id !== this.lastEventId) {
             console.log('[MC-Bridge] New event:', latestEvent.type, latestEvent.title);
             this.lastEventId = latestEvent.id;
-            
-            // Apply geometry mapping
+
+            // Apply geometry mapping (will skip if shape hasn't changed)
             const mapping = this.getMapping(latestEvent);
             this.applyMapping(mapping);
           }
@@ -231,19 +249,37 @@
       }
     },
 
+    // Notify MC-Bridge that user has interacted
+    notifyUserInteraction() {
+      this.lastUserInteraction = Date.now();
+      console.log('[MC-Bridge] User interaction detected, pausing MC updates for 30s');
+    },
+
     // Initialize bridge
     init() {
       if (this.initialized) return;
-      
+
       // Wait for window.nord to be available
       const checkReady = () => {
         if (this.getGeometry()) {
           console.log('[MC-Bridge] ✓ Connected to NordSym geometry');
           this.initialized = true;
-          
+
+          // Hook into geometry's morphToShape to detect user interaction
+          const geo = this.getGeometry();
+          const originalMorphToShape = geo.morphToShape.bind(geo);
+          geo.morphToShape = (...args) => {
+            // Only notify if this is NOT from MC-Bridge
+            const stack = new Error().stack;
+            if (!stack.includes('MC_BRIDGE.applyMapping')) {
+              this.notifyUserInteraction();
+            }
+            return originalMorphToShape(...args);
+          };
+
           // Initial poll
           this.poll();
-          
+
           // Start polling interval
           setInterval(() => this.poll(), this.POLL_INTERVAL);
         } else {
@@ -251,7 +287,7 @@
           setTimeout(checkReady, 1000);
         }
       };
-      
+
       // Start checking after DOM is ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => setTimeout(checkReady, 2000));
