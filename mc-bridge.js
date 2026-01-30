@@ -14,7 +14,7 @@
     // Config
     CONVEX_URL: 'https://agile-crane-840.convex.cloud',
     POLL_INTERVAL: 15000, // 15 seconds (reduced from 5s for performance)
-    USER_INTERACTION_PAUSE: 30000, // 30 seconds pause after user interaction
+    USER_INTERACTION_PAUSE: 60000, // 60 seconds pause after user interaction
     IDLE_THRESHOLD: 15 * 60 * 1000, // 15 minutes
 
     // State
@@ -60,6 +60,46 @@
         return window.nord?.unifiedGeometry?.elasticGeometry;
       } catch (e) {
         return null;
+      }
+    },
+
+    // Get UnifiedGeometryManager reference
+    getManager() {
+      try {
+        return window.nord?.unifiedGeometry;
+      } catch (e) {
+        return null;
+      }
+    },
+
+    // Find theme that contains a specific geometry
+    findThemeForGeometry(geometryName) {
+      const library = window.VISUAL_ASSET_LIBRARY;
+      if (!library) return null;
+
+      for (const [themeKey, theme] of Object.entries(library)) {
+        if (theme.forms && theme.forms.some(form => form.name === geometryName)) {
+          return themeKey;
+        }
+      }
+      return null;
+    },
+
+    // Sync button state to match current geometry
+    syncButtonState(geometryName) {
+      const manager = this.getManager();
+      if (!manager) return;
+
+      const themeKey = this.findThemeForGeometry(geometryName);
+      if (!themeKey) return;
+
+      // Update manager's activeThemeKey WITHOUT triggering morphs
+      manager.activeThemeKey = themeKey;
+
+      // Update button UI
+      if (typeof manager.updateButtonUI === 'function') {
+        manager.updateButtonUI();
+        console.log(`[MC-Bridge] Synced button state to theme: ${themeKey}`);
       }
     },
 
@@ -145,6 +185,9 @@
           geo.morphToShape(mapping.geometry);
           this.lastAppliedShape = mapping.geometry;
           console.log(`[MC-Bridge] Morphed to: ${mapping.geometry}`);
+
+          // Sync button state to match geometry
+          this.syncButtonState(mapping.geometry);
         }
 
         // Set material
