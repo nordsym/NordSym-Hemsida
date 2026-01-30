@@ -6690,14 +6690,7 @@
  console.warn(`[EXTERNAL LOG] Disharmoni observerad i ${context}:`, error);
  }
 
- // --- CORE PAGE ROUTING LOGIC ---
- document.addEventListener('DOMContentLoaded', () => {
- // KALIBRERING: Neutralisera webbläsarens scroll-återställning för att säkerställa harmonisk start.
- if ('scrollRestoration' in history) {
- history.scrollRestoration = 'manual';
- }
- window.scrollTo(0, 0);
-
+ // --- PAGE CONFIGURATION (moved outside DOMContentLoaded for immediate availability) ---
  const pageConfig = {
  'hero': { isMultiPart: true, parts: ['hero', 'home-diagram-section', 'testimonials-section', 'atom-gallery-section', 'home-contact-section'], display: 'flex', hasFooter: true, navAlias: 'hero' },
  'om-oss': { display: 'flex', hasFooter: true, navAlias: 'om-oss' },
@@ -6712,18 +6705,18 @@
  window.nord.updateChatPosition = function(pageId) {
  // STÄNGD EMBEDDING: Chatten ska alltid vara en bubbla (minimerad)
  // Vi ignorerar hero-mount logiken helt för att uppfylla önskemålet om "minimerad som default".
- 
+
  /*
  const chatWindow = document.getElementById('chat-window');
  const heroMount = document.getElementById('hero-chat-mount');
  // ... (Gammal logik bortkommenterad/inaktiverad)
  */
- 
+
  // Se till att chatten alltid ligger i sin widget-container om den råkat flyttas
  const chatWindow = document.getElementById('chat-window');
  const widgetContainer = document.getElementById('chat-widget-container');
  const chatBubble = document.getElementById('chat-bubble');
- 
+
  if (widgetContainer && chatWindow && chatWindow.parentElement !== widgetContainer) {
  widgetContainer.appendChild(chatWindow);
  chatWindow.classList.remove('embedded-chat', 'visible');
@@ -6830,6 +6823,14 @@
  }
  }
  };
+
+ // --- CORE PAGE ROUTING LOGIC ---
+ document.addEventListener('DOMContentLoaded', () => {
+ // KALIBRERING: Neutralisera webbläsarens scroll-återställning för att säkerställa harmonisk start.
+ if ('scrollRestoration' in history) {
+ history.scrollRestoration = 'manual';
+ }
+ window.scrollTo(0, 0);
 
  /* Den gamla Three.js-stjärnhimlen har avvecklats till förmån för StarfallManager (Canvas) */
 
