@@ -1,7 +1,9 @@
 /**
- * NordSym Language System v2
+ * NordSym Language System v3
  * Clean data-i18n attribute-based translation system
  * Supports: Svenska (sv) | English (en)
+ * 
+ * COMPLETE i18n COVERAGE - All site sections translated
  */
 
 const NordSymLang = {
@@ -146,6 +148,114 @@ const NordSymLang = {
       footerPrivacy: 'Integritetspolicy',
       footerTerms: 'Användarvillkor',
       footerCopyright: '© 2025 NordSym AB. Alla rättigheter förbehållna.',
+      footerReadyToScale: 'Redo att skala upp?',
+      footerTagline: 'NordSym bygger infrastrukturen för skalbar, agent-driven tillväxt.',
+      footerFollowUs: 'Följ NordSym',
+
+      // ============================================
+      // TESTIMONIALS SECTION
+      // ============================================
+      testimonialsLabel: 'Beprövad i praktiken',
+      testimonialsTitle: 'Vad säger kunderna?',
+      testimonialsSubtitle: 'Svenska företag som byggt med NordSym',
+      
+      // Testimonial 1 - Mohammed A.
+      testimonial1Quote: 'AI Search från NordSym sparar oss timmar varje vecka på due diligence och marknadsresearch.',
+      testimonial1Name: 'Mohammed A.',
+      testimonial1Role: 'Partner, CQT Invest',
+      
+      // Testimonial 2 - David M.
+      testimonial2Quote: 'NordSym förstod våra processer snabbt. N8n-integrationerna de byggde kopplar ihop våra system på ett sätt vi inte trodde var möjligt.',
+      testimonial2Name: 'David M.',
+      testimonial2Role: 'VD, Konsultbolag',
+      
+      // Testimonial 3 - Linda S.
+      testimonial3Quote: 'Skräddarsydd lösning som gör precis vad vi behöver. Inget överkill, bara rätt funktionalitet för vårt sätt att jobba.',
+      testimonial3Name: 'Linda S.',
+      testimonial3Role: 'Produktchef, E-handel',
+
+      // ============================================
+      // GALLERY TABS (STACK / SYSTEM)
+      // ============================================
+      galleryTabStack: 'STACK',
+      galleryTabSystem: 'SYSTEM',
+      
+      // Stack description
+      galleryStackDesc: 'Tekniken under huven. Arkitekturen baseras på ett ekosystem av Claude, Gemini och OpenAI, orkestrerat av n8n och moderna vektordatabaser. Rätt verktyg för rätt kognitiv uppgift.',
+      galleryStackContext: 'Utforska stacken',
+      
+      // System description  
+      gallerySystemDesc: 'Färdiga produkter och Micro-SaaS lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
+      gallerySystemContext: 'Utforska systemen',
+
+      // ============================================
+      // MICRO-SAAS PRODUCT CARDS
+      // ============================================
+      // Intro text
+      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong> och <strong>Skeppa</strong> är våra Micro-SaaS. Ni kan börja använda dem direkt, helt utan kostnad.',
+      
+      // FlowVault
+      flowvaultTitle: 'FlowVault',
+      flowvaultDesc: 'Ett kurerat bibliotek av produktionsfärdiga n8n-flöden. Från komplexa svenska integrationer (t.ex. Fortnox) till avancerade AI-svärmar. Hämta verifierade blåkopior och accelerera er utvecklingstakt drastiskt.',
+      flowvaultSig1: 'Svenska API:er',
+      flowvaultSig2: 'AI-Svärmar',
+      flowvaultSig3: 'Open Source',
+      flowvaultIndicator: 'Automatisera snabbare. Starta gratis.',
+      flowvaultCta: 'Öppna Valvet',
+      
+      // AI-Sök (AEO)
+      aisearchTitle: 'Syns du i AI-Sök?',
+      aisearchDesc: 'Från traditionellt sök till GEO och AEO. Optimera din digitala närvaro för AI-sökmotorer som ChatGPT, Claude och Perplexity. Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på och citerar.',
+      aisearchSig1: 'AEO',
+      aisearchSig2: 'GEO',
+      aisearchSig3: 'SEO',
+      aisearchIndicator: 'Är ditt varumärke redo? Från 1,999 kr/mån.',
+      aisearchCta: 'Gör Gratis Analys',
+      
+      // GenPRD
+      genprdTitle: 'GenPRD',
+      genprdDesc: 'Sluta gissa, börja bygga. GenPRD omvandlar din produktidé till en detaljerad teknisk kravspecifikation (PRD) optimerad för AI-agenter. Få databasscheman, user flows och tech stacks på sekunder.',
+      genprdSig1: 'PRD-Generator',
+      genprdSig2: 'SQL-Schema',
+      genprdSig3: 'AI-Kontext',
+      genprdIndicator: 'Context-as-a-Service. Testa gratis.',
+      genprdCta: 'Testa GenPRD',
+      
+      // Skeppa
+      skeppaTitle: 'Skeppa',
+      skeppaDesc: 'Bygg, skeppa, vinn. Månatliga utmaningar för AI-utvecklare. Tävla mot andra, få feedback från communityn och bygg din portfolio. Nya teman varje månad.',
+      skeppaSig1: 'Månadsteman',
+      skeppaSig2: 'Community',
+      skeppaSig3: 'Skeppa Kod',
+      skeppaIndicator: 'Gå med gratis. Nästa tema startar snart.',
+      skeppaCta: 'Skeppa NU',
+      
+      // Teaser cards
+      teaserAiCoreTitle: 'Nästa Generations AI-Kärna',
+      teaserAiCoreDesc: 'En ny nivå av autonomi och proaktiv intelligens, designad för att förutse och agera på framtida behov.',
+      teaserAiCoreIndicator: 'Lansering Q2 2026',
+      
+      teaserAdaptiveUiTitle: 'Adaptiva Gränssnitt',
+      teaserAdaptiveUiDesc: 'Revolutionerande UI som anpassar sig i realtid efter användarens unika kontext, mål och arbetsflöde.',
+      teaserAdaptiveUiIndicator: 'Lansering Q3 2026',
+
+      // ============================================
+      // PRODUCT SHOWCASE SLIDE CONTENT
+      // ============================================
+      showcaseGenPRDTitle: 'GenPRD',
+      showcaseGenPRDDesc: 'GenPRD tar din idé och genererar en komplett teknisk specifikation. Få databasscheman, user flows och arkitektur optimerad för att AI-agenter ska kunna bygga din produkt direkt.',
+      
+      showcaseFlowVaultTitle: 'FlowVault',
+      showcaseFlowVaultDesc: 'Varje flöde i biblioteket är battle-testat och redo att köra. Hitta blåkopior för Fortnox, CRM-synkar och AI-pipelines på sekunder istället för timmar.',
+      showcaseFlowVaultCta: 'Öppna Valvet',
+
+      // ============================================
+      // COOKIE BANNER
+      // ============================================
+      cookieTitle: 'Digital Integritet',
+      cookieText: 'Vi använder cookies för att optimera systemets prestanda. Genom att fortsätta godkänner du vår',
+      cookieLink: 'Integritetspolicy',
+      cookieAccept: 'Godkänn',
     },
 
     en: {
@@ -286,6 +396,114 @@ const NordSymLang = {
       footerPrivacy: 'Privacy Policy',
       footerTerms: 'Terms of Use',
       footerCopyright: '© 2025 NordSym AB. All rights reserved.',
+      footerReadyToScale: 'Ready to scale up?',
+      footerTagline: 'NordSym builds the infrastructure for scalable, agent-driven growth.',
+      footerFollowUs: 'Follow NordSym',
+
+      // ============================================
+      // TESTIMONIALS SECTION
+      // ============================================
+      testimonialsLabel: 'Proven in practice',
+      testimonialsTitle: 'What do customers say?',
+      testimonialsSubtitle: 'Swedish companies that built with NordSym',
+      
+      // Testimonial 1 - Mohammed A.
+      testimonial1Quote: 'AI Search from NordSym saves us hours every week on due diligence and market research.',
+      testimonial1Name: 'Mohammed A.',
+      testimonial1Role: 'Partner, CQT Invest',
+      
+      // Testimonial 2 - David M.
+      testimonial2Quote: 'NordSym understood our processes quickly. The n8n integrations they built connect our systems in ways we didn\'t think were possible.',
+      testimonial2Name: 'David M.',
+      testimonial2Role: 'CEO, Consulting Firm',
+      
+      // Testimonial 3 - Linda S.
+      testimonial3Quote: 'Custom solution that does exactly what we need. No overkill, just the right functionality for how we work.',
+      testimonial3Name: 'Linda S.',
+      testimonial3Role: 'Product Manager, E-commerce',
+
+      // ============================================
+      // GALLERY TABS (STACK / SYSTEM)
+      // ============================================
+      galleryTabStack: 'STACK',
+      galleryTabSystem: 'SYSTEM',
+      
+      // Stack description
+      galleryStackDesc: 'The technology under the hood. The architecture is based on an ecosystem of Claude, Gemini and OpenAI, orchestrated by n8n and modern vector databases. The right tool for the right cognitive task.',
+      galleryStackContext: 'Explore the stack',
+      
+      // System description  
+      gallerySystemDesc: 'Ready-made products and Micro-SaaS solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
+      gallerySystemContext: 'Explore systems',
+
+      // ============================================
+      // MICRO-SAAS PRODUCT CARDS
+      // ============================================
+      // Intro text
+      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong> and <strong>Skeppa</strong> are our Micro-SaaS products. You can start using them right away, completely free.',
+      
+      // FlowVault
+      flowvaultTitle: 'FlowVault',
+      flowvaultDesc: 'A curated library of production-ready n8n flows. From complex Swedish integrations (e.g. Fortnox) to advanced AI swarms. Get verified blueprints and accelerate your development pace drastically.',
+      flowvaultSig1: 'Swedish APIs',
+      flowvaultSig2: 'AI Swarms',
+      flowvaultSig3: 'Open Source',
+      flowvaultIndicator: 'Automate faster. Start free.',
+      flowvaultCta: 'Open Vault',
+      
+      // AI-Sök (AEO)
+      aisearchTitle: 'Are you visible in AI Search?',
+      aisearchDesc: 'From traditional search to GEO and AEO. Optimize your digital presence for AI search engines like ChatGPT, Claude and Perplexity. We transform your website from a static page to a source that AI engines trust and cite.',
+      aisearchSig1: 'AEO',
+      aisearchSig2: 'GEO',
+      aisearchSig3: 'SEO',
+      aisearchIndicator: 'Is your brand ready? From $199/month.',
+      aisearchCta: 'Get Free Analysis',
+      
+      // GenPRD
+      genprdTitle: 'GenPRD',
+      genprdDesc: 'Stop guessing, start building. GenPRD transforms your product idea into a detailed technical specification (PRD) optimized for AI agents. Get database schemas, user flows and tech stacks in seconds.',
+      genprdSig1: 'PRD Generator',
+      genprdSig2: 'SQL Schema',
+      genprdSig3: 'AI Context',
+      genprdIndicator: 'Context-as-a-Service. Try free.',
+      genprdCta: 'Try GenPRD',
+      
+      // Skeppa
+      skeppaTitle: 'Skeppa',
+      skeppaDesc: 'Build, ship, win. Monthly challenges for AI developers. Compete against others, get community feedback and build your portfolio. New themes every month.',
+      skeppaSig1: 'Monthly Themes',
+      skeppaSig2: 'Community',
+      skeppaSig3: 'Ship Code',
+      skeppaIndicator: 'Join free. Next theme starts soon.',
+      skeppaCta: 'Ship NOW',
+      
+      // Teaser cards
+      teaserAiCoreTitle: 'Next Generation AI Core',
+      teaserAiCoreDesc: 'A new level of autonomy and proactive intelligence, designed to anticipate and act on future needs.',
+      teaserAiCoreIndicator: 'Launch Q2 2026',
+      
+      teaserAdaptiveUiTitle: 'Adaptive Interfaces',
+      teaserAdaptiveUiDesc: 'Revolutionary UI that adapts in real-time to the user\'s unique context, goals and workflow.',
+      teaserAdaptiveUiIndicator: 'Launch Q3 2026',
+
+      // ============================================
+      // PRODUCT SHOWCASE SLIDE CONTENT
+      // ============================================
+      showcaseGenPRDTitle: 'GenPRD',
+      showcaseGenPRDDesc: 'GenPRD takes your idea and generates a complete technical specification. Get database schemas, user flows and architecture optimized for AI agents to build your product directly.',
+      
+      showcaseFlowVaultTitle: 'FlowVault',
+      showcaseFlowVaultDesc: 'Every flow in the library is battle-tested and ready to run. Find blueprints for Fortnox, CRM syncs and AI pipelines in seconds instead of hours.',
+      showcaseFlowVaultCta: 'Open Vault',
+
+      // ============================================
+      // COOKIE BANNER
+      // ============================================
+      cookieTitle: 'Digital Privacy',
+      cookieText: 'We use cookies to optimize system performance. By continuing you accept our',
+      cookieLink: 'Privacy Policy',
+      cookieAccept: 'Accept',
     }
   },
 
@@ -317,6 +535,11 @@ const NordSymLang = {
     localStorage.setItem('nordsym-lang', lang);
     this.apply();
     document.documentElement.lang = lang;
+    
+    // Re-populate gallery cards with new language
+    if (window.GalleryManager && typeof window.GalleryManager.refreshTranslations === 'function') {
+      window.GalleryManager.refreshTranslations();
+    }
   },
 
   /**

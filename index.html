@@ -5416,10 +5416,10 @@
    <div class="text-center mb-16">
     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.2); color: var(--nord-sym-cyan);">
      <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--nord-sym-cyan);"></span>
-     Beprövad i praktiken
+     <span data-i18n="testimonialsLabel">Beprövad i praktiken</span>
     </div>
-    <h2 class="text-3xl md:text-5xl tracking-tighter mb-4 text-white" style="font-family: 'Comfortaa', sans-serif;">Vad säger kunderna?</h2>
-    <p class="text-sm" style="opacity: 0.6; color: #94a3b8;">Svenska företag som byggt med NordSym</p>
+    <h2 class="text-3xl md:text-5xl tracking-tighter mb-4 text-white" style="font-family: 'Comfortaa', sans-serif;" data-i18n="testimonialsTitle">Vad säger kunderna?</h2>
+    <p class="text-sm" style="opacity: 0.6; color: #94a3b8;" data-i18n="testimonialsSubtitle">Svenska företag som byggt med NordSym</p>
    </div>
 
    <!-- Testimonials Carousel -->
@@ -5439,7 +5439,7 @@
       <div class="testimonial-slide">
        <div class="testimonial-card">
         <i class="ph-quotes testimonial-quote-icon" style="color: var(--nord-sym-cyan);"></i>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="testimonial1Quote">
          AI Search från NordSym sparar oss timmar varje vecka på due diligence och marknadsresearch.
         </p>
         <div class="testimonial-author">
@@ -5447,8 +5447,8 @@
           MA
          </div>
          <div>
-          <p class="testimonial-name">Mohammed A.</p>
-          <p class="testimonial-role">Partner, CQT Invest</p>
+          <p class="testimonial-name" data-i18n="testimonial1Name">Mohammed A.</p>
+          <p class="testimonial-role" data-i18n="testimonial1Role">Partner, CQT Invest</p>
          </div>
         </div>
        </div>
@@ -5458,7 +5458,7 @@
       <div class="testimonial-slide">
        <div class="testimonial-card">
         <i class="ph-quotes testimonial-quote-icon" style="color: var(--nord-sym-purple);"></i>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="testimonial2Quote">
          NordSym förstod våra processer snabbt. N8n-integrationerna de byggde kopplar ihop våra system på ett sätt vi inte trodde var möjligt.
         </p>
         <div class="testimonial-author">
@@ -5466,8 +5466,8 @@
           DM
          </div>
          <div>
-          <p class="testimonial-name">David M.</p>
-          <p class="testimonial-role">VD, Konsultbolag</p>
+          <p class="testimonial-name" data-i18n="testimonial2Name">David M.</p>
+          <p class="testimonial-role" data-i18n="testimonial2Role">VD, Konsultbolag</p>
          </div>
         </div>
        </div>
@@ -5477,7 +5477,7 @@
       <div class="testimonial-slide">
        <div class="testimonial-card">
         <i class="ph-quotes testimonial-quote-icon" style="color: var(--nord-sym-orange);"></i>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="testimonial3Quote">
          Skräddarsydd lösning som gör precis vad vi behöver. Inget överkill, bara rätt funktionalitet för vårt sätt att jobba.
         </p>
         <div class="testimonial-author">
@@ -5485,8 +5485,8 @@
           LS
          </div>
          <div>
-          <p class="testimonial-name">Linda S.</p>
-          <p class="testimonial-role">Produktchef, E-handel</p>
+          <p class="testimonial-name" data-i18n="testimonial3Name">Linda S.</p>
+          <p class="testimonial-role" data-i18n="testimonial3Role">Produktchef, E-handel</p>
          </div>
         </div>
        </div>
@@ -5725,20 +5725,17 @@
  <!-- Knapparna (nu transparenta, ovanpå) -->
  <button id="gallery-switch-byggstenar" 
  class="gallery-switch-btn inactive relative z-10 text-sky-200 hover:text-white rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
- 
- STACK
+ <span data-i18n="galleryTabStack">STACK</span>
  </button>
  <button id="gallery-switch-galleri" 
  class="gallery-switch-btn active relative z-10 text-nord-sym-deep-space-blue rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
- 
- SYSTEM
+ <span data-i18n="galleryTabSystem">SYSTEM</span>
  </button>
  </div>
  
  <!-- Copy som täcker både verktyg (analys/flöden) och system -->
- <p id="gallery-description-text" class="text-center text-sky-200 max-w-3xl mx-auto mt-8 mb-8">
- 
- Specialiserade verktyg och system. Från färdiga automationsflöden och analysverktyg till branschspecifika SaaS-lösningar.
+ <p id="gallery-description-text" class="text-center text-sky-200 max-w-3xl mx-auto mt-8 mb-8" data-i18n="gallerySystemDesc">
+ Färdiga produkter och Micro-SaaS lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.
  </p>
  </div>
  
@@ -5788,8 +5785,7 @@
  <!-- Renare copy för SaaS vs Tjänst + Gratis Analys CTA -->
  <div class="gh-bio">
  <p class="mb-3"><strong class="text-white">Micro-SaaS</strong> är fokuserad mjukvara för specifika problem.</p>
- <p class="opacity-80 mb-2">
-
+ <p class="opacity-80 mb-2" data-i18n="microSaasIntro">
  <strong>GenPRD</strong>, <strong>FlowVault</strong> och <strong>Skeppa</strong> är våra Micro-SaaS. Ni kan börja använda dem direkt, helt utan kostnad.
  </p>
  <p class="opacity-80">
@@ -5874,7 +5870,7 @@
  </div>
  </div>
  <!-- Copy - GenPRD tar din idé... -->
- <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90">
+ <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90" data-i18n="showcaseGenPRDDesc">
  GenPRD tar din idé och genererar en komplett teknisk specifikation. Få databasscheman, user flows och arkitektur optimerad för att AI-agenter ska kunna bygga din produkt direkt.
  </p>
  </div>
@@ -5923,7 +5919,7 @@
  
  <div class="pt-4 border-t border-white/10 light-theme:border-gray-100 flex justify-end items-center mt-2"> <!-- "Öppna Live" -> "Öppna Valvet" -->
  <a href="https://flowvault.se" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-nord-sym-cyan hover:text-white transition-colors flex items-center gap-1">
- Öppna Valvet <i class="ph-arrow-right"></i>
+ <span data-i18n="showcaseFlowVaultCta">Öppna Valvet</span> <i class="ph-arrow-right"></i>
  </a>
  </div>
  </div>
@@ -6465,9 +6461,9 @@
  <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16" loading="lazy" decoding="async">
  </a>
  
- <p class="text-sm font-bold text-white mb-1">Redo att skala upp?</p>
+ <p class="text-sm font-bold text-white mb-1" data-i18n="footerReadyToScale">Redo att skala upp?</p>
  <!-- Skarpare copy. Från "AI-First" till konkret infrastruktur/tillväxt. -->
- <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);">NordSym bygger infrastrukturen för skalbar, agent-driven tillväxt.</p>
+ <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);" data-i18n="footerTagline">NordSym bygger infrastrukturen för skalbar, agent-driven tillväxt.</p>
  <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6" data-i18n="btnBookCall">Boka Strategisamtal</a>
 
  </div>
@@ -6485,7 +6481,7 @@
  </div>
  <div class="md:col-span-1 text-center md:text-left">
  
- <p class="font-semibold text-nord-sym-text-light mb-4" style="color: #ffffff;">Följ NordSym</p>
+ <p class="font-semibold text-nord-sym-text-light mb-4" style="color: #ffffff;" data-i18n="footerFollowUs">Följ NordSym</p>
 
  <div class="flex gap-5 justify-center md:justify-start items-center">
  <a href="https://www.linkedin.com/company/nordsym-ab/" target="_blank" rel="noopener noreferrer" class="footer-link group" aria-label="LinkedIn">
@@ -9426,7 +9422,11 @@ Om användaren vill komma i kontakt:
  // BORTTAGNA: De två sista teaser-korten flyttas till 'arketyperData'
  ];
 
- this.arketyperData = [
+ // Helper function to get translations
+ this.t = (key) => window.NordSymLang ? window.NordSymLang.t(key) : key;
+
+ // Generate arketyperData dynamically with translations
+ this.getArketyperData = () => [
  {
  customLogo: `
  <div class="genprd-logo-wrapper">
@@ -9435,16 +9435,15 @@ Om användaren vill komma i kontakt:
  </div>
  </div>
  `,
- title: 'FlowVault',
- description: 'Ett kurerat bibliotek av produktionsfärdiga n8n-flöden. Från komplexa svenska integrationer (t.ex. Fortnox) till avancerade AI-svärmar. Hämta verifierade blåkopior och accelerera er utvecklingstakt drastiskt.',
+ title: this.t('flowvaultTitle'),
+ description: this.t('flowvaultDesc'),
  signatures: [
- { icon: 'ph-stack', text: 'Svenska API:er' },
- { icon: 'ph-robot', text: 'AI-Svärmar' },
- { icon: 'ph-lock-open', text: 'Open Source' }
+ { icon: 'ph-stack', text: this.t('flowvaultSig1') },
+ { icon: 'ph-robot', text: this.t('flowvaultSig2') },
+ { icon: 'ph-lock-open', text: this.t('flowvaultSig3') }
  ],
- // Pris-indikation
- indicator: 'Automatisera snabbare. Starta gratis.',
- ctaText: 'Öppna Valvet',
+ indicator: this.t('flowvaultIndicator'),
+ ctaText: this.t('flowvaultCta'),
  ctaIcon: 'ph-arrow-square-out',
  ctaLink: 'https://flowvault.se/'
  },
@@ -9456,22 +9455,19 @@ Om användaren vill komma i kontakt:
  </div>
  </div>
  `,
- title: 'Syns du i AI-Sök?',
- description: 'Från traditionellt sök till GEO och AEO. Optimera din digitala närvaro för AI-sökmotorer som ChatGPT, Claude och Perplexity. Vi transformerar din webbplats från en statisk sida till en källa som AI-motorer litar på och citerar.',
+ title: this.t('aisearchTitle'),
+ description: this.t('aisearchDesc'),
  signatures: [
- { icon: 'ph-brain', text: 'AEO' },
- { icon: 'ph-sparkle', text: 'GEO' },
- { icon: 'ph-magnifying-glass', text: 'SEO' }
+ { icon: 'ph-brain', text: this.t('aisearchSig1') },
+ { icon: 'ph-sparkle', text: this.t('aisearchSig2') },
+ { icon: 'ph-magnifying-glass', text: this.t('aisearchSig3') }
  ],
- // Pris-indikation
- indicator: 'Är ditt varumärke redo? Från 1,999 kr/mån.',
- ctaText: 'Gör Gratis Analys',
+ indicator: this.t('aisearchIndicator'),
+ ctaText: this.t('aisearchCta'),
  ctaIcon: 'ph-sparkle',
- /* Custom domain för AEO Platform */
  ctaLink: 'https://aisearch.nordsym.com'
  },
  {
- // UPPDATERAD: GenPRD med anpassad design (Kawaii/Tech)
  customLogo: `
  <div class="genprd-logo-wrapper">
  <div class="genprd-logo-inner">
@@ -9479,17 +9475,15 @@ Om användaren vill komma i kontakt:
  </div>
  </div>
  `,
- // Förenklad struktur enligt specifikation (Container > Text + Span)
  title: '<span class="genprd-brand-text">Gen<span class="genprd-text-prd">PRD</span></span>',
- description: 'Sluta gissa, börja bygga. GenPRD omvandlar din produktidé till en detaljerad teknisk kravspecifikation (PRD) optimerad för AI-agenter. Få databasscheman, user flows och tech stacks på sekunder.',
+ description: this.t('genprdDesc'),
  signatures: [
- { icon: 'ph-file-code', text: 'PRD-Generator' },
- { icon: 'ph-database', text: 'SQL-Schema' },
- { icon: 'ph-magic-wand', text: 'AI-Kontext' }
+ { icon: 'ph-file-code', text: this.t('genprdSig1') },
+ { icon: 'ph-database', text: this.t('genprdSig2') },
+ { icon: 'ph-magic-wand', text: this.t('genprdSig3') }
  ],
- // Pris-indikation
- indicator: 'Context-as-a-Service. Testa gratis.',
- ctaText: 'Testa GenPRD',
+ indicator: this.t('genprdIndicator'),
+ ctaText: this.t('genprdCta'),
  ctaIcon: 'ph-lightning',
  ctaLink: 'https://genprd.se'
  },
@@ -9501,53 +9495,55 @@ Om användaren vill komma i kontakt:
  </div>
  </div>
  `,
- title: 'Skeppa',
- description: 'Bygg, skeppa, vinn. Månatliga utmaningar för AI-utvecklare. Tävla mot andra, få feedback från communityn och bygg din portfolio. Nya teman varje månad.',
+ title: this.t('skeppaTitle'),
+ description: this.t('skeppaDesc'),
  signatures: [
- { icon: 'ph-trophy', text: 'Månadsteman' },
- { icon: 'ph-users-three', text: 'Community' },
- { icon: 'ph-rocket-launch', text: 'Skeppa Kod' }
+ { icon: 'ph-trophy', text: this.t('skeppaSig1') },
+ { icon: 'ph-users-three', text: this.t('skeppaSig2') },
+ { icon: 'ph-rocket-launch', text: this.t('skeppaSig3') }
  ],
- indicator: 'Gå med gratis. Nästa tema startar snart.',
- ctaText: 'Skeppa NU',
+ indicator: this.t('skeppaIndicator'),
+ ctaText: this.t('skeppaCta'),
  ctaIcon: 'ph-rocket-launch',
  ctaLink: 'https://skeppa.nu'
  },
- // NYA TILLAGDA KORT (Flyttade från Byggstenar)
  {
  teaser: true,
  icon: 'ph-lock-simple',
- title: 'Nästa Generations AI-Kärna',
- description: 'En ny nivå av autonomi och proaktiv intelligens, designad för att förutse och agera på framtida behov.',
- indicator: 'Lansering Q2 2026'
+ title: this.t('teaserAiCoreTitle'),
+ description: this.t('teaserAiCoreDesc'),
+ indicator: this.t('teaserAiCoreIndicator')
  },
  {
  teaser: true,
  icon: 'ph-puzzle-piece',
- title: 'Adaptiva Gränssnitt',
- description: 'Revolutionerande UI som anpassar sig i realtid efter användarens unika kontext, mål och arbetsflöde.',
- indicator: 'Lansering Q3 2026'
+ title: this.t('teaserAdaptiveUiTitle'),
+ description: this.t('teaserAdaptiveUiDesc'),
+ indicator: this.t('teaserAdaptiveUiIndicator')
  }
  ];
+
+ // Initialize with current translations
+ this.arketyperData = this.getArketyperData();
 
  this.dataSources = {
  'byggstenar': this.komponenterData,
  'galleri': this.arketyperData
  };
  
- // Refaktorisera textSources till objekt
- this.textSources = {
+ // Text sources with translation support
+ this.getTextSources = () => ({
  'byggstenar': {
- // Fas 2 Copy - Stack & Ekosystem
- description: 'Tekniken under huven. Arkitekturen baseras på ett ekosystem av Claude, Gemini och OpenAI, orkestrerat av n8n och moderna vektordatabaser. Rätt verktyg för rätt kognitiv uppgift.',
- context: 'Utforska stacken'
+ description: this.t('galleryStackDesc'),
+ context: this.t('galleryStackContext')
  },
  'galleri': {
- // Fas 2 Copy - Verktyg
- description: 'Färdiga produkter och Micro-SaaS lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
- context: 'Utforska systemen'
+ description: this.t('gallerySystemDesc'),
+ context: this.t('gallerySystemContext')
  }
- };
+ });
+ 
+ this.textSources = this.getTextSources();
  
  this.currentView = 'galleri'; // Startvy
  
@@ -9556,7 +9552,27 @@ Om användaren vill komma i kontakt:
  this.populateGallery();
  this.setupGalleryControls(); // <-- Måste köras efter populate
  this.initGallerySwitch(); // <-- NYTT ANROP
+ // Store reference globally for language switching
+ window.GalleryManager = this;
  }
+ 
+ // Called when language changes to refresh all cards with new translations
+ refreshTranslations() {
+ // Update data sources with new translations
+ this.arketyperData = this.getArketyperData();
+ this.textSources = this.getTextSources();
+ this.dataSources['galleri'] = this.arketyperData;
+ 
+ // Re-populate gallery with translated content
+ this.populateGallery();
+ 
+ // Update description text
+ const descText = document.getElementById('gallery-description-text');
+ if (descText) {
+ descText.textContent = this.textSources[this.currentView].description;
+ }
+ }
+ 
  populateGallery() {
  const wrapper = document.getElementById('galleryWrapper');
  if (!wrapper) return;
