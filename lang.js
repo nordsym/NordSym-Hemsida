@@ -133,6 +133,7 @@ const NordSymLang = {
       btnNext: 'Nästa',
       btnPrev: 'Föregående',
       btnSubmit: 'Skicka',
+      btnSubmitRequest: 'Skicka förfrågan',
 
       // Navigation
       navHome: 'Hem',
@@ -272,6 +273,7 @@ const NordSymLang = {
       btnNext: 'Next',
       btnPrev: 'Previous',
       btnSubmit: 'Submit',
+      btnSubmitRequest: 'Submit Request',
 
       // Navigation
       navHome: 'Home',
