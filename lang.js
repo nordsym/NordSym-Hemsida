@@ -123,6 +123,12 @@ const NordSymLang = {
       btnNext: 'Nästa',
       btnPrev: 'Föregående',
       btnSubmit: 'Skicka',
+
+      // Navigation
+      navHome: 'Hem',
+      navMicroSaaS: 'Micro-SaaS',
+      navServices: 'Tjänster',
+      navRnD: 'R&D',
     },
 
     en: {
@@ -238,6 +244,12 @@ const NordSymLang = {
       btnNext: 'Next',
       btnPrev: 'Previous',
       btnSubmit: 'Submit',
+
+      // Navigation
+      navHome: 'Home',
+      navMicroSaaS: 'Micro-SaaS',
+      navServices: 'Services',
+      navRnD: 'R&D',
     }
   },
 
@@ -295,6 +307,32 @@ const NordSymLang = {
 
     // Apply translations to DOM elements
     this.translateElements(t);
+
+    // Update active flag styling
+    this.updateFlagStyles();
+  },
+
+  /**
+   * Update language flag button styles
+   */
+  updateFlagStyles() {
+    // Desktop flags
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const onclick = btn.getAttribute('onclick') || '';
+      const isActive = onclick.includes(`'${this.current}'`);
+      btn.classList.toggle('ring-2', isActive);
+      btn.classList.toggle('ring-nord-sym-cyan', isActive);
+      btn.classList.toggle('bg-white/10', isActive);
+    });
+
+    // Mobile flags
+    document.querySelectorAll('.lang-btn-mobile').forEach(btn => {
+      const onclick = btn.getAttribute('onclick') || '';
+      const isActive = onclick.includes(`'${this.current}'`);
+      btn.classList.toggle('bg-sky-700/50', isActive);
+      btn.classList.toggle('ring-1', isActive);
+      btn.classList.toggle('ring-nord-sym-cyan', isActive);
+    });
   },
 
   /**
@@ -498,14 +536,33 @@ const NordSymLang = {
       }
     });
 
-    // Navigation links
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
+    // Navigation links (both desktop and mobile)
+    const allNavLinks = document.querySelectorAll('nav a, #mobile-menu a');
+    allNavLinks.forEach(link => {
+      const datanav = link.getAttribute('data-nav');
       const text = link.textContent.trim();
-      if (text === 'Hem') link.textContent = this.current === 'en' ? 'Home' : 'Hem';
-      if (text === 'Home') link.textContent = this.current === 'en' ? 'Home' : 'Hem';
-      if (text === 'Tjänster') link.textContent = this.current === 'en' ? 'Services' : 'Tjänster';
-      if (text === 'Services') link.textContent = this.current === 'en' ? 'Services' : 'Tjänster';
+      
+      // Map by data-nav attribute or text content
+      if (datanav === 'hero' || text === 'Hem' || text === 'Home') {
+        link.textContent = t.navHome;
+      }
+      if (text === 'Micro-SaaS') {
+        link.textContent = t.navMicroSaaS;
+      }
+      if (datanav === 'system' || text === 'Tjänster' || text === 'Services') {
+        link.textContent = t.navServices;
+      }
+      if (datanav === 'ritbordet' || text === 'R&D') {
+        link.textContent = t.navRnD;
+      }
+    });
+
+    // CTA buttons (Boka Strategisamtal)
+    document.querySelectorAll('.btn-cta-revised').forEach(btn => {
+      const text = btn.textContent.trim();
+      if (text.includes('Boka') || text.includes('Book')) {
+        btn.textContent = t.btnBookCall;
+      }
     });
 
     // FAQ questions and answers

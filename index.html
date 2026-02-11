@@ -4615,6 +4615,16 @@
  </div>
  </div>
  </label>
+ 
+ <!-- LANGUAGE SWITCHER -->
+ <div class="lang-switch flex items-center gap-1 ml-2">
+ <button onclick="NordSymLang.switch('sv')" class="lang-btn p-1 rounded hover:bg-white/10 transition-colors" title="Svenska" aria-label="Byt till svenska">
+ <span class="text-xl">🇸🇪</span>
+ </button>
+ <button onclick="NordSymLang.switch('en')" class="lang-btn p-1 rounded hover:bg-white/10 transition-colors" title="English" aria-label="Switch to English">
+ <span class="text-xl">🇬🇧</span>
+ </button>
+ </div>
  </div>
  
  <!-- MOBIL TEMAKNAPP (BEHÅLLD TILLS VIDARE, MEN KAN UPPDATERAS TILL SWITCH) -->
@@ -4633,7 +4643,18 @@
  
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">R&D</a>
  <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow">Boka Strategisamtal</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow" data-i18n="btnBookCall">Boka Strategisamtal</a>
+ </div>
+ <!-- MOBILE LANGUAGE SWITCHER -->
+ <div class="px-6 py-4 border-t border-sky-800/50 flex items-center justify-center gap-x-6">
+ <button onclick="NordSymLang.switch('sv'); document.getElementById('mobile-menu').style.maxHeight='0';" class="lang-btn-mobile flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-sky-700/50 transition-colors" aria-label="Svenska">
+ <span class="text-2xl">🇸🇪</span>
+ <span class="text-sky-100 font-medium">Svenska</span>
+ </button>
+ <button onclick="NordSymLang.switch('en'); document.getElementById('mobile-menu').style.maxHeight='0';" class="lang-btn-mobile flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-sky-700/50 transition-colors" aria-label="English">
+ <span class="text-2xl">🇬🇧</span>
+ <span class="text-sky-100 font-medium">English</span>
+ </button>
  </div>
  </div>
  </header>
@@ -4748,57 +4769,57 @@
  <div class="flex-grow w-full overflow-hidden relative h-8 mask-fade-sides">
  <div class="flex items-center gap-8 absolute h-full animate-marquee whitespace-nowrap top-1">
  <!-- Set 1 -->
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Claude" alt="Claude">
+ <img src="img/logos/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Claude" alt="Claude">
  
  <!-- Använder custom class .logo-auto-invert istället för Tailwind -->
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" title="ChatGPT" alt="ChatGPT">
+ <img src="img/logos/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" title="ChatGPT" alt="ChatGPT">
  
  <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Gemini" alt="Gemini">
 
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Perplexity" alt="Perplexity">
+ <img src="img/logos/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" title="Perplexity" alt="Perplexity">
  
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" title="Grok" alt="Grok">
+ <img src="img/logos/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" title="Grok" alt="Grok">
  
  <!-- Set 2 (Duplicate for loop) -->
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+ <img src="img/logos/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
  
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+ <img src="img/logos/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
  
  <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
 
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+ <img src="img/logos/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
  
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+ <img src="img/logos/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
  
  <!-- Set 3 (Safety Duplicate) -->
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+ <img src="img/logos/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
  
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+ <img src="img/logos/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
  
  <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+ <img src="img/logos/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+ <img src="img/logos/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
 
  <!-- Set 4 -->
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+ <img src="img/logos/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+ <img src="img/logos/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
  <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+ <img src="img/logos/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+ <img src="img/logos/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
 
  <!-- Set 5 -->
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+ <img src="img/logos/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+ <img src="img/logos/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
  <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+ <img src="img/logos/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+ <img src="img/logos/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
 
  <!-- Set 6 -->
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
+ <img src="img/logos/Claude_AI_symbol.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Claude">
+ <img src="img/logos/chattgpt.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="ChatGPT">
  <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Gemini">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
- <img src="https://raw.githubusercontent.com/nordsym/aeo-platform/refs/heads/main/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
+ <img src="img/logos/perplexity_icon-logo_brandlogos.svg" class="h-5 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" alt="Perplexity">
+ <img src="img/logos/grok-logo-png_seeklogo-613403.svg" class="h-4 w-auto opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 logo-auto-invert" alt="Grok">
  </div>
  </div>
 
