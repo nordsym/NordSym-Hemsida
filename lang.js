@@ -1,14 +1,12 @@
 /**
- * NordSym Language System
- * Auto-detects user language and translates site content
+ * NordSym Language System v2
+ * Clean data-i18n attribute-based translation system
  * Supports: Svenska (sv) | English (en)
  */
 
 const NordSymLang = {
-  // Current language
   current: 'sv',
 
-  // Translations database
   translations: {
     sv: {
       // Meta & Title
@@ -17,7 +15,7 @@ const NordSymLang = {
       metaKeywords: 'Systemautomation Sverige, intelligenta system, AEO, GEO, AI-arkitektur, digital transformation, NordSym',
 
       // Hero Section
-      heroTitle: 'Bygg bort begränsningar',
+      heroTitle: 'Bygg bort <br class="md:hidden"> begränsningar',
       heroSubtitle: 'NordSym designar intelligent mjukvara och bygger digitala verktyg som <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FAKTISKT</span> gör skillnad.',
       btnBookCall: 'Boka Strategisamtal',
       btnRnD: 'R&D',
@@ -28,11 +26,23 @@ const NordSymLang = {
       btnSend: 'Skicka',
       labelActiveSession: 'Aktiv session',
 
+      // AI Context Hub
+      contextHubTitle: 'Ge din AI kontext',
+
+      // Home Diagram Section
+      homeDiagramTitle: 'Frigör er potential',
+      homeDiagramDesc: 'Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla skräddarsydd mjukvara som automatiserar era unika flöden och frigör tid för expansion.',
+      homeDiagramLink: 'Utforska tjänster →',
+      vennFlows: 'Unika<br>Flöden',
+      vennSoftware: 'Agent&shy;anpassad<br>Mjukvara',
+      vennCenter: 'Sparade<br>Timmar',
+
       // Product Showcase
       showcaseTitle: 'Operativsystemet i <span class="section-title-accent">Action</span>',
       showcaseSubtitle: 'Inga rökridåer. Bara ren, funktionell intelligens.',
       btnPrevSystem: 'Föregående system',
       btnNextSystem: 'Nästa system',
+      showcaseLiveDemo: 'Live demonstration',
 
       // Products
       productFlowVault: 'FlowVault',
@@ -129,6 +139,12 @@ const NordSymLang = {
       navMicroSaaS: 'Micro-SaaS',
       navServices: 'Tjänster',
       navRnD: 'R&D',
+
+      // Footer
+      footerQuickLinks: 'Snabblänkar',
+      footerPrivacy: 'Integritetspolicy',
+      footerTerms: 'Användarvillkor',
+      footerCopyright: '© 2025 NordSym AB. Alla rättigheter förbehållna.',
     },
 
     en: {
@@ -149,15 +165,27 @@ const NordSymLang = {
       btnSend: 'Send',
       labelActiveSession: 'Active session',
 
+      // AI Context Hub
+      contextHubTitle: 'Give your AI context',
+
+      // Home Diagram Section
+      homeDiagramTitle: 'Unlock your potential',
+      homeDiagramDesc: 'Manual processes cap your growth. NordSym removes that ceiling by developing custom software that automates your unique workflows and frees up time for expansion.',
+      homeDiagramLink: 'Explore services →',
+      vennFlows: 'Unique<br>Workflows',
+      vennSoftware: 'Agent-adapted<br>Software',
+      vennCenter: 'Hours<br>Saved',
+
       // Product Showcase
       showcaseTitle: 'The Operating System in <span class="section-title-accent">Action</span>',
       showcaseSubtitle: 'No smoke and mirrors. Just pure, functional intelligence.',
       btnPrevSystem: 'Previous system',
       btnNextSystem: 'Next system',
+      showcaseLiveDemo: 'Live demonstration',
 
       // Products
       productFlowVault: 'FlowVault',
-      productFlowVaultDesc: 'World\'s largest n8n Flow library',
+      productFlowVaultDesc: "World's largest n8n Flow library",
       productGenPRD: 'GenPRD',
       productGenPRDDesc: 'AI-powered specification generator',
       productAEO: 'AEO & GEO',
@@ -182,7 +210,7 @@ const NordSymLang = {
       pricingOSTitle: 'OPERATING SYSTEM',
       pricingOSPrice: '$25k',
       pricingOSCurrency: 'USD',
-      pricingOSDesc: 'A custom software platform that becomes your company\'s brain. It centralizes your data, connects your systems, and lets AI act autonomously – while giving you full control where human judgment is needed.',
+      pricingOSDesc: "A custom software platform that becomes your company's brain. It centralizes your data, connects your systems, and lets AI act autonomously – while giving you full control where human judgment is needed.",
       pricingOSFeature1: 'Data Hub',
       pricingOSFeature2: 'AI Decisions',
       pricingOSFeature3: 'Control',
@@ -221,7 +249,7 @@ const NordSymLang = {
       // R&D Section
       labelRnD: 'R&D',
       rndTitle: 'Gaming + AI + Three.js',
-      rndSubtitle: 'We experiment with WebGL and AI here. We test the boundaries of what\'s possible to run directly in a browser, focusing on game mechanics and interactive interfaces.',
+      rndSubtitle: "We experiment with WebGL and AI here. We test the boundaries of what's possible to run directly in a browser, focusing on game mechanics and interactive interfaces.",
       rndCard1Title: 'Why Three.js?',
       rndCard1Desc: 'Traditional 3D requires heavy downloads. With Three.js and AI, we can generate content directly in the browser ("procedurally"). This delivers fast, lightweight experiences accessible anywhere.',
       rndCard2Title: 'Try the Technology',
@@ -233,14 +261,14 @@ const NordSymLang = {
 
       // Contact Form
       contactTitle: 'Discuss Your Case',
-      contactSubtitle: 'Describe the challenge you\'re facing. NordSym will respond with a concrete proposal on how we can build away the problem.',
+      contactSubtitle: "Describe the challenge you're facing. NordSym will respond with a concrete proposal on how we can build away the problem.",
       contactFormTitle: 'Contact Information',
       labelName: 'Your Name',
       labelCompany: 'Company Name',
       labelEmail: 'Email',
       labelPhone: 'Phone',
       labelChallenge: 'Describe the challenge',
-      placeholderChallenge: 'What\'s preventing you from growing? Manual workflows, data chaos, or missing integrations?',
+      placeholderChallenge: "What's preventing you from growing? Manual workflows, data chaos, or missing integrations?",
       btnNext: 'Next',
       btnPrev: 'Previous',
       btnSubmit: 'Submit',
@@ -250,12 +278,17 @@ const NordSymLang = {
       navMicroSaaS: 'Micro-SaaS',
       navServices: 'Services',
       navRnD: 'R&D',
+
+      // Footer
+      footerQuickLinks: 'Quick Links',
+      footerPrivacy: 'Privacy Policy',
+      footerTerms: 'Terms of Use',
+      footerCopyright: '© 2025 NordSym AB. All rights reserved.',
     }
   },
 
   /**
    * Initialize language system
-   * Auto-detects user language or uses stored preference
    */
   init() {
     // Check localStorage first
@@ -269,10 +302,7 @@ const NordSymLang = {
       localStorage.setItem('nordsym-lang', this.current);
     }
 
-    // Apply translations
     this.apply();
-
-    // Update HTML lang attribute
     document.documentElement.lang = this.current;
   },
 
@@ -301,15 +331,64 @@ const NordSymLang = {
     this.updateMeta('og:description', t.metaDescription, 'property');
     this.updateMeta('twitter:title', t.metaTitle);
     this.updateMeta('twitter:description', t.metaDescription);
-
-    // Update locale
     this.updateMeta('og:locale', this.current === 'sv' ? 'sv_SE' : 'en_US', 'property');
 
-    // Apply translations to DOM elements
-    this.translateElements(t);
+    // Apply translations using data-i18n attributes
+    this.translateDataAttributes(t);
+
+    // Update placeholders
+    this.translatePlaceholders(t);
 
     // Update active flag styling
     this.updateFlagStyles();
+  },
+
+  /**
+   * Translate elements with data-i18n attribute
+   * Automatically uses innerHTML if translation contains HTML, otherwise textContent
+   */
+  translateDataAttributes(t) {
+    const elements = document.querySelectorAll('[data-i18n]');
+    
+    elements.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const translation = t[key];
+      
+      if (translation === undefined) {
+        console.warn(`Translation missing for key: ${key}`);
+        return;
+      }
+
+      // Check if translation contains HTML tags
+      const containsHTML = /<[^>]+>/.test(translation);
+      
+      if (containsHTML) {
+        el.innerHTML = translation;
+      } else {
+        el.textContent = translation;
+      }
+    });
+  },
+
+  /**
+   * Translate placeholder and aria-label attributes
+   */
+  translatePlaceholders(t) {
+    // Placeholders with data-i18n-placeholder
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key]) {
+        el.setAttribute('placeholder', t[key]);
+      }
+    });
+
+    // Aria-labels with data-i18n-aria
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (t[key]) {
+        el.setAttribute('aria-label', t[key]);
+      }
+    });
   },
 
   /**
@@ -342,258 +421,6 @@ const NordSymLang = {
     let meta = document.querySelector(`meta[${attr}="${name}"]`);
     if (meta) {
       meta.setAttribute('content', content);
-    }
-  },
-
-  /**
-   * Translate DOM elements using intelligent text matching
-   */
-  translateElements(t) {
-    // Translation map: Swedish → Translation key
-    const textMap = {
-      // Hero
-      'Bygg bort begränsningar': 'heroTitle',
-      'Boka Strategisamtal': 'btnBookCall',
-      'Fråga NordSym...': 'placeholderAsk',
-      'Skicka': 'btnSend',
-      'Aktiv session': 'labelActiveSession',
-      'MICRO-SAAS': 'labelMicroSaaS',
-      'INTELLIGENT ARKITEKTUR': 'labelIntelligentArch',
-      'INTELLIGENT AUTOMATION': 'labelIntelligentAuto',
-
-      // Showcase
-      'Operativsystemet i': 'showcaseTitle',
-      'Inga rökridåer. Bara ren, funktionell intelligens.': 'showcaseSubtitle',
-      'Föregående system': 'btnPrevSystem',
-      'Nästa system': 'btnNextSystem',
-
-      // Products
-      'FlowVault': 'productFlowVault',
-      'Världens största n8n Flow-bibliotek': 'productFlowVaultDesc',
-      'GenPRD': 'productGenPRD',
-      'AI-driven specifikationsgenerator': 'productGenPRDDesc',
-      'AEO & GEO': 'productAEO',
-      'AI-sökoptimering för moderna sökmotorer': 'productAEODesc',
-      '1 999 kr/mån': 'productAEOPrice',
-
-      // Services
-      'TJÄNSTER': 'labelServices',
-      'Intelligent mjukvara anpassad efter er verksamhet': 'servicesTitle',
-
-      // Pricing
-      'MINIMUM LOVABLE PRODUCT': 'pricingMLPTitle',
-      '75k': 'pricingMLPPrice',
-      'OPERATIVSYSTEM': 'pricingOSTitle',
-      '250k': 'pricingOSPrice',
-      'STÖRRE PROJEKT': 'pricingEnterpriseTitle',
-      '500k+': 'pricingEnterprisePrice',
-      'SEK': this.current === 'en' ? 'USD' : 'SEK',
-      'Starta Pilot': 'pricingMLPBtn',
-      'Diskutera Behov': 'pricingOSBtn',
-      'Anpassad kod': 'pricingMLPFeature1',
-      'Exakt Lösning': 'pricingMLPFeature2',
-      'Data-Hub': 'pricingOSFeature1',
-      'AI-Beslut': 'pricingOSFeature2',
-      'Kontroll': 'pricingOSFeature3',
-      'Strategi': 'pricingEnterpriseFeature1',
-      'Arkitektur': 'pricingEnterpriseFeature2',
-      'AI-Orkestrering': 'pricingEnterpriseFeature3',
-
-      // R&D
-      'R&D': 'labelRnD',
-      'Gaming + AI + Three.js': 'rndTitle',
-      'Varför Three.js?': 'rndCard1Title',
-      'Prova Tekniken': 'rndCard2Title',
-      'Gaming R&D': 'rndCard3Title',
-      'Starta': 'rndCard2Btn',
-      'Följ projektet →': 'rndCard3Link',
-
-      // FAQ
-      'Vanliga frågor': 'faqTitle',
-      'Vad får vi för investeringen?': 'faqQ1',
-      'Äger vi koden?': 'faqQ2',
-      'Kan ni integrera med våra gamla system?': 'faqQ3',
-      'Vad händer efter leverans?': 'faqQ4',
-
-      // Contact
-      'Diskutera ert Case': 'contactTitle',
-      'Kontaktinformation': 'contactFormTitle',
-      'Ditt Namn': 'labelName',
-      'Företagsnamn': 'labelCompany',
-      'E-post': 'labelEmail',
-      'Telefon': 'labelPhone',
-      'Beskriv utmaningen': 'labelChallenge',
-      'Nästa': 'btnNext',
-      'Föregående': 'btnPrev',
-
-      // Founder
-      'Gustav Hemmingsson': 'founderName',
-      'Grundare': 'founderTitle',
-    };
-
-    // Walk through all text nodes and translate
-    this.translateNode(document.body, textMap, t);
-
-    // Translate placeholder attributes
-    const inputs = document.querySelectorAll('input[placeholder], textarea[placeholder]');
-    inputs.forEach(input => {
-      const placeholder = input.getAttribute('placeholder');
-      if (placeholder && textMap[placeholder]) {
-        input.setAttribute('placeholder', t[textMap[placeholder]]);
-      }
-    });
-
-    // Translate aria-label attributes
-    const ariaElements = document.querySelectorAll('[aria-label]');
-    ariaElements.forEach(el => {
-      const label = el.getAttribute('aria-label');
-      if (label && textMap[label]) {
-        el.setAttribute('aria-label', t[textMap[label]]);
-      }
-    });
-
-    // Special cases that need HTML preservation
-    this.translateSpecialCases(t);
-  },
-
-  /**
-   * Recursively translate text nodes
-   */
-  translateNode(node, textMap, t) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const trimmed = node.textContent.trim();
-      if (trimmed && textMap[trimmed]) {
-        node.textContent = t[textMap[trimmed]];
-      }
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      // Skip script and style tags
-      if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') return;
-
-      Array.from(node.childNodes).forEach(child => {
-        this.translateNode(child, textMap, t);
-      });
-    }
-  },
-
-  /**
-   * Handle special cases with HTML content
-   */
-  translateSpecialCases(t) {
-    // Hero title (contains <br> tag)
-    const heroTitle = document.querySelector('h1');
-    if (heroTitle && heroTitle.textContent.includes('Bygg bort')) {
-      // Preserve the <br> tag structure
-      const hasMobileBr = heroTitle.innerHTML.includes('<br class="md:hidden">');
-      if (hasMobileBr) {
-        heroTitle.innerHTML = t.heroTitle.replace('Limitations', 'Limitations');
-      } else {
-        heroTitle.textContent = t.heroTitle.replace(/<br[^>]*>/g, ' ');
-      }
-    }
-
-    // Hero subtitle with FAKTISKT/ACTUALLY emphasis
-    const heroSubtitle = document.querySelector('p.text-lg.md\\:text-xl.text-sky-100');
-    if (heroSubtitle) {
-      heroSubtitle.innerHTML = t.heroSubtitle;
-    }
-
-    // Showcase title with accent span
-    const showcaseTitle = document.querySelector('h2.section-title');
-    if (showcaseTitle) {
-      const originalText = showcaseTitle.textContent.trim();
-      if (originalText.includes('Operativsystemet') || originalText.includes('Operating System')) {
-        showcaseTitle.innerHTML = t.showcaseTitle;
-      }
-    }
-
-    // Support text with bold
-    const supportTitle = document.querySelector('p.text-lg.text-sky-200 strong');
-    if (supportTitle && supportTitle.parentElement) {
-      supportTitle.parentElement.innerHTML = t.supportTitle;
-    }
-
-    // Support description
-    const supportDesc = document.querySelector('p.text-md.text-sky-300');
-    if (supportDesc && supportDesc.textContent.includes('partnerskapet')) {
-      supportDesc.innerHTML = t.supportDesc;
-    }
-
-    // GenPRD link in pricing
-    const genPRDLink = document.querySelector('.mb-6.flex.flex-col.gap-1\\.5.text-center p');
-    if (genPRDLink && genPRDLink.innerHTML.includes('GenPRD')) {
-      genPRDLink.innerHTML = t.pricingOSLink;
-    }
-
-    // Pricing descriptions (paragraphs in pricing cards)
-    document.querySelectorAll('.pricing-card p').forEach(p => {
-      const text = p.textContent.trim();
-      if (text.includes('Slipp standardlösningar')) {
-        p.innerHTML = t.pricingMLPDesc;
-      } else if (text.includes('skräddarsydd mjukvaruplattform')) {
-        p.innerHTML = t.pricingOSDesc;
-      } else if (text.includes('För komplexa behov')) {
-        p.innerHTML = t.pricingEnterpriseDesc;
-      }
-    });
-
-    // Navigation links (both desktop and mobile)
-    const allNavLinks = document.querySelectorAll('nav a, #mobile-menu a');
-    allNavLinks.forEach(link => {
-      const datanav = link.getAttribute('data-nav');
-      const text = link.textContent.trim();
-      
-      // Map by data-nav attribute or text content
-      if (datanav === 'hero' || text === 'Hem' || text === 'Home') {
-        link.textContent = t.navHome;
-      }
-      if (text === 'Micro-SaaS') {
-        link.textContent = t.navMicroSaaS;
-      }
-      if (datanav === 'system' || text === 'Tjänster' || text === 'Services') {
-        link.textContent = t.navServices;
-      }
-      if (datanav === 'ritbordet' || text === 'R&D') {
-        link.textContent = t.navRnD;
-      }
-    });
-
-    // CTA buttons (Boka Strategisamtal)
-    document.querySelectorAll('.btn-cta-revised').forEach(btn => {
-      const text = btn.textContent.trim();
-      if (text.includes('Boka') || text.includes('Book')) {
-        btn.textContent = t.btnBookCall;
-      }
-    });
-
-    // FAQ questions and answers
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach((item, index) => {
-      const question = item.querySelector('.faq-question span');
-      const answer = item.querySelector('.faq-answer');
-
-      if (question && answer) {
-        question.textContent = t[`faqQ${index + 1}`] || question.textContent;
-        answer.textContent = t[`faqA${index + 1}`] || answer.textContent;
-      }
-    });
-
-    // R&D descriptions
-    const rndCards = document.querySelectorAll('.ritbordet-card p');
-    rndCards.forEach(p => {
-      const text = p.textContent.trim();
-      if (text.includes('Traditionell 3D')) {
-        p.textContent = t.rndCard1Desc;
-      } else if (text.includes('live-demonstration')) {
-        p.textContent = t.rndCard2Desc;
-      } else if (text.includes('AI-genererade spel')) {
-        p.textContent = t.rndCard3Desc;
-      }
-    });
-
-    // Contact form subtitle
-    const contactSubtitle = document.querySelector('#boka-samtal-skraddarsydd p.text-lg');
-    if (contactSubtitle && contactSubtitle.textContent.includes('Beskriv utmaningen')) {
-      contactSubtitle.textContent = t.contactSubtitle;
     }
   },
 

@@ -4620,15 +4620,15 @@
  <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16 md:h-20 transition-all duration-300">
  </a>
  <nav aria-label="Huvudnavigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
- <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium">Hem</a>
+ <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium" data-i18n="navHome">Hem</a>
  <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium">Micro-SaaS</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium">Tjänster</a>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium" data-i18n="navServices">Tjänster</a>
  
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="nav-link transition-colors font-medium">R&D</a>
+ <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="nav-link transition-colors font-medium"data-i18n="btnRnD">R&D</a>
  </nav>
  <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm">Boka Strategisamtal</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm" data-i18n="btnBookCall">Boka Strategisamtal</a>
  
  <!-- NY TEMAKNAPP (SWITCH) -->
  <label class="theme-switch">
@@ -4677,9 +4677,9 @@
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Hem</a>
  <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Micro-SaaS</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Tjänster</a>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navServices">Tjänster</a>
  
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">R&D</a>
+ <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors"data-i18n="btnRnD">R&D</a>
  <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
  <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow" data-i18n="btnBookCall">Boka Strategisamtal</a>
  </div>
@@ -4711,7 +4711,7 @@
  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[60%] bg-nord-sym-cyan/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 light-theme:bg-sky-200/50"></div>
  
  <!-- RAK, MINDRE OCH MOBILVÄNLIG -->
- <h1 class="relative z-10 text-4xl sm:text-5xl md:text-7xl leading-tight tracking-tight
+ <h1 data-i18n="heroTitle" class="relative z-10 text-4xl sm:text-5xl md:text-7xl leading-tight tracking-tight
  text-white 
  light-theme:text-nord-sym-blueprint-ink
  cursor-default"
@@ -4727,7 +4727,7 @@
  </style>
  </div>
 
- <p class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-loose md:leading-relaxed px-4">
+ <p data-i18n="heroSubtitle" class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-loose md:leading-relaxed px-4">
  NordSym designar intelligent mjukvara och bygger digitala verktyg som 
  <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FAKTISKT</span> 
  gör skillnad.
@@ -4735,15 +4735,15 @@
  
  <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4 mb-8">
  <div class="flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-auto">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5">Boka Strategisamtal</a>
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5">R&D</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5" data-i18n="btnBookCall">Boka Strategisamtal</a>
+ <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5"data-i18n="btnRnD">R&D</a>
  </div>
  <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-2 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
- <span>MICRO-SAAS</span>
+ <span data-i18n="labelMicroSaaS">MICRO-SAAS</span>
  <span class="hidden sm:block text-sky-500">•</span>
- <span>INTELLIGENT ARKITEKTUR</span>
+ <span data-i18n="labelIntelligentArch">INTELLIGENT ARKITEKTUR</span>
  <span class="hidden sm:block text-sky-500">•</span>
- <span>INTELLIGENT AUTOMATION</span>
+ <span data-i18n="labelIntelligentAuto">INTELLIGENT AUTOMATION</span>
  </div>
  </div>
  
@@ -4753,7 +4753,7 @@
  <!-- Initial State: Clean Input Bar -->
  <div id="hero-input-wrapper">
  <div class="relative">
- <input type="text" id="hero-chat-input-field" placeholder="Fråga NordSym..." autocomplete="off">
+ <input type="text" id="hero-chat-input-field" placeholder="Fråga NordSym..." data-i18n-placeholder="placeholderAsk" autocomplete="off">
  <button id="hero-input-send" aria-label="Skicka">
  <i class="ph-paper-plane-right-fill text-lg"></i>
  </button>
@@ -4763,7 +4763,7 @@
  <!-- RESUME BUTTON (Visas när historik finns) -->
  <button id="chat-resume-btn" onclick="window.nord.resumeChat()">
  <span class="resume-pulse"></span>
- <span>Aktiv session</span>
+ <span data-i18n="labelActiveSession">Aktiv session</span>
  <i class="ph-caret-up ml-1 text-xs opacity-70"></i>
  </button>
 
@@ -4800,7 +4800,7 @@
  <!-- Tog bort 'hidden sm:block' så texten syns på mobil -->
  <div class="text-left block">
  <!-- Rubrik "Ge din AI kontext" -->
- <h4 class="text-white font-bold text-sm leading-none group-hover:text-nord-sym-cyan transition-colors">Ge din AI kontext</h4> </div>
+ <h4 class="text-white font-bold text-sm leading-none group-hover:text-nord-sym-cyan transition-colors" data-i18n="contextHubTitle">Ge din AI kontext</h4> </div>
  </div>
 
  <!-- Middle: Infinite Logo Loop (Tightare) -->
@@ -4895,16 +4895,16 @@
  <div class="venn-diagram-wrapper">
  <div class="venn-circle venn-circle-1">
  <!-- "Unika Flöden" - Mer konkret än Metodik -->
- <span class="venn-circle-text">Unika<br>Flöden</span>
+ <span class="venn-circle-text" data-i18n="vennFlows">Unika<br>Flöden</span>
  </div>
  <div class="venn-circle venn-circle-2">
  <!-- Soft hyphen (&shy;) för att tillåta brytning vid extrem platsbrist -->
- <span class="venn-circle-text">Agent&shy;anpassad<br>Mjukvara</span>
+ <span class="venn-circle-text" data-i18n="vennSoftware">Agent&shy;anpassad<br>Mjukvara</span>
  </div>
  <!-- Symbol för oändlighet + Sparade Timmar -->
  <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('system'); return false;">
  <i class="ph ph-infinity text-4xl mb-1 text-nord-sym-light-accent"></i>
- <span class="text-sm md:text-base leading-tight">Sparade<br>Timmar</span>
+ <span class="text-sm md:text-base leading-tight" data-i18n="vennCenter">Sparade<br>Timmar</span>
  </div>
  </div>
  </div>
@@ -6032,7 +6032,7 @@
  <div class="section-content-wrapper flex-grow">
  <div class="text-center mb-20">
  <!-- Designkoncept "Vit Krita" & Textändring till Tjänster -->
- <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">TJÄNSTER</span>
+ <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan"data-i18n="labelServices">TJÄNSTER</span>
  
  <!-- Nertonad huvudrubrik (Mindre storlek, tunnare vikt) -->
  <h3 class="text-2xl md:text-3xl font-medium text-white mt-4 light-theme:text-nord-sym-blueprint-ink max-w-3xl mx-auto leading-relaxed">Intelligent mjukvara anpassad efter er verksamhet</h3>
@@ -6045,7 +6045,7 @@
  <div class="pricing-card card-base">
  <div class="pricing-card-header text-center mb-4">
  
- <h3>MINIMUM LOVABLE PRODUCT</h3>
+ <h3 data-i18n="pricingMLPTitle">MINIMUM LOVABLE PRODUCT</h3>
  </div>
  <div class="price-display text-center">75k <span class="price-period">SEK</span></div>
  
@@ -6070,7 +6070,7 @@
  </div>
 
  <div class="mt-auto flex flex-col items-center gap-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Starta Pilot</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full" data-i18n="pricingMLPBtn">Starta Pilot</a>
  
  <span class="text-[10px] text-sky-300/50 italic text-center">Exakt arkitektur definieras tillsammans med kund</span>
  </div>
@@ -6080,7 +6080,7 @@
  <div class="pricing-card card-base ignite-package">
  <div class="pricing-card-header text-center mb-4">
  
- <h3>OPERATIVSYSTEM</h3>
+ <h3 data-i18n="pricingOSTitle">OPERATIVSYSTEM</h3>
  </div>
  <div class="price-display text-center">250k <span class="price-period">SEK</span></div>
  
@@ -6117,7 +6117,7 @@
 
  <div class="mt-auto flex flex-col items-center gap-4">
  
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full">Diskutera Behov</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full" data-i18n="pricingOSBtn">Diskutera Behov</a>
  
  <span class="text-[10px] text-sky-300/50 italic text-center">Exakt arkitektur definieras tillsammans med kund</span>
  </div>
@@ -6127,7 +6127,7 @@
  <div class="pricing-card card-base">
  <div class="pricing-card-header text-center mb-4">
  
- <h3>STÖRRE PROJEKT</h3>
+ <h3 data-i18n="pricingEnterpriseTitle">STÖRRE PROJEKT</h3>
  </div>
  <div class="price-display text-center">500k+ <span class="price-period">SEK</span></div>
  
@@ -6156,7 +6156,7 @@
  </div>
 
  <div class="mt-auto flex flex-col items-center gap-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Diskutera Behov</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full" data-i18n="pricingEnterpriseBtn">Diskutera Behov</a>
  
  <span class="text-[10px] text-sky-300/50 italic text-center">Exakt arkitektur definieras tillsammans med kund</span>
  </div>
@@ -6164,7 +6164,7 @@
  </div> 
  <!-- Support Text -->
  <div class="text-center mt-16 max-w-3xl mx-auto">
- <p class="text-lg text-sky-200"><strong>Drift & Förvaltning:</strong> 15k SEK/mån.</p>
+ <p class="text-lg text-sky-200" data-i18n="supportTitle"><strong>Drift & Förvaltning:</strong> 15k SEK/mån.</p>
  <!-- Partnerskaps-fokus -->
  <p class="text-md text-sky-300 mt-2">Det är här partnerskapet börjar. NordSym garanterar driften, utvecklar nya features och växer med er verksamhet.</p>
  </div>
@@ -6176,7 +6176,7 @@
  <img src="https://firebasestorage.googleapis.com/v0/b/nordsym-funnel.firebasestorage.app/o/T2ZJ4JKR_400x400.jpg?alt=media&token=b0449d0a-bedc-462d-98f9-1258890f2391" alt="Gustav Hemmingsson" class="w-10 h-10 rounded-full object-cover shadow-sm group-hover:shadow-md transition-shadow">
  <div class="text-left">
  <div class="text-white text-sm font-bold leading-none light-theme:text-gray-900">Gustav Hemmingsson</div>
- <div class="text-white/80 text-[10px] uppercase tracking-wider font-mono mt-0.5 light-theme:text-sky-600 group-hover:text-white light-theme:group-hover:text-sky-700 transition-colors">Grundare</div>
+ <div class="text-white/80 text-[10px] uppercase tracking-wider font-mono mt-0.5 light-theme:text-sky-600 group-hover:text-white light-theme:group-hover:text-sky-700 transition-colors"data-i18n="founderTitle">Grundare</div>
  </div>
  <i class="ph-info text-white/70 group-hover:text-white ml-1 text-lg light-theme:text-gray-400 light-theme:group-hover:text-sky-500 transition-colors"></i>
  </button>
@@ -6185,44 +6185,44 @@
  <!-- FAQ Section -->
  <!-- Lade till ID för att kunna länka från footern -->
  <div id="faq-section" class="max-w-4xl mx-auto mt-8">
- <h3 class="text-3xl font-bold text-white text-center mb-10 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Vanliga frågor</h3>
+ <h3 class="text-3xl font-bold text-white text-center mb-10 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;" data-i18n="faqTitle">Vanliga frågor</h3>
  <div class="space-y-4">
  <details class="faq-item group">
  <summary class="faq-question">
  <!-- Rakt på sak - Vad får man för pengarna? -->
- <span>Vad får vi för investeringen?</span>
+ <span data-i18n="faqQ1">Vad får vi för investeringen?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA1">
  <!-- Svarar på både VAD och NÄR -->
  Konkreta resultat i produktion, ofta inom 4-8 veckor. Vi fokuserar på snabb 'time-to-value' så att ni ser mätbar avkastning direkt, istället för långdragna förstudier.
  </div>
  </details>
  <details class="faq-item group">
  <summary class="faq-question">
- <span>Äger vi koden?</span>
+ <span data-i18n="faqQ2">Äger vi koden?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA2">
  <!-- Nyanserat svar om äganderätt -->
  Det beror på uppdraget. Skräddarsydd affärslogik äger ni oftast, medan generella plattformskomponenter licensieras. Vi anpassar äganderätten helt efter era önskemål.
  </div>
  </details>
  <details class="faq-item group">
  <summary class="faq-question">
- <span>Kan ni integrera med våra gamla system?</span>
+ <span data-i18n="faqQ3">Kan ni integrera med våra gamla system?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA3">
  Absolut. Bryggor byggs mellan moderna AI-modeller och era befintliga affärssystem (ERP, CRM), oavsett ålder.
  </div>
  </details>
  <details class="faq-item group">
  <summary class="faq-question">
- <span>Vad händer efter leverans?</span>
+ <span data-i18n="faqQ4">Vad händer efter leverans?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA4">
  <!-- Bättre formulering om uppdateringar -->
  NordSym erbjuder avtal för drift och förvaltning. Systemet övervakas proaktivt, säkerhetsuppdateringar hanteras och era AI-modeller hålls alltid uppdaterade.
  </div>
@@ -6265,10 +6265,10 @@
  <i class="ph ph-cube text-4xl text-nord-sym-cyan"></i>
  </div>
  <!-- Tydlig uppmaning -->
-          <h4 class="text-2xl font-bold mb-2 text-white">Live demonstration</h4>
+          <h4 class="text-2xl font-bold mb-2 text-white" data-i18n="showcaseLiveDemo">Live demonstration</h4>
  <!-- Förklara att det är live -->
-          <p>Geometrin styrs av samma agenter som driver NordSym. Det du ser händer på riktigt.</p>
- <button class="mt-6 btn-base btn-cta-revised px-6">Starta</button>
+          
+ <button class="mt-6 btn-base btn-cta-revised px-6" data-i18n="rndCard2Btn">Starta</button>
  </div>
 
  <!-- Kort 3: Relationslogik -->
@@ -6289,11 +6289,11 @@
  <section id="boka-samtal-skraddarsydd" class="space-background-section page-content-padding" style="display: none;">
  <div class="section-content-wrapper text-center">
  
- <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Diskutera ert Case</h2>
+ <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8" data-i18n="contactTitle">Diskutera ert Case</h2>
  
- <p class="text-lg text-content-dark-bg max-w-xl mx-auto mb-10">Beskriv utmaningen ni står inför. NordSym återkommer med ett konkret förslag på hur vi kan bygga bort problemet.</p>
+ <p class="text-lg text-content-dark-bg max-w-xl mx-auto mb-10" data-i18n="contactSubtitle">Beskriv utmaningen ni står inför. NordSym återkommer med ett konkret förslag på hur vi kan bygga bort problemet.</p>
  <div id="formSkraddarsyddContainer" class="form-container p-8 md:p-12 mt-10 max-w-lg mx-auto text-left">
- <h3 class="text-2xl font-semibold text-white mb-2 text-center">Kontaktinformation</h3>
+ <h3 class="text-2xl font-semibold text-white mb-2 text-center" data-i18n="contactFormTitle">Kontaktinformation</h3>
  <div class="form-progress-bar">
  <div class="form-progress-bar-inner"></div>
  </div>
@@ -6301,27 +6301,27 @@
  <input type="hidden" name="_subject" value="Ny förfrågan: Systemdiskussion från NordSym">
  <div class="form-step active" data-step="1">
  <div class="space-y-6">
- <div><label for="skraddarsydd-name" class="form-label">Ditt Namn</label><input type="text" name="name" id="skraddarsydd-name" required class="form-input"></div>
- <div><label for="skraddarsydd-company" class="form-label">Företagsnamn</label><input type="text" name="company" id="skraddarsydd-company" required class="form-input"></div>
- <div><label for="skraddarsydd-email" class="form-label">E-post</label><input type="email" name="email" id="skraddarsydd-email" required class="form-input"></div>
+ <div><label for="skraddarsydd-name" class="form-label" data-i18n="labelName">Ditt Namn</label><input type="text" name="name" id="skraddarsydd-name" required class="form-input"></div>
+ <div><label for="skraddarsydd-company" class="form-label" data-i18n="labelCompany">Företagsnamn</label><input type="text" name="company" id="skraddarsydd-company" required class="form-input"></div>
+ <div><label for="skraddarsydd-email" class="form-label" data-i18n="labelEmail">E-post</label><input type="email" name="email" id="skraddarsydd-email" required class="form-input"></div>
  </div>
  <div class="form-navigation">
  <span></span>
- <button type="button" class="btn-base btn-cta-revised">Nästa <i class="ph-arrow-right"></i></button>
+ <button type="button" class="btn-base btn-cta-revised"data-i18n="btnNext">Nästa <i class="ph-arrow-right"></i></button>
  </div>
  </div>
  <div class="form-step" data-step="2">
  <div class="space-y-6">
  
- <div><label for="skraddarsydd-phone" class="form-label">Telefon</label><input type="tel" name="phone" id="skraddarsydd-phone" class="form-input"></div>
+ <div><label for="skraddarsydd-phone" class="form-label" data-i18n="labelPhone">Telefon</label><input type="tel" name="phone" id="skraddarsydd-phone" class="form-input"></div>
  <!-- Rakare fråga + guidande placeholder -->
  <div>
- <label for="skraddarsydd-main-goal" class="form-label">Beskriv utmaningen</label>
+ <label for="skraddarsydd-main-goal" class="form-label" data-i18n="labelChallenge">Beskriv utmaningen</label>
  <textarea name="main-goal" id="skraddarsydd-main-goal" rows="3" class="form-textarea" required placeholder="Vad hindrar er från att växa? Manuella flöden, datakaos eller saknade integrationer?"></textarea>
  </div>
  </div>
  <div class="form-navigation">
- <button type="button" class="btn-base btn-secondary-on-dark"><i class="ph-arrow-left"></i> Föregående</button>
+ <button type="button" class="btn-base btn-secondary-on-dark"><i class="ph-arrow-left"></i> <span data-i18n="btnPrev">Föregående</span></button>
  <!-- Mer korrekt knapptext för ett formulär -->
  <button type="submit" class="btn-base btn-cta-revised">Skicka förfrågan</button>
  </div>
@@ -6413,7 +6413,7 @@
  </div>
  
  <h3 class="text-3xl font-bold text-white mb-1 light-theme:text-gray-900" style="font-family: 'Comfortaa', sans-serif;">Gustav Hemmingsson</h3>
- <p class="text-nord-sym-cyan font-mono text-xs uppercase tracking-widest mb-6 light-theme:text-sky-600">Grundare</p>
+ <p class="text-nord-sym-cyan font-mono text-xs uppercase tracking-widest mb-6 light-theme:text-sky-600"data-i18n="founderTitle">Grundare</p>
  
  <!-- Om mig - Grundare -->
  <p class="text-sky-200 leading-relaxed mb-4 light-theme:text-gray-600 text-sm md:text-base">
@@ -6468,7 +6468,7 @@
  <p class="text-sm font-bold text-white mb-1">Redo att skala upp?</p>
  <!-- Skarpare copy. Från "AI-First" till konkret infrastruktur/tillväxt. -->
  <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);">NordSym bygger infrastrukturen för skalbar, agent-driven tillväxt.</p>
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6">Boka Strategisamtal</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6" data-i18n="btnBookCall">Boka Strategisamtal</a>
 
  </div>
  <div class="md:col-span-1 text-center md:text-left">
@@ -6476,11 +6476,11 @@
  <div class="footer-quicklinks">
  <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link">Micro-SaaS</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link">Tjänster</a>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link" data-i18n="navServices">Tjänster</a>
  
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link">R&D</a>
+ <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link"data-i18n="btnRnD">R&D</a>
  <!-- Länk till FAQ -->
- <a href="#" onclick="window.nord.showPage('system'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link">Vanliga frågor</a>
+ <a href="#" onclick="window.nord.showPage('system'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link" data-i18n="faqTitle">Vanliga frågor</a>
  </div>
  </div>
  <div class="md:col-span-1 text-center md:text-left">
