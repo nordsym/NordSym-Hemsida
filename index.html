@@ -453,6 +453,44 @@
  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
  }
 
+ /* LANGUAGE SWITCHER STYLES */
+ .lang-switch {
+ display: flex;
+ align-items: center;
+ gap: 0.25rem;
+ }
+ .lang-btn {
+ cursor: pointer;
+ border: none;
+ background: transparent;
+ border-radius: 0.375rem;
+ transition: all 0.2s ease;
+ opacity: 0.7;
+ }
+ .lang-btn:hover {
+ opacity: 1;
+ background: rgba(255, 255, 255, 0.1);
+ }
+ .lang-btn.ring-2 {
+ opacity: 1;
+ box-shadow: 0 0 0 2px var(--nord-sym-cyan);
+ }
+ .lang-btn-mobile {
+ cursor: pointer;
+ border: none;
+ background: transparent;
+ transition: all 0.2s ease;
+ }
+ .lang-btn-mobile.ring-1 {
+ box-shadow: 0 0 0 1px var(--nord-sym-cyan);
+ }
+ body.light-theme .lang-btn:hover {
+ background: rgba(0, 0, 0, 0.05);
+ }
+ body.light-theme .lang-btn.ring-2 {
+ box-shadow: 0 0 0 2px var(--nord-sym-blueprint-cyan);
+ }
+
  /* Behåller .theme-toggle-btn class för mobil-knappen tills vidare, men desktop får ny */
 
  body.light-theme {
