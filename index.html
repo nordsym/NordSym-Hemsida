@@ -1647,38 +1647,43 @@
  box-shadow: 0 0 20px rgba(var(--nord-sym-blueprint-cyan-rgb), 0.3);
  }
 
- /* AI LOGO ROTATION (AI Search card) */
- .ai-logo-carousel {
- display: inline-flex;
+ /* AI LOGO ROW (AI Search card - inline small logos) */
+ .ai-logo-row {
+ display: flex;
  align-items: center;
  justify-content: center;
- width: 80px;
- height: 80px;
- position: relative;
- margin-bottom: 1rem;
+ gap: 0.5rem;
+ margin-top: 0.75rem;
+ padding: 0.5rem 0;
  }
- .ai-logo-carousel .ai-logo {
- position: absolute;
- width: 60px;
- height: 60px;
+ .ai-logo-sm {
+ width: 24px;
+ height: 24px;
  object-fit: contain;
- transform: scale(0.5);
- opacity: 0;
- transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
- background: white;
+ opacity: 0.4;
+ transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
  border-radius: 50%;
- padding: 8px;
- box-shadow: 0 0 15px rgba(var(--nord-sym-cyan-rgb), 0.3);
+ padding: 3px;
+ background: transparent;
  }
- .ai-logo-carousel .ai-logo.active {
+ .ai-logo-sm.active {
  opacity: 1;
- transform: scale(1);
+ transform: scale(1.15);
  }
- .brand-openai.active { filter: drop-shadow(0 0 15px rgba(16, 163, 127, 0.5)); }
- .brand-claude.active { filter: drop-shadow(0 0 15px rgba(193, 95, 60, 0.5)); }
- .brand-perplexity.active { filter: drop-shadow(0 0 15px rgba(34, 184, 205, 0.5)); }
- .brand-gemini.active { filter: drop-shadow(0 0 15px rgba(78, 134, 248, 0.5)); }
- .brand-grok.active { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4)); }
+ /* Dark mode - subtle glow, no white bg */
+ .ai-logo-sm.brand-openai.active { filter: drop-shadow(0 0 8px rgba(16, 163, 127, 0.6)); }
+ .ai-logo-sm.brand-claude.active { filter: drop-shadow(0 0 8px rgba(193, 95, 60, 0.6)); }
+ .ai-logo-sm.brand-perplexity.active { filter: drop-shadow(0 0 8px rgba(34, 184, 205, 0.6)); }
+ .ai-logo-sm.brand-gemini.active { filter: drop-shadow(0 0 8px rgba(78, 134, 248, 0.6)); }
+ .ai-logo-sm.brand-grok.active { filter: drop-shadow(0 0 8px rgba(200, 200, 200, 0.5)); }
+ /* Light mode adjustments */
+ body.light-theme .ai-logo-sm {
+ opacity: 0.3;
+ }
+ body.light-theme .ai-logo-sm.active {
+ opacity: 1;
+ }
+ body.light-theme .ai-logo-sm.brand-grok.active { filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.3)); }
 
  .archetype-card:hover > i,
  .archetype-card:hover > .avatar-image {
@@ -9529,16 +9534,21 @@ Om användaren vill komma i kontakt:
  },
  {
  customLogo: `
- <div class="ai-logo-carousel" id="ai-logo-carousel">
- <img src="img/logos/chattgpt.svg" alt="ChatGPT" class="ai-logo brand-openai active">
- <img src="img/logos/Claude_AI_symbol.svg" alt="Claude" class="ai-logo brand-claude">
- <img src="img/logos/perplexity_icon-logo_brandlogos.svg" alt="Perplexity" class="ai-logo brand-perplexity">
- <img src="img/logos/gemini.svg" alt="Gemini" class="ai-logo brand-gemini">
- <img src="img/logos/grok-logo-png_seeklogo-613403.svg" alt="Grok" class="ai-logo brand-grok">
+ <div class="genprd-logo-wrapper">
+ <div class="genprd-logo-inner">
+ <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="AI-Sök" class="genprd-logo-img">
+ </div>
  </div>
  `,
  title: this.t('aisearchTitle'),
- description: 'Vi ser till att AI rekommenderar dig när dina kunder frågar. Från traditionell SEO till AEO & GEO.',
+ description: `Vi ser till att AI rekommenderar dig när dina kunder frågar.
+ <div class="ai-logo-row" id="ai-logo-carousel">
+ <img src="img/logos/chattgpt.svg" alt="ChatGPT" class="ai-logo-sm brand-openai active">
+ <img src="img/logos/Claude_AI_symbol.svg" alt="Claude" class="ai-logo-sm brand-claude">
+ <img src="img/logos/perplexity_icon-logo_brandlogos.svg" alt="Perplexity" class="ai-logo-sm brand-perplexity">
+ <img src="img/logos/gemini.svg" alt="Gemini" class="ai-logo-sm brand-gemini">
+ <img src="img/logos/grok-logo-png_seeklogo-613403.svg" alt="Grok" class="ai-logo-sm brand-grok">
+ </div>`,
  signatures: [
  { icon: 'ph-brain', text: this.t('aisearchSig1') },
  { icon: 'ph-sparkle', text: this.t('aisearchSig2') },
@@ -9696,7 +9706,7 @@ Om användaren vill komma i kontakt:
  const carousel = document.getElementById('ai-logo-carousel');
  if (!carousel) return;
  
- const logos = carousel.querySelectorAll('.ai-logo');
+ const logos = carousel.querySelectorAll('.ai-logo-sm');
  if (logos.length === 0) return;
  
  // Clear any existing interval
@@ -9707,7 +9717,7 @@ Om användaren vill komma i kontakt:
  logos[currentIndex].classList.remove('active');
  currentIndex = (currentIndex + 1) % logos.length;
  logos[currentIndex].classList.add('active');
- }, 2000);
+ }, 1500); // Slightly faster for inline display
  }
  createCardHTML(data) {
  const isTeaser = data.teaser || false;
