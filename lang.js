@@ -18,7 +18,7 @@ const NordSymLang = {
 
       // Hero Section
       heroTitle: 'Bygg bort <br class="md:hidden"> begränsningar',
-      heroSubtitle: 'NordSym designar intelligent mjukvara och bygger digitala verktyg som <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FAKTISKT</span> gör skillnad.',
+      heroSubtitle: 'NordSym är er <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> som bygger verktyg som <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">FAKTISKT</span> gör skillnad.',
       btnBookCall: 'Boka Strategisamtal',
       btnRnD: 'R&D',
       labelMicroSaaS: 'MICRO-SAAS',
@@ -275,7 +275,7 @@ const NordSymLang = {
 
       // Hero Section
       heroTitle: 'Build Away <br class="md:hidden"> Limitations',
-      heroSubtitle: 'NordSym designs intelligent software and builds digital tools that <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">ACTUALLY</span> make a difference.',
+      heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building tools that <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">ACTUALLY</span> make a difference.',
       btnBookCall: 'Book Strategy Call',
       btnRnD: 'R&D',
       labelMicroSaaS: 'MICRO-SAAS',
