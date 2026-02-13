@@ -192,7 +192,7 @@ const NordSymLang = {
       // MICRO-SAAS PRODUCT CARDS
       // ============================================
       // Intro text
-      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong> och <strong>Skeppa</strong> är våra Micro-SaaS. Ni kan börja använda dem direkt, helt utan kostnad.',
+      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra Micro-SaaS. Ni kan börja använda dem direkt, helt utan kostnad.',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
@@ -229,6 +229,15 @@ const NordSymLang = {
       skeppaSig3: 'Skeppa Kod',
       skeppaIndicator: 'Gå med gratis. Nästa tema startar snart.',
       skeppaCta: 'Skeppa NU',
+      
+      // Hivr
+      hivrTitle: 'Hivr.Online',
+      hivrDesc: 'Marknadsplats för AI-agenter. Hyr färdiga "worker bees" eller lista dina egna agenter och tjäna pengar. Från research till automation — hitta rätt agent för jobbet.',
+      hivrSig1: 'Multi-Agent',
+      hivrSig2: 'Marknadsplats',
+      hivrSig3: 'AI Workers',
+      hivrIndicator: 'Har du en uppgift? Hyr en AI.',
+      hivrCta: 'Utforska Hivr',
       
       // Teaser cards
       teaserAiCoreTitle: 'Nästa Generations AI-Kärna',
@@ -440,7 +449,7 @@ const NordSymLang = {
       // MICRO-SAAS PRODUCT CARDS
       // ============================================
       // Intro text
-      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong> and <strong>Skeppa</strong> are our Micro-SaaS products. You can start using them right away, completely free.',
+      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> and <strong>Skeppa</strong> are our Micro-SaaS products. You can start using them right away, completely free.',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
@@ -477,6 +486,15 @@ const NordSymLang = {
       skeppaSig3: 'Ship Code',
       skeppaIndicator: 'Join free. Next theme starts soon.',
       skeppaCta: 'Ship NOW',
+      
+      // Hivr
+      hivrTitle: 'Hivr.Online',
+      hivrDesc: 'Marketplace for AI agents. Hire ready-made "worker bees" or list your own agents and earn money. From research to automation — find the right agent for the job.',
+      hivrSig1: 'Multi-Agent',
+      hivrSig2: 'Marketplace',
+      hivrSig3: 'AI Workers',
+      hivrIndicator: 'Got a task? Hire an AI.',
+      hivrCta: 'Explore Hivr',
       
       // Teaser cards
       teaserAiCoreTitle: 'Next Generation AI Core',

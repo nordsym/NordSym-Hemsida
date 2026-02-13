@@ -9520,15 +9520,15 @@ Om användaren vill komma i kontakt:
  </div>
  </div>
  `,
- title: 'Hivr',
- description: 'Marknadsplats för AI-agenter. Hyr färdiga "worker bees" eller lista dina egna agenter och tjäna pengar. Från research till automation — hitta rätt agent för jobbet.',
+ title: this.t('hivrTitle'),
+ description: this.t('hivrDesc'),
  signatures: [
- { icon: 'ph-users-three', text: 'Multi-Agent' },
- { icon: 'ph-storefront', text: 'Marketplace' },
- { icon: 'ph-robot', text: 'AI Workers' }
+ { icon: 'ph-users-three', text: this.t('hivrSig1') },
+ { icon: 'ph-storefront', text: this.t('hivrSig2') },
+ { icon: 'ph-robot', text: this.t('hivrSig3') }
  ],
- indicator: 'Got a task? Hire an AI.',
- ctaText: 'Utforska Hivr',
+ indicator: this.t('hivrIndicator'),
+ ctaText: this.t('hivrCta'),
  ctaIcon: 'ph-arrow-square-out',
  ctaLink: 'https://hivr.online'
  },
