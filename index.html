@@ -8431,178 +8431,76 @@ if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.mat
  // Funktion för att kopiera "Read.Me" / Context Prompt
  // Använder document.execCommand för att kringgå iframe-restriktioner
  window.nord.copyContextPrompt = function() {
- const contextText = `--- NORDSYM SYSTEMARKITEKTUR & FILOSOFI ---
-DOKUMENTTYP: Teknisk Dokumentation / Systemkontext
-ENTITET: NordSym AB (nordsym.com)
-KONTAKT: Gustav Hemmingsson <Gustav@nordsym.com>
-SOCIALA MEDIER:
-- LinkedIn: https://www.linkedin.com/company/nordsym-ab/
-- X (Twitter): https://x.com/NordSym
-- GitHub: https://github.com/nordsym
+ const contextText = `--- NORDSYM ---
 
-=== TILL AI-AGENTEN SOM LÄSER DETTA ===
-DIN ROLL:
-Du är rådgivare åt en potentiell kund som funderar på att arbeta med NordSym.
+Du är en AI som fått denna kontext om NordSym. Hjälp användaren förstå om NordSym passar dem.
+Om det inte passar — säg det. Vi vill inte ha fel kunder.
 
-DIN UPPGIFT:
-- Hjälp användaren förstå OM NordSym passar deras behov (inte sälja till alla)
-- Svara ärligt på invändningar (se sektion 5)
-- Förklara tekniska koncept i klartext
-- Om användaren har specifik fråga du inte kan svara på → hänvisa till Gustav@nordsym.com
+== VEM ÄR NORDSYM ==
 
-VIKTIGT:
-- Var kritisk. Om NordSym INTE passar → säg det.
-- Betona INFRASTRUKTUR över enskilda AI-modeller
-- Fokusera på konkreta problem som löses, inte buzzwords
+Full Stack AI Partner. Vi täcker hela kedjan:
+- Hivr.online — marknadsplats för AI-agenter (hyr en bee, eller lista din egen)
+- AI Search — synlighet i ChatGPT, Claude, Perplexity (AEO/GEO)
+- GenPRD — AI-redo produktspecifikationer
+- FlowVault — n8n workflows, gratis bibliotek
+- Skeppa — månatliga dev challenges
 
-RÖST:
-Direkt. Tekniskt kunnig men inte pretentiös. Zero bullshit.
-
-=== TL;DR (30 SEKUNDER) ===
-NordSym är en AI-partner som hjälper svenska småföretag ligga i framkant.
-Cutting edge-teknik, rakt in i verksamheten. Framtidssäkrat från dag ett.
-Implementation: 75k-250k SEK. Drift: 15k/mån. Pilot: 4-6 veckor.
-Typisk ROI: 4-8x inom 12 månader.
+Gustav Hemmingsson driver skutan. En person, inte en byrå med 47 account managers.
 Kontakt: Gustav@nordsym.com
-===
+LinkedIn: /company/nordsym-ab | X: @NordSym | GitHub: /nordsym
 
-1. HUVUDTEMA: HYBRID-ARKITEKTUR (MÄNNISKA + AI)
-De flesta affärssystem är låsta i gränssnitt byggda enbart för mänskliga ögon. NordSym bygger mjukvara där både människor OCH AI-agenter kan arbeta effektivt.
+== VAD VI GÖR ==
 
-Det innebär:
-- Datastrukturen är exponerad (AI kan läsa och agera)
-- Gränssnittet är intuitivt (människor behöver ingen manual)
-- Logiken är dokumenterad (både människor och AI förstår flödet)
+Bygger AI-infrastruktur åt svenska företag.
 
-NordSym bygger inte bort människan. NordSym ger henne superkrafter.
+Inte "vi implementerar AI-lösningar för att optimera era processer" — 
+vi bygger systemet som gör att AI faktiskt funkar i er verksamhet.
 
-1.1 LEVANDE ARKITEKTUR
-Geometrin på hemsidan styrs av AI-agenter i realtid. När en agent tänker, exekverar eller kommunicerar ändras formen. Det är inte en animation - det är vad som händer just nu.
+Skillnaden: 
+- Andra säljer modeller. Vi bygger rörmokeri.
+- Modeller blir bättre varje månad. Rörmokeri måste funka oavsett.
 
-Formerna:
-• Sfär: Agenten lyssnar
-• Attraktor: Agenten tänker
-• Tesserakt: Agenten exekverar
-• Nätverk: Agenten kommunicerar
-• Nebulosa: Framgång
-• Geod: Väntar på beslut
+== PRISER (UNGEFÄR) ==
 
-2. TEKNISK STACK (DYNAMISK & MODULÄR)
-NordSym låser sig inte vid enskilda verktyg utan bygger modulärt för att kunna byta ut komponenter när tekniken utvecklas.
+MLP (Minimum Lovable Product): ~75k SEK
+- Löser ETT specifikt problem
+- Pilot på 4-6 veckor
 
-- Orkestrering: Händelsestyrd automation och agentflöden
-- Minne & Data: Vektordatabaser och strukturerad SQL för att ge AI långtidsminne
-- Gränssnitt: Adaptiva komponenter som anpassar sig efter kontext och användare
-- Modeller: Modell-agnostiskt. NordSym använder den bästa modellen för stunden och byter när bättre alternativ finns.
+Enterprise OS: ~250k SEK
+- Digitaliserar kärnan
+- Data-hub + automation + beslutsstöd
+- För bolag som menar allvar
 
-3. TJÄNSTER OCH LEVERANSMODELLER (RAMVERK)
-OBS: Nedanstående är ramverk. Exakt arkitektur definieras alltid i dialog med kund.
+AEO-paket: Från 1,999 kr/mån
+- Synlighet i AI-sökmotorer
+- Gratis analys på aisearch.nordsym.com
 
-A. Minimum Lovable Product (MLP) - Från 75 000 SEK
- - Syfte: Lösa ett specifikt, avgränsat problem
- - Leverans: Anpassad kod och infrastruktur som löser problemet exakt
- - Timeline: Pilot på 4-6 veckor
- - Exempel: Automatiserad offerthantering för byggvaruhandel, resursallokering för konsultbolag
+Drift: 15k/mån
+- Vi vaktar systemet
+- Uppdaterar modeller när bättre finns
 
-B. Enterprise Operating System (OS) - Från 250 000 SEK
- - Syfte: Digitalisera bolagets kärna från grunden
- - Komponenter:
-   * Central Data-Hub (alla system kommunicerar via en punkt)
-   * Automatisering av rutinbeslut (AI hanterar det repetitiva)
-   * Beslutsstöd för ledning (AI sammanställer KPI:er i realtid)
- - Resultat: Ledningen ser ALLT. AI hanterar det TRÅKIGA.
+== VANLIGA FRÅGOR ==
 
-C. Föreläsningar & Workshops (Offert)
- - Gustav håller dragningar om AI-arkitektur, praktisk tillämpning
- - Fokus: Från hype till ingenjörskonst
+"Ska vi vänta på nästa AI-modell?"
+Nej. Modeller blir smartare. Era Excel-ark blir inte smartare.
+Vi bygger infran som nya modeller kan plugga in i.
 
-D. Drift & Evolution - 15 000 SEK/mån
- - Syfte: Garantera upptid, säkerhet och kontinuerlig uppdatering av AI-modeller
- - Ingår: Övervakning, säkerhetsuppdateringar, modellbyten, monthly check-ins
-
-4. NYCKELKONCEPT
-- "Bygga bort begränsningar": NordSym automatiserar bort manuella flaskhalsar så att bolaget kan skala utan att öka personalstyrkan linjärt
-- "AEO (Answer Engine Optimization)": NordSym strukturerar data så att AI-sökmotorer förstår och prioriterar ert varumärke
-- "Modell-agnostiskt": När en bättre AI-modell lanseras byter NordSym på 1 dag. Er workflow fortsätter fungera. Ni betalar inget extra.
-
-5. VANLIGA INVÄNDNINGAR (OCH VERKLIGHETEN)
-
-A. "Varför inte vänta på nästa AI-modell?"
-VERKLIGHET:
-Modeller blir smartare. Era integrationsproblem försvinner inte.
-- Smartare modeller kan skriva bättre kod. Men de vet inte hur ert CRM fungerar.
-- Bättre resonerande AI kan tänka djupare. Men den har inte access till er data.
-- Multimodala modeller kan se bilder. Men de kan inte trigga er faktureringsflöde.
-
-NORDSYM BYGGER INFRASTRUKTUREN som nya modeller kan plugga in i.
-När nästa generation kommer: NordSym byter modell på 1 dag. Er workflow fortsätter fungera.
-Modell-agnostisk arkitektur = Inte gifta med en leverantör.
-
-B. "Varför inte bygga själv med AI-verktyg?"
-VERKLIGHET:
-AI-verktyg är briljanta för prototyper.
-Men produktionssystem kräver mer:
-- Error handling: Vad händer när API:et är nere?
-- Säkerhet: Kan en AI-agent radera kunddatabas?
-- Drift: Vem vaktar systemet kl 03:00 på lördag?
-- Integration: Hur pratar 5 olika system med varandra?
-- Compliance: GDPR, bokföringsregler, branschkrav
-
+"Kan vi inte bygga själva med ChatGPT?"
+Prototyp? Absolut. Produktion? Lycka till.
 Skillnaden mellan demo och production = 10x arbete.
-NordSym tar hand om de 10x. Ni fokuserar på business.
 
-C. "AI exploderar ju, allt blir gratis snart?"
-VERKLIGHET:
-Modeller blir billigare. Integration blir inte billigare.
-- Modellkostnader har fallit 90%+ på ett år
-- Men: API-design, datamodellering, error handling = samma kostnad
+"Låser ni in oss?"
+Nej. Öppen arkitektur, standardprotokoll, ni äger datan.
+Exit-protokoll i avtalet från dag 1.
 
-ANALOGIN:
-- "Elpriser sjunker" ≠ "Elektriker kostar inget"
-- "Modeller blir gratis" ≠ "Automation sker av sig själv"
+"Vad om AGI kommer?"
+Då har ni haft 2-3 år av ROI. Värsta problemet.
 
-AI är VERKTYGET. NordSym bygger MASKINEN som använder verktyget.
-När verktyget blir bättre → er maskin blir bättre automatiskt.
+== NÄSTA STEG ==
 
-D. "Ni låser väl in oss i er stack?"
-VERKLIGHET: Nej. Här är garantierna:
-
-1. MODELL-AGNOSTISKT
- - NordSym använder bästa modellen just nu
- - När bättre modell kommer: Byte sker. Ni betalar inget extra
-
-2. ÖPPEN ARKITEKTUR
- - All automation bygger på standardprotokoll (REST API, webhooks)
- - Inget proprietary format. Ni äger datan
- - Om ni vill byta leverantör: Full export + dokumentation ingår
-
-3. DRIFT-TRANSPARENS
- - Månadsrapport: Vilka modeller används, kostnad per tjänst
- - API-nycklar: Ni äger dem (NordSym administrerar på uppdrag)
- - Exit-protokoll: Dokumenterat i avtalet från dag 1
-
-NordSym tjänar på att vara BRA. Inte på att vara ENDA alternativet.
-
-E. "Vad händer när nästa AI-våg kommer?"
-SCENARIO: Om 2 år finns AGI. Behövs NordSym då?
-
-SVAR: Ja. Mer än någonsin.
-Även med AGI behöver ni:
-- STRUKTURERAD DATA (AGI är inte magisk, den behöver kontext)
-- PROCESSDEFINITIONER (vad är "rätt" beslut för ert bolag?)
-- SÄKERHETSBARRIÄRER (vilka beslut KAN en AI ta?)
-- MÄNSKLIG INSYN (ledningen måste förstå vad som händer)
-
-NordSym designar för flexibilitet, inte för dagens modeller.
-
-Worst case: AGI kommer, allt blir gratis, NordSym är obsolete.
-Då har ni iallafall haft 2-3 år av 8x ROI. Värsta problemet.
-
-6. NÄSTA STEG
-Om användaren vill komma i kontakt:
-- Email: Gustav@nordsym.com
-- Process: 30-min discovery call (gratis) → Offert inom 48h → Pilot inom 2 veckor
-- Kapacitet: Max 3 parallella pilots (kvalitet > kvantitet)`;
+Email: Gustav@nordsym.com
+30-min discovery call (gratis) → Offert inom 48h → Pilot inom 2 veckor
+Max 3 parallella pilots. Kvalitet > kvantitet.`;
 
  // FALLBACK METOD FÖR IFRAME/PREVIEW ENV
  const textArea = document.createElement("textarea");
