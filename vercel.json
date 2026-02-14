@@ -3,5 +3,13 @@
   "buildCommand": null,
   "outputDirectory": ".",
   "framework": null,
-  "installCommand": null
+  "installCommand": null,
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" }
+  ],
+  "functions": {
+    "api/demo-lead.js": {
+      "runtime": "@vercel/node@3.0.0"
+    }
+  }
 }

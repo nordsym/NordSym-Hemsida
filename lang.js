@@ -259,6 +259,18 @@ const NordSymLang = {
       showcaseFlowVaultCta: 'Öppna Valvet',
 
       // ============================================
+      // DEMO FACTORY
+      // ============================================
+      demoFactoryTitle: 'Få en demo byggd för er',
+      demoFactorySubtitle: 'Vi bygger en skräddarsydd demo som visar exakt hur AI-automation kan lösa era utmaningar.',
+      demoFactoryCompany: 'Företagsnamn *',
+      demoFactoryEmail: 'Er mejladress *',
+      demoFactoryChallenge: 'Vad vill ni lösa? (valfritt)',
+      demoFactoryCTA: 'Begär Demo',
+      demoFactorySuccessTitle: 'Tack! Vi har mottagit er förfrågan.',
+      demoFactorySuccessText: 'Vi återkommer inom 24 timmar med nästa steg.',
+
+      // ============================================
       // COOKIE BANNER
       // ============================================
       cookieTitle: 'Digital Integritet',
@@ -514,6 +526,18 @@ const NordSymLang = {
       showcaseFlowVaultTitle: 'FlowVault',
       showcaseFlowVaultDesc: 'Every flow in the library is battle-tested and ready to run. Find blueprints for Fortnox, CRM syncs and AI pipelines in seconds instead of hours.',
       showcaseFlowVaultCta: 'Open Vault',
+
+      // ============================================
+      // DEMO FACTORY
+      // ============================================
+      demoFactoryTitle: 'Get a demo built for you',
+      demoFactorySubtitle: 'We build a custom demo showing exactly how AI automation can solve your challenges.',
+      demoFactoryCompany: 'Company name *',
+      demoFactoryEmail: 'Your email *',
+      demoFactoryChallenge: 'What do you want to solve? (optional)',
+      demoFactoryCTA: 'Request Demo',
+      demoFactorySuccessTitle: 'Thank you! We\'ve received your request.',
+      demoFactorySuccessText: 'We\'ll get back to you within 24 hours with next steps.',
 
       // ============================================
       // COOKIE BANNER

@@ -4629,6 +4629,212 @@
  body.light-theme .nordsym-toast i {
  color: var(--nord-sym-blueprint-cyan);
  }
+
+ /* ========================================
+    DEMO FACTORY LEAD CAPTURE FORM
+    ======================================== */
+ .demo-factory-container {
+   max-width: 600px;
+   margin: 4rem auto 0;
+   padding: 2rem;
+ }
+
+ .demo-factory-card {
+   background: rgba(12, 20, 39, 0.85);
+   border: 1px solid rgba(0, 212, 255, 0.2);
+   border-radius: 1rem;
+   padding: 2rem;
+   backdrop-filter: blur(25px);
+   box-shadow: 
+     0 0 30px rgba(0, 212, 255, 0.1),
+     0 20px 50px -12px rgba(0, 0, 0, 0.5);
+   transition: all 0.3s ease;
+ }
+
+ .demo-factory-card:hover {
+   border-color: rgba(0, 212, 255, 0.4);
+   box-shadow: 
+     0 0 40px rgba(0, 212, 255, 0.15),
+     0 25px 60px -12px rgba(0, 0, 0, 0.6);
+ }
+
+ .demo-factory-header {
+   text-align: center;
+   margin-bottom: 1.5rem;
+ }
+
+ .demo-factory-badge {
+   display: inline-block;
+   padding: 0.25rem 0.75rem;
+   font-size: 0.65rem;
+   font-weight: 700;
+   letter-spacing: 0.15em;
+   text-transform: uppercase;
+   color: var(--nord-sym-cyan);
+   border: 1px solid rgba(0, 212, 255, 0.3);
+   border-radius: 9999px;
+   margin-bottom: 0.75rem;
+ }
+
+ .demo-factory-title {
+   font-family: 'Comfortaa', sans-serif;
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: #ffffff;
+   margin-bottom: 0.5rem;
+ }
+
+ .demo-factory-subtitle {
+   font-size: 0.9rem;
+   color: rgba(255, 255, 255, 0.7);
+   line-height: 1.5;
+ }
+
+ .demo-factory-form {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ }
+
+ .demo-factory-input,
+ .demo-factory-textarea {
+   width: 100%;
+   padding: 0.875rem 1rem;
+   font-size: 0.95rem;
+   font-family: inherit;
+   color: #ffffff;
+   background: rgba(8, 12, 20, 0.8);
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   border-radius: 0.5rem;
+   outline: none;
+   transition: all 0.2s ease;
+ }
+
+ .demo-factory-input::placeholder,
+ .demo-factory-textarea::placeholder {
+   color: rgba(255, 255, 255, 0.4);
+ }
+
+ .demo-factory-input:focus,
+ .demo-factory-textarea:focus {
+   border-color: var(--nord-sym-cyan);
+   box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+ }
+
+ .demo-factory-textarea {
+   min-height: 80px;
+   resize: vertical;
+ }
+
+ .demo-factory-submit {
+   width: 100%;
+   padding: 1rem 1.5rem;
+   font-size: 1rem;
+   font-weight: 700;
+   font-family: 'Comfortaa', sans-serif;
+   color: var(--nord-sym-deep-space-blue);
+   background: var(--nord-sym-cyan);
+   border: none;
+   border-radius: 0.5rem;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.5rem;
+ }
+
+ .demo-factory-submit:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+ }
+
+ .demo-factory-submit:disabled {
+   opacity: 0.6;
+   cursor: not-allowed;
+   transform: none;
+ }
+
+ .demo-factory-submit .spinner {
+   width: 18px;
+   height: 18px;
+   border: 2px solid transparent;
+   border-top-color: var(--nord-sym-deep-space-blue);
+   border-radius: 50%;
+   animation: spin 0.8s linear infinite;
+ }
+
+ @keyframes spin {
+   to { transform: rotate(360deg); }
+ }
+
+ .demo-factory-success {
+   text-align: center;
+   padding: 2rem;
+ }
+
+ .demo-factory-success-icon {
+   font-size: 3rem;
+   margin-bottom: 1rem;
+ }
+
+ .demo-factory-success h4 {
+   font-family: 'Comfortaa', sans-serif;
+   font-size: 1.25rem;
+   color: #ffffff;
+   margin-bottom: 0.5rem;
+ }
+
+ .demo-factory-success p {
+   color: rgba(255, 255, 255, 0.7);
+   font-size: 0.9rem;
+ }
+
+ /* Light theme overrides */
+ body.light-theme .demo-factory-card {
+   background: rgba(255, 255, 255, 0.95);
+   border-color: var(--nord-sym-blueprint-lines);
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+ }
+
+ body.light-theme .demo-factory-title {
+   color: var(--nord-sym-blueprint-ink);
+ }
+
+ body.light-theme .demo-factory-subtitle {
+   color: rgba(0, 30, 60, 0.7);
+ }
+
+ body.light-theme .demo-factory-input,
+ body.light-theme .demo-factory-textarea {
+   background: rgba(240, 245, 250, 0.9);
+   border-color: var(--nord-sym-blueprint-lines);
+   color: var(--nord-sym-blueprint-ink);
+ }
+
+ body.light-theme .demo-factory-input::placeholder,
+ body.light-theme .demo-factory-textarea::placeholder {
+   color: rgba(0, 30, 60, 0.4);
+ }
+
+ body.light-theme .demo-factory-input:focus,
+ body.light-theme .demo-factory-textarea:focus {
+   border-color: var(--nord-sym-blueprint-cyan);
+   box-shadow: 0 0 0 3px rgba(0, 150, 200, 0.15);
+ }
+
+ body.light-theme .demo-factory-submit {
+   background: var(--nord-sym-blueprint-cyan);
+   color: #ffffff;
+ }
+
+ body.light-theme .demo-factory-success h4 {
+   color: var(--nord-sym-blueprint-ink);
+ }
+
+ body.light-theme .demo-factory-success p {
+   color: rgba(0, 30, 60, 0.7);
+ }
  
  </style>
 
@@ -5799,6 +6005,55 @@
  </div>
  <!-- ÅTERSTÄLLD: Paginering och stängningstaggar som saknades -->
  <div id="galleryPagination" class="flex justify-center mt-6 gap-3"></div>
+
+ <!-- DEMO FACTORY LEAD CAPTURE -->
+ <div class="demo-factory-container">
+   <div class="demo-factory-card">
+     <div class="demo-factory-header">
+       <span class="demo-factory-badge">🏭 Demo Factory</span>
+       <h3 class="demo-factory-title" data-i18n="demoFactoryTitle">Få en demo byggd för er</h3>
+       <p class="demo-factory-subtitle" data-i18n="demoFactorySubtitle">
+         Vi bygger en skräddarsydd demo som visar exakt hur AI-automation kan lösa era utmaningar.
+       </p>
+     </div>
+     
+     <form id="demo-factory-form" class="demo-factory-form">
+       <input 
+         type="text" 
+         name="company" 
+         class="demo-factory-input" 
+         placeholder="Företagsnamn *"
+         data-i18n-placeholder="demoFactoryCompany"
+         required
+       />
+       <input 
+         type="email" 
+         name="email" 
+         class="demo-factory-input" 
+         placeholder="Er mejladress *"
+         data-i18n-placeholder="demoFactoryEmail"
+         required
+       />
+       <textarea 
+         name="challenge" 
+         class="demo-factory-textarea" 
+         placeholder="Vad vill ni lösa? (valfritt)"
+         data-i18n-placeholder="demoFactoryChallenge"
+       ></textarea>
+       <button type="submit" class="demo-factory-submit">
+         <span data-i18n="demoFactoryCTA">Begär Demo</span>
+         <i class="ph ph-arrow-right"></i>
+       </button>
+     </form>
+
+     <div id="demo-factory-success" class="demo-factory-success" style="display: none;">
+       <div class="demo-factory-success-icon">✅</div>
+       <h4 data-i18n="demoFactorySuccessTitle">Tack! Vi har mottagit er förfrågan.</h4>
+       <p data-i18n="demoFactorySuccessText">Vi återkommer inom 24 timmar med nästa steg.</p>
+     </div>
+   </div>
+ </div>
+
  </div>
  </section>
 
@@ -9432,7 +9687,8 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  indicator: this.t('hivrIndicator'),
  ctaText: this.t('hivrCta'),
  ctaIcon: 'ph-arrow-square-out',
- ctaLink: 'https://hivr.online'
+ badge: 'BETA',
+        ctaLink: 'https://hivr.online'
  },
  {
  customLogo: `
@@ -9666,10 +9922,11 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  : `<i class="ph ${data.icon}"></i>`;
  }
 
+ const badgeHTML = data.badge ? `<span class="beta-badge">${data.badge}</span>` : '';
  return `
  <div class="${cardClasses}">
  ${imageOrIconHTML}
- <h4>${data.title}</h4>
+ <h4>${data.title}${badgeHTML}</h4>
  <p class="description">${data.description}</p>
  ${signaturesHTML}
  ${ctaButton}
@@ -10493,6 +10750,75 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
 
 <!-- Mission Control Bridge - Connects MC events to Three.js geometry -->
 <script src="mc-bridge.js"></script>
+
+<!-- Demo Factory Lead Capture -->
+<script>
+(function() {
+  const form = document.getElementById('demo-factory-form');
+  const successDiv = document.getElementById('demo-factory-success');
+  
+  if (!form) return;
+  
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = form.querySelector('.demo-factory-submit');
+    const btnText = submitBtn.querySelector('span');
+    const btnIcon = submitBtn.querySelector('i');
+    
+    // Loading state
+    const originalText = btnText.textContent;
+    btnText.textContent = 'Skickar...';
+    btnIcon.className = 'spinner';
+    submitBtn.disabled = true;
+    
+    const formData = {
+      company: form.company.value.trim(),
+      email: form.email.value.trim(),
+      challenge: form.challenge.value.trim()
+    };
+    
+    try {
+      const response = await fetch('/api/demo-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (!response.ok) {
+        throw new Error('Server error');
+      }
+      
+      // Success - hide form, show success message
+      form.style.display = 'none';
+      successDiv.style.display = 'block';
+      
+      // Track conversion (if GA4 is loaded)
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          event_category: 'Demo Factory',
+          event_label: formData.company
+        });
+      }
+      
+    } catch (error) {
+      console.error('Demo Factory error:', error);
+      
+      // Reset button and show error
+      btnText.textContent = originalText;
+      btnIcon.className = 'ph ph-arrow-right';
+      submitBtn.disabled = false;
+      
+      // Show toast error
+      if (window.nord && window.nord.showToast) {
+        window.nord.showToast('Något gick fel. Försök igen.', 'error');
+      } else {
+        alert('Något gick fel. Vänligen försök igen eller kontakta oss direkt.');
+      }
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
