@@ -261,14 +261,15 @@ const NordSymLang = {
       // ============================================
       // DEMO FACTORY
       // ============================================
+      demoFactoryBadge: 'Demo Fabrik',
       demoFactoryTitle: 'Få en demo byggd för er',
-      demoFactorySubtitle: 'Vi bygger en skräddarsydd demo som visar exakt hur AI-automation kan lösa era utmaningar.',
+      demoFactorySubtitle: 'Vår AI-agent Symbot analyserar ert företag och bygger en skräddarsydd demo — helt autonomt. Ni får den skickad på mejl.',
       demoFactoryCompany: 'Företagsnamn *',
       demoFactoryEmail: 'Er mejladress *',
       demoFactoryChallenge: 'Vad vill ni lösa? (valfritt)',
       demoFactoryCTA: 'Begär Demo',
-      demoFactorySuccessTitle: 'Tack! Vi har mottagit er förfrågan.',
-      demoFactorySuccessText: 'Vi återkommer inom 24 timmar med nästa steg.',
+      demoFactorySuccessTitle: 'Symbot är på det!',
+      demoFactorySuccessText: 'Vår AI-agent researchar ert företag och bygger en demo. Ni får den på mejl inom 24h.',
 
       // ============================================
       // COOKIE BANNER
@@ -530,14 +531,15 @@ const NordSymLang = {
       // ============================================
       // DEMO FACTORY
       // ============================================
+      demoFactoryBadge: 'Demo Factory',
       demoFactoryTitle: 'Get a demo built for you',
-      demoFactorySubtitle: 'We build a custom demo showing exactly how AI automation can solve your challenges.',
+      demoFactorySubtitle: 'Our AI agent Symbot analyzes your company and builds a custom demo — fully autonomous. We\'ll send it to your email.',
       demoFactoryCompany: 'Company name *',
       demoFactoryEmail: 'Your email *',
       demoFactoryChallenge: 'What do you want to solve? (optional)',
       demoFactoryCTA: 'Request Demo',
-      demoFactorySuccessTitle: 'Thank you! We\'ve received your request.',
-      demoFactorySuccessText: 'We\'ll get back to you within 24 hours with next steps.',
+      demoFactorySuccessTitle: 'Symbot is on it!',
+      demoFactorySuccessText: 'Our AI agent is researching your company and building a demo. You\'ll receive it by email within 24h.',
 
       // ============================================
       // COOKIE BANNER
