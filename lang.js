@@ -471,7 +471,7 @@ const NordSymLang = {
       testimonial2Role: 'CEO, Consulting Firm',
       
       // Testimonial 3 - Linda S.
-      testimonial3Quote: 'Built exactly what we asked for. First time that's ever happened.',
+      testimonial3Quote: "Built exactly what we asked for. First time that's ever happened.",
       testimonial3Name: 'Linda S.',
       testimonial3Role: 'Product Manager, E-commerce',
 
@@ -591,7 +591,7 @@ const NordSymLang = {
       // ============================================
       demoFactoryBadge: 'Demo Factory',
       demoFactoryTitle: 'Get a demo built for you',
-      demoFactorySubtitle: 'See what's possible. Submit. Symbot analyzes, then builds a custom demo based on what you actually need. Ready before your coffee break is over.',
+      demoFactorySubtitle: "See what's possible. Submit. Symbot analyzes, then builds a custom demo based on what you actually need. Ready before your coffee break is over.",
       demoFactoryCompany: 'Company name *',
       demoFactoryEmail: 'Your email *',
       demoFactoryChallenge: 'What do you want to solve? (optional)',
