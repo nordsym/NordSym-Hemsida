@@ -125,7 +125,7 @@ const NordSymLang = {
       rndCard2Title: 'Live demonstration',
       rndCard2Btn: 'Starta',
       rndCard3Title: 'Transparens som princip',
-      rndCard3Desc: 'Vi bygger system där du ser vad AI:n gör, inte bara vad den levererar. Det börjar här.',
+      rndCard3Desc: 'Vi bygger system där du ser vad AI:n gör, inte bara vad den levererar.',
 
       // Contact Form
       contactTitle: 'Diskutera ert Case',
@@ -454,7 +454,7 @@ const NordSymLang = {
       rndCard2Title: 'Live demonstration',
       rndCard2Btn: 'Start',
       rndCard3Title: 'Transparency as principle',
-      rndCard3Desc: 'We build systems where you see what the AI does, not just what it delivers. It starts here.',
+      rndCard3Desc: 'We build systems where you see what the AI does, not just what it delivers.',
       rndCard3Link: 'Follow the project →',
 
       // Contact Form
