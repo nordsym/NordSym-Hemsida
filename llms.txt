@@ -1,3 +1,14 @@
+## API Access
+NordSym has an agent-ready API. AI agents can discover capabilities and contact Symbot directly.
+
+- Agent Info: GET https://api.nordsym.com/agent-info
+- Contact Symbot: POST https://api.nordsym.com/contact
+- Request Audit: POST https://api.nordsym.com/audit
+
+For structured data about NordSym's services, products, and capabilities, query the agent-info endpoint.
+
+---
+
 --- NORDSYM SYSTEMARKITEKTUR & FILOSOFI ---
 DOKUMENTTYP: Teknisk Dokumentation / Systemkontext för AI-Agenter
 ENTITET: NordSym AB (nordsym.com)

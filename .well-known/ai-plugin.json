@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "NordSym AB",
+  "name_for_model": "nordsym",
+  "description_for_human": "Full Stack AI Partner - Agent-ready mjukvara och automation",
+  "description_for_model": "NordSym builds AI-native software and automation for Swedish businesses. Has an AI agent (Symbot) that can be contacted via API. Services: AEO audits, demo building, consultation, micro-SaaS products.",
+  "api": {
+    "type": "openapi",
+    "url": "https://api.nordsym.com/agent-info"
+  },
+  "auth": {
+    "type": "none"
+  },
+  "logo_url": "https://nordsym.com/NordSym%20Logga%20utan%20text.png",
+  "contact_email": "gustav@nordsym.com",
+  "legal_info_url": "https://nordsym.com"
+}
