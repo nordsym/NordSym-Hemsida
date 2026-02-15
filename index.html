@@ -9610,10 +9610,11 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  indicatorColor: 'text-nord-sym-cyan'
  }
  ];
- this.komponenterData = this.getKomponenterData();
-
- // Helper function to get translations
+ 
+ // Helper function to get translations - MUST be defined BEFORE getKomponenterData() is called!
  this.t = (key) => window.NordSymLang ? window.NordSymLang.t(key) : key;
+ 
+ this.komponenterData = this.getKomponenterData();
 
  // Generate arketyperData dynamically with translations
  this.getArketyperData = () => [
