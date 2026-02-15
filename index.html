@@ -633,6 +633,16 @@
  color: var(--nord-sym-blueprint-cyan) !important;
  opacity: 1;
  }
+ /* FIX: CTA button in mobile menu should keep white text */
+ body.light-theme #mobile-menu a.btn-cta-revised {
+ background: var(--nord-sym-blueprint-ink) !important;
+ color: #ffffff !important;
+ opacity: 1;
+ }
+ body.light-theme #mobile-menu a.btn-cta-revised:hover {
+ background: var(--nord-sym-blueprint-cyan) !important;
+ color: #ffffff !important;
+ }
 
  /* Atom Gallery (Blåkopia / Arkitekt) - SOLIDA KORT */
  body.light-theme .archetype-card {
