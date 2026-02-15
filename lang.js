@@ -181,7 +181,7 @@ const NordSymLang = {
       galleryTabSystem: 'SYSTEM',
       
       // Stack description
-      galleryStackDesc: 'Tekniken under huven. Arkitekturen baseras på ett ekosystem av Claude, Gemini och OpenAI, orkestrerat av n8n och moderna vektordatabaser. Rätt verktyg för rätt kognitiv uppgift.',
+      galleryStackDesc: 'Tre principer som multiplicerar er kapacitet. Hastighet som accelererar över tid. Arkitektur designad för AI från dag ett. Autonoma system som aldrig stannar.',
       galleryStackContext: 'Utforska stacken',
       
       // System description  
@@ -478,7 +478,7 @@ const NordSymLang = {
       galleryTabSystem: 'SYSTEM',
       
       // Stack description
-      galleryStackDesc: 'The technology under the hood. The architecture is based on an ecosystem of Claude, Gemini and OpenAI, orchestrated by n8n and modern vector databases. The right tool for the right cognitive task.',
+      galleryStackDesc: 'Three principles that multiply your capacity. Velocity that accelerates over time. Architecture designed for AI from day one. Autonomous systems that never stop.',
       galleryStackContext: 'Explore the stack',
       
       // System description  
