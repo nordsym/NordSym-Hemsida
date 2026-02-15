@@ -8872,8 +8872,8 @@ if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.mat
    });
    observer.observe(document.body, { attributes: true });
    
-   // Start auto-shuffle after 30 seconds (give users time to see the default sfär)
-   setTimeout(scheduleNextShuffle, 30000);
+   // TEMPORARILY DISABLED for debugging
+   // setTimeout(scheduleNextShuffle, 30000);
    
    // Expose for control
    window.geometryAutoShuffle = {
