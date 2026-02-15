@@ -36,7 +36,7 @@ const NordSymLang = {
       homeDiagramDesc: 'Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla agentanpassad mjukvara, system som både människor och AI kan använda, dygnet runt.',
       homeDiagramLink: 'Utforska tjänster →',
       vennFlows: 'Unika<br>Flöden',
-      vennSoftware: 'Agent-redo',
+      vennSoftware: 'Agent-Redo',
       vennCenter: 'Sparade<br>Timmar',
 
       // Product Showcase
