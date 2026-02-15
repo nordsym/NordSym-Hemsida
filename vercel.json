@@ -5,6 +5,9 @@
   "framework": null,
   "installCommand": null,
   "rewrites": [
+    { "source": "/agent-info", "destination": "/api/agent-info" },
+    { "source": "/contact", "destination": "/api/contact" },
+    { "source": "/audit", "destination": "/api/audit" },
     { "source": "/api/:path*", "destination": "/api/:path*" }
   ]
 }
