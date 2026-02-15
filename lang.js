@@ -57,6 +57,7 @@ const NordSymLang = {
 
       // Services Section
       labelServices: 'TJÄNSTER',
+      servicesHeadline: 'Intelligent mjukvara anpassad efter er verksamhet',
       servicesTitle: 'Intelligent mjukvara anpassad efter er verksamhet',
 
       // Pricing - MLP
@@ -375,6 +376,7 @@ const NordSymLang = {
 
       // Services Section
       labelServices: 'SERVICES',
+      servicesHeadline: 'Intelligent software tailored to your business',
       servicesTitle: 'Intelligent software tailored to your business',
 
       // Pricing - MLP
