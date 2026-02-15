@@ -7890,6 +7890,11 @@
  if (this.elasticGeometry) {
  this.elasticGeometry.nudge();
  }
+ // Pause auto-shuffle briefly on user interaction
+ if (window.geometryAutoShuffle) {
+   window.geometryAutoShuffle.pause();
+   setTimeout(() => window.geometryAutoShuffle.resume(), 30000); // Resume after 30s
+ }
  }
  
  displayFormName(shape) {
@@ -8734,6 +8739,92 @@ if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.mat
    };
    
    console.log('🌐 Mission Control heartbeat initialized');
+ })();
+ 
+ // === GEOMETRY AUTO-SHUFFLE ===
+ // Randomly morphs between shapes when user isn't interacting
+ (function initGeometryAutoShuffle() {
+   const SHAPES = ['seed_of_life', 'flower_of_life', 'metatrons_cube', 'torus', 'trinity_knot', 'icosahedron'];
+   const MIN_INTERVAL = 20000; // 20 seconds minimum
+   const MAX_INTERVAL = 45000; // 45 seconds maximum
+   let currentShapeIndex = 0;
+   let autoShuffleTimer = null;
+   let isPaused = false;
+   
+   function getRandomInterval() {
+     return MIN_INTERVAL + Math.random() * (MAX_INTERVAL - MIN_INTERVAL);
+   }
+   
+   function shuffleToRandomShape() {
+     // Don't shuffle if user is in builder mode
+     if (document.body.classList.contains('labb-active')) {
+       scheduleNextShuffle();
+       return;
+     }
+     
+     // Don't shuffle if paused
+     if (isPaused) {
+       scheduleNextShuffle();
+       return;
+     }
+     
+     // Pick a different random shape
+     let newIndex;
+     do {
+       newIndex = Math.floor(Math.random() * SHAPES.length);
+     } while (newIndex === currentShapeIndex && SHAPES.length > 1);
+     
+     currentShapeIndex = newIndex;
+     const newShape = SHAPES[currentShapeIndex];
+     
+     // Morph to the new shape
+     if (window.UnifiedGeometryManager && window.UnifiedGeometryManager.elasticGeometry) {
+       console.log('🔮 Auto-morphing to:', newShape);
+       window.UnifiedGeometryManager.elasticGeometry.morphToShape(newShape);
+     }
+     
+     scheduleNextShuffle();
+   }
+   
+   function scheduleNextShuffle() {
+     if (autoShuffleTimer) clearTimeout(autoShuffleTimer);
+     autoShuffleTimer = setTimeout(shuffleToRandomShape, getRandomInterval());
+   }
+   
+   // Pause on user interaction with geometry
+   function pauseAutoShuffle() {
+     isPaused = true;
+     // Resume after 60 seconds of no interaction
+     setTimeout(() => { isPaused = false; }, 60000);
+   }
+   
+   // Listen for user entering builder mode
+   const observer = new MutationObserver((mutations) => {
+     mutations.forEach((mutation) => {
+       if (mutation.attributeName === 'class') {
+         if (document.body.classList.contains('labb-active')) {
+           isPaused = true;
+         } else {
+           // Resume 5 seconds after exiting builder
+           setTimeout(() => { isPaused = false; }, 5000);
+         }
+       }
+     });
+   });
+   observer.observe(document.body, { attributes: true });
+   
+   // Start auto-shuffle after 10 seconds
+   setTimeout(scheduleNextShuffle, 10000);
+   
+   // Expose for control
+   window.geometryAutoShuffle = {
+     pause: () => { isPaused = true; },
+     resume: () => { isPaused = false; },
+     shuffle: shuffleToRandomShape,
+     setInterval: (min, max) => { MIN_INTERVAL = min; MAX_INTERVAL = max; }
+   };
+   
+   console.log('🔮 Geometry auto-shuffle initialized');
  })();
  
  } else {
