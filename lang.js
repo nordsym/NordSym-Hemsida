@@ -33,10 +33,10 @@ const NordSymLang = {
 
       // Home Diagram Section
       homeDiagramTitle: 'Frigör er potential',
-      homeDiagramDesc: 'Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla skräddarsydd mjukvara som automatiserar era unika flöden och frigör tid för expansion.',
+      homeDiagramDesc: 'Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla agentanpassad mjukvara, system som både människor och AI kan använda, dygnet runt.',
       homeDiagramLink: 'Utforska tjänster →',
       vennFlows: 'Unika<br>Flöden',
-      vennSoftware: 'Agent&shy;anpassad<br>Mjukvara',
+      vennSoftware: 'Agent-redo',
       vennCenter: 'Sparade<br>Timmar',
 
       // Product Showcase
@@ -330,10 +330,10 @@ const NordSymLang = {
 
       // Home Diagram Section
       homeDiagramTitle: 'Unlock your potential',
-      homeDiagramDesc: 'Manual processes cap your growth. NordSym removes that ceiling by developing custom software that automates your unique workflows and frees up time for expansion.',
+      homeDiagramDesc: 'Manual processes cap your growth. NordSym removes that ceiling by developing agent-ready software, systems that both humans and AI can use, around the clock.',
       homeDiagramLink: 'Explore services →',
       vennFlows: 'Unique<br>Workflows',
-      vennSoftware: 'Agent-adapted<br>Software',
+      vennSoftware: 'Agent-Ready',
       vennCenter: 'Hours<br>Saved',
 
       // Product Showcase
