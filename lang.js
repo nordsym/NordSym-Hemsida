@@ -220,8 +220,12 @@ const NordSymLang = {
       // ============================================
       // MICRO-APPS PRODUCT CARDS
       // ============================================
-      // Intro text
+      microAppsBadge: 'Micro-Apps & Verktyg',
+      microAppsDesc: '<strong class="text-white">Micro-Apps</strong> är fokuserad mjukvara för specifika problem.',
       microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra Micro-Apps. Ni kan börja använda dem direkt, helt utan kostnad.',
+      aeoIntro: '<strong>AEO & GEO</strong> är ett gratis verktyg vi tagit fram för analys av ditt företags hemsida. Testa din synlighet i AI-sök direkt via knappen.',
+      cardLabelBlueprint: 'Ritning',
+      openToolCta: 'Öppna Verktyg',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
@@ -519,8 +523,12 @@ const NordSymLang = {
       // ============================================
       // MICRO-APPS PRODUCT CARDS
       // ============================================
-      // Intro text
+      microAppsBadge: 'Micro-Apps & Tools',
+      microAppsDesc: '<strong class="text-white">Micro-Apps</strong> are focused software for specific problems.',
       microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> and <strong>Skeppa</strong> are our Micro-Apps. You can start using them right away, completely free.',
+      aeoIntro: '<strong>AEO & GEO</strong> is a free tool we built for analyzing your company website. Test your visibility in AI search directly via the button.',
+      cardLabelBlueprint: 'Blueprint',
+      openToolCta: 'Open Tool',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
