@@ -292,13 +292,13 @@ const NordSymLang = {
       // ============================================
       demoFactoryBadge: 'Demo Fabrik',
       demoFactoryTitle: 'Få en demo byggd för er',
-      demoFactorySubtitle: 'Vår AI-agent Symbot analyserar ert företag och bygger en skräddarsydd demo — helt autonomt. Ni får den skickad på mejl.',
+      demoFactorySubtitle: 'Se vad som är möjligt. Submitta. Symbot analyserar, sen bygger en skräddarsydd demo baserad på vad ni faktiskt behöver. Klar innan fikan är slut.',
       demoFactoryCompany: 'Företagsnamn *',
       demoFactoryEmail: 'Er mejladress *',
       demoFactoryChallenge: 'Vad vill ni lösa? (valfritt)',
       demoFactoryCTA: 'Begär Demo',
       demoFactorySuccessTitle: 'Symbot är på det!',
-      demoFactorySuccessText: 'Vår AI-agent researchar ert företag och bygger en demo. Ni får den på mejl inom 24h.',
+      demoFactorySuccessText: 'Symbot analyserar ert företag och bygger en skräddarsydd demo. Håll utkik i inboxen!',
 
       // ============================================
       // COOKIE BANNER
@@ -591,13 +591,13 @@ const NordSymLang = {
       // ============================================
       demoFactoryBadge: 'Demo Factory',
       demoFactoryTitle: 'Get a demo built for you',
-      demoFactorySubtitle: 'Our AI agent Symbot analyzes your company and builds a custom demo — fully autonomous. We\'ll send it to your email.',
+      demoFactorySubtitle: 'See what's possible. Submit. Symbot analyzes, then builds a custom demo based on what you actually need. Ready before your coffee break is over.',
       demoFactoryCompany: 'Company name *',
       demoFactoryEmail: 'Your email *',
       demoFactoryChallenge: 'What do you want to solve? (optional)',
       demoFactoryCTA: 'Request Demo',
       demoFactorySuccessTitle: 'Symbot is on it!',
-      demoFactorySuccessText: 'Our AI agent is researching your company and building a demo. You\'ll receive it by email within 24h.',
+      demoFactorySuccessText: 'Symbot is analyzing your company and building a custom demo. Keep an eye on your inbox!',
 
       // ============================================
       // COOKIE BANNER
