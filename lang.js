@@ -97,7 +97,7 @@ const NordSymLang = {
       // Founder
       founderName: 'Gustav Hemmingsson',
       founderTitle: 'Grundare',
-      founderBio1: 'Jag hjälper svenska företag bygga AI-verktyg som FAKTISKT gör skillnad.',
+      founderBio1: 'Jag grundade NordSym för att AI inte ska kräva Silicon Valley-resurser.',
       founderBio2: 'Framtidssäkrat från dag ett.',
 
       // FAQ
@@ -396,7 +396,7 @@ const NordSymLang = {
       // Founder
       founderName: 'Gustav Hemmingsson',
       founderTitle: 'Founder',
-      founderBio1: 'I help Swedish companies build AI tools that ACTUALLY make a difference.',
+      founderBio1: 'I founded NordSym because AI shouldn't require Silicon Valley resources.',
       founderBio2: 'Future-proofed from day one.',
 
       // FAQ
