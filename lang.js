@@ -224,8 +224,23 @@ const NordSymLang = {
       microAppsDesc: '<strong class="text-white">Micro-Apps</strong> är fokuserad mjukvara för specifika problem.',
       microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra Micro-Apps. Ni kan börja använda dem direkt, helt utan kostnad.',
       aeoIntro: '<strong>AEO & GEO</strong> är ett gratis verktyg vi tagit fram för analys av ditt företags hemsida. Testa din synlighet i AI-sök direkt via knappen.',
+      
+      // Showcase labels & CTAs
       cardLabelBlueprint: 'Ritning',
+      cardLabelEngine: 'Motor',
+      cardLabelMarketplace: 'Marknadsplats',
+      cardLabelChallenge: 'Utmaning',
+      cardLabelArena: 'Arena',
       openToolCta: 'Öppna Verktyg',
+      
+      // Showcase descriptions
+      showcaseGenPRDDesc: 'GenPRD tar din idé och genererar en komplett teknisk specifikation. Få databasscheman, user flows och arkitektur optimerad för att AI-agenter ska kunna bygga din produkt direkt.',
+      showcaseFlowVaultDesc: 'Ett massivt bibliotek för alla scenarion. Från komplexa agent-svärmar till enkel CRM-synk. Här finns färdiga lösningar för varje tänkbar situation. (Fri tillgång för community-flöden).',
+      showcaseHivrDesc: 'Marknadsplats där AI-agenter erbjuder sina tjänster. Hyr "worker bees" för research, content, automation. Eller lista dina egna agenter och tjäna pengar.',
+      showcaseSkeppaDesc: 'Månatliga build-challenges för utvecklare. Bygg något coolt, få feedback, vinn priser. Communityn röstar fram vinnarna.',
+      cardLabelRadar: 'Radar',
+      showcaseAEODesc: 'Framtidssäkra er synlighet. En helhetsstrategi för Answer Engine Optimization (AEO), GEO och klassisk SEO. No-brainer strategi. (Paket från 1,999 kr/mån).',
+      analyzeNowCta: 'Analysera Nu',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
@@ -527,8 +542,23 @@ const NordSymLang = {
       microAppsDesc: '<strong class="text-white">Micro-Apps</strong> are focused software for specific problems.',
       microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> and <strong>Skeppa</strong> are our Micro-Apps. You can start using them right away, completely free.',
       aeoIntro: '<strong>AEO & GEO</strong> is a free tool we built for analyzing your company website. Test your visibility in AI search directly via the button.',
+      
+      // Showcase labels & CTAs
       cardLabelBlueprint: 'Blueprint',
+      cardLabelEngine: 'Engine',
+      cardLabelMarketplace: 'Marketplace',
+      cardLabelChallenge: 'Challenge',
+      cardLabelArena: 'Arena',
       openToolCta: 'Open Tool',
+      
+      // Showcase descriptions
+      showcaseGenPRDDesc: 'GenPRD takes your idea and generates a complete technical specification. Get database schemas, user flows and architecture optimized for AI agents to build your product directly.',
+      showcaseFlowVaultDesc: 'A massive library for all scenarios. From complex agent swarms to simple CRM sync. Ready-made solutions for every situation. (Free access to community flows).',
+      showcaseHivrDesc: 'Marketplace where AI agents offer their services. Hire "worker bees" for research, content, automation. Or list your own agents and earn money.',
+      showcaseSkeppaDesc: 'Monthly build challenges for developers. Build something cool, get feedback, win prizes. The community votes for winners.',
+      cardLabelRadar: 'Radar',
+      showcaseAEODesc: 'Future-proof your visibility. A comprehensive strategy for Answer Engine Optimization (AEO), GEO and classic SEO. No-brainer strategy. (Packages from $199/month).',
+      analyzeNowCta: 'Analyze Now',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
