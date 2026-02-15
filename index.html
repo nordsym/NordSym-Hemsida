@@ -9570,113 +9570,47 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  this.paginationContainer = document.getElementById('galleryPagination');
  this.lastCardsPerPage = 0; // To track resize changes
 
- // Data uppdelad i två källor
- this.komponenterData = [
+ // Data uppdelad i två källor - UPPDATERAD 2026-02-15: 3 kärnkort med value prop
+ // Funktion för att hämta översatt data (som arketyperData)
+ this.getKomponenterData = () => [
  {
- icon: 'ph-cpu',
- title: 'Agentanpassad mjukvara',
- description: 'Mjukvara optimerad för att förstås av AI. Klicka nedan för att kopiera vår "Read.Me" – en system-prompt som ger din egen AI (ChatGPT, Claude, Gemini) direkt tillgång till NordSyms tekniska kontext och filosofi.',
+ icon: 'ph-rocket',
+ title: this.t('stackCard1Title'),
+ description: this.t('stackCard1Desc'),
  signatures: [
- { icon: 'ph-robot', text: 'LLM-Ready' },
- { icon: 'ph-file-text', text: 'Context.md' },
- { icon: 'ph-arrows-split', text: 'Universal' }
+ { icon: 'ph-lightning', text: this.t('stackCard1Sig1') },
+ { icon: 'ph-package', text: this.t('stackCard1Sig2') },
+ { icon: 'ph-trend-up', text: this.t('stackCard1Sig3') }
  ],
- indicator: 'Gör din AI smartare. Kopiera kontext.',
- indicatorColor: 'text-nord-sym-cyan',
- ctaText: 'Kopiera Read.Me',
- ctaIcon: 'ph-copy',
- ctaAction: 'copyContextPrompt'
+ indicator: this.t('stackCard1Indicator'),
+ indicatorColor: 'text-nord-sym-cyan'
  },
  {
- icon: 'ph-stack',
- title: 'Autonom Infrastruktur',
- description: 'Händelsestyrda arbetsflöden utan onödig overhead. Skalbart byggd med moderna orkestreringsverktyg och databaser för att ge applikationen både snabba reflexer och pålitligt långtidsminne.',
+ icon: 'ph-plugs-connected',
+ title: this.t('stackCard2Title'),
+ description: this.t('stackCard2Desc'),
  signatures: [
- { icon: 'ph-lightning', text: 'Orkestrering' },
- { icon: 'ph-database', text: 'Vektordatabas' },
- { icon: 'ph-cloud', text: 'Serverless' }
+ { icon: 'ph-plug', text: this.t('stackCard2Sig1') },
+ { icon: 'ph-broadcast', text: this.t('stackCard2Sig2') },
+ { icon: 'ph-arrows-clockwise', text: this.t('stackCard2Sig3') }
  ],
- indicator: 'Driftsäkerhet och skalbarhet från dag ett.'
- },
- {
- icon: 'ph-code',
- title: 'Sömlös Integration',
- description: 'Produktionskod skriven för er miljö. Oavsett om stacken är React, Python eller .NET, integreras agenterna direkt i befintlig kodbas utan att störa den dagliga driften.',
- signatures: [
- { icon: 'ph-brackets-curly', text: 'Typescript' },
- { icon: 'ph-file-code', text: 'Python' },
- { icon: 'ph-desktop', text: '.NET / C#' }
- ],
- indicator: 'Inga svarta lådor. Ren, underhållbar kod.'
+ indicator: this.t('stackCard2Indicator'),
+ indicatorColor: 'text-nord-sym-cyan'
  },
  {
  icon: 'ph-robot',
- title: 'Kärnprotokoll (MCP)',
- description: 'Standardiserad kommunikation. Implementation av Model Context Protocol låter olika applikationer och agenter dela minne och kontext sömlöst med varandra.',
+ title: this.t('stackCard3Title'),
+ description: this.t('stackCard3Desc'),
  signatures: [
- { icon: 'ph-database', text: 'Delat Minne' },
- { icon: 'ph-arrows-left-right', text: 'Kontext' },
- { icon: 'ph-plugs', text: 'Interoperabilitet' }
+ { icon: 'ph-brain', text: this.t('stackCard3Sig1') },
+ { icon: 'ph-moon', text: this.t('stackCard3Sig2') },
+ { icon: 'ph-sliders', text: this.t('stackCard3Sig3') }
  ],
- indicator: 'Enad intelligens, inte isolerade silos.'
- },
- {
- icon: 'ph-layout',
- title: 'Adaptiva Gränssnitt',
- description: 'Gränssnitt som anpassar sig. Dynamiska UI:n byggs för att visa exakt rätt data vid rätt tillfälle, baserat på användarens roll och aktuella arbetsmoment.',
- signatures: [
- { icon: 'ph-paint-brush', text: 'Generative UI' },
- { icon: 'ph-user', text: 'Användarfokus' },
- { icon: 'ph-eye', text: 'Realtid' }
- ],
- indicator: 'Skärmar som underlättar beslutsfattande.'
- },
- {
- icon: 'ph-arrows-clockwise',
- title: 'Process-Automation',
- description: 'Sammankopplade processer. Genom API-integrationer och agenter elimineras manuella steg i allt från säljstöd till kundtjänst. Tekniken gör jobbet, ni övervakar.',
- signatures: [
- { icon: 'ph-plugs-connected', text: 'API:er' },
- { icon: 'ph-trash', text: 'Eliminering' },
- { icon: 'ph-trend-up', text: 'Effektivitet' }
- ],
- indicator: 'Mindre administration, mer värdeskapande.'
- },
- {
- icon: 'ph-database',
- title: 'Datadrivna Insikter',
- description: 'Från rådata till svar. NordSyms lösningar analyserar och sammanfattar stora datamängder för att ge konkreta beslutsunderlag direkt, istället för statiska rapporter.',
- signatures: [
- { icon: 'ph-chart-bar', text: 'Analys' },
- { icon: 'ph-lightning', text: 'Hastighet' },
- { icon: 'ph-file-text', text: 'Syntes' }
- ],
- indicator: 'Beslut baserade på fakta, inte gissningar.'
- },
- {
- icon: 'ph-books',
- title: 'Företagsminne (RAG)',
- description: 'Samla bolagets kunskap. Dokument och processer struktureras i sökbara kunskapsbaser som hela organisationen kan "prata" med för att hitta svar omedelbart.',
- signatures: [
- { icon: 'ph-magnifying-glass', text: 'Sökbarhet' },
- { icon: 'ph-folder-open', text: 'Struktur' },
- { icon: 'ph-brain', text: 'Tillgänglighet' }
- ],
- indicator: 'Ingen information går förlorad.'
- },
- {
- icon: 'ph-shield-check',
- title: 'Drift & Säkerhet',
- description: 'Robust drift är grundkravet. Proaktiv övervakning och strikta behörighetskontroller sätts upp så att lösningen körs stabilt och säkert dygnet runt.',
- signatures: [
- { icon: 'ph-lock-key', text: 'Säkerhet' },
- { icon: 'ph-activity', text: 'Övervakning' },
- { icon: 'ph-shield', text: 'Stabilitet' }
- ],
- indicator: 'Drift ni kan lita på.'
+ indicator: this.t('stackCard3Indicator'),
+ indicatorColor: 'text-nord-sym-cyan'
  }
- // BORTTAGNA: De två sista teaser-korten flyttas till 'arketyperData'
  ];
+ this.komponenterData = this.getKomponenterData();
 
  // Helper function to get translations
  this.t = (key) => window.NordSymLang ? window.NordSymLang.t(key) : key;
@@ -9808,6 +9742,7 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  ];
 
  // Initialize with current translations
+ this.komponenterData = this.getKomponenterData();
  this.arketyperData = this.getArketyperData();
 
  this.dataSources = {
@@ -9843,8 +9778,10 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  // Called when language changes to refresh all cards with new translations
  refreshTranslations() {
  // Update data sources with new translations
+ this.komponenterData = this.getKomponenterData();
  this.arketyperData = this.getArketyperData();
  this.textSources = this.getTextSources();
+ this.dataSources['byggstenar'] = this.komponenterData;
  this.dataSources['galleri'] = this.arketyperData;
  
  // Re-populate gallery with translated content
@@ -10793,7 +10730,7 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
     };
     
     try {
-      const response = await fetch('/api/demo-lead', {
+      const response = await fetch('https://nordsym.app.n8n.cloud/webhook/demo-factory', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

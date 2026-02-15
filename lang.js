@@ -189,6 +189,33 @@ const NordSymLang = {
       gallerySystemContext: 'Utforska systemen',
 
       // ============================================
+      // STACK CARDS (3 value-prop kort)
+      // ============================================
+      // Card 1: Compounding Velocity
+      stackCard1Title: 'Compounding Velocity',
+      stackCard1Desc: 'Varje implementation blir snabbare än den förra. Era lösningar återanvänds, förbättras, och blir grundstenar för nästa projekt. Velocity som accelererar över tid.',
+      stackCard1Sig1: 'Iteration Speed',
+      stackCard1Sig2: 'Reusable Modules',
+      stackCard1Sig3: 'Accelerating Returns',
+      stackCard1Indicator: 'Månad 12 är 10x snabbare än månad 1.',
+      
+      // Card 2: API-Native Architecture
+      stackCard2Title: 'API-Native Architecture',
+      stackCard2Desc: 'Er data blir tillgänglig via API från dag ett. Inte som efterkonstruktion — som grundprincip. Varje AI-verktyg och automation kan koppla in direkt.',
+      stackCard2Sig1: 'API-First',
+      stackCard2Sig2: 'Real-time Access',
+      stackCard2Sig3: 'Future-proof',
+      stackCard2Indicator: 'Riktiga integrationer. Inte lim.',
+      
+      // Card 3: Autonomous Ops
+      stackCard3Title: 'Autonomous Ops',
+      stackCard3Desc: 'Agenter som jobbar medan ni sover. Intelligent orkestrering som hanterar edge cases och förbättras av varje genomkörning. Human-in-the-loop när det behövs.',
+      stackCard3Sig1: 'Intelligent Agents',
+      stackCard3Sig2: '24/7 Operations',
+      stackCard3Sig3: 'Human Override',
+      stackCard3Indicator: 'Ni styr. De utför.',
+
+      // ============================================
       // MICRO-SAAS PRODUCT CARDS
       // ============================================
       // Intro text
@@ -457,6 +484,33 @@ const NordSymLang = {
       // System description  
       gallerySystemDesc: 'Ready-made products and Micro-SaaS solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
       gallerySystemContext: 'Explore systems',
+
+      // ============================================
+      // STACK CARDS (3 value-prop cards)
+      // ============================================
+      // Card 1: Compounding Velocity
+      stackCard1Title: 'Compounding Velocity',
+      stackCard1Desc: 'Every implementation becomes faster than the last. Your solutions get reused, improved, and become building blocks for the next project. Velocity that accelerates over time.',
+      stackCard1Sig1: 'Iteration Speed',
+      stackCard1Sig2: 'Reusable Modules',
+      stackCard1Sig3: 'Accelerating Returns',
+      stackCard1Indicator: 'Month 12 is 10x faster than month 1.',
+      
+      // Card 2: API-Native Architecture
+      stackCard2Title: 'API-Native Architecture',
+      stackCard2Desc: 'Your data becomes accessible via API from day one. Not as an afterthought — as a core principle. Every AI tool and automation can plug in directly.',
+      stackCard2Sig1: 'API-First',
+      stackCard2Sig2: 'Real-time Access',
+      stackCard2Sig3: 'Future-proof',
+      stackCard2Indicator: 'Real integrations. Not glue.',
+      
+      // Card 3: Autonomous Ops
+      stackCard3Title: 'Autonomous Ops',
+      stackCard3Desc: 'Agents that work while you sleep. Intelligent orchestration that handles edge cases and improves with every run. Human-in-the-loop when needed.',
+      stackCard3Sig1: 'Intelligent Agents',
+      stackCard3Sig2: '24/7 Operations',
+      stackCard3Sig3: 'Human Override',
+      stackCard3Indicator: 'You steer. They execute.',
 
       // ============================================
       // MICRO-SAAS PRODUCT CARDS
