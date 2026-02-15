@@ -7436,11 +7436,37 @@
  this.updateViewState();
 
  this.isInitialized = true;
+ 
+ // AUTO THEME CYCLING: Byter tema var 20:e sekund för "LEVANDE ARKITEKTUR"
+ this.startThemeCycling();
  } catch (error) {
  this.initializationFailed = true;
  console.error("Total disharmoni i UnifiedGeometryManager:", error);
  logToExternalService(error, "UnifiedGeometryManager.init");
  }
+ }
+ 
+ startThemeCycling() {
+ const themeKeys = Object.keys(VISUAL_ASSET_LIBRARY);
+ let currentThemeIndex = themeKeys.indexOf(this.activeTheme);
+ 
+ this.themeCycleInterval = setInterval(() => {
+ // Cykla inte om användaren är i workshop mode
+ if (this.currentState === 'WORKSHOP') return;
+ 
+ currentThemeIndex = (currentThemeIndex + 1) % themeKeys.length;
+ const nextTheme = themeKeys[currentThemeIndex];
+ this.setTheme(nextTheme);
+ 
+ // Morphar också till en random form i det nya temat
+ if (this.elasticGeometry) {
+ const theme = VISUAL_ASSET_LIBRARY[nextTheme];
+ if (theme && theme.forms && theme.forms.length > 0) {
+ const randomForm = theme.forms[Math.floor(Math.random() * theme.forms.length)];
+ this.elasticGeometry.morphTo(randomForm.name);
+ }
+ }
+ }, 20000); // Byter var 20:e sekund
  }
 
  setGlobalTheme(theme) {
