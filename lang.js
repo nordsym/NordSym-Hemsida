@@ -142,6 +142,14 @@ const NordSymLang = {
       btnSubmit: 'Skicka',
       btnSubmitRequest: 'Skicka förfrågan',
 
+      // Modals
+      modalWaitlistTitle: 'Demonstration under utveckling',
+      modalWaitlistDesc: 'Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.',
+      modalWaitlistBtn: 'Bevaka lansering',
+      modalCloseLabel: 'Stäng',
+      modalFounderBio: 'Jag hjälper otekniska grundare bygga AI micro-appar som automatiserar deras verksamhet.',
+      modalBookIntro: 'Boka Intro',
+
       // Navigation
       navHome: 'Hem',
       navMicroApps: 'Micro-Apps',
@@ -463,6 +471,14 @@ const NordSymLang = {
       btnPrev: 'Previous',
       btnSubmit: 'Submit',
       btnSubmitRequest: 'Submit Request',
+
+      // Modals
+      modalWaitlistTitle: 'Demonstration in development',
+      modalWaitlistDesc: 'We are finalizing the interactive demo. Sign up and we will notify you when it is ready.',
+      modalWaitlistBtn: 'Watch launch',
+      modalCloseLabel: 'Close',
+      modalFounderBio: 'I help non-technical founders build AI micro-apps to automate their business.',
+      modalBookIntro: 'Book Intro',
 
       // Navigation
       navHome: 'Home',
