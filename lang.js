@@ -97,6 +97,8 @@ const NordSymLang = {
       // Founder
       founderName: 'Gustav Hemmingsson',
       founderTitle: 'Grundare',
+      founderBio1: 'Jag hjälper svenska företag bygga AI-verktyg som FAKTISKT gör skillnad.',
+      founderBio2: 'Framtidssäkrat från dag ett.',
 
       // FAQ
       faqTitle: 'Vanliga frågor',
@@ -394,6 +396,8 @@ const NordSymLang = {
       // Founder
       founderName: 'Gustav Hemmingsson',
       founderTitle: 'Founder',
+      founderBio1: 'I help Swedish companies build AI tools that ACTUALLY make a difference.',
+      founderBio2: 'Future-proofed from day one.',
 
       // FAQ
       faqTitle: 'Frequently Asked Questions',
