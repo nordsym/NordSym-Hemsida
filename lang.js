@@ -115,8 +115,6 @@ const NordSymLang = {
 
       // R&D Section
       labelRnD: 'R&D',
-      rndTitle: 'Gaming + AI + Three.js',
-      rndSubtitle: 'Här experimenterar vi med WebGL och AI. Vi testar gränserna för vad som är möjligt att köra direkt i en webbläsare, med fokus på spelmekanik och interaktiva gränssnitt.',
       rndBadge: 'LEVANDE ARKITEKTUR',
       rndHeadline: 'Agenter behöver rum att tänka',
       rndSubtitle: 'Geometrin reagerar i realtid av arbetande AI-agenter.',
@@ -444,8 +442,6 @@ const NordSymLang = {
 
       // R&D Section
       labelRnD: 'R&D',
-      rndTitle: 'Gaming + AI + Three.js',
-      rndSubtitle: "We experiment with WebGL and AI here. We test the boundaries of what's possible to run directly in a browser, focusing on game mechanics and interactive interfaces.",
       rndBadge: 'LIVING ARCHITECTURE',
       rndHeadline: 'Agents need room to think',
       rndSubtitle: 'The geometry reacts in real-time to working AI agents.',
