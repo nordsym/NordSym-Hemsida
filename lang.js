@@ -166,7 +166,7 @@ const NordSymLang = {
       testimonial1Name: 'Mohammed A.',
       testimonial1Role: 'Partner, CQT Invest',
       
-      // Testimonial 2 - David M.
+      // Testimonial 2 - Erik L.
       testimonial2Quote: 'Alla system pratar med varandra nu. Tog en vecka.',
       testimonial2Name: 'Erik L.',
       testimonial2Role: 'VD, Konsultbolag',
