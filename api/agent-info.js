@@ -80,7 +80,7 @@ export default async function handler(req, res) {
       }
     ],
     
-    // Products / Micro-SaaS
+    // Products / Micro-Apps
     products: [
       {
         name: "Hivr",

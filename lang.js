@@ -21,7 +21,7 @@ const NordSymLang = {
       heroSubtitle: 'NordSym är er <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> som bygger verktyg som <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">FAKTISKT</span> gör skillnad.',
       btnBookCall: 'Boka Strategisamtal',
       btnRnD: 'R&D',
-      labelMicroSaaS: 'MICRO-SAAS',
+      labelMicroApps: 'MICRO-APPS',
       labelIntelligentArch: 'INTELLIGENT ARKITEKTUR',
       labelIntelligentAuto: 'INTELLIGENT AUTOMATION',
       placeholderAsk: 'Fråga NordSym...',
@@ -141,7 +141,7 @@ const NordSymLang = {
 
       // Navigation
       navHome: 'Hem',
-      navMicroSaaS: 'Micro-SaaS',
+      navMicroApps: 'Micro-Apps',
       navServices: 'Tjänster',
       navRnD: 'R&D',
 
@@ -187,7 +187,7 @@ const NordSymLang = {
       galleryStackContext: 'Utforska stacken',
       
       // System description  
-      gallerySystemDesc: 'Färdiga produkter och Micro-SaaS lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
+      gallerySystemDesc: 'Färdiga produkter och Micro-Apps lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.',
       gallerySystemContext: 'Utforska systemen',
 
       // ============================================
@@ -218,10 +218,10 @@ const NordSymLang = {
       stackCard3Indicator: 'Ni styr. De utför.',
 
       // ============================================
-      // MICRO-SAAS PRODUCT CARDS
+      // MICRO-APPS PRODUCT CARDS
       // ============================================
       // Intro text
-      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra Micro-SaaS. Ni kan börja använda dem direkt, helt utan kostnad.',
+      microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra Micro-Apps. Ni kan börja använda dem direkt, helt utan kostnad.',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
@@ -320,7 +320,7 @@ const NordSymLang = {
       heroSubtitle: 'NordSym is your <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> building tools that <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">ACTUALLY</span> make a difference.',
       btnBookCall: 'Book Strategy Call',
       btnRnD: 'R&D',
-      labelMicroSaaS: 'MICRO-SAAS',
+      labelMicroApps: 'MICRO-APPS',
       labelIntelligentArch: 'INTELLIGENT ARCHITECTURE',
       labelIntelligentAuto: 'INTELLIGENT AUTOMATION',
       placeholderAsk: 'Ask NordSym...',
@@ -440,7 +440,7 @@ const NordSymLang = {
 
       // Navigation
       navHome: 'Home',
-      navMicroSaaS: 'Micro-SaaS',
+      navMicroApps: 'Micro-Apps',
       navServices: 'Services',
       navRnD: 'R&D',
 
@@ -486,7 +486,7 @@ const NordSymLang = {
       galleryStackContext: 'Explore the stack',
       
       // System description  
-      gallerySystemDesc: 'Ready-made products and Micro-SaaS solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
+      gallerySystemDesc: 'Ready-made products and Micro-Apps solutions. From AEO analysis to automated PRD workflows. Specialized software that solves specific problems directly.',
       gallerySystemContext: 'Explore systems',
 
       // ============================================
@@ -517,10 +517,10 @@ const NordSymLang = {
       stackCard3Indicator: 'You steer. They execute.',
 
       // ============================================
-      // MICRO-SAAS PRODUCT CARDS
+      // MICRO-APPS PRODUCT CARDS
       // ============================================
       // Intro text
-      microSaasIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> and <strong>Skeppa</strong> are our Micro-SaaS products. You can start using them right away, completely free.',
+      microAppsIntro: '<strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> and <strong>Skeppa</strong> are our Micro-Apps. You can start using them right away, completely free.',
       
       // FlowVault
       flowvaultTitle: 'FlowVault',
