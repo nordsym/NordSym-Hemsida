@@ -8666,6 +8666,79 @@ if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.mat
  
  // NEW: Initialize Starfall Manager
  window.StarfallManager = new StarfallManager();
+ 
+ // === MISSION CONTROL HEARTBEAT ===
+ // Connects geometry to real-time Symbot activity
+ (function initMissionControlHeartbeat() {
+   const MC_URL = 'https://agile-crane-840.convex.cloud/api/query';
+   let lastActivityId = null;
+   let activityCount = 0;
+   
+   async function checkMissionControl() {
+     try {
+       const response = await fetch(MC_URL, {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+           path: 'activities:getRecent',
+           args: { limit: 5 }
+         })
+       });
+       
+       if (!response.ok) return;
+       
+       const data = await response.json();
+       const activities = data.value || [];
+       
+       if (activities.length > 0) {
+         const latestId = activities[0]._id;
+         
+         // New activity detected!
+         if (lastActivityId && latestId !== lastActivityId) {
+           console.log('🤖 Symbot activity detected:', activities[0].title);
+           
+           // Flash the status indicator
+           if (window.symbotActivityFlash) window.symbotActivityFlash();
+           
+           // Nudge geometry
+           if (window.UnifiedGeometryManager) {
+             window.UnifiedGeometryManager.nudgeGeometry();
+             
+             // Extra pulse for task completions
+             if (activities[0].status === 'auto_done') {
+               setTimeout(() => window.UnifiedGeometryManager.nudgeGeometry(), 500);
+             }
+           }
+           
+           // Trigger starfall for big events
+           if (window.StarfallManager && activities[0].type === 'commit') {
+             window.StarfallManager.trigger && window.StarfallManager.trigger();
+           }
+         }
+         
+         lastActivityId = latestId;
+         activityCount = activities.length;
+       }
+     } catch (e) {
+       // Silent fail - don't break the site
+     }
+   }
+   
+   // Initial check after 3 seconds
+   setTimeout(checkMissionControl, 3000);
+   
+   // Poll every 30 seconds
+   setInterval(checkMissionControl, 30000);
+   
+   // Expose for debugging
+   window.missionControlHeartbeat = { 
+     check: checkMissionControl,
+     getCount: () => activityCount 
+   };
+   
+   console.log('🌐 Mission Control heartbeat initialized');
+ })();
+ 
  } else {
  throw new Error("Kritisk visuell komponent (UnifiedGeometryManager) misslyckades att initiera. Faller tillbaka till grundläggande funktionalitet.");
  }
@@ -10777,6 +10850,82 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
     }
   });
 })();
+</script>
+
+<!-- Symbot Activity Indicator -->
+<div id="symbot-status" style="
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(5, 6, 8, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  color: #94a3b8;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  cursor: default;
+" title="Connected to Mission Control">
+  <span id="symbot-pulse" style="
+    width: 8px;
+    height: 8px;
+    background: #00d4ff;
+    border-radius: 50%;
+    animation: symbot-pulse 2s infinite;
+  "></span>
+  <span>Symbot online</span>
+</div>
+
+<style>
+  @keyframes symbot-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  #symbot-status.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #symbot-status.activity #symbot-pulse {
+    background: #10b981;
+    animation: symbot-activity 0.5s ease;
+  }
+  @keyframes symbot-activity {
+    0% { transform: scale(1); }
+    50% { transform: scale(2); box-shadow: 0 0 20px #10b981; }
+    100% { transform: scale(1); }
+  }
+  body.light-theme #symbot-status {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 180, 220, 0.3);
+    color: #475569;
+  }
+  @media (max-width: 768px) {
+    #symbot-status { display: none; }
+  }
+</style>
+
+<script>
+// Show status indicator after page load
+setTimeout(() => {
+  const status = document.getElementById('symbot-status');
+  if (status) status.classList.add('active');
+}, 2000);
+
+// Flash green on activity (called from Mission Control heartbeat)
+window.symbotActivityFlash = function() {
+  const status = document.getElementById('symbot-status');
+  if (status) {
+    status.classList.add('activity');
+    setTimeout(() => status.classList.remove('activity'), 1000);
+  }
+};
 </script>
 
 </body>
