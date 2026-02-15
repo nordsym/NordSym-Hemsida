@@ -8,6 +8,7 @@
     { "source": "/agent-info", "destination": "/api/agent-info" },
     { "source": "/contact", "destination": "/api/contact" },
     { "source": "/audit", "destination": "/api/audit" },
+    { "source": "/demo-factory", "destination": "/api/demo-factory" },
     { "source": "/api/:path*", "destination": "/api/:path*" }
   ]
 }
