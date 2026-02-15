@@ -7471,6 +7471,12 @@
  // Harmoni-fix: Anropa updateViewState() vid initiering
  // för att ställa in den korrekta standardgeometrin (BUG 1).
  this.updateViewState();
+ 
+ // EXPLICIT: Garantera att vi startar med Sfär (seed_of_life) i flode-temat
+ if (this.activeThemeKey === 'flode' && this.elasticGeometry) {
+ this.elasticGeometry.morphToShape('seed_of_life');
+ this.activeShape = { name: 'seed_of_life', displayName: 'Sfär' };
+ }
 
  this.isInitialized = true;
  } catch (error) {
