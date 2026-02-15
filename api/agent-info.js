@@ -38,7 +38,7 @@ export default async function handler(req, res) {
       type: "AI Assistant",
       status: "online",
       capabilities: ["consultation", "research", "demo-building", "automation"],
-      contact_endpoint: "https://nordsym.com/api/contact"
+      contact_endpoint: "https://api.nordsym.com/contact"
     },
     
     // Services available via API
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
         name: "AEO/GEO Audit",
         description: "AI-synlighetsanalys - hur väl syns ert företag för AI-assistenter?",
         pricing: "free",
-        endpoint: "https://nordsym.com/api/audit",
+        endpoint: "https://api.nordsym.com/audit",
         method: "POST",
         turnaround: "24h"
       },
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
         name: "Demo Factory",
         description: "Symbot analyserar ert företag och bygger en skräddarsydd demo",
         pricing: "free",
-        endpoint: "https://nordsym.com/api/demo-lead",
+        endpoint: "https://api.nordsym.com/demo-lead",
         method: "POST",
         turnaround: "24-48h"
       },
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
         name: "Prata med Symbot",
         description: "Starta en konversation med NordSym's AI-agent",
         pricing: "free",
-        endpoint: "https://nordsym.com/api/contact",
+        endpoint: "https://api.nordsym.com/contact",
         method: "POST",
         turnaround: "instant"
       }
