@@ -162,17 +162,17 @@ const NordSymLang = {
       testimonialsSubtitle: 'Svenska företag som byggt med NordSym',
       
       // Testimonial 1 - Mohammed A.
-      testimonial1Quote: 'AI Search från NordSym sparar oss timmar varje vecka på due diligence och marknadsresearch.',
+      testimonial1Quote: 'Due diligence som tog dagar tar nu minuter.',
       testimonial1Name: 'Mohammed A.',
       testimonial1Role: 'Partner, CQT Invest',
       
       // Testimonial 2 - David M.
-      testimonial2Quote: 'NordSym förstod våra processer snabbt. N8n-integrationerna de byggde kopplar ihop våra system på ett sätt vi inte trodde var möjligt.',
-      testimonial2Name: 'David M.',
+      testimonial2Quote: 'Alla system pratar med varandra nu. Tog en vecka.',
+      testimonial2Name: 'Erik L.',
       testimonial2Role: 'VD, Konsultbolag',
       
       // Testimonial 3 - Linda S.
-      testimonial3Quote: 'Skräddarsydd lösning som gör precis vad vi behöver. Inget överkill, bara rätt funktionalitet för vårt sätt att jobba.',
+      testimonial3Quote: 'Byggde exakt det vi bad om. Första gången det hänt.',
       testimonial3Name: 'Linda S.',
       testimonial3Role: 'Produktchef, E-handel',
 
@@ -461,17 +461,17 @@ const NordSymLang = {
       testimonialsSubtitle: 'Swedish companies that built with NordSym',
       
       // Testimonial 1 - Mohammed A.
-      testimonial1Quote: 'AI Search from NordSym saves us hours every week on due diligence and market research.',
+      testimonial1Quote: 'Due diligence that took days now takes minutes.',
       testimonial1Name: 'Mohammed A.',
       testimonial1Role: 'Partner, CQT Invest',
       
       // Testimonial 2 - David M.
-      testimonial2Quote: 'NordSym understood our processes quickly. The n8n integrations they built connect our systems in ways we didn\'t think were possible.',
-      testimonial2Name: 'David M.',
+      testimonial2Quote: 'All systems talk to each other now. Took a week.',
+      testimonial2Name: 'Erik L.',
       testimonial2Role: 'CEO, Consulting Firm',
       
       // Testimonial 3 - Linda S.
-      testimonial3Quote: 'Custom solution that does exactly what we need. No overkill, just the right functionality for how we work.',
+      testimonial3Quote: 'Built exactly what we asked for. First time that's ever happened.',
       testimonial3Name: 'Linda S.',
       testimonial3Role: 'Product Manager, E-commerce',
 
