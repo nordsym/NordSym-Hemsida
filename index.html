@@ -1416,6 +1416,32 @@
  color: var(--nord-sym-text-medium);
  opacity: 0.8;
  }
+ .ghost-hint-agent {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.5rem;
+ margin-top: 1.5rem;
+ padding-top: 1rem;
+ border-top: 1px solid rgba(255,255,255,0.1);
+ font-family: 'Inter', sans-serif;
+ font-size: 0.75rem;
+ color: var(--nord-sym-text-medium);
+ opacity: 0.7;
+ letter-spacing: 0.05em;
+ }
+ .agent-pulse {
+ width: 8px;
+ height: 8px;
+ background: var(--nord-sym-cyan);
+ border-radius: 50%;
+ animation: agentPulse 2s ease-in-out infinite;
+ box-shadow: 0 0 10px var(--nord-sym-cyan);
+ }
+ @keyframes agentPulse {
+ 0%, 100% { opacity: 0.4; transform: scale(0.8); }
+ 50% { opacity: 1; transform: scale(1.2); }
+ }
  
  /* Mobil-justering för hints */
  @media (max-width: 768px) {
@@ -6983,6 +7009,10 @@
  <div id="workshop-ghost-hints">
  <div class="ghost-hint-text">Scrolla för att Transformera</div>
  <div class="ghost-hint-sub">Dra för att Rotera</div>
+ <div class="ghost-hint-agent">
+ <span class="agent-pulse"></span>
+ <span data-i18n="workshopAgentHint">Geometrin reagerar på agentaktivitet</span>
+ </div>
  </div>
  <button id="mobile-enter-workshop-btn" onclick="window.UnifiedGeometryManager.enterBuilderMode()">
  <i class="ph ph-cube"></i>

@@ -122,6 +122,7 @@ const NordSymLang = {
       rndCard1Desc: 'NordSym bygger system där människor och AI arbetar sida vid sida. Den här hemsidan är byggd på samma sätt.',
       rndCard2Title: 'Live demonstration',
       rndCard2Btn: 'Starta',
+      workshopAgentHint: 'Geometrin reagerar på agentaktivitet',
       rndCard3Title: 'Transparens som princip',
       rndCard3Desc: 'Vi bygger system där du ser vad AI:n gör, inte bara vad den levererar.',
 
@@ -449,6 +450,7 @@ const NordSymLang = {
       rndCard1Desc: 'NordSym builds systems where humans and AI work side by side. This website is built the same way.',
       rndCard2Title: 'Live demonstration',
       rndCard2Btn: 'Start',
+      workshopAgentHint: 'Geometry responds to agent activity',
       rndCard3Title: 'Transparency as principle',
       rndCard3Desc: 'We build systems where you see what the AI does, not just what it delivers.',
       rndCard3Link: 'Follow the project →',
