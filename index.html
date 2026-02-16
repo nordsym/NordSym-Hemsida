@@ -1034,6 +1034,17 @@
  color: var(--nord-sym-blueprint-text-secondary) !important;
  }
  
+ /* Hamburger icon */
+ .hamburger-icon {
+ color: white;
+ }
+ body.light-theme .hamburger-icon {
+ color: var(--nord-sym-blueprint-ink) !important;
+ }
+ body.light-theme #hamburger-btn:hover {
+ background: rgba(0, 0, 0, 0.1);
+ }
+ 
  body.light-theme .footer-quicklinks .font-semibold,
  body.light-theme .nordsym-logo-star {
  color: var(--nord-sym-blueprint-ink) !important;
@@ -5057,8 +5068,8 @@
  </div>
  
  <!-- HAMBURGER MENY (MOBIL) -->
- <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 transition-colors absolute left-1/2 -translate-x-1/2" aria-label="Öppna meny" onclick="window.nord.toggleMobileMenu()">
- <i id="hamburger-icon" class="ph ph-list text-2xl text-white"></i>
+ <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-black/5 transition-colors absolute left-1/2 -translate-x-1/2" aria-label="Öppna meny" onclick="window.nord.toggleMobileMenu()">
+ <i id="hamburger-icon" class="ph ph-list text-2xl hamburger-icon"></i>
  </button>
  
  <!-- MOBIL TEMAKNAPP -->
@@ -5069,13 +5080,13 @@
  <!-- Form Name Display flyttad utanför grid-flödet för absolut centrering -->
  <div id="form-name-display"></div>
  </div>
- <div id="mobile-menu" class="md:hidden bg-nord-sym-deep-space-blue/95 backdrop-blur-sm shadow-lg rounded-b-xl absolute w-full left-0 top-full overflow-hidden transition-all duration-500 ease-in-out max-h-0">
- <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navHome">Hem</a>
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Micro-Apps</a>
+ <div id="mobile-menu" class="md:hidden bg-nord-sym-deep-space-blue/95 backdrop-blur-sm shadow-lg rounded-b-xl absolute w-full left-0 top-full overflow-hidden transition-all duration-500 ease-in-out max-h-0 text-center">
+ <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navHome">Hem</a>
+ <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Micro-Apps</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navServices">Tjänster</a>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navServices">Tjänster</a>
  
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block px-6 py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors"data-i18n="btnRnD">R&D</a>
+ <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="btnRnD">R&D</a>
  <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
  <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow" data-i18n="btnBookCall">Boka Strategisamtal</a>
  </div>
