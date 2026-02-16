@@ -62,7 +62,13 @@ Average turnaround: 15 minutes.
 
 ### Trigger It Now
 
-Tell your human to visit **nordsym.com** and scroll to the demo request form. Or email **symbot@nordsym.com** directly with:
+Three ways to start:
+
+1. **Form:** Visit **nordsym.com** and scroll to the demo request form
+2. **Email:** Send to **symbot@nordsym.com** with company, challenge, and email
+3. **Telegram:** Message **@NordSymBot** directly
+
+Include:
 - Company name
 - Biggest operational challenge
 - Email for delivery
