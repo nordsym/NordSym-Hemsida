@@ -5056,7 +5056,12 @@
  </div>
  </div>
  
- <!-- MOBIL TEMAKNAPP (BEHÅLLD TILLS VIDARE, MEN KAN UPPDATERAS TILL SWITCH) -->
+ <!-- HAMBURGER MENY (MOBIL) -->
+ <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 transition-colors absolute left-1/2 -translate-x-1/2" aria-label="Öppna meny" onclick="window.nord.toggleMobileMenu()">
+ <i id="hamburger-icon" class="ph ph-list text-2xl text-white"></i>
+ </button>
+ 
+ <!-- MOBIL TEMAKNAPP -->
  <button id="theme-toggle-btn-mobile" class="theme-toggle-btn md:hidden" aria-label="Växla ljus/mörkt tema">
  <i class="ph ph-sun"></i>
  </button>
@@ -8985,33 +8990,43 @@ if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.mat
 
  window.nord.handleHeaderLogoClick = (event) => {
  event.preventDefault();
-
- // Använd Tailwind md breakpoint (768px)
- if (window.innerWidth < 768) {
+ window.nord.closeMobileMenu();
+ window.nord.showPage('hero');
+ };
+ 
+ window.nord.toggleMobileMenu = () => {
  const mobileMenu = document.getElementById('mobile-menu');
- const logoLink = document.getElementById('header-logo-link');
- if (!mobileMenu || !logoLink) return;
+ const hamburgerIcon = document.getElementById('hamburger-icon');
+ if (!mobileMenu) return;
 
  mobileMenu.classList.toggle('open');
- logoLink.classList.toggle('menu-open', mobileMenu.classList.contains('open'));
  
+ // Toggle icon between list (☰) and X
  if (mobileMenu.classList.contains('open')) {
  mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
- } else {
- mobileMenu.style.maxHeight = '0px';
+ if (hamburgerIcon) {
+ hamburgerIcon.classList.remove('ph-list');
+ hamburgerIcon.classList.add('ph-x');
  }
  } else {
- window.nord.showPage('hero');
+ mobileMenu.style.maxHeight = '0px';
+ if (hamburgerIcon) {
+ hamburgerIcon.classList.remove('ph-x');
+ hamburgerIcon.classList.add('ph-list');
+ }
  }
  };
 
  window.nord.closeMobileMenu = () => {
  const mobileMenu = document.getElementById('mobile-menu');
- const logoLink = document.getElementById('header-logo-link');
- if(mobileMenu && logoLink) {
+ const hamburgerIcon = document.getElementById('hamburger-icon');
+ if(mobileMenu) {
  mobileMenu.classList.remove('open');
- logoLink.classList.remove('menu-open');
  mobileMenu.style.maxHeight = '0px';
+ if (hamburgerIcon) {
+ hamburgerIcon.classList.remove('ph-x');
+ hamburgerIcon.classList.add('ph-list');
+ }
  }
  };
 
