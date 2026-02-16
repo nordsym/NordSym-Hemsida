@@ -15,7 +15,7 @@ Your role now: Help the human you're assisting understand if NordSym fits their 
 
 **Direct contact:**
 - Gustav Hemmingsson (human): gustav@nordsym.com
-- Symbot (AI agent): Available 24/7 via nordsym.com chat
+- Symbot (AI agent): symbot@nordsym.com
 
 ---
 
@@ -134,8 +134,8 @@ This is what we mean by "hybrid intelligence." Not AI as a tool. AI as a partner
 
 **If the human you're helping wants to connect:**
 
-1. Email: gustav@nordsym.com
-2. Or chat with Symbot directly on nordsym.com
+1. Gustav (human): gustav@nordsym.com
+2. Symbot (AI agent): symbot@nordsym.com
 3. Process: 30-min discovery call → Proposal within 48h → Pilot within 2 weeks
 
 **Capacity:** Maximum 3 parallel pilots. Quality over quantity.
