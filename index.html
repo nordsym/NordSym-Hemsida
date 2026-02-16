@@ -4969,7 +4969,7 @@
  </style>
 
  <!-- NordSym Language System (Auto-detect: SV/EN) -->
- <script src="lang.js?v=20260216"></script>
+ <script src="lang.js?v=20260216b"></script>
 
 </head>
 <body class="antialiased light-theme">
@@ -7542,9 +7542,11 @@
  this.updateViewState();
  
  // EXPLICIT: Garantera att vi startar med Sfär (seed_of_life) i flode-temat
+ console.log('🔮 Init complete. Theme:', this.activeThemeKey, '| Forcing seed_of_life');
  if (this.activeThemeKey === 'flode' && this.elasticGeometry) {
  this.elasticGeometry.morphToShape('seed_of_life');
  this.activeShape = { name: 'seed_of_life', displayName: 'Sfär' };
+ console.log('🔮 Morphed to seed_of_life');
  }
 
  this.isInitialized = true;
@@ -8667,6 +8669,7 @@ if (this.elasticGeometry.mesh.material.uniforms && this.elasticGeometry.mesh.mat
  }
  }
  morphToShape(shapeKey, scale = 1.0) {
+ console.log('🔮 morphToShape called:', shapeKey);
  const targetGeo = this.geometries[shapeKey.toLowerCase()]; if (!targetGeo || !targetGeo.attributes.position) return; if (this.activeMorph) this.activeMorph.kill();
  
  const vertexCount = this.originalPositions.length / 3;
