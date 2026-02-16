@@ -127,8 +127,8 @@ const NordSymLang = {
       rndCard3Desc: 'Vi bygger system där du ser vad AI:n gör, inte bara vad den levererar.',
 
       // Contact Form
-      contactTitle: 'Diskutera ert Case',
-      contactSubtitle: 'Beskriv utmaningen ni står inför. NordSym återkommer med ett konkret förslag på hur vi kan bygga bort problemet.',
+      contactTitle: 'Boka Strategisamtal',
+      contactSubtitle: 'Välj en tid som passar dig. 30 minuter för att diskutera era behov.',
       contactFormTitle: 'Kontaktinformation',
       labelName: 'Ditt Namn',
       labelCompany: 'Företagsnamn',
@@ -456,8 +456,8 @@ const NordSymLang = {
       rndCard3Link: 'Follow the project →',
 
       // Contact Form
-      contactTitle: 'Discuss Your Case',
-      contactSubtitle: "Describe the challenge you're facing. NordSym will respond with a concrete proposal on how we can build away the problem.",
+      contactTitle: 'Book Strategy Call',
+      contactSubtitle: 'Choose a time that works for you. 30 minutes to discuss your needs.',
       contactFormTitle: 'Contact Information',
       labelName: 'Your Name',
       labelCompany: 'Company Name',

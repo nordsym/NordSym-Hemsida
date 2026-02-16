@@ -959,6 +959,64 @@
  background: var(--nord-sym-blueprint-cyan);
  box-shadow: none;
  }
+ 
+ /* === MICRO SCHEDULER === */
+ .scheduler-day {
+ aspect-ratio: 1;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 50%;
+ cursor: pointer;
+ transition: all 0.2s;
+ font-size: 0.875rem;
+ color: rgba(255,255,255,0.8);
+ }
+ .scheduler-day:hover:not(.disabled) {
+ background: rgba(0, 212, 255, 0.2);
+ }
+ .scheduler-day.selected {
+ background: var(--nord-sym-cyan);
+ color: var(--nord-sym-deep-space-blue);
+ font-weight: 600;
+ }
+ .scheduler-day.disabled {
+ opacity: 0.3;
+ cursor: not-allowed;
+ }
+ .scheduler-day.today {
+ border: 1px solid var(--nord-sym-cyan);
+ }
+ .scheduler-time {
+ padding: 0.75rem;
+ border: 1px solid rgba(255,255,255,0.1);
+ border-radius: 0.5rem;
+ cursor: pointer;
+ transition: all 0.2s;
+ text-align: center;
+ font-size: 0.875rem;
+ color: rgba(255,255,255,0.9);
+ }
+ .scheduler-time:hover {
+ border-color: var(--nord-sym-cyan);
+ background: rgba(0, 212, 255, 0.1);
+ }
+ body.light-theme .scheduler-day {
+ color: var(--nord-sym-blueprint-ink);
+ }
+ body.light-theme .scheduler-day.selected {
+ background: var(--nord-sym-blueprint-cyan);
+ color: white;
+ }
+ body.light-theme .scheduler-time {
+ border-color: var(--nord-sym-blueprint-lines-faint);
+ color: var(--nord-sym-blueprint-ink);
+ }
+ body.light-theme .scheduler-time:hover {
+ border-color: var(--nord-sym-blueprint-cyan);
+ background: rgba(2, 132, 199, 0.1);
+ }
+ 
  body.light-theme .footer-quicklinks .font-semibold,
  body.light-theme .nordsym-logo-star {
  color: var(--nord-sym-blueprint-ink) !important;
@@ -6700,44 +6758,55 @@
  <section id="boka-samtal-skraddarsydd" class="space-background-section page-content-padding" style="display: none;">
  <div class="section-content-wrapper text-center">
  
- <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8" data-i18n="contactTitle">Diskutera ert Case</h2>
+ <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8" data-i18n="contactTitle">Boka Strategisamtal</h2>
  
- <p class="text-lg text-content-dark-bg max-w-xl mx-auto mb-10" data-i18n="contactSubtitle">Beskriv utmaningen ni står inför. NordSym återkommer med ett konkret förslag på hur vi kan bygga bort problemet.</p>
- <div id="formSkraddarsyddContainer" class="form-container p-8 md:p-12 mt-10 max-w-lg mx-auto text-left">
- <h3 class="text-2xl font-semibold text-white mb-2 text-center" data-i18n="contactFormTitle">Kontaktinformation</h3>
- <div class="form-progress-bar">
- <div class="form-progress-bar-inner"></div>
- </div>
- <form id="formSkraddarsydd">
- <input type="hidden" name="_subject" value="Ny förfrågan: Systemdiskussion från NordSym">
- <div class="form-step active" data-step="1">
- <div class="space-y-6">
- <div><label for="skraddarsydd-name" class="form-label" data-i18n="labelName">Ditt Namn</label><input type="text" name="name" id="skraddarsydd-name" required class="form-input"></div>
- <div><label for="skraddarsydd-company" class="form-label" data-i18n="labelCompany">Företagsnamn</label><input type="text" name="company" id="skraddarsydd-company" required class="form-input"></div>
- <div><label for="skraddarsydd-email" class="form-label" data-i18n="labelEmail">E-post</label><input type="email" name="email" id="skraddarsydd-email" required class="form-input"></div>
- </div>
- <div class="form-navigation">
- <span></span>
- <button type="button" class="btn-base btn-cta-revised"><span data-i18n="btnNext">Nästa</span> <i class="ph-arrow-right"></i></button>
- </div>
- </div>
- <div class="form-step" data-step="2">
- <div class="space-y-6">
+ <p class="text-lg text-content-dark-bg max-w-xl mx-auto mb-10" data-i18n="contactSubtitle">Välj en tid som passar dig. 30 minuter för att diskutera era behov.</p>
  
- <div><label for="skraddarsydd-phone" class="form-label" data-i18n="labelPhone">Telefon</label><input type="tel" name="phone" id="skraddarsydd-phone" class="form-input"></div>
- <!-- Rakare fråga + guidande placeholder -->
- <div>
- <label for="skraddarsydd-main-goal" class="form-label" data-i18n="labelChallenge">Beskriv utmaningen</label>
- <textarea name="main-goal" id="skraddarsydd-main-goal" rows="3" class="form-textarea" required placeholder="Vad hindrar er från att växa? Manuella flöden, datakaos eller saknade integrationer?"></textarea>
+ <!-- MICRO SCHEDULER -->
+ <div id="microScheduler" class="form-container p-6 md:p-8 mt-10 max-w-md mx-auto">
+ 
+ <!-- Calendar View -->
+ <div id="schedulerCalendar">
+ <div class="flex items-center justify-between mb-6">
+ <button onclick="window.microScheduler.changeMonth(-1)" class="text-sky-300 hover:text-white transition-colors p-2"><i class="ph-caret-left text-xl"></i></button>
+ <h3 id="schedulerMonth" class="text-lg font-semibold text-white"></h3>
+ <button onclick="window.microScheduler.changeMonth(1)" class="text-sky-300 hover:text-white transition-colors p-2"><i class="ph-caret-right text-xl"></i></button>
+ </div>
+ <div class="grid grid-cols-7 gap-1 mb-2 text-xs text-sky-400 font-medium">
+ <div class="text-center">Mån</div><div class="text-center">Tis</div><div class="text-center">Ons</div><div class="text-center">Tor</div><div class="text-center">Fre</div><div class="text-center text-sky-600">Lör</div><div class="text-center text-sky-600">Sön</div>
+ </div>
+ <div id="schedulerDays" class="grid grid-cols-7 gap-1 mb-6"></div>
+ 
+ <!-- Time Slots (hidden until date selected) -->
+ <div id="schedulerTimes" class="hidden border-t border-white/10 pt-6">
+ <div class="flex items-center justify-between mb-4">
+ <span id="schedulerDateLabel" class="text-sm text-sky-300"></span>
+ <button onclick="window.microScheduler.resetDate()" class="text-xs text-sky-400 hover:text-white"><i class="ph-x"></i> Ändra</button>
+ </div>
+ <div id="schedulerTimeGrid" class="grid grid-cols-3 gap-2"></div>
  </div>
  </div>
- <div class="form-navigation">
- <button type="button" class="btn-base btn-secondary-on-dark"><i class="ph-arrow-left"></i> <span data-i18n="btnPrev">Föregående</span></button>
- <!-- Mer korrekt knapptext för ett formulär -->
- <button type="submit" class="btn-base btn-cta-revised" data-i18n="btnSubmitRequest">Skicka förfrågan</button>
+ 
+ <!-- Booking Form (hidden until time selected) -->
+ <div id="schedulerForm" class="hidden">
+ <div class="flex items-center justify-between mb-6">
+ <span id="schedulerSummary" class="text-sm text-sky-300"></span>
+ <button onclick="window.microScheduler.backToCalendar()" class="text-xs text-sky-400 hover:text-white"><i class="ph-arrow-left"></i> Tillbaka</button>
  </div>
- </div>
+ <form id="schedulerBookingForm" class="space-y-4">
+ <div><input type="text" name="name" required placeholder="Ditt namn" class="form-input text-center"></div>
+ <div><input type="email" name="email" required placeholder="E-post" class="form-input text-center"></div>
+ <button type="submit" class="btn-base btn-cta-revised w-full mt-4">Boka möte</button>
  </form>
+ </div>
+ 
+ <!-- Success State -->
+ <div id="schedulerSuccess" class="hidden text-center py-8">
+ <i class="ph-check-circle text-5xl text-nord-sym-cyan mb-4"></i>
+ <h3 class="text-xl font-bold text-white mb-2">Bokning mottagen!</h3>
+ <p class="text-sky-300 text-sm">Kalenderinbjudan skickas till din e-post.</p>
+ </div>
+ 
  </div>
  </div>
  </section>
@@ -10924,6 +10993,156 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  }
 
  // --- NYTT: STEG 1.1 (Stomme för AI-First Spelet) ---
+
+ // === MICRO SCHEDULER ===
+ window.microScheduler = {
+ currentDate: new Date(),
+ selectedDate: null,
+ selectedTime: null,
+ monthNames: ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'],
+ availability: {
+ 1: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'], // Måndag
+ 2: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'], // Tisdag
+ 3: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'], // Onsdag
+ 4: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'], // Torsdag
+ 5: ['09:00', '10:00', '14:00', '15:00'] // Fredag
+ },
+ 
+ init() {
+ this.renderCalendar();
+ document.getElementById('schedulerBookingForm')?.addEventListener('submit', (e) => this.submitBooking(e));
+ },
+ 
+ renderCalendar() {
+ const year = this.currentDate.getFullYear();
+ const month = this.currentDate.getMonth();
+ document.getElementById('schedulerMonth').textContent = `${this.monthNames[month]} ${year}`;
+ 
+ const firstDay = new Date(year, month, 1).getDay();
+ const startOffset = firstDay === 0 ? 6 : firstDay - 1;
+ const daysInMonth = new Date(year, month + 1, 0).getDate();
+ const grid = document.getElementById('schedulerDays');
+ grid.innerHTML = '';
+ 
+ for(let i = 0; i < startOffset; i++) {
+ grid.appendChild(document.createElement('div'));
+ }
+ 
+ const today = new Date();
+ today.setHours(0,0,0,0);
+ 
+ for(let d = 1; d <= daysInMonth; d++) {
+ const dayDate = new Date(year, month, d);
+ const dayOfWeek = dayDate.getDay();
+ const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+ const isPast = dayDate < today;
+ const isToday = dayDate.getTime() === today.getTime();
+ 
+ const el = document.createElement('div');
+ el.className = `scheduler-day ${isPast || isWeekend ? 'disabled' : ''} ${isToday ? 'today' : ''}`;
+ el.textContent = d;
+ 
+ if (!isPast && !isWeekend) {
+ el.onclick = () => this.selectDate(d, el);
+ }
+ grid.appendChild(el);
+ }
+ },
+ 
+ changeMonth(delta) {
+ this.currentDate.setMonth(this.currentDate.getMonth() + delta);
+ this.renderCalendar();
+ document.getElementById('schedulerTimes').classList.add('hidden');
+ },
+ 
+ selectDate(day, el) {
+ document.querySelectorAll('.scheduler-day').forEach(d => d.classList.remove('selected'));
+ el.classList.add('selected');
+ 
+ this.selectedDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
+ const dayOfWeek = this.selectedDate.getDay();
+ const slots = this.availability[dayOfWeek] || [];
+ 
+ document.getElementById('schedulerDateLabel').textContent = `${day} ${this.monthNames[this.currentDate.getMonth()]}`;
+ 
+ const timeGrid = document.getElementById('schedulerTimeGrid');
+ timeGrid.innerHTML = slots.length ? '' : '<div class="col-span-3 text-center text-xs text-sky-400 py-4">Inga tider denna dag</div>';
+ 
+ slots.forEach(time => {
+ const btn = document.createElement('div');
+ btn.className = 'scheduler-time';
+ btn.textContent = time;
+ btn.onclick = () => this.selectTime(time);
+ timeGrid.appendChild(btn);
+ });
+ 
+ document.getElementById('schedulerTimes').classList.remove('hidden');
+ },
+ 
+ resetDate() {
+ document.getElementById('schedulerTimes').classList.add('hidden');
+ document.querySelectorAll('.scheduler-day').forEach(d => d.classList.remove('selected'));
+ },
+ 
+ selectTime(time) {
+ this.selectedTime = time;
+ const dateStr = `${this.selectedDate.getDate()} ${this.monthNames[this.selectedDate.getMonth()]}`;
+ document.getElementById('schedulerSummary').innerHTML = `<span class="text-nord-sym-cyan font-bold">${dateStr}</span> kl <span class="text-nord-sym-cyan font-bold">${time}</span>`;
+ 
+ document.getElementById('schedulerCalendar').classList.add('hidden');
+ document.getElementById('schedulerForm').classList.remove('hidden');
+ },
+ 
+ backToCalendar() {
+ document.getElementById('schedulerForm').classList.add('hidden');
+ document.getElementById('schedulerCalendar').classList.remove('hidden');
+ },
+ 
+ async submitBooking(e) {
+ e.preventDefault();
+ const form = e.target;
+ const btn = form.querySelector('button');
+ const originalText = btn.innerHTML;
+ 
+ btn.disabled = true;
+ btn.innerHTML = '<i class="ph-spinner animate-spin"></i>';
+ 
+ try {
+ const payload = {
+ name: form.name.value,
+ email: form.email.value,
+ date: this.selectedDate.toLocaleDateString('sv-SE'),
+ time: this.selectedTime,
+ meetingType: 'strategisamtal',
+ meetingTitle: 'Strategimöte - NordSym',
+ timestamp: new Date().toISOString(),
+ source: 'nordsym.com'
+ };
+ 
+ const response = await fetch('https://nordsym.app.n8n.cloud/webhook/aeo-booking', {
+ method: 'POST',
+ headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify(payload)
+ });
+ 
+ if (!response.ok) throw new Error('Network error');
+ 
+ document.getElementById('schedulerForm').classList.add('hidden');
+ document.getElementById('schedulerSuccess').classList.remove('hidden');
+ 
+ // Nudge geometry on successful booking
+ if (window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry();
+ 
+ } catch (error) {
+ console.error('Booking error:', error);
+ btn.innerHTML = 'Fel - försök igen';
+ btn.disabled = false;
+ }
+ }
+ };
+ 
+ // Init scheduler when page loads
+ document.addEventListener('DOMContentLoaded', () => window.microScheduler.init());
 
  </script>
 
