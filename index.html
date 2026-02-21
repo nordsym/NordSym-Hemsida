@@ -5041,7 +5041,7 @@
  </a>
  <nav aria-label="Huvudnavigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium" data-i18n="navHome">Hem</a>
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium">Micro-Apps</a>
+ <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium" data-i18n="navMicroApps">Micro-Apps</a>
  
  <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium" data-i18n="navServices">Tjänster</a>
  
@@ -5100,7 +5100,7 @@
  </div>
  <div id="mobile-menu" class="md:hidden bg-nord-sym-deep-space-blue/95 backdrop-blur-sm shadow-lg rounded-b-xl absolute w-full left-0 top-full overflow-hidden transition-all duration-500 ease-in-out max-h-0 text-center">
  <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navHome">Hem</a>
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Micro-Apps</a>
+ <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navMicroApps">Micro-Apps</a>
  
  <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navServices">Tjänster</a>
  
@@ -5318,7 +5318,7 @@
  <div class="text-center mb-16 max-w-4xl mx-auto">
  <!-- Rubrik designad som en stor tagg -->
  <div class="inline-block">
- <h2 class="section-title text-3xl md:text-5xl font-bold text-white mb-6" data-i18n="sectionPotentialTitle">
+ <h2 class="section-title text-3xl md:text-5xl font-bold text-white mb-6" data-i18n="homeDiagramTitle">
  Frigör er potential
  </h2>
  </div>
@@ -6842,20 +6842,20 @@
  <div id="schedulerForm" class="hidden">
  <div class="flex items-center justify-between mb-6">
  <span id="schedulerSummary" class="text-sm text-sky-300"></span>
- <button onclick="window.microScheduler.backToCalendar()" class="text-xs text-sky-400 hover:text-white"><i class="ph-arrow-left"></i> Tillbaka</button>
+ <button onclick="window.microScheduler.backToCalendar()" class="text-xs text-sky-400 hover:text-white"><i class="ph-arrow-left"></i> <span data-i18n="btnBack">Tillbaka</span></button>
  </div>
  <form id="schedulerBookingForm" class="space-y-4">
- <div><input type="text" name="name" required placeholder="Ditt namn" class="form-input text-center"></div>
- <div><input type="email" name="email" required placeholder="E-post" class="form-input text-center"></div>
- <button type="submit" class="btn-base btn-cta-revised w-full mt-4">Boka möte</button>
+ <div><input type="text" name="name" required placeholder="Ditt namn" data-i18n-placeholder="placeholderYourName" class="form-input text-center"></div>
+ <div><input type="email" name="email" required placeholder="E-post" data-i18n-placeholder="placeholderEmail" class="form-input text-center"></div>
+ <button type="submit" class="btn-base btn-cta-revised w-full mt-4" data-i18n="btnBookMeeting">Boka möte</button>
  </form>
  </div>
  
  <!-- Success State -->
  <div id="schedulerSuccess" class="hidden text-center py-8">
  <i class="ph-check-circle text-5xl text-nord-sym-cyan mb-4"></i>
- <h3 class="text-xl font-bold text-white mb-2">Bokning mottagen!</h3>
- <p class="text-sky-300 text-sm">Kalenderinbjudan skickas till din e-post.</p>
+ <h3 class="text-xl font-bold text-white mb-2" data-i18n="schedulerSuccessTitle">Bokning mottagen!</h3>
+ <p class="text-sky-300 text-sm" data-i18n="schedulerSuccessText">Kalenderinbjudan skickas till din e-post.</p>
  </div>
  
  </div>
@@ -6918,13 +6918,13 @@
  <input type="hidden" id="modal-waitlist-subject" name="_subject" value="Ny anmälan: Väntelista">
  <div class="space-y-4">
  <div>
- <label for="waitlist-email" class="form-label sr-only">E-post</label>
- <input type="email" name="email" id="waitlist-email" required class="form-input text-center" placeholder="Din e-postadress">
+ <label for="waitlist-email" class="form-label sr-only" data-i18n="labelEmail">E-post</label>
+ <input type="email" name="email" id="waitlist-email" required class="form-input text-center" placeholder="Din e-postadress" data-i18n-placeholder="placeholderYourEmail">
  </div>
  <button type="submit" class="btn-base btn-cta-revised w-full" data-i18n="modalWaitlistBtn">Bevaka lansering</button>
  </div>
  <div class="form-success-container hidden mt-4">
- <p class="text-nord-sym-cyan"><i class="ph-check-circle"></i> Du är uppskriven!</p>
+ <p class="text-nord-sym-cyan"><i class="ph-check-circle"></i> <span data-i18n="waitlistSuccessText">Du är uppskriven!</span></p>
  </div>
  </form>
  </div>
@@ -7002,14 +7002,14 @@
  <div class="text-center md:text-left">
  <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;" data-i18n="footerQuickLinks">Snabblänkar</p>
  <div class="footer-quicklinks">
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link">Micro-Apps</a>
+ <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link" data-i18n="navMicroApps">Micro-Apps</a>
  <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link" data-i18n="navServices">Tjänster</a>
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link" data-i18n="btnRnD">R&D</a>
  <a href="#" onclick="window.nord.showPage('system'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link" data-i18n="faqTitle">Vanliga frågor</a>
  </div>
  </div>
  <div class="text-center md:text-left">
- <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;">Produkter</p>
+ <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;" data-i18n="footerProducts">Produkter</p>
  <div class="footer-quicklinks">
  <a href="https://hivr.online" target="_blank" rel="noopener noreferrer" class="footer-link">🐝 Hivr</a>
  <a href="https://apiclaw.nordsym.com" target="_blank" rel="noopener noreferrer" class="footer-link">🦞 APIClaw</a>
@@ -7051,8 +7051,8 @@
  </div>
  <div class="mt-8 border-t border-sky-700/50 pt-6 text-center text-xs text-content-dark-bg space-x-4" style="border-color: rgba(255,255,255,0.15);">
  <span style="color: rgba(255,255,255,0.5);">© <span id="currentYear"></span> NordSym.</span>
- <a href="#privacy-policy-en" onclick="window.nord.showPage('privacy-policy-en'); return false;" class="footer-link hover:underline ml-4">Privacy Policy</a>
- <a href="#terms-of-service-en" onclick="window.nord.showPage('terms-of-service-en'); return false;" class="footer-link hover:underline">Terms of Service</a>
+ <a href="#privacy-policy-en" onclick="window.nord.showPage('privacy-policy-en'); return false;" class="footer-link hover:underline ml-4" data-i18n="footerPrivacy">Integritetspolicy</a>
+ <a href="#terms-of-service-en" onclick="window.nord.showPage('terms-of-service-en'); return false;" class="footer-link hover:underline" data-i18n="footerTerms">Användarvillkor</a>
  </div>
  </div>
  </footer>
@@ -7064,13 +7064,13 @@
  <div class="flex flex-col">
  <div class="flex items-center gap-3 mb-3">
  <i class="ph-cookie text-2xl text-nord-sym-cyan"></i>
- <span class="font-bold text-white text-sm light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Digital Integritet</span>
+ <span class="font-bold text-white text-sm light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;" data-i18n="cookieTitle">Digital Integritet</span>
  </div>
- <p>
+ <p data-i18n="cookieText">
  Vi använder cookies för att optimera systemets prestanda. Genom att fortsätta godkänner du vår <a href="#" onclick="window.nord.showPage('privacy-policy-en'); return false;">Integritetspolicy</a>.
  </p>
- <button id="cookie-accept-btn" class="btn-base btn-cta-revised w-full py-2 text-sm">
- OK, jag förstår
+ <button id="cookie-accept-btn" class="btn-base btn-cta-revised w-full py-2 text-sm" data-i18n="cookieAccept">
+ Godkänn
  </button>
  </div>
  </div>

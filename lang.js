@@ -333,9 +333,25 @@ const NordSymLang = {
       // COOKIE BANNER
       // ============================================
       cookieTitle: 'Digital Integritet',
-      cookieText: 'Vi använder cookies för att optimera systemets prestanda. Genom att fortsätta godkänner du vår',
-      cookieLink: 'Integritetspolicy',
+      cookieText: 'Vi använder cookies för att optimera systemets prestanda. Genom att fortsätta godkänner du vår <a href="#" onclick="window.nord.showPage(\'privacy-policy-en\'); return false;">Integritetspolicy</a>.',
       cookieAccept: 'Godkänn',
+
+      // ============================================
+      // FOOTER & MISC
+      // ============================================
+      footerProducts: 'Produkter',
+
+      // ============================================
+      // SCHEDULER & FORMS
+      // ============================================
+      btnBack: 'Tillbaka',
+      btnBookMeeting: 'Boka möte',
+      placeholderYourName: 'Ditt namn',
+      placeholderEmail: 'E-post',
+      placeholderYourEmail: 'Din e-postadress',
+      schedulerSuccessTitle: 'Bokning mottagen!',
+      schedulerSuccessText: 'Kalenderinbjudan skickas till din e-post.',
+      waitlistSuccessText: 'Du är uppskriven!',
     },
 
     en: {
@@ -662,9 +678,25 @@ const NordSymLang = {
       // COOKIE BANNER
       // ============================================
       cookieTitle: 'Digital Privacy',
-      cookieText: 'We use cookies to optimize system performance. By continuing you accept our',
-      cookieLink: 'Privacy Policy',
+      cookieText: 'We use cookies to optimize system performance. By continuing you accept our <a href="#" onclick="window.nord.showPage(\'privacy-policy-en\'); return false;">Privacy Policy</a>.',
       cookieAccept: 'Accept',
+
+      // ============================================
+      // FOOTER & MISC
+      // ============================================
+      footerProducts: 'Products',
+
+      // ============================================
+      // SCHEDULER & FORMS
+      // ============================================
+      btnBack: 'Back',
+      btnBookMeeting: 'Book meeting',
+      placeholderYourName: 'Your name',
+      placeholderEmail: 'Email',
+      placeholderYourEmail: 'Your email address',
+      schedulerSuccessTitle: 'Booking received!',
+      schedulerSuccessText: 'Calendar invitation will be sent to your email.',
+      waitlistSuccessText: 'You are signed up!',
     }
   },
 
