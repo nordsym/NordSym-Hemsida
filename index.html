@@ -5008,12 +5008,14 @@
  <div id="announcement-bar" style="background: linear-gradient(90deg, rgba(239, 68, 68, 0.9) 0%, rgba(248, 113, 113, 0.85) 50%, rgba(239, 68, 68, 0.9) 100%); backdrop-filter: blur(8px); color: white; text-align: center; padding: 10px 16px; font-size: 14px; font-weight: 500; position: relative; z-index: 60;">
    <span style="display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;">
      <span>🦞 APIClaw — Where AI Agents find APIs</span>
-     <span style="display: inline-flex; align-items: center; gap: 6px;">
-       <span id="toggle-agent" onclick="document.getElementById('cta-agent').style.display='inline-block'; document.getElementById('cta-human').style.display='none'; document.getElementById('toggle-agent').style.background='rgba(255,255,255,0.3)'; document.getElementById('toggle-human').style.background='rgba(255,255,255,0.1)';" style="cursor: pointer; background: rgba(255,255,255,0.3); padding: 4px 10px; border-radius: 4px; font-size: 12px;">I'm a 🤖</span>
-       <span id="toggle-human" onclick="document.getElementById('cta-human').style.display='inline-block'; document.getElementById('cta-agent').style.display='none'; document.getElementById('toggle-human').style.background='rgba(255,255,255,0.3)'; document.getElementById('toggle-agent').style.background='rgba(255,255,255,0.1)';" style="cursor: pointer; background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; font-size: 12px;">I'm a 👤</span>
+     <span style="display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;">
+       <span id="toggle-agent" onclick="document.getElementById('cta-agent').style.display='inline-block'; document.getElementById('cta-human').style.display='none'; document.getElementById('toggle-agent').style.background='rgba(255,255,255,0.3)'; document.getElementById('toggle-human').style.background='rgba(255,255,255,0.1)';" style="cursor: pointer; background: rgba(255,255,255,0.3); padding: 4px 10px; border-radius: 4px; font-size: 12px; width: 70px; text-align: center;">I'm a 🤖</span>
+       <span id="toggle-human" onclick="document.getElementById('cta-human').style.display='inline-block'; document.getElementById('cta-agent').style.display='none'; document.getElementById('toggle-human').style.background='rgba(255,255,255,0.3)'; document.getElementById('toggle-agent').style.background='rgba(255,255,255,0.1)';" style="cursor: pointer; background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 4px; font-size: 12px; width: 70px; text-align: center;">I'm a 👤</span>
      </span>
-     <code id="cta-agent" style="background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px; font-size: 12px; font-family: monospace;">npx @nordsym/apiclaw</code>
-     <a id="cta-human" href="https://apiclaw.nordsym.com" target="_blank" style="display: none; font-size: 12px; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 4px; color: white; text-decoration: none;">Visit site →</a>
+     <span style="min-width: 160px; text-align: center;">
+       <code id="cta-agent" style="background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px; font-size: 12px; font-family: monospace;">npx @nordsym/apiclaw</code>
+       <a id="cta-human" href="https://apiclaw.nordsym.com" target="_blank" style="display: none; font-size: 12px; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 4px; color: white; text-decoration: none;">Visit site →</a>
+     </span>
    </span>
    <button onclick="document.getElementById('announcement-bar').style.display='none'; document.body.style.paddingTop='0';" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: white; cursor: pointer; font-size: 16px; opacity: 0.7;">×</button>
  </div>
