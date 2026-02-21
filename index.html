@@ -5006,17 +5006,17 @@
 <body class="antialiased light-theme">
  <!-- ANNOUNCEMENT BAR (scrolls away, header stays fixed below) -->
  <div id="announcement-bar" style="background: linear-gradient(90deg, #dc2626 0%, #991b1b 100%); color: white; text-align: center; padding: 12px 16px; font-size: 14px; font-weight: 500; position: relative; z-index: 60;">
-   <a href="https://apiclaw.nordsym.com" target="_blank" rel="noopener" style="color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+   <span style="color: white; display: inline-flex; align-items: center; gap: 8px;">
      <span style="display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%;">
        <span>🦞 APIClaw — Where AI Agents find APIs</span>
        <span style="display: flex; align-items: center; gap: 8px;">
-         <span id="toggle-agent" onclick="event.stopPropagation(); event.preventDefault(); document.getElementById('cta-agent').style.display='inline'; document.getElementById('cta-human').style.display='none'; document.getElementById('toggle-agent').style.opacity='1'; document.getElementById('toggle-human').style.opacity='0.5';" style="cursor: pointer; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; font-size: 12px;">I'm a 🤖</span>
-         <span id="toggle-human" onclick="event.stopPropagation(); event.preventDefault(); document.getElementById('cta-human').style.display='inline'; document.getElementById('cta-agent').style.display='none'; document.getElementById('toggle-human').style.opacity='1'; document.getElementById('toggle-agent').style.opacity='0.5';" style="cursor: pointer; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; font-size: 12px; opacity: 0.5;">I'm a 👤</span>
+         <span id="toggle-agent" onclick="document.getElementById('cta-agent').style.display='inline'; document.getElementById('cta-human').style.display='none'; document.getElementById('toggle-agent').style.opacity='1'; document.getElementById('toggle-human').style.opacity='0.5';" style="cursor: pointer; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; font-size: 12px;">I'm a 🤖</span>
+         <span id="toggle-human" onclick="document.getElementById('cta-human').style.display='inline'; document.getElementById('cta-agent').style.display='none'; document.getElementById('toggle-human').style.opacity='1'; document.getElementById('toggle-agent').style.opacity='0.5';" style="cursor: pointer; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px; font-size: 12px; opacity: 0.5;">I'm a 👤</span>
          <code id="cta-agent" style="background: rgba(0,0,0,0.25); padding: 3px 8px; border-radius: 4px; font-size: 11px; font-family: monospace;">npx @nordsym/apiclaw</code>
-         <span id="cta-human" style="display: none; font-size: 12px;">Visit site →</span>
+         <a id="cta-human" href="https://apiclaw.nordsym.com" target="_blank" style="display: none; font-size: 12px; color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px;">Visit site →</a>
        </span>
      </span>
-   </a>
+   </span>
    <button onclick="document.getElementById('announcement-bar').style.display='none'; document.body.style.paddingTop='0';" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; color: white; cursor: pointer; font-size: 18px; opacity: 0.7;">×</button>
  </div>
  <!-- CRAWLER NAVIGATION (AEO BOOST) -->
