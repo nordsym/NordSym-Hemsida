@@ -16,6 +16,12 @@ const NordSymLang = {
       metaDescription: 'NordSym AB är en byrå för systemautomation och AI-arkitektur. NordSym optimerar er verksamhet för AEO (Answer Engine Optimization) och bygger intelligenta ekosystem.',
       metaKeywords: 'Systemautomation Sverige, intelligenta system, AEO, GEO, AI-arkitektur, digital transformation, NordSym',
 
+      // APIClaw Banner
+      bannerTagline: 'API-lagret för AI-agenter',
+      bannerImBot: 'Jag är 🤖',
+      bannerImHuman: 'Jag är 👤',
+      bannerVisitSite: 'Besök sidan →',
+
       // Hero Section
       heroTitle: 'Bygg bort <br class="md:hidden"> begränsningar',
       heroSubtitle: 'NordSym är er <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> som bygger verktyg som <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">FAKTISKT</span> gör skillnad.',
@@ -359,6 +365,12 @@ const NordSymLang = {
       metaTitle: 'NordSym AB - Build Away Limitations',
       metaDescription: 'NordSym AB is an agency for system automation and AI architecture. We optimize your operations for AEO (Answer Engine Optimization) and build intelligent ecosystems.',
       metaKeywords: 'System automation, intelligent systems, AEO, GEO, AI architecture, digital transformation, NordSym',
+
+      // APIClaw Banner
+      bannerTagline: 'The API Layer For AI Agents',
+      bannerImBot: "I'm a 🤖",
+      bannerImHuman: "I'm a 👤",
+      bannerVisitSite: 'Visit site →',
 
       // Hero Section
       heroTitle: 'Build Away <br class="md:hidden"> Limitations',
