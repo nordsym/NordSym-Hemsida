@@ -192,6 +192,11 @@ const NordSymLang = {
       testimonial3Name: 'Linda S.',
       testimonial3Role: 'Produktchef, E-handel',
 
+      // Testimonial 4 - Pontus V.
+      testimonial4Quote: 'Det är ett nöje att jobba med dig Symbot ⭐️',
+      testimonial4Name: 'Pontus V.',
+      testimonial4Role: 'VD, Bluecollar',
+
       // ============================================
       // GALLERY TABS (STACK / SYSTEM)
       // ============================================
@@ -542,6 +547,11 @@ const NordSymLang = {
       testimonial3Quote: "Built exactly what we asked for. First time that's ever happened.",
       testimonial3Name: 'Linda S.',
       testimonial3Role: 'Product Manager, E-commerce',
+
+      // Testimonial 4 - Pontus V.
+      testimonial4Quote: "It's a pleasure working with you Symbot ⭐️",
+      testimonial4Name: 'Pontus V.',
+      testimonial4Role: 'CEO, Bluecollar',
 
       // ============================================
       // GALLERY TABS (STACK / SYSTEM)
