@@ -47,13 +47,13 @@ a { color: var(--primary); }
 .sow-invest-row { display: flex; justify-content: space-between; margin: 6px 0; }
 
 .sow-sign { border-top: 1px solid var(--line); padding-top: 22px; margin-top: 24px; }
-.sow-sign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.sow-sign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
 @media (max-width: 780px) { .sow-sign-grid { grid-template-columns: 1fr; } .sow-card-inner { padding: 18px; } }
 
 .sow-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
 .sow-line { border-bottom: 1px solid var(--line); min-height: 56px; display: flex; align-items: flex-end; padding-bottom: 6px; margin-bottom: 8px; }
 .sow-input { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--text); }
-.sow-canvas { width: 100%; max-width: 320px; height: 110px; border: 1px solid var(--line); border-radius: 10px; background: #fff; touch-action: none; }
+.sow-canvas { width: 100%; max-width: none; height: 110px; display: block; border: 1px solid var(--line); border-radius: 10px; background: #fff; touch-action: none; }
 .sow-actions { margin-top: 18px; display: flex; justify-content: center; }
 .sow-btn { border: 0; border-radius: 10px; padding: 12px 20px; font-weight: 700; background: linear-gradient(90deg, var(--primary), var(--primary-2)); color: #002031; cursor: pointer; }
 .sow-btn[disabled] { opacity: .5; cursor: not-allowed; }
