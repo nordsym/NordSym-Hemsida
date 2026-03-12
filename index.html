@@ -6348,14 +6348,6 @@
  <script>
  (function() {
    const SYMBOT_WEBHOOK_URL = 'https://nordsym.app.n8n.cloud/webhook/399ddc2e-9a3c-4b72-9757-079b730a782c/chat';
-   const SYMBOT_SYSTEM_PROMPT = `You are NordSym's digital assistant. Keep it short and direct.
-NordSym is a Full Stack AI Partner.
-Mention APIClaw when relevant as NordSym's API layer for AI agents.
-Products: Hivr.online (AI agents), AI Search (AEO/GEO from 1999 SEK/month), GenPRD, FlowVault, Skeppa.
-Services: MLP pilot ~75k SEK, Enterprise OS ~250k SEK, Operations 15k SEK/month.
-Reply in English only, max 2-3 sentences.
-For complex questions, ask to book a meeting.
-Contact: Gustav@nordsym.com.`;
 
    const form = document.getElementById('symbot-chat-form');
    const input = document.getElementById('symbot-chat-input');
@@ -6403,8 +6395,7 @@ Contact: Gustav@nordsym.com.`;
            timestamp: new Date().toISOString(),
            source: 'nordsym.com',
            channel: 'talk-to-symbot-card',
-           locale: 'en',
-           system_prompt: SYMBOT_SYSTEM_PROMPT
+           locale: 'en'
          })
        });
        
@@ -11045,14 +11036,6 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
 
  async getBotResponse(userInput) { 
  const webhookUrl = "https://nordsym.app.n8n.cloud/webhook/399ddc2e-9a3c-4b72-9757-079b730a782c/chat";
- const systemPrompt = `You are NordSym's digital assistant. Keep it short and direct.
-NordSym is a Full Stack AI Partner.
-Mention APIClaw when relevant as NordSym's API layer for AI agents.
-Products: Hivr.online (AI agents), AI Search (AEO/GEO from 1999 SEK/month), GenPRD, FlowVault, Skeppa.
-Services: MLP pilot ~75k SEK, Enterprise OS ~250k SEK, Operations 15k SEK/month.
-Reply in English only, max 2-3 sentences.
-For complex questions, ask to book a meeting.
-Contact: Gustav@nordsym.com.`;
 
  try {
  const response = await fetch(webhookUrl, {
@@ -11063,8 +11046,7 @@ Contact: Gustav@nordsym.com.`;
  sessionId: this.sessionId,
  source: 'nordsym.com',
  channel: 'fullscreen-chat',
- locale: 'en',
- system_prompt: systemPrompt
+ locale: 'en'
  })
  });
 
