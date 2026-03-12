@@ -7,7 +7,12 @@
     body.classList.remove('light-theme', 'dark-theme');
     body.classList.add(theme + '-theme');
     localStorage.setItem('theme', theme);
-    if (themeToggleBtn) themeToggleBtn.textContent = theme === 'light' ? 'Dark' : 'Light';
+    if (themeToggleBtn) {
+      const icon = themeToggleBtn.querySelector('i');
+      if (icon) {
+        icon.className = theme === 'light' ? 'ph-fill ph-moon' : 'ph-fill ph-sun';
+      }
+    }
   }
 
   setTheme(defaultTheme);
