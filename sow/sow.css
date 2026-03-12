@@ -143,6 +143,7 @@ body.dark-theme .sow-starfall { opacity: .18; }
 .time-col::-webkit-scrollbar { width: 0; height: 0; }
 .time-opt { height: 40px; display: flex; align-items: center; justify-content: center; scroll-snap-align: center; cursor: pointer; color: var(--muted); }
 .time-opt.active { color: var(--text); font-weight: 700; background: color-mix(in srgb, var(--primary) 16%, transparent); }
+.time-pad { height: 61px; pointer-events: none; }
 .time-sep { font-size: 22px; font-weight: 700; color: var(--muted); }
 .time-preview { margin-top: 10px; text-align: center; font-size: 14px; color: var(--muted); }
 .time-preview strong { color: var(--text); }

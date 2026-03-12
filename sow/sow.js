@@ -207,6 +207,7 @@
     msg.textContent = '';
     const successUrl = '/sow/success?customerId=' + encodeURIComponent(customerId) +
       '&signerName=' + encodeURIComponent(nameInput.value.trim()) +
+      '&signerTitle=' + encodeURIComponent(titleInput.value.trim()) +
       '&demo=' + (demoMode ? '1' : '0');
 
     if (demoMode) {

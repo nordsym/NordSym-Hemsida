@@ -43,7 +43,7 @@
     step: 1,
     name: signerNameParam,
     email: '',
-    title: '',
+    title: params.get('signerTitle') || '',
     company: content.customerName,
     primaryGoal: '',
     constraints: '',
@@ -233,8 +233,8 @@
     for (let h = 8; h <= 19; h++) hours.push(String(h).padStart(2, '0'));
     const mins = ['00', '15', '30', '45'];
 
-    hourCol.innerHTML = hours.map(h => '<div class="time-opt' + (h === state.hour ? ' active' : '') + '" data-h="' + h + '">' + h + '</div>').join('');
-    minCol.innerHTML = mins.map(m => '<div class="time-opt' + (m === state.minute ? ' active' : '') + '" data-m="' + m + '">' + m + '</div>').join('');
+    hourCol.innerHTML = '<div class="time-pad"></div>' + hours.map(h => '<div class="time-opt' + (h === state.hour ? ' active' : '') + '" data-h="' + h + '">' + h + '</div>').join('') + '<div class="time-pad"></div>';
+    minCol.innerHTML = '<div class="time-pad"></div>' + mins.map(m => '<div class="time-opt' + (m === state.minute ? ' active' : '') + '" data-m="' + m + '">' + m + '</div>').join('') + '<div class="time-pad"></div>';
 
     function setActive(col, selector, field, val) {
       col.querySelectorAll('.time-opt').forEach(x => x.classList.remove('active'));
