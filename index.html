@@ -6347,6 +6347,18 @@
 
  <script>
  (function() {
+   const SYMBOT_WEBHOOK_URL = 'https://nordsym.app.n8n.cloud/webhook/399ddc2e-9a3c-4b72-9757-079b730a782c/chat';
+   const SYMBOT_SYSTEM_PROMPT = `You are Symbot, NordSym's AI solutions architect.
+Respond in clear, concise English.
+Your job is to diagnose operational bottlenecks, ask focused follow-up questions, and propose concrete next steps.
+Always optimize for practical business outcomes, not generic AI theory.
+When useful, structure replies as:
+1) What I understand
+2) Bottleneck hypothesis
+3) Recommended solution path
+4) Next step for the client
+Never invent capabilities or results. If uncertain, say so and ask one targeted question.`;
+
    const form = document.getElementById('symbot-chat-form');
    const input = document.getElementById('symbot-chat-input');
    const messagesContainer = document.getElementById('symbot-chat-messages');
@@ -6385,13 +6397,16 @@
      
      // Send to webhook
      try {
-       await fetch('https://nordsym.app.n8n.cloud/webhook/symbot-website-chat', {
+      await fetch(SYMBOT_WEBHOOK_URL, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify({
            message: message,
            timestamp: new Date().toISOString(),
-           source: 'nordsym.com'
+           source: 'nordsym.com',
+           channel: 'talk-to-symbot-card',
+           locale: 'en',
+           system_prompt: SYMBOT_SYSTEM_PROMPT
          })
        });
        
@@ -11032,6 +11047,16 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
 
  async getBotResponse(userInput) { 
  const webhookUrl = "https://nordsym.app.n8n.cloud/webhook/399ddc2e-9a3c-4b72-9757-079b730a782c/chat";
+ const systemPrompt = `You are Symbot, NordSym's AI solutions architect.
+Respond in clear, concise English.
+Your job is to diagnose operational bottlenecks, ask focused follow-up questions, and propose concrete next steps.
+Always optimize for practical business outcomes, not generic AI theory.
+When useful, structure replies as:
+1) What I understand
+2) Bottleneck hypothesis
+3) Recommended solution path
+4) Next step for the client
+Never invent capabilities or results. If uncertain, say so and ask one targeted question.`;
 
  try {
  const response = await fetch(webhookUrl, {
@@ -11039,7 +11064,11 @@ Max 3 parallella pilots. Kvalitet > kvantitet.`;
  headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ 
  message: userInput,
- sessionId: this.sessionId 
+ sessionId: this.sessionId,
+ source: 'nordsym.com',
+ channel: 'fullscreen-chat',
+ locale: 'en',
+ system_prompt: systemPrompt
  })
  });
 
