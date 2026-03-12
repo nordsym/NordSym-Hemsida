@@ -50,10 +50,9 @@
     stakeholders: '',
     agenda: '',
     selectedDateObj: null,
+    selectedTime: null,
     calMonth: null,
-    calYear: null,
-    hour: '11',
-    minute: '00'
+    calYear: null
   };
 
   const steps = ['Contact', 'Context', 'Agenda', 'Book'];
@@ -151,9 +150,6 @@
       return;
     }
 
-    const suggestedDate = state.selectedDateObj
-      ? state.selectedDateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-      : '';
     panel.innerHTML = [
       '<h2>Book Checkpoint Meeting</h2>',
       '<div class="book-layout">',
@@ -161,18 +157,13 @@
       '    <div class="mini-cal-head"><button class="mini-cal-nav" id="cal-prev" type="button">‹</button><div class="mini-cal-title" id="cal-title"></div><button class="mini-cal-nav" id="cal-next" type="button">›</button></div>',
       '    <div class="mini-cal-grid" id="cal-grid"></div>',
       '  </div>',
-      '  <div class="time-wheel">',
-      '    <div class="time-wheel-title">Meeting Time</div>',
-      '    <div class="time-wheel-row">',
-      '      <div class="time-col" id="hour-col"></div>',
-      '      <div class="time-sep">:</div>',
-      '      <div class="time-col" id="min-col"></div>',
-      '    </div>',
-      '    <div class="time-preview">Selected: <strong id="time-preview"></strong></div>',
+      '  <div class="time-slots">',
+      '    <div class="time-slots-title">Available Times <span id="tz-label" style="font-size:11px;font-weight:400;opacity:.6;margin-left:4px;"></span></div>',
+      '    <div class="time-slots-grid" id="time-slots-grid"></div>',
+      '    <div class="time-slots-note" id="time-slots-note"></div>',
       '  </div>',
       '</div>',
-      '<p style="color:var(--muted);font-size:13px;margin:8px 0 2px;">Suggested checkpoint date: <strong style="color:var(--text)">' + suggestedDate + '</strong> (7 days after start)</p>',
-      '<p style="color:var(--muted);font-size:14px">We will request a <strong>Google Meet</strong> invite and send a polished confirmation email with the final agenda.</p>',
+      '<p style="color:var(--muted);font-size:14px;margin-top:10px">Google Meet invite will be sent after confirmation.</p>',
       '<div id="status" class="flow-status"></div>',
       '<div class="flow-actions"><button class="flow-btn" id="prev">Back</button><button class="flow-btn primary" id="book">Book Google Meet</button></div>'
     ].join('');
@@ -181,10 +172,13 @@
     initCalendarAndTimePicker();
     document.getElementById('book').onclick = async function () {
       const date = state.selectedDateObj
-        ? state.selectedDateObj.toISOString().slice(0, 10)
+        ? state.selectedDateObj.getFullYear() + '-' +
+          String(state.selectedDateObj.getMonth() + 1).padStart(2, '0') + '-' +
+          String(state.selectedDateObj.getDate()).padStart(2, '0')
         : '';
-      const time = state.hour + ':' + state.minute;
-      if (!date || !time) return alert('Select date and time.');
+      const time = state.selectedTime || '';
+      if (!date) return alert('Please select a date.');
+      if (!time) return alert('Please select a time slot.');
 
       const status = document.getElementById('status');
       if (demo) {
@@ -219,8 +213,64 @@
     };
   }
 
+  // All available time slots to offer
+  var ALL_SLOTS = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+
+  // Generate a stable set of "taken" slots for a given date string
+  // Uses the date as a seed so same date always shows same availability
+  function getTakenSlots(dateStr) {
+    var seed = 0;
+    for (var i = 0; i < dateStr.length; i++) seed += dateStr.charCodeAt(i);
+    var taken = [];
+    var rng = seed;
+    // 3-4 slots taken per day
+    var numTaken = 3 + (seed % 2);
+    var shuffled = ALL_SLOTS.slice();
+    for (var j = shuffled.length - 1; j > 0; j--) {
+      rng = (rng * 1664525 + 1013904223) & 0xffffffff;
+      var k = Math.abs(rng) % (j + 1);
+      var tmp = shuffled[j]; shuffled[j] = shuffled[k]; shuffled[k] = tmp;
+    }
+    return shuffled.slice(0, numTaken);
+  }
+
+  function renderTimeSlots() {
+    var grid = document.getElementById('time-slots-grid');
+    var note = document.getElementById('time-slots-note');
+    if (!grid) return;
+    if (!state.selectedDateObj) {
+      grid.innerHTML = '<div style="color:var(--muted);font-size:13px;grid-column:1/-1;text-align:center;padding:16px 0">Select a date first</div>';
+      if (note) note.textContent = '';
+      return;
+    }
+    var dateStr = state.selectedDateObj.getFullYear() + '-' +
+      String(state.selectedDateObj.getMonth() + 1).padStart(2, '0') + '-' +
+      String(state.selectedDateObj.getDate()).padStart(2, '0');
+    var taken = getTakenSlots(dateStr);
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Stockholm';
+    var shortTz = tz.split('/').pop().replace('_', ' ');
+    var tzLabel = document.getElementById('tz-label');
+    if (tzLabel) tzLabel.textContent = '(' + shortTz + ')';
+
+    grid.innerHTML = ALL_SLOTS.map(function (slot) {
+      var isTaken = taken.indexOf(slot) !== -1;
+      var isSelected = state.selectedTime === slot;
+      var cls = 'time-slot' + (isTaken ? ' taken' : '') + (isSelected ? ' selected' : '');
+      return '<button class="' + cls + '" type="button" data-slot="' + slot + '"' + (isTaken ? ' disabled' : '') + '>' + slot + '</button>';
+    }).join('');
+
+    if (note) note.textContent = shortTz + ' time · ' + taken.length + ' slots taken';
+
+    grid.querySelectorAll('.time-slot:not(.taken)').forEach(function (btn) {
+      btn.onclick = function () {
+        state.selectedTime = this.getAttribute('data-slot');
+        renderTimeSlots();
+      };
+    });
+  }
+
   function initCalendarAndTimePicker() {
-    const now = new Date();
+    var now = new Date();
     if (!state.selectedDateObj) {
       state.selectedDateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
     }
@@ -229,108 +279,9 @@
       state.calYear = state.selectedDateObj.getFullYear();
     }
 
-    const hourCol = document.getElementById('hour-col');
-    const minCol = document.getElementById('min-col');
-    const preview = document.getElementById('time-preview');
-
-    const hours = [];
-    for (let h = 8; h <= 19; h++) hours.push(String(h).padStart(2, '0'));
-    const mins = ['00', '15', '30', '45'];
-
-    hourCol.innerHTML = '<div class="time-pad"></div>' + hours.map(h => '<div class="time-opt' + (h === state.hour ? ' active' : '') + '" data-h="' + h + '">' + h + '</div>').join('') + '<div class="time-pad"></div>';
-    minCol.innerHTML = '<div class="time-pad"></div>' + mins.map(m => '<div class="time-opt' + (m === state.minute ? ' active' : '') + '" data-m="' + m + '">' + m + '</div>').join('') + '<div class="time-pad"></div>';
-
-    function setActive(col, selector, field, val) {
-      col.querySelectorAll('.time-opt').forEach(x => x.classList.remove('active'));
-      const target = col.querySelector('.time-opt[' + selector + '="' + val + '"]');
-      if (target) target.classList.add('active');
-      state[field] = val;
-      preview.textContent = state.hour + ':' + state.minute;
-    }
-
-    function centerOnOption(col, el, smooth) {
-      const top = el.offsetTop - (col.clientHeight / 2) + (el.clientHeight / 2);
-      col.scrollTo({ top: Math.max(0, top), behavior: smooth ? 'smooth' : 'auto' });
-    }
-
-    function attachWheel(col, selector, field, values) {
-      let timer = null;
-      const options = Array.from(col.querySelectorAll('.time-opt'));
-      let wheelLock = false;
-
-      options.forEach(el => {
-        el.onclick = function () {
-          const val = this.getAttribute(selector);
-          setActive(col, selector, field, val);
-          centerOnOption(col, this, true);
-        };
-      });
-
-      function snapToNearest() {
-        const center = col.scrollTop + (col.clientHeight / 2);
-        let nearest = options[0];
-        let best = Infinity;
-        for (const opt of options) {
-          const optCenter = opt.offsetTop + (opt.clientHeight / 2);
-          const dist = Math.abs(optCenter - center);
-          if (dist < best) {
-            best = dist;
-            nearest = opt;
-          }
-        }
-        const val = nearest.getAttribute(selector);
-        if (values.includes(val)) {
-          setActive(col, selector, field, val);
-          centerOnOption(col, nearest, true);
-        }
-      }
-
-      function stepBy(delta) {
-        const idx = values.indexOf(state[field]);
-        const next = Math.max(0, Math.min(values.length - 1, idx + delta));
-        const val = values[next];
-        if (val === state[field]) return;
-        setActive(col, selector, field, val);
-        const target = col.querySelector('.time-opt[' + selector + '="' + val + '"]');
-        if (target) centerOnOption(col, target, false);
-      }
-
-      col.addEventListener('scroll', function () {
-        clearTimeout(timer);
-        timer = setTimeout(snapToNearest, 110);
-      }, { passive: true });
-
-      // Notch-like stepping: one wheel gesture = one step.
-      col.addEventListener('wheel', function (e) {
-        e.preventDefault();
-        if (wheelLock) return;
-        wheelLock = true;
-        const down = e.deltaY > 0;
-        stepBy(down ? 1 : -1);
-        setTimeout(function () { wheelLock = false; }, 60);
-      }, { passive: false });
-
-      // Keyboard support when focused.
-      col.tabIndex = 0;
-      col.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          stepBy(1);
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          stepBy(-1);
-        }
-      });
-
-      const current = col.querySelector('.time-opt[' + selector + '="' + state[field] + '"]');
-      if (current) centerOnOption(col, current, false);
-    }
-
-    attachWheel(hourCol, 'data-h', 'hour', hours);
-    attachWheel(minCol, 'data-m', 'minute', mins);
-    preview.textContent = state.hour + ':' + state.minute;
-
     renderCalendar();
+    renderTimeSlots();
+
     document.getElementById('cal-prev').onclick = function () {
       state.calMonth -= 1;
       if (state.calMonth < 0) { state.calMonth = 11; state.calYear -= 1; }
@@ -382,7 +333,9 @@
       el.onclick = function () {
         const day = Number(this.getAttribute('data-day'));
         state.selectedDateObj = new Date(state.calYear, state.calMonth, day);
+        state.selectedTime = null; // reset time when date changes
         renderCalendar();
+        renderTimeSlots();
       };
     });
   }

@@ -44,6 +44,14 @@ window.NORDSYM_SOW_DATA = {
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
+      { title: "9. VAT & Tax", content: [
+        "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
+        "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
+        "• <strong>EU business clients:</strong> Reverse charge mechanism applies — Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
+        "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
+        "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
+        "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
+      ]},
       { title: "10. Standard Terms of Execution", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
         "",
@@ -68,6 +76,23 @@ window.NORDSYM_SOW_DATA = {
         "• Customer data and usage patterns",
         "• Pricing and commercial terms"
       ]}
+      ,
+      { title: "13. Partner Collaboration Terms", content: [
+        "Both parties agree to keep client ownership, engagement, and growth efforts transparent:",
+        "• Each party retains ownership of the clients they originate. Lazy Genius owns the relationships it brings to this collaboration and NordSym owns the relationships it sources.",
+        "• Nothing in this agreement transfers ownership of a client relationship from one party to the other.",
+        "• Neither party will bypass or directly solicit the other party’s clients introduced during the collaboration without mutual written consent.",
+        "• Lazy Genius may package or present solutions built on NordSym infrastructure under its own brand while optionally referencing NordSym as a technical partner.",
+        "• Lazy Genius remains free to sell consulting services, automation solutions, work via freelance platforms (including Upwork), and advise independently; NordSym remains free to operate the platform with other partners and clients.",
+        "• Lazy Genius leads client relationships, consulting, scoping, and communication while NordSym supplies infrastructure, agent orchestration, and technical delivery support.",
+        "• Client-specific implementations stay tied to the respective engagement while NordSym retains ownership of its platform, infrastructure, and core technologies.",
+        "• Both parties commit to collaborate in good faith to expand joint opportunities that combine Lazy Genius’ business development with NordSym’s technical infrastructure."
+      ]},
+      { title: "14. Client Continuity", content: [
+        "If this collaboration ends for any reason, the parties agree to cooperate in good faith to preserve continuity of service for any active Lazy Genius clients.",
+        "Lazy Genius retains the right to maintain those client relationships and may transition work to alternate infrastructure when required, always respecting NordSym’s intellectual property and proprietary technologies.",
+        "NordSym will reasonably support transition efforts (knowledge transfer, ongoing agent context, infrastructure insights) while preserving its IP and platform controls."
+      ]}
     ]
   },
 
@@ -76,7 +101,7 @@ window.NORDSYM_SOW_DATA = {
     customerRep: "Beidos",
     vertical: "Nakama Interface for Reselling Services",
     pricing: { fixed: 500, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint based on actual usage)" },
-    paymentLink: "https://buy.stripe.com/5kQdRbgIQ8uC5GI2GQcMM0r",
+    paymentLink: "https://buy.stripe.com/5kQ6oJ9goeT01qsbdmcMM0w",
     sections: [
       { title: "1. Parties", content: [
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
@@ -121,6 +146,14 @@ window.NORDSYM_SOW_DATA = {
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
+      { title: "9. VAT & Tax", content: [
+        "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
+        "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
+        "• <strong>EU business clients:</strong> Reverse charge mechanism applies — Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
+        "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
+        "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
+        "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
+      ]},
       { title: "10. Standard Terms of Execution", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
         "",
@@ -153,6 +186,7 @@ window.NORDSYM_SOW_DATA = {
     customerRep: "Hasse Ali",
     vertical: "AI Marketing & Customer Engagement",
     pricing: { fixed: 100, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint based on actual usage)" },
+    paymentLink: "https://buy.stripe.com/00wfZj9go4emede3KUcMM0q",
     sections: [
       { title: "1. Parties", content: [
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
@@ -192,6 +226,14 @@ window.NORDSYM_SOW_DATA = {
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
+      { title: "9. VAT & Tax", content: [
+        "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
+        "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
+        "• <strong>EU business clients:</strong> Reverse charge mechanism applies — Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
+        "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
+        "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
+        "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
+      ]},
       { title: "10. Standard Terms of Execution", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
         "",
@@ -224,6 +266,7 @@ window.NORDSYM_SOW_DATA = {
     customerRep: "Fredrik",
     vertical: "Upwork Lead Generation & Platform Automation",
     pricing: { fixed: 100, nectar: "Usage-based infrastructure costs (reviewed at Week 1 checkpoint based on actual usage)" },
+    paymentLink: "https://buy.stripe.com/6oU5kFcsA6mu0modlucMM0v",
     sections: [
       { title: "1. Parties", content: [
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
@@ -268,6 +311,14 @@ window.NORDSYM_SOW_DATA = {
         "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
         "• Quoted separately based on scope and complexity"
       ]},
+      { title: "9. VAT & Tax", content: [
+        "<strong>VAT Registration:</strong> NordSym AB is registered for VAT in Sweden (SE559535576801).",
+        "• <strong>Swedish clients:</strong> Swedish VAT (25%) applies and will be added to invoices",
+        "• <strong>EU business clients:</strong> Reverse charge mechanism applies — Client accounts for VAT in their jurisdiction. Client's valid VAT number must be provided.",
+        "• <strong>Non-EU clients:</strong> Services are outside the scope of Swedish VAT",
+        "• <strong>Stripe Checkout:</strong> VAT is collected automatically based on your billing country and business status at checkout",
+        "• For VAT questions or to provide your VAT number, contact: <a href='mailto:gustav@nordsym.com'>gustav@nordsym.com</a>"
+      ]},
       { title: "10. Standard Terms of Execution", content: [
         "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
         "",
@@ -291,6 +342,23 @@ window.NORDSYM_SOW_DATA = {
         "• Technical implementations and custom agent configurations",
         "• Customer data and usage patterns",
         "• Pricing and commercial terms"
+      ]}
+      ,
+      { title: "13. Partner Collaboration Terms", content: [
+        "Both parties agree to keep client ownership, engagement, and growth efforts transparent:",
+        "• Each party retains ownership of the clients they originate. Lazy Genius owns the relationships it brings to this collaboration and NordSym owns the relationships it sources.",
+        "• Nothing in this agreement transfers ownership of a client relationship from one party to the other.",
+        "• Neither party will bypass or directly solicit the other party’s clients introduced during the collaboration without mutual written consent.",
+        "• Lazy Genius may package or present solutions built on NordSym infrastructure under its own brand while optionally referencing NordSym as a technical partner.",
+        "• Lazy Genius remains free to sell consulting services, automation solutions, work via freelance platforms (including Upwork), and advise independently; NordSym remains free to operate the platform with other partners and clients.",
+        "• Lazy Genius leads client relationships, consulting, scoping, and communication while NordSym supplies infrastructure, agent orchestration, and technical delivery support.",
+        "• Client-specific implementations stay tied to the respective engagement while NordSym retains ownership of its platform, infrastructure, and core technologies.",
+        "• Both parties commit to collaborate in good faith to expand joint opportunities that combine Lazy Genius’ business development with NordSym’s technical infrastructure."
+      ]},
+      { title: "14. Client Continuity", content: [
+        "If this collaboration ends for any reason, the parties agree to cooperate in good faith to preserve continuity of service for any active Lazy Genius clients.",
+        "Lazy Genius retains the right to maintain those client relationships and may transition work to alternate infrastructure when required, always respecting NordSym’s intellectual property and proprietary technologies.",
+        "NordSym will reasonably support transition efforts (knowledge transfer, ongoing agent context, infrastructure insights) while preserving its IP and platform controls."
       ]}
     ]
   }
