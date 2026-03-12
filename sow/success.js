@@ -236,18 +236,61 @@
     hourCol.innerHTML = hours.map(h => '<div class="time-opt' + (h === state.hour ? ' active' : '') + '" data-h="' + h + '">' + h + '</div>').join('');
     minCol.innerHTML = mins.map(m => '<div class="time-opt' + (m === state.minute ? ' active' : '') + '" data-m="' + m + '">' + m + '</div>').join('');
 
-    hourCol.querySelectorAll('.time-opt').forEach(el => el.onclick = function () {
-      state.hour = this.getAttribute('data-h');
-      hourCol.querySelectorAll('.time-opt').forEach(x => x.classList.remove('active'));
-      this.classList.add('active');
+    function setActive(col, selector, field, val) {
+      col.querySelectorAll('.time-opt').forEach(x => x.classList.remove('active'));
+      const target = col.querySelector('.time-opt[' + selector + '="' + val + '"]');
+      if (target) target.classList.add('active');
+      state[field] = val;
       preview.textContent = state.hour + ':' + state.minute;
-    });
-    minCol.querySelectorAll('.time-opt').forEach(el => el.onclick = function () {
-      state.minute = this.getAttribute('data-m');
-      minCol.querySelectorAll('.time-opt').forEach(x => x.classList.remove('active'));
-      this.classList.add('active');
-      preview.textContent = state.hour + ':' + state.minute;
-    });
+    }
+
+    function centerOnOption(col, el, smooth) {
+      const top = el.offsetTop - (col.clientHeight / 2) + (el.clientHeight / 2);
+      col.scrollTo({ top: Math.max(0, top), behavior: smooth ? 'smooth' : 'auto' });
+    }
+
+    function attachWheel(col, selector, field, values) {
+      let timer = null;
+      const options = Array.from(col.querySelectorAll('.time-opt'));
+
+      options.forEach(el => {
+        el.onclick = function () {
+          const val = this.getAttribute(selector);
+          setActive(col, selector, field, val);
+          centerOnOption(col, this, true);
+        };
+      });
+
+      function snapToNearest() {
+        const center = col.scrollTop + (col.clientHeight / 2);
+        let nearest = options[0];
+        let best = Infinity;
+        for (const opt of options) {
+          const optCenter = opt.offsetTop + (opt.clientHeight / 2);
+          const dist = Math.abs(optCenter - center);
+          if (dist < best) {
+            best = dist;
+            nearest = opt;
+          }
+        }
+        const val = nearest.getAttribute(selector);
+        if (values.includes(val)) {
+          setActive(col, selector, field, val);
+          centerOnOption(col, nearest, true);
+        }
+      }
+
+      col.addEventListener('scroll', function () {
+        clearTimeout(timer);
+        timer = setTimeout(snapToNearest, 110);
+      }, { passive: true });
+
+      const current = col.querySelector('.time-opt[' + selector + '="' + state[field] + '"]');
+      if (current) centerOnOption(col, current, false);
+    }
+
+    attachWheel(hourCol, 'data-h', 'hour', hours);
+    attachWheel(minCol, 'data-m', 'minute', mins);
     preview.textContent = state.hour + ':' + state.minute;
 
     renderCalendar();
