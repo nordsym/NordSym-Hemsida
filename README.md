@@ -1,6 +1,6 @@
 # 🛸 NordSym
 
-**Build away limitations.**
+
 
 Swedish AI systems company. Agent-native architecture.
 
