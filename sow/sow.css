@@ -141,6 +141,7 @@ body.dark-theme .sow-starfall { opacity: .18; }
 .time-wheel-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
 .time-col { height: 162px; overflow-y: auto; border: 1px solid var(--line); border-radius: 10px; scroll-snap-type: y mandatory; background: var(--surface-2); }
 .time-col::-webkit-scrollbar { width: 0; height: 0; }
+.time-col:focus { outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent); outline-offset: 2px; }
 .time-opt { height: 40px; display: flex; align-items: center; justify-content: center; scroll-snap-align: center; cursor: pointer; color: var(--muted); }
 .time-opt.active { color: var(--text); font-weight: 700; background: color-mix(in srgb, var(--primary) 16%, transparent); }
 .time-pad { height: 61px; pointer-events: none; }

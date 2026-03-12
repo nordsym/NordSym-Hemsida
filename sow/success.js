@@ -252,6 +252,7 @@
     function attachWheel(col, selector, field, values) {
       let timer = null;
       const options = Array.from(col.querySelectorAll('.time-opt'));
+      let wheelLock = false;
 
       options.forEach(el => {
         el.onclick = function () {
@@ -280,10 +281,42 @@
         }
       }
 
+      function stepBy(delta) {
+        const idx = values.indexOf(state[field]);
+        const next = Math.max(0, Math.min(values.length - 1, idx + delta));
+        const val = values[next];
+        if (val === state[field]) return;
+        setActive(col, selector, field, val);
+        const target = col.querySelector('.time-opt[' + selector + '="' + val + '"]');
+        if (target) centerOnOption(col, target, true);
+      }
+
       col.addEventListener('scroll', function () {
         clearTimeout(timer);
         timer = setTimeout(snapToNearest, 110);
       }, { passive: true });
+
+      // Notch-like stepping: one wheel gesture = one step.
+      col.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        if (wheelLock) return;
+        wheelLock = true;
+        const down = e.deltaY > 0;
+        stepBy(down ? 1 : -1);
+        setTimeout(function () { wheelLock = false; }, 85);
+      }, { passive: false });
+
+      // Keyboard support when focused.
+      col.tabIndex = 0;
+      col.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          stepBy(1);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          stepBy(-1);
+        }
+      });
 
       const current = col.querySelector('.time-opt[' + selector + '="' + state[field] + '"]');
       if (current) centerOnOption(col, current, false);
