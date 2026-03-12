@@ -151,6 +151,9 @@
       return;
     }
 
+    const suggestedDate = state.selectedDateObj
+      ? state.selectedDateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+      : '';
     panel.innerHTML = [
       '<h2>Book Checkpoint Meeting</h2>',
       '<div class="book-layout">',
@@ -168,6 +171,7 @@
       '    <div class="time-preview">Selected: <strong id="time-preview"></strong></div>',
       '  </div>',
       '</div>',
+      '<p style="color:var(--muted);font-size:13px;margin:8px 0 2px;">Suggested checkpoint date: <strong style="color:var(--text)">' + suggestedDate + '</strong> (7 days after start)</p>',
       '<p style="color:var(--muted);font-size:14px">We will request a <strong>Google Meet</strong> invite and send a polished confirmation email with the final agenda.</p>',
       '<div id="status" class="flow-status"></div>',
       '<div class="flow-actions"><button class="flow-btn" id="prev">Back</button><button class="flow-btn primary" id="book">Book Google Meet</button></div>'
@@ -218,7 +222,7 @@
   function initCalendarAndTimePicker() {
     const now = new Date();
     if (!state.selectedDateObj) {
-      state.selectedDateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      state.selectedDateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
     }
     if (state.calMonth === null) {
       state.calMonth = state.selectedDateObj.getMonth();
@@ -288,7 +292,7 @@
         if (val === state[field]) return;
         setActive(col, selector, field, val);
         const target = col.querySelector('.time-opt[' + selector + '="' + val + '"]');
-        if (target) centerOnOption(col, target, true);
+        if (target) centerOnOption(col, target, false);
       }
 
       col.addEventListener('scroll', function () {
@@ -303,7 +307,7 @@
         wheelLock = true;
         const down = e.deltaY > 0;
         stepBy(down ? 1 : -1);
-        setTimeout(function () { wheelLock = false; }, 85);
+        setTimeout(function () { wheelLock = false; }, 60);
       }, { passive: false });
 
       // Keyboard support when focused.
