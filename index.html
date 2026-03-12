@@ -2913,12 +2913,62 @@
  opacity: 1 !important;
  }
 
- /* FIX: "Micro-Apps Micro-Apps & Verktyg Tools" Tagg - Uppdaterad till Ink Style (Matchar TJÄNSTER) */
+ /* FIX: Products badge - Ink Style (matchar TJÄNSTER/R&D) */
  body.light-theme #om-oss .text-center > span.inline-block {
  color: var(--nord-sym-blueprint-ink) !important;
  border-color: var(--nord-sym-blueprint-ink) !important;
  background-color: rgba(255, 255, 255, 0.8) !important;
  box-shadow: none !important;
+ }
+
+ /* Products page — light mode: glasskort (blueprint-style, matchar R&D) */
+ body.light-theme #om-oss a[class*="rounded-3xl"],
+ body.light-theme #om-oss div[class*="rounded-3xl"] {
+   background: #ffffff !important;
+   border: 2px solid var(--nord-sym-blueprint-lines) !important;
+   backdrop-filter: none !important;
+   -webkit-backdrop-filter: none !important;
+   box-shadow: 8px 8px 0px rgba(148, 163, 184, 0.2) !important;
+ }
+ body.light-theme #om-oss a[class*="rounded-3xl"]:hover {
+   border-color: var(--nord-sym-blueprint-cyan) !important;
+   box-shadow: 12px 12px 0px rgba(2, 132, 199, 0.2) !important;
+   transform: translate(-2px, -2px) !important;
+ }
+ body.light-theme #om-oss a[class*="rounded-3xl"] p,
+ body.light-theme #om-oss div[class*="rounded-3xl"] p {
+   color: var(--nord-sym-blueprint-text-secondary) !important;
+   opacity: 1 !important;
+ }
+ body.light-theme #om-oss a[class*="rounded-3xl"] h3,
+ body.light-theme #om-oss div[class*="rounded-3xl"] h3 {
+   color: var(--nord-sym-blueprint-ink) !important;
+ }
+ body.light-theme #om-oss a[class*="rounded-3xl"] p[class*="text-xs"],
+ body.light-theme #om-oss div[class*="rounded-3xl"] p[class*="text-xs"] {
+   color: var(--nord-sym-blueprint-cyan) !important;
+ }
+ body.light-theme #om-oss div[class*="rounded-2xl"] {
+   background: #f0f6ff !important;
+   border-color: var(--nord-sym-blueprint-lines) !important;
+   color: var(--nord-sym-blueprint-ink) !important;
+ }
+ body.light-theme #om-oss h2 {
+   color: var(--nord-sym-blueprint-ink) !important;
+ }
+ body.light-theme #om-oss > div > div > div.text-center p {
+   color: var(--nord-sym-blueprint-text-secondary) !important;
+ }
+
+ /* Products page — dark mode: frosted glass (backdrop-blur, matchar R&D) */
+ #om-oss a[class*="rounded-3xl"],
+ #om-oss div[class*="rounded-3xl"] {
+   backdrop-filter: blur(20px);
+   -webkit-backdrop-filter: blur(20px);
+ }
+ #om-oss div[class*="rounded-2xl"] {
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
  }
 
  /* FIX: "R&D" Tagg - Uppdaterad till Ink Style */
