@@ -10,26 +10,25 @@ window.NORDSYM_SOW_DATA = {
         "<strong>Excom</strong>, represented by Peter Larnholt"
       ]},
       { title: "2. Effective Date", content: [
-        "This Scope of Work becomes effective upon signing by both parties."
+        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
       ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services to Excom, specifically focused on:",
-        "• Managed Swarm Orchestration for Handled GTM",
-        "• Headless Telegram Execution Layer (Enterprise Grade)",
-        "• Swarm Oversight & Real-time Optimization",
+        "• Managed swarm orchestration for Handled GTM",
+        "• Headless Telegram execution layer",
+        "• Swarm oversight and real-time optimization",
         "• Infrastructure monitoring and performance optimization"
       ]},
       { title: "4. Selected Service Scope", items: [
         { label: "APIClaw Execution Infrastructure", value: "Enterprise-grade agent orchestration and deployment infrastructure" },
-        { label: "Managed Swarm Orchestration", value: "Handled-specific agents for customer onboarding, support, and engagement" },
-        { label: "Headless Telegram Execution Layer", value: "Zero-UI backend agent communication and task distribution" },
+        { label: "Managed Swarm Orchestration", value: "Handled-specific agents for onboarding, support, and engagement" },
+        { label: "Headless Telegram Execution Layer", value: "Zero-UI backend communication and task distribution" },
         { label: "Swarm Oversight & Optimization", value: "Real-time monitoring, performance tuning, and infrastructure management" }
       ]},
       { title: "5. Investment", content: [
         "• <strong>Monthly Fee:</strong> $500/month",
         "• All pricing in USD, billed monthly via Stripe",
-        "• Infrastructure execution costs billed separately based on actual API usage",
-        "• The Week 1 Checkpoint is used to evaluate project performance and calculate actual token/infrastructure costs. Pricing may be adjusted based on verified usage metrics provided during the checkpoint meeting."
+        "• Infrastructure execution costs billed separately based on actual API usage"
       ]},
       { title: "6. Week 1 Pilot Checkpoint", content: [
         "• <strong>Checkpoint Date:</strong> 7 days after project kickoff",
@@ -37,21 +36,40 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Outcomes:</strong>",
         "  - <strong>Continue:</strong> Approve production tier and continue operations",
         "  - <strong>Revise:</strong> Adjust scope or approach and continue",
-        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs",
-        "• NordSym will provide execution metrics and performance report before checkpoint"
+        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs"
       ]},
-      { title: "7. Revenue Share", content: [
-        "• Monthly reconciliation via Partner Revenue Agreement",
-        "• Revenue share terms documented separately in partner agreement",
-        "• Transparent reporting provided monthly"
+      { title: "8. Additional Development", content: [
+        "Services beyond SoW (custom integrations, new features, advanced customization) can be commissioned through:",
+        "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
+        "• Quoted separately based on scope and complexity"
       ]},
-      { title: "8. Payment Terms", content: [
-        "• Monthly subscription billed via Stripe on the 1st of each month",
-        "• Infrastructure costs based on actual API execution",
-        "• All payments processed securely through Stripe infrastructure"
+      { title: "10. Standard Terms of Execution", content: [
+        "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
+        "",
+        "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
+        "",
+        "<strong>Usage Limits:</strong> Infrastructure allocation is defined per pricing tier. NordSym reserves the right to throttle execution if usage significantly exceeds forecasted allocation without prior notice.",
+        "",
+        "<strong>Intellectual Property:</strong> Custom agent configurations, prompts, and orchestration logic developed specifically for Client remain Client IP. Platform infrastructure, core agent capabilities, and foundational protocols remain NordSym IP.",
+        "",
+        "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
+      ]},
+      { title: "11. Duration & Termination", content: [
+        "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
+        "• <strong>Notice Period:</strong> 30 days written notice",
+        "• Active agent deployments and access continue through notice period",
+        "• Outstanding infrastructure charges settled upon termination"
+      ]},
+      { title: "12. Confidentiality", content: [
+        "Both parties agree to maintain confidentiality of:",
+        "• Business strategies and roadmaps",
+        "• Technical implementations and custom agent configurations",
+        "• Customer data and usage patterns",
+        "• Pricing and commercial terms"
       ]}
     ]
   },
+
   nakama: {
     customerName: "Nakama",
     customerRep: "Beidos",
@@ -62,18 +80,20 @@ window.NORDSYM_SOW_DATA = {
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
         "<strong>Nakama</strong>, represented by Beidos"
       ]},
-      { title: "2. Effective Date", content: ["This Scope of Work becomes effective upon signing by both parties."]},
+      { title: "2. Effective Date", content: [
+        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
+      ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services to Nakama, specifically focused on:",
-        "• Managed Swarm Orchestration for white-label reselling",
-        "• Headless Telegram Execution Layer (Enterprise Grade)",
-        "• Swarm Oversight & Real-time Optimization",
+        "• Managed swarm orchestration for white-label reselling",
+        "• Headless Telegram execution layer",
+        "• Swarm oversight and real-time optimization",
         "• Revenue-sharing framework for infrastructure resale"
       ]},
       { title: "4. Selected Service Scope", items: [
         { label: "APIClaw Execution Infrastructure", value: "Enterprise-grade orchestration with Nakama white-label branding" },
         { label: "Managed Swarm Orchestration", value: "Multi-tenant agent deployment for Nakama end customers" },
-        { label: "Headless Telegram Execution Layer", value: "Zero-UI backend agent communication under Nakama brand" },
+        { label: "Headless Telegram Execution Layer", value: "Zero-UI backend communication under Nakama brand" },
         { label: "Swarm Oversight & Optimization", value: "Real-time monitoring, partner enablement, and infrastructure management" }
       ]},
       { title: "5. Investment", content: [
@@ -87,11 +107,45 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Outcomes:</strong>",
         "  - <strong>Continue:</strong> Approve production tier and continue operations",
         "  - <strong>Revise:</strong> Adjust scope or approach and continue",
-        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs",
-        "• NordSym will provide execution metrics and performance report before checkpoint"
+        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs"
+      ]},
+      { title: "7. Revenue Share", content: [
+        "• Monthly reconciliation via Partner Revenue Agreement",
+        "• Revenue share terms documented separately in partner agreement",
+        "• Transparent reporting provided monthly"
+      ]},
+      { title: "8. Additional Development", content: [
+        "Services beyond SoW (custom integrations, new features, advanced customization) can be commissioned through:",
+        "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
+        "• Quoted separately based on scope and complexity"
+      ]},
+      { title: "10. Standard Terms of Execution", content: [
+        "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
+        "",
+        "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
+        "",
+        "<strong>Usage Limits:</strong> Infrastructure allocation is defined per pricing tier. NordSym reserves the right to throttle execution if usage significantly exceeds forecasted allocation without prior notice.",
+        "",
+        "<strong>Intellectual Property:</strong> Custom agent configurations, prompts, and orchestration logic developed specifically for Client remain Client IP. Platform infrastructure, core agent capabilities, and foundational protocols remain NordSym IP.",
+        "",
+        "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
+      ]},
+      { title: "11. Duration & Termination", content: [
+        "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
+        "• <strong>Notice Period:</strong> 30 days written notice",
+        "• Active agent deployments and access continue through notice period",
+        "• Outstanding infrastructure charges settled upon termination"
+      ]},
+      { title: "12. Confidentiality", content: [
+        "Both parties agree to maintain confidentiality of:",
+        "• Business strategies and roadmaps",
+        "• Technical implementations and custom agent configurations",
+        "• Customer data and usage patterns",
+        "• Pricing and commercial terms"
       ]}
     ]
   },
+
   hotclen: {
     customerName: "HotClen",
     customerRep: "Hasse Ali",
@@ -102,7 +156,9 @@ window.NORDSYM_SOW_DATA = {
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
         "<strong>HotClen</strong>, represented by Hasse Ali"
       ]},
-      { title: "2. Effective Date", content: ["This Scope of Work becomes effective upon signing by both parties."]},
+      { title: "2. Effective Date", content: [
+        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
+      ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services to HotClen, specifically focused on:",
         "• AI-powered marketing automation",
@@ -127,11 +183,40 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Outcomes:</strong>",
         "  - <strong>Continue:</strong> Approve production tier and continue operations",
         "  - <strong>Revise:</strong> Adjust scope or approach and continue",
-        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs",
-        "• NordSym will provide execution metrics and performance report before checkpoint"
+        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs"
+      ]},
+      { title: "8. Additional Development", content: [
+        "Services beyond SoW (custom integrations, new features, advanced customization) can be commissioned through:",
+        "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
+        "• Quoted separately based on scope and complexity"
+      ]},
+      { title: "10. Standard Terms of Execution", content: [
+        "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
+        "",
+        "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
+        "",
+        "<strong>Usage Limits:</strong> Infrastructure allocation is defined per pricing tier. NordSym reserves the right to throttle execution if usage significantly exceeds forecasted allocation without prior notice.",
+        "",
+        "<strong>Intellectual Property:</strong> Custom agent configurations, prompts, and orchestration logic developed specifically for Client remain Client IP. Platform infrastructure, core agent capabilities, and foundational protocols remain NordSym IP.",
+        "",
+        "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
+      ]},
+      { title: "11. Duration & Termination", content: [
+        "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
+        "• <strong>Notice Period:</strong> 30 days written notice",
+        "• Active agent deployments and access continue through notice period",
+        "• Outstanding infrastructure charges settled upon termination"
+      ]},
+      { title: "12. Confidentiality", content: [
+        "Both parties agree to maintain confidentiality of:",
+        "• Business strategies and roadmaps",
+        "• Technical implementations and custom agent configurations",
+        "• Customer data and usage patterns",
+        "• Pricing and commercial terms"
       ]}
     ]
   },
+
   "lazy-genius": {
     customerName: "Lazy Genius",
     customerRep: "Fredrik",
@@ -142,7 +227,9 @@ window.NORDSYM_SOW_DATA = {
         "<strong>NordSym AB</strong> (org.nr 559535-5768), represented by Gustav Hemmingsson, CEO",
         "<strong>Lazy Genius</strong>, represented by Fredrik"
       ]},
-      { title: "2. Effective Date", content: ["This Scope of Work becomes effective upon signing by both parties."]},
+      { title: "2. Effective Date", content: [
+        "This Scope of Work becomes effective on <strong>Friday, March 13th, 2026</strong> upon signing by both parties."
+      ]},
       { title: "3. Purpose & Scope", content: [
         "This Scope of Work establishes the framework for NordSym to provide AI agent execution services for Lazy Genius, specifically focused on:",
         "• Automated job discovery and proposal generation",
@@ -167,8 +254,41 @@ window.NORDSYM_SOW_DATA = {
         "• <strong>Outcomes:</strong>",
         "  - <strong>Continue:</strong> Approve production tier and continue operations",
         "  - <strong>Revise:</strong> Adjust scope or approach and continue",
-        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs",
-        "• NordSym will provide execution metrics and performance report before checkpoint"
+        "  - <strong>Terminate:</strong> End pilot and settle outstanding infrastructure costs"
+      ]},
+      { title: "7. Revenue Share", content: [
+        "• Monthly reconciliation via Partner Revenue Agreement",
+        "• Revenue share terms documented separately in partner agreement",
+        "• Transparent reporting provided monthly"
+      ]},
+      { title: "8. Additional Development", content: [
+        "Services beyond SoW (custom integrations, new features, advanced customization) can be commissioned through:",
+        "• <a href='https://nordsym.com/#system' target='_blank'>nordsym.com/#system</a>",
+        "• Quoted separately based on scope and complexity"
+      ]},
+      { title: "10. Standard Terms of Execution", content: [
+        "<strong>AI Disclaimer:</strong> NordSym provides AI agent orchestration infrastructure. Output accuracy and decision quality depend on agent configuration, training data, and execution context. Client is responsible for validating agent output before business-critical use.",
+        "",
+        "<strong>Data Sovereignty:</strong> All client data processed by agents remains client property. NordSym does not claim ownership of execution inputs, outputs, or results. Client data is not used for model training without explicit consent.",
+        "",
+        "<strong>Usage Limits:</strong> Infrastructure allocation is defined per pricing tier. NordSym reserves the right to throttle execution if usage significantly exceeds forecasted allocation without prior notice.",
+        "",
+        "<strong>Intellectual Property:</strong> Custom agent configurations, prompts, and orchestration logic developed specifically for Client remain Client IP. Platform infrastructure, core agent capabilities, and foundational protocols remain NordSym IP.",
+        "",
+        "<strong>Liability Limitation:</strong> NordSym's total liability under this agreement shall not exceed the total fees paid by Client in the 12 months preceding the claim. NordSym is not liable for indirect, consequential, or punitive damages arising from agent execution."
+      ]},
+      { title: "11. Duration & Termination", content: [
+        "• <strong>Binding Period:</strong> Month-to-month following Week 1 Checkpoint",
+        "• <strong>Notice Period:</strong> 30 days written notice",
+        "• Active agent deployments and access continue through notice period",
+        "• Outstanding infrastructure charges settled upon termination"
+      ]},
+      { title: "12. Confidentiality", content: [
+        "Both parties agree to maintain confidentiality of:",
+        "• Business strategies and roadmaps",
+        "• Technical implementations and custom agent configurations",
+        "• Customer data and usage patterns",
+        "• Pricing and commercial terms"
       ]}
     ]
   }
