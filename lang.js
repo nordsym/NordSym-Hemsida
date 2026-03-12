@@ -1,13 +1,13 @@
 /**
  * NordSym Language System v3
  * Clean data-i18n attribute-based translation system
- * Supports: Svenska (sv) | English (en)
+ * Supports: English (en)
  * 
  * COMPLETE i18n COVERAGE - All site sections translated
  */
 
 const NordSymLang = {
-  current: 'sv',
+  current: 'en',
 
   translations: {
     sv: {
@@ -744,30 +744,21 @@ const NordSymLang = {
    * Initialize language system
    */
   init() {
-    // Check localStorage first
-    const stored = localStorage.getItem('nordsym-lang');
-    if (stored && (stored === 'sv' || stored === 'en')) {
-      this.current = stored;
-    } else {
-      // Auto-detect from browser
-      const browserLang = navigator.language || navigator.userLanguage;
-      this.current = browserLang.startsWith('sv') ? 'sv' : 'en';
-      localStorage.setItem('nordsym-lang', this.current);
-    }
-
+    this.current = 'en';
+    localStorage.setItem('nordsym-lang', 'en');
     this.apply();
-    document.documentElement.lang = this.current;
+    document.documentElement.lang = 'en';
   },
 
   /**
    * Switch language and save preference
    */
   switch(lang) {
-    if (lang !== 'sv' && lang !== 'en') return;
-    this.current = lang;
-    localStorage.setItem('nordsym-lang', lang);
+    if (lang !== 'en') return;
+    this.current = 'en';
+    localStorage.setItem('nordsym-lang', 'en');
     this.apply();
-    document.documentElement.lang = lang;
+    document.documentElement.lang = 'en';
     
     // Re-populate gallery cards with new language
     if (window.GalleryManager && typeof window.GalleryManager.refreshTranslations === 'function') {
@@ -789,7 +780,7 @@ const NordSymLang = {
     this.updateMeta('og:description', t.metaDescription, 'property');
     this.updateMeta('twitter:title', t.metaTitle);
     this.updateMeta('twitter:description', t.metaDescription);
-    this.updateMeta('og:locale', this.current === 'sv' ? 'sv_SE' : 'en_US', 'property');
+    this.updateMeta('og:locale', 'en_US', 'property');
 
     // Apply translations using data-i18n attributes
     this.translateDataAttributes(t);
@@ -797,8 +788,6 @@ const NordSymLang = {
     // Update placeholders
     this.translatePlaceholders(t);
 
-    // Update active flag styling
-    this.updateFlagStyles();
   },
 
   /**
@@ -846,29 +835,6 @@ const NordSymLang = {
       if (t[key]) {
         el.setAttribute('aria-label', t[key]);
       }
-    });
-  },
-
-  /**
-   * Update language flag button styles
-   */
-  updateFlagStyles() {
-    // Desktop flags
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      const onclick = btn.getAttribute('onclick') || '';
-      const isActive = onclick.includes(`'${this.current}'`);
-      btn.classList.toggle('ring-2', isActive);
-      btn.classList.toggle('ring-nord-sym-cyan', isActive);
-      btn.classList.toggle('bg-white/10', isActive);
-    });
-
-    // Mobile flags
-    document.querySelectorAll('.lang-btn-mobile').forEach(btn => {
-      const onclick = btn.getAttribute('onclick') || '';
-      const isActive = onclick.includes(`'${this.current}'`);
-      btn.classList.toggle('bg-sky-700/50', isActive);
-      btn.classList.toggle('ring-1', isActive);
-      btn.classList.toggle('ring-nord-sym-cyan', isActive);
     });
   },
 
