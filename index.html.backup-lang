@@ -2913,7 +2913,7 @@
  opacity: 1 !important;
  }
 
- /* FIX: "Micro-Apps Micro-Apps & Verktyg Tools" Tagg - Uppdaterad till Ink Style (Matchar TJÄNSTER) */
+ /* FIX: "Micro-Apps & Verktyg" Tagg - Uppdaterad till Ink Style (Matchar TJÄNSTER) */
  body.light-theme #om-oss .text-center > span.inline-block {
  color: var(--nord-sym-blueprint-ink) !important;
  border-color: var(--nord-sym-blueprint-ink) !important;
@@ -5124,8 +5124,8 @@
  <!-- ANNOUNCEMENT BAR (scrolls away, header stays fixed below) -->
  <div id="announcement-bar" style="background: linear-gradient(90deg, rgba(239, 68, 68, 0.9) 0%, rgba(248, 113, 113, 0.85) 50%, rgba(239, 68, 68, 0.9) 100%); backdrop-filter: blur(8px); color: white; text-align: center; padding: 10px 16px; font-size: 14px; font-weight: 500; position: relative; z-index: 60;">
    <span style="display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;">
-     <span>🦞 <strong>APIClaw</strong> — <span>API-lagret för AI-agenter</span></span>
-     <a href="https://apiclaw.nordsym.com" target="_blank" style="font-size: 12px; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 6px; color: white; text-decoration: none; font-weight: 600;">Visit site →</a>
+     <span>🦞 <strong>APIClaw</strong> — <span data-i18n="bannerTagline">API-lagret för AI-agenter</span></span>
+     <a href="https://apiclaw.nordsym.com" target="_blank" style="font-size: 12px; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 6px; color: white; text-decoration: none; font-weight: 600;" data-i18n="bannerVisitSite">Visit site →</a>
    </span>
    <button onclick="document.getElementById('announcement-bar').style.display='none'; document.body.style.paddingTop='0';" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: white; cursor: pointer; font-size: 16px; opacity: 0.7;">×</button>
  </div>
@@ -5150,15 +5150,15 @@
  <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16 md:h-20 transition-all duration-300">
  </a>
  <nav aria-label="Huvudnavigation" class="hidden md:flex flex-grow justify-center space-x-5 items-center header-nav">
- <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium">Home</a>
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium">Micro-Apps</a>
+ <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="nav-link transition-colors font-medium" data-i18n="navHome">Hem</a>
+ <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="nav-link transition-colors font-medium" data-i18n="navMicroApps">Micro-Apps</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium">Services</a>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="nav-link transition-colors font-medium" data-i18n="navServices">Tjänster</a>
  
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="nav-link transition-colors font-medium"data-i18n="btnRnD">R&D</a>
  </nav>
  <div class="hidden md:flex items-center gap-x-4 flex-shrink-0 header-cta"> 
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm">Book Strategy Call</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised text-sm" data-i18n="btnBookCall">Boka Strategisamtal</a>
  
  <!-- NY TEMAKNAPP (SWITCH) -->
  <label class="theme-switch">
@@ -5199,14 +5199,14 @@
  <div id="form-name-display"></div>
  </div>
  <div id="mobile-menu" class="md:hidden bg-nord-sym-deep-space-blue/95 backdrop-blur-sm shadow-lg rounded-b-xl absolute w-full left-0 top-full overflow-hidden transition-all duration-500 ease-in-out max-h-0 text-center">
- <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Home</a>
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Micro-Apps</a>
+ <a href="#" onclick="window.nord.showPage('hero'); return false;" data-nav="hero" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navHome">Hem</a>
+ <a href="#" onclick="window.nord.showPage('om-oss'); return false;" data-nav="om-oss" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navMicroApps">Micro-Apps</a>
  
- <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">Services</a>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" data-nav="system" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="navServices">Tjänster</a>
  
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors">R&D</a>
+ <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" data-nav="ritbordet" class="block py-5 text-sky-100 hover:bg-sky-700/50 hover:nord-accent-text transition-colors" data-i18n="btnRnD">R&D</a>
  <div class="px-6 py-5 border-t border-sky-800/50 flex items-center gap-x-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow">Book Strategy Call</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" data-nav="kontakt" class="btn-base btn-cta-revised w-full flex-grow" data-i18n="btnBookCall">Boka Strategisamtal</a>
  </div>
  </div>
  </header>
@@ -5229,7 +5229,7 @@
  </div>
  <div class="text-center">
  <div id="hero-founder-name" class="text-white text-sm md:text-base font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Gustav Hemmingsson</div>
- <div class="text-white/70 text-[10px] md:text-xs uppercase tracking-widest font-mono light-theme:text-sky-600">GRUNDARE</div>
+ <div class="text-white/70 text-[10px] md:text-xs uppercase tracking-widest font-mono light-theme:text-sky-600" data-i18n="founderTitle">GRUNDARE</div>
  </div>
  </button>
  
@@ -5240,25 +5240,25 @@
  
  </div>
 
- <p class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-loose md:leading-relaxed px-4">
- NordSym is your 
+ <p data-i18n="heroSubtitle" class="text-lg md:text-xl text-sky-100 max-w-3xl mx-auto drop-shadow-sm text-center leading-loose md:leading-relaxed px-4">
+ NordSym är er 
  <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1">FULL STACK AI PARTNER</span> 
- building tools that 
- <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">ACTUALLY</span> 
- make a difference.
+ som bygger verktyg som 
+ <span class="animate-emphasis relative inline-block px-2 py-0.5 mx-1 bg-nord-sym-cyan text-nord-sym-deep-space-blue font-bold text-sm md:text-base rounded shadow-[0_0_15px_rgba(0,212,255,0.5)] border border-white/20 align-middle my-1" style="animation-delay: 1.5s;">FAKTISKT</span> 
+ gör skillnad.
  </p>
  
  <div class="flex flex-col items-center gap-4 md:gap-6 w-full px-4 mb-8">
  <div class="flex flex-col md:flex-row items-center gap-3 md:gap-6 w-full md:w-auto">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5">Book Strategy Call</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full md:w-auto py-3 md:py-3.5" data-i18n="btnBookCall">Boka Strategisamtal</a>
  <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="btn-base btn-secondary-on-dark w-full md:w-auto py-3 md:py-3.5"data-i18n="btnRnD">R&D</a>
  </div>
  <div class="flex flex-col sm:flex-row gap-2 sm:gap-8 mt-4 md:mt-2 text-xs md:text-sm text-sky-300/80 font-mono tracking-wide justify-center items-center">
- <span>MICRO-APPS</span>
+ <span data-i18n="labelMicroApps">MICRO-APPS</span>
  <span class="hidden sm:block text-sky-500">•</span>
- <span>INTELLIGENT ARCHITECTURE</span>
+ <span data-i18n="labelIntelligentArch">INTELLIGENT ARKITEKTUR</span>
  <span class="hidden sm:block text-sky-500">•</span>
- <span>INTELLIGENT AUTOMATION</span>
+ <span data-i18n="labelIntelligentAuto">INTELLIGENT AUTOMATION</span>
  </div>
  </div>
  
@@ -5279,7 +5279,7 @@
  <!-- RESUME BUTTON (Visas när historik finns) -->
  <button id="chat-resume-btn" onclick="window.nord.resumeChat()">
  <span class="resume-pulse"></span>
- <span>Aktiv session</span>
+ <span data-i18n="labelActiveSession">Aktiv session</span>
  <i class="ph-caret-up ml-1 text-xs opacity-70"></i>
  </button>
 
@@ -5314,7 +5314,7 @@
  <!-- Tog bort 'hidden sm:block' så texten syns på mobil -->
  <div class="text-left block">
  <!-- Rubrik "Ge din AI kontext" -->
- <h4 class="text-white font-bold text-sm leading-none group-hover:text-nord-sym-cyan transition-colors">Ge din AI kontext</h4> </div>
+ <h4 class="text-white font-bold text-sm leading-none group-hover:text-nord-sym-cyan transition-colors" data-i18n="contextHubTitle">Ge din AI kontext</h4> </div>
  </div>
 
  <!-- Middle: Infinite Logo Loop (Tightare) -->
@@ -5392,7 +5392,7 @@
  <div class="text-center mb-16 max-w-4xl mx-auto">
  <!-- Rubrik designad som en stor tagg -->
  <div class="inline-block">
- <h2 class="section-title text-3xl md:text-5xl font-bold text-white mb-6">
+ <h2 class="section-title text-3xl md:text-5xl font-bold text-white mb-6" data-i18n="homeDiagramTitle">
  Frigör er potential
  </h2>
  </div>
@@ -5401,24 +5401,24 @@
  <p class="text-lg text-sky-200 mt-2 leading-relaxed light-theme:text-gray-900 light-theme:font-medium">
  <!-- Fas 2.5 Copy - Jordnära, skräddarsydd mjukvara + länk -->
  <!-- Rensat bort "Vi" och "Våra" för att passa Solo Founder -->
- <span>Manual processes limit your growth. NordSym removes that limitation by developing agent-ready software - systems both humans and AI can use, 24/7.</span> 
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="text-nord-sym-cyan font-semibold hover:text-white transition-colors underline decoration-dotted underline-offset-4 ml-1 light-theme:text-nord-sym-blueprint-cyan light-theme:hover:text-nord-sym-blueprint-ink">Explore services →</a>
+ <span data-i18n="homeDiagramDesc">Manuella processer sätter ett tak för er tillväxt. NordSym bygger bort det genom att utveckla agentanpassad mjukvara, system som både människor och AI kan använda, dygnet runt.</span> 
+ <a href="#" onclick="window.nord.showPage('system'); return false;" class="text-nord-sym-cyan font-semibold hover:text-white transition-colors underline decoration-dotted underline-offset-4 ml-1 light-theme:text-nord-sym-blueprint-cyan light-theme:hover:text-nord-sym-blueprint-ink" data-i18n="homeDiagramLink">Utforska tjänster →</a>
  </p>
  </div>
  <div class="venn-diagram-container">
  <div class="venn-diagram-wrapper">
  <div class="venn-circle venn-circle-1">
  <!-- "Unika Flöden" - Mer konkret än Metodik -->
- <span class="venn-circle-text">Unika<br>Flöden</span>
+ <span class="venn-circle-text" data-i18n="vennFlows">Unika<br>Flöden</span>
  </div>
  <div class="venn-circle venn-circle-2">
  <!-- Soft hyphen (&shy;) för att tillåta brytning vid extrem platsbrist -->
- <span class="venn-circle-text">Agent-Redo<br>Mjukvara</span>
+ <span class="venn-circle-text" data-i18n="vennSoftware">Agent-Redo<br>Mjukvara</span>
  </div>
  <!-- Symbol för oändlighet + Sparade Timmar -->
  <div class="venn-overlap-text flex flex-col items-center justify-center" onclick="window.nord.showPage('system'); return false;">
  <i class="ph ph-infinity text-4xl mb-1 text-nord-sym-light-accent"></i>
- <span class="text-sm md:text-base leading-tight">Sparade<br>Timmar</span>
+ <span class="text-sm md:text-base leading-tight" data-i18n="vennCenter">Sparade<br>Timmar</span>
  </div>
  </div>
  </div>
@@ -5941,10 +5941,10 @@
    <div class="text-center mb-16">
     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.2); color: var(--nord-sym-cyan);">
      <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--nord-sym-cyan);"></span>
-     <span>Beprövad i praktiken</span>
+     <span data-i18n="testimonialsLabel">Beprövad i praktiken</span>
     </div>
-    <h2 class="text-3xl md:text-5xl tracking-tighter mb-4 text-white" style="font-family: 'Comfortaa', sans-serif;">Vad säger kunderna?</h2>
-    <p class="text-sm" style="opacity: 0.6; color: #94a3b8;">Svenska företag som byggt med NordSym</p>
+    <h2 class="text-3xl md:text-5xl tracking-tighter mb-4 text-white" style="font-family: 'Comfortaa', sans-serif;" data-i18n="testimonialsTitle">Vad säger kunderna?</h2>
+    <p class="text-sm" style="opacity: 0.6; color: #94a3b8;" data-i18n="testimonialsSubtitle">Svenska företag som byggt med NordSym</p>
    </div>
 
    <!-- Testimonials Carousel -->
@@ -5964,7 +5964,7 @@
       <div class="testimonial-slide">
        <div class="testimonial-card">
         <i class="ph-quotes testimonial-quote-icon" style="color: var(--nord-sym-cyan);"></i>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="testimonial1Quote">
          Due diligence som tog dagar tar nu minuter.
         </p>
         <div class="testimonial-author">
@@ -5972,8 +5972,8 @@
           MA
          </div>
          <div>
-          <p class="testimonial-name">Mohammed A.</p>
-          <p class="testimonial-role">Partner, CQT Invest</p>
+          <p class="testimonial-name" data-i18n="testimonial1Name">Mohammed A.</p>
+          <p class="testimonial-role" data-i18n="testimonial1Role">Partner, CQT Invest</p>
          </div>
         </div>
        </div>
@@ -5983,7 +5983,7 @@
       <div class="testimonial-slide">
        <div class="testimonial-card">
         <i class="ph-quotes testimonial-quote-icon" style="color: var(--nord-sym-purple);"></i>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="testimonial2Quote">
          Alla system pratar med varandra nu. Tog en vecka.
         </p>
         <div class="testimonial-author">
@@ -5991,8 +5991,8 @@
           EL
          </div>
          <div>
-          <p class="testimonial-name">Erik L.</p>
-          <p class="testimonial-role">VD, Konsultbolag</p>
+          <p class="testimonial-name" data-i18n="testimonial2Name">Erik L.</p>
+          <p class="testimonial-role" data-i18n="testimonial2Role">VD, Konsultbolag</p>
          </div>
         </div>
        </div>
@@ -6002,7 +6002,7 @@
       <div class="testimonial-slide">
        <div class="testimonial-card">
         <i class="ph-quotes testimonial-quote-icon" style="color: var(--nord-sym-orange);"></i>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="testimonial3Quote">
          Byggde exakt det vi bad om. Första gången det hänt.
         </p>
         <div class="testimonial-author">
@@ -6010,8 +6010,8 @@
           LS
          </div>
          <div>
-          <p class="testimonial-name">Linda S.</p>
-          <p class="testimonial-role">Produktchef, E-handel</p>
+          <p class="testimonial-name" data-i18n="testimonial3Name">Linda S.</p>
+          <p class="testimonial-role" data-i18n="testimonial3Role">Produktchef, E-handel</p>
          </div>
         </div>
        </div>
@@ -6021,7 +6021,7 @@
       <div class="testimonial-slide">
        <div class="testimonial-card">
         <i class="ph-quotes testimonial-quote-icon" style="color: var(--nord-sym-cyan);"></i>
-        <p class="testimonial-text">
+        <p class="testimonial-text" data-i18n="testimonial4Quote">
          Det är ett nöje att jobba med dig Symbot ⭐️
         </p>
         <div class="testimonial-author">
@@ -6029,8 +6029,8 @@
           PV
          </div>
          <div>
-          <p class="testimonial-name">Pontus V.</p>
-          <p class="testimonial-role">VD, Bluecollar</p>
+          <p class="testimonial-name" data-i18n="testimonial4Name">Pontus V.</p>
+          <p class="testimonial-role" data-i18n="testimonial4Role">VD, Bluecollar</p>
          </div>
         </div>
        </div>
@@ -6265,16 +6265,16 @@
  <!-- Knapparna (nu transparenta, ovanpå) -->
  <button id="gallery-switch-byggstenar" 
  class="gallery-switch-btn inactive relative z-10 text-sky-200 hover:text-white rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
- <span>STACK</span>
+ <span data-i18n="galleryTabStack">STACK</span>
  </button>
  <button id="gallery-switch-galleri" 
  class="gallery-switch-btn active relative z-10 text-nord-sym-deep-space-blue rounded-full px-6 py-2 text-lg md:text-xl uppercase tracking-wider transition-colors duration-300">
- <span>SYSTEM</span>
+ <span data-i18n="galleryTabSystem">SYSTEM</span>
  </button>
  </div>
  
  <!-- Copy som täcker både verktyg (analys/flöden) och system -->
- <p id="gallery-description-text" class="text-center text-sky-200 max-w-3xl mx-auto mt-8 mb-8">
+ <p id="gallery-description-text" class="text-center text-sky-200 max-w-3xl mx-auto mt-8 mb-8" data-i18n="gallerySystemDesc">
  Färdiga produkter och Micro-Apps lösningar. Från AEO-analys till automatiserade PRD-flöden. Specialiserad mjukvara som löser specifika problem direkt.
  </p>
  </div>
@@ -6291,7 +6291,7 @@
  <button id="galleryPrev" aria-label="Föregående byggsten" class="gallery-control-btn">
  <i class="ph-arrow-left-bold"></i>
  </button>
- <span id="gallery-context-text" class="text-base sm:text-lg text-sky-300 select-none">Utforska produkterna</span>
+ <span id="gallery-context-text" class="text-base sm:text-lg text-sky-300 select-none" data-i18n="galleryContextText">Utforska produkterna</span>
  <button id="galleryNext" aria-label="Nästa byggsten" class="gallery-control-btn">
  <i class="ph-arrow-right-bold"></i>
  </button>
@@ -6307,8 +6307,8 @@
          <i class="ph ph-robot"></i>
        </div>
        <div class="symbot-chat-header-text">
-         <h3 class="symbot-chat-title">Prata med Symbot</h3>
-         <p class="symbot-chat-intro">Berätta vad som tar tid i er verksamhet.</p>
+         <h3 class="symbot-chat-title" data-i18n="symbotChatTitle">Prata med Symbot</h3>
+         <p class="symbot-chat-intro" data-i18n="symbotChatIntro">Berätta vad som tar tid i er verksamhet.</p>
        </div>
      </div>
      
@@ -6335,7 +6335,7 @@
 
      <div id="symbot-chat-success" class="symbot-chat-success" style="display: none;">
        <i class="ph ph-check-circle"></i>
-       <p>Symbot svarar inom minuter. Gustav läser med.</p>
+       <p data-i18n="symbotChatSuccess">Symbot svarar inom minuter. Gustav läser med.</p>
      </div>
    </div>
  </div>
@@ -6412,7 +6412,7 @@
  <!-- HERO SECTION -->
  <div class="max-w-4xl mx-auto text-center mb-12">
  <!-- Designkoncept "Vit Krita" (White Chalk) - Matchar R&D-knappen -->
- <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">Micro-Apps Micro-Apps & Verktyg Tools</span> 
+ <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan" data-i18n="microAppsBadge">Micro-Apps & Verktyg</span> 
  <!-- FOUNDER BADGE (Uppdaterad till knapp + BALANSERAD) -->
  <!-- Ändringar: Mjukare border i dark mode, tydligare hover i light mode -->
  <!-- GITHUB PROFILE SECTION (MOVED TO TOP) -->
@@ -6429,12 +6429,12 @@
  </div>
  <!-- Renare copy för SaaS vs Tjänst + Gratis Analys CTA -->
  <div class="gh-bio">
- <p class="mb-3"><strong class="text-white">Micro-Apps</strong> är fokuserad mjukvara för specifika problem.</p>
- <p class="opacity-80 mb-2">
+ <p class="mb-3" data-i18n="microAppsDesc"><strong class="text-white">Micro-Apps</strong> är fokuserad mjukvara för specifika problem.</p>
+ <p class="opacity-80 mb-2" data-i18n="microAppsIntro">
  <strong>GenPRD</strong>, <strong>FlowVault</strong>, <strong>Hivr</strong> och <strong>Skeppa</strong> är våra Micro-Apps. Ni kan börja använda dem direkt, helt utan kostnad.
  </p>
- <p class="opacity-80">
- <strong>AEO & GEO</strong> is a free tool we created for analyzing your company website. Test your visibility in AI search directly via the button.
+ <p class="opacity-80" data-i18n="aeoIntro">
+ <strong>AEO & GEO</strong> är ett gratis verktyg vi tagit fram för analys av ditt företags hemsida. Testa din synlighet i AI-sök direkt via knappen.
  </p>
  </div> </div>
  <!-- Knappar på rad (flex-row) + AEO-knapp tillagd -->
@@ -6507,7 +6507,7 @@
  <div>
  <!-- NY PLACERING AV TAGG -->
  <div class="mb-2">
- <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1">Ritning</span>
+ <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1" data-i18n="cardLabelBlueprint">Ritning</span>
  </div>
  <div class="flex justify-between items-start mb-3">
  <!-- Använder GenPRD branding HTML -->
@@ -6522,13 +6522,13 @@
  </div>
  </div>
  <!-- Copy - GenPRD tar din idé... -->
- <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90">
+ <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90" data-i18n="showcaseGenPRDDesc">
  GenPRD tar din idé och genererar en komplett teknisk specifikation. Få databasscheman, user flows och arkitektur optimerad för att AI-agenter ska kunna bygga din produkt direkt.
  </p>
  </div>
  
  <div class="pt-4 border-t border-white/10 light-theme:border-gray-100 flex justify-end items-center mt-2"> <a href="https://genprd.se" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-nord-sym-cyan hover:text-white transition-colors flex items-center gap-1">
- <span>Open Tool</span> <i class="ph-arrow-right"></i>
+ <span data-i18n="openToolCta">Öppna Verktyg</span> <i class="ph-arrow-right"></i>
  </a>
  </div>
  </div>
@@ -6552,7 +6552,7 @@
  <div>
  <!-- NY PLACERING AV TAGG -->
  <div class="mb-2">
- <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1">Motor</span>
+ <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1" data-i18n="cardLabelEngine">Motor</span>
  </div>
  <div class="flex justify-between items-start mb-3">
  <h3 class="text-2xl font-bold text-white tracking-wide">FlowVault</h3>
@@ -6564,14 +6564,14 @@
  </div>
  </div>
  <!-- Pris-info i texten -->
- <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90">
+ <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90" data-i18n="showcaseFlowVaultDesc">
  Ett massivt bibliotek för alla scenarion. Från komplexa agent-svärmar till enkel CRM-synk. Här finns färdiga lösningar för varje tänkbar situation. (Fri tillgång för community-flöden).
  </p>
  </div>
  
  <div class="pt-4 border-t border-white/10 light-theme:border-gray-100 flex justify-end items-center mt-2"> <!-- "Öppna Live" -> "Öppna Valvet" -->
  <a href="https://flowvault.se" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-nord-sym-cyan hover:text-white transition-colors flex items-center gap-1">
- <span>Öppna Valvet</span> <i class="ph-arrow-right"></i>
+ <span data-i18n="showcaseFlowVaultCta">Öppna Valvet</span> <i class="ph-arrow-right"></i>
  </a>
  </div>
  </div>
@@ -6595,7 +6595,7 @@
  <div>
  <!-- NY PLACERING AV TAGG -->
  <div class="mb-2">
- <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1">Radar</span>
+ <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1" data-i18n="cardLabelRadar">Radar</span>
  </div>
  <div class="flex justify-between items-start mb-3">
  
@@ -6608,13 +6608,13 @@
  </div>
  </div>
  <!-- Pris-info i texten -->
- <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90">
+ <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90" data-i18n="showcaseAEODesc">
  Framtidssäkra er synlighet. En helhetsstrategi för Answer Engine Optimization (AEO), GEO och klassisk SEO. No-brainer strategi. (Paket från 1,999 kr/mån).
  </p>
  </div>
  
  <div class="pt-4 border-t border-white/10 light-theme:border-gray-100 flex justify-end items-center mt-2"> <a href="https://aisearch.nordsym.com/" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-nord-sym-cyan hover:text-white transition-colors flex items-center gap-1">
- <span>Analysera Nu</span> <i class="ph-arrow-right"></i>
+ <span data-i18n="analyzeNowCta">Analysera Nu</span> <i class="ph-arrow-right"></i>
  </a>
  </div>
  </div>
@@ -6640,7 +6640,7 @@
  <div>
  <!-- TAGG -->
  <div class="mb-2">
- <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1">Arena</span>
+ <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1" data-i18n="cardLabelArena">Arena</span>
  </div>
  <div class="flex justify-between items-start mb-3">
 
@@ -6652,13 +6652,13 @@
  <span class="tech-badge">Gamification</span>
  </div>
  </div>
- <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90">
+ <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90" data-i18n="showcaseSkeppaDesc">
  Bygg, skeppa, vinn. Månatliga utmaningar för AI-utvecklare. Tävla mot andra, få feedback från communityn och bygg din portfolio. Nya teman varje månad.
  </p>
  </div>
 
  <div class="pt-4 border-t border-white/10 light-theme:border-gray-100 flex justify-end items-center mt-2"> <a href="https://skeppa.nu" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-nord-sym-cyan hover:text-white transition-colors flex items-center gap-1">
- <span>Skeppa NU</span> <i class="ph-arrow-right"></i>
+ <span data-i18n="skeppaCta">Skeppa NU</span> <i class="ph-arrow-right"></i>
  </a>
  </div>
  </div>
@@ -6680,7 +6680,7 @@
  <div>
  <!-- TAGG -->
  <div class="mb-2">
- <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1">Marknadsplats</span>
+ <span class="text-[10px] font-mono uppercase tracking-widest text-sky-400 border-b border-sky-500/30 pb-1" data-i18n="cardLabelMarketplace">Marknadsplats</span>
  </div>
  <div class="flex justify-between items-start mb-3">
 
@@ -6692,14 +6692,14 @@
  <span class="tech-badge">AI Workers</span>
  </div>
  </div>
- <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90">
+ <p class="text-sm text-sky-100 leading-relaxed line-clamp-3 opacity-90" data-i18n="showcaseHivrDesc">
  Marknadsplats för AI-agenter. Hyr färdiga "worker bees" eller lista dina egna agenter och tjäna pengar. Från research till automation — hitta rätt agent för jobbet.
  </p>
  </div>
 
  <div class="pt-4 border-t border-white/10 light-theme:border-gray-100 flex justify-end items-center mt-2">
  <a href="https://hivr.online" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-nord-sym-cyan hover:text-white transition-colors flex items-center gap-1">
- <span>Utforska Hivr</span> <i class="ph-arrow-right"></i>
+ <span data-i18n="hivrCta">Utforska Hivr</span> <i class="ph-arrow-right"></i>
  </a>
  </div>
  </div>
@@ -6723,10 +6723,10 @@
  <div class="section-content-wrapper flex-grow">
  <div class="text-center mb-20">
  <!-- Designkoncept "Vit Krita" & Textändring till Tjänster -->
- <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan"data-i18n="labelServices">SERVICES</span>
+ <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan"data-i18n="labelServices">TJÄNSTER</span>
  
  <!-- Nertonad huvudrubrik (Mindre storlek, tunnare vikt) -->
- <h3 class="text-2xl md:text-3xl font-medium text-white mt-4 light-theme:text-nord-sym-blueprint-ink max-w-3xl mx-auto leading-relaxed">Intelligent mjukvara anpassad efter er verksamhet</h3>
+ <h3 class="text-2xl md:text-3xl font-medium text-white mt-4 light-theme:text-nord-sym-blueprint-ink max-w-3xl mx-auto leading-relaxed" data-i18n="servicesHeadline">Intelligent mjukvara anpassad efter er verksamhet</h3>
  </div>
  
  <!-- Pricing Grid - ÅTERSTÄLLD: 3 Kolumner -->
@@ -6736,12 +6736,12 @@
  <div class="pricing-card card-base">
  <div class="pricing-card-header text-center mb-4">
  
- <h3>MINIMUM LOVABLE PRODUCT</h3>
+ <h3 data-i18n="pricingMLPTitle">MINIMUM LOVABLE PRODUCT</h3>
  </div>
  <div class="price-display text-center">75k <span class="price-period">SEK</span></div>
  
  <!-- PITCH: Bredare scope - Vi bygger det ni behöver -->
- <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2">
+ <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2" data-i18n="pricingMLPDesc">
  Slipp standardlösningar som inte passar. Skräddarsydda verktyg som löser era specifika problem exakt så som ni vill ha det. (<a href="https://nordsym.github.io/NordSym-Scheduler/" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">se exempel</a>)
  </p>
 
@@ -6749,17 +6749,17 @@
  <div class="tech-signature-container justify-center mb-8 gap-6">
  <div class="tech-signature-item">
  <i class="ph ph-code"></i>
- <span>Anpassad kod</span>
+ <span data-i18n="pricingMLPFeature1">Anpassad kod</span>
  </div>
  <div class="tech-signature-item">
  <i class="ph ph-target"></i>
- <span>Exakt Lösning</span>
+ <span data-i18n="pricingMLPFeature2">Exakt Lösning</span>
  </div>
  </div>
 
  <div class="mt-auto flex flex-col items-center gap-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Starta Pilot</a>
- <span class="text-[10px] text-sky-300/50 italic text-center">Exakt arkitektur definieras tillsammans med kund</span>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full" data-i18n="pricingMLPBtn">Starta Pilot</a>
+ <span class="text-[10px] text-sky-300/50 italic text-center" data-i18n="pricingMLPNote">Exakt arkitektur definieras tillsammans med kund</span>
  </div>
  </div>
 
@@ -6767,12 +6767,12 @@
  <div class="pricing-card card-base ignite-package">
  <div class="pricing-card-header text-center mb-4">
  
- <h3>OPERATIVSYSTEM</h3>
+ <h3 data-i18n="pricingOSTitle">OPERATIVSYSTEM</h3>
  </div>
  <div class="price-display text-center">250k <span class="price-period">SEK</span></div>
  
  <!-- PITCH: Fokus på "Hjärnan" och en egen plattform -->
- <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2">
+ <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2" data-i18n="pricingOSDesc">
  En skräddarsydd mjukvaruplattform som blir bolagets hjärna. Den samlar er data, kopplar ihop systemen och låter AI agera autonomt – men ger er full kontroll där mänskligt omdöme krävs.
  </p>
 
@@ -6780,28 +6780,28 @@
  <div class="tech-signature-container justify-center mb-6 gap-6">
  <div class="tech-signature-item">
  <i class="ph ph-circles-three-plus"></i>
- <span>Data-Hub</span>
+ <span data-i18n="pricingOSFeature1">Data-Hub</span>
  </div>
  <div class="tech-signature-item">
  <i class="ph ph-brain"></i>
- <span>AI-Beslut</span>
+ <span data-i18n="pricingOSFeature2">AI-Beslut</span>
  </div>
  <div class="tech-signature-item">
  <i class="ph ph-sliders"></i>
- <span>Kontroll</span>
+ <span data-i18n="pricingOSFeature3">Kontroll</span>
  </div>
  </div>
  
  <!-- GenPRD länk kvar -->
  <div class="mb-6 flex flex-col gap-1.5 text-center">
- <p class="text-xs text-sky-300/70">
+ <p class="text-xs text-sky-300/70" data-i18n="pricingOSLink">
  Behöver ni en ritning? <a href="https://genprd.se" target="_blank" rel="noopener noreferrer" class="text-nord-sym-cyan hover:text-white transition-colors underline decoration-dotted underline-offset-4">Testa GenPRD</a>
  </p>
  </div>
 
  <div class="mt-auto flex flex-col items-center gap-4">
  
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full">Diskutera Behov</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full" data-i18n="pricingOSBtn">Diskutera Behov</a>
  
  <span class="text-[10px] text-sky-300/50 italic text-center">Exakt arkitektur definieras tillsammans med kund</span>
  </div>
@@ -6811,12 +6811,12 @@
  <div class="pricing-card card-base">
  <div class="pricing-card-header text-center mb-4">
  
- <h3>STÖRRE PROJEKT</h3>
+ <h3 data-i18n="pricingEnterpriseTitle">STÖRRE PROJEKT</h3>
  </div>
  <div class="price-display text-center">500k+ <span class="price-period">SEK</span></div>
  
  <!-- PITCH: Fokus på scope och diskussion -->
- <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2">
+ <p class="text-center text-sky-200 text-sm leading-relaxed mb-8 px-2" data-i18n="pricingEnterpriseDesc">
  För komplexa behov där standardlösningar inte räcker. Vi går in som teknisk partner och definierar leverans och omfattning helt baserat på ert unika scope och era affärsmål.
  </p>
 
@@ -6824,20 +6824,20 @@
  <div class="tech-signature-container justify-center mb-8 gap-6">
  <div class="tech-signature-item">
  <i class="ph ph-strategy"></i>
- <span>Strategi</span>
+ <span data-i18n="pricingEnterpriseFeature1">Strategi</span>
  </div>
  <div class="tech-signature-item">
  <i class="ph ph-compass-tool"></i>
- <span>Arkitektur</span>
+ <span data-i18n="pricingEnterpriseFeature2">Arkitektur</span>
  </div>
  <div class="tech-signature-item">
  <i class="ph ph-share-network"></i>
- <span>AI-Orkestrering</span>
+ <span data-i18n="pricingEnterpriseFeature3">AI-Orkestrering</span>
  </div>
  </div>
 
  <div class="mt-auto flex flex-col items-center gap-4">
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full">Diskutera Behov</a>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-secondary-on-dark w-full" data-i18n="pricingEnterpriseBtn">Diskutera Behov</a>
  
  <span class="text-[10px] text-sky-300/50 italic text-center">Exakt arkitektur definieras tillsammans med kund</span>
  </div>
@@ -6845,9 +6845,9 @@
  </div> 
  <!-- Support Text -->
  <div class="text-center mt-16 max-w-3xl mx-auto">
- <p class="text-lg text-sky-200"><strong>Drift & Förvaltning:</strong> 15k SEK/mån.</p>
+ <p class="text-lg text-sky-200" data-i18n="supportTitle"><strong>Drift & Förvaltning:</strong> 15k SEK/mån.</p>
  <!-- Partnerskaps-fokus -->
- <p class="text-md text-sky-300 mt-2">Det är här partnerskapet börjar. NordSym garanterar driften, utvecklar nya features och växer med er verksamhet.</p>
+ <p class="text-md text-sky-300 mt-2" data-i18n="supportDesc">Det är här partnerskapet börjar. NordSym garanterar driften, utvecklar nya features och växer med er verksamhet.</p>
  </div>
 
  <!-- NY PLACERING: FOUNDER BADGE (Ovanför FAQ) -->
@@ -6866,44 +6866,44 @@
  <!-- FAQ Section -->
  <!-- Lade till ID för att kunna länka från footern -->
  <div id="faq-section" class="max-w-4xl mx-auto mt-8">
- <h3 class="text-3xl font-bold text-white text-center mb-10 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Vanliga frågor</h3>
+ <h3 class="text-3xl font-bold text-white text-center mb-10 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;" data-i18n="faqTitle">Vanliga frågor</h3>
  <div class="space-y-4">
  <details class="faq-item group">
  <summary class="faq-question">
  <!-- Rakt på sak - Vad får man för pengarna? -->
- <span>Vad får vi för investeringen?</span>
+ <span data-i18n="faqQ1">Vad får vi för investeringen?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA1">
  <!-- Svarar på både VAD och NÄR -->
  Konkreta resultat i produktion, ofta inom 4-8 veckor. Vi fokuserar på snabb 'time-to-value' så att ni ser mätbar avkastning direkt, istället för långdragna förstudier.
  </div>
  </details>
  <details class="faq-item group">
  <summary class="faq-question">
- <span>Äger vi koden?</span>
+ <span data-i18n="faqQ2">Äger vi koden?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA2">
  <!-- Nyanserat svar om äganderätt -->
  Det beror på uppdraget. Skräddarsydd affärslogik äger ni oftast, medan generella plattformskomponenter licensieras. Vi anpassar äganderätten helt efter era önskemål.
  </div>
  </details>
  <details class="faq-item group">
  <summary class="faq-question">
- <span>Kan ni integrera med våra gamla system?</span>
+ <span data-i18n="faqQ3">Kan ni integrera med våra gamla system?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA3">
  Absolut. Bryggor byggs mellan moderna AI-modeller och era befintliga affärssystem (ERP, CRM), oavsett ålder.
  </div>
  </details>
  <details class="faq-item group">
  <summary class="faq-question">
- <span>Vad händer efter leverans?</span>
+ <span data-i18n="faqQ4">Vad händer efter leverans?</span>
  <i class="ph-caret-down faq-icon"></i>
  </summary>
- <div class="faq-answer">
+ <div class="faq-answer" data-i18n="faqA4">
  <!-- Bättre formulering om uppdateringar -->
  NordSym erbjuder avtal för drift och förvaltning. Systemet övervakas proaktivt, säkerhetsuppdateringar hanteras och era AI-modeller hålls alltid uppdaterade.
  </div>
@@ -6918,9 +6918,9 @@
  <div id="ritbordet-lobby" class="section-content-wrapper">
  <div class="text-center mb-16">
  <!-- Designkoncept "Vit Krita" -->
- <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan">LEVANDE ARKITEKTUR</span>
- <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Agenter behöver rum att tänka</h2>
- <p class="text-sky-100/80 max-w-3xl mx-auto text-lg leading-relaxed light-theme:text-nord-sym-blueprint-text-secondary">
+ <span class="inline-block px-4 py-1.5 mb-4 text-xs md:text-sm font-bold tracking-widest uppercase rounded-full border-2 border-white text-white bg-transparent shadow-[0_0_15px_rgba(255,255,255,0.1)] light-theme:bg-sky-100 light-theme:border-sky-300 light-theme:text-nord-sym-blueprint-cyan" data-i18n="rndBadge">LEVANDE ARKITEKTUR</span>
+ <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;" data-i18n="rndHeadline">Agenter behöver rum att tänka</h2>
+ <p class="text-sky-100/80 max-w-3xl mx-auto text-lg leading-relaxed light-theme:text-nord-sym-blueprint-text-secondary" data-i18n="rndSubtitle">
         Geometrin reagerar i realtid av arbetande AI-agenter.
  </p>
  </div>
@@ -6933,8 +6933,8 @@
  <!-- Lade till onmouseenter för geometriner -->
  <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-default" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
  <i class="ph-cube text-4xl mb-4 text-nord-sym-cyan"></i>
- <h4 class="text-xl font-bold mb-2">Agentanpassad mjukvara</h4>
- <p>NordSym bygger system där människor och AI arbetar sida vid sida. Den här hemsidan är byggd på samma sätt.</p>
+ <h4 class="text-xl font-bold mb-2" data-i18n="rndCard1Title">Agentanpassad mjukvara</h4>
+ <p data-i18n="rndCard1Desc">NordSym bygger system där människor och AI arbetar sida vid sida. Den här hemsidan är byggd på samma sätt.</p>
  </div>
 
  <!-- Mitt: Verktyget (Prova själv) -->
@@ -6943,16 +6943,16 @@
  <div class="w-20 h-20 bg-sky-900/50 rounded-full flex items-center justify-center mx-auto mb-6 border border-sky-400/30 group-hover:scale-110 transition-transform">
  <i class="ph ph-cube text-4xl text-nord-sym-cyan"></i>
  </div>
- <h4 class="text-2xl font-bold mb-2 text-white">Live demonstration</h4>
- <button class="mt-6 btn-base btn-cta-revised px-6">Starta</button>
+ <h4 class="text-2xl font-bold mb-2 text-white" data-i18n="rndCard2Title">Live demonstration</h4>
+ <button class="mt-6 btn-base btn-cta-revised px-6" data-i18n="rndCard2Btn">Starta</button>
  </div>
 
  <!-- Kort 3: Relationslogik -->
  <!-- Länkar tillbaka till modal (väntelista) istället för X + onmouseenter -->
  <div class="ritbordet-card card-base group hover:-translate-y-2 transition-all duration-300 cursor-default" onclick="return false;" onmouseenter="if(window.UnifiedGeometryManager) window.UnifiedGeometryManager.nudgeGeometry()">
  <i class="ph-eye text-4xl mb-4"></i>
- <h4 class="text-xl font-bold mb-2">Transparens som princip</h4>
- <p>Vi bygger system där du ser vad AI:n gör, inte bara vad den levererar.</p>
+ <h4 class="text-xl font-bold mb-2" data-i18n="rndCard3Title">Transparens som princip</h4>
+ <p data-i18n="rndCard3Desc">Vi bygger system där du ser vad AI:n gör, inte bara vad den levererar.</p>
  </div>
 
  </div>
@@ -6963,9 +6963,9 @@
  <section id="boka-samtal-skraddarsydd" class="space-background-section page-content-padding" style="display: none;">
  <div class="section-content-wrapper text-center">
  
- <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Book Strategy Call</h2>
+ <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8" data-i18n="contactTitle">Boka Strategisamtal</h2>
  
- <p class="text-lg text-content-dark-bg max-w-xl mx-auto mb-10">Välj en tid som passar dig. 30 minuter för att diskutera era behov.</p>
+ <p class="text-lg text-content-dark-bg max-w-xl mx-auto mb-10" data-i18n="contactSubtitle">Välj en tid som passar dig. 30 minuter för att diskutera era behov.</p>
  
  <!-- MICRO SCHEDULER -->
  <div id="microScheduler" class="form-container p-6 md:p-8 mt-10 max-w-md mx-auto">
@@ -6996,20 +6996,20 @@
  <div id="schedulerForm" class="hidden">
  <div class="flex items-center justify-between mb-6">
  <span id="schedulerSummary" class="text-sm text-sky-300"></span>
- <button onclick="window.microScheduler.backToCalendar()" class="text-xs text-sky-400 hover:text-white"><i class="ph-arrow-left"></i> <span>Tillbaka</span></button>
+ <button onclick="window.microScheduler.backToCalendar()" class="text-xs text-sky-400 hover:text-white"><i class="ph-arrow-left"></i> <span data-i18n="btnBack">Tillbaka</span></button>
  </div>
  <form id="schedulerBookingForm" class="space-y-4">
  <div><input type="text" name="name" required placeholder="Ditt namn" data-i18n-placeholder="placeholderYourName" class="form-input text-center"></div>
  <div><input type="email" name="email" required placeholder="E-post" data-i18n-placeholder="placeholderEmail" class="form-input text-center"></div>
- <button type="submit" class="btn-base btn-cta-revised w-full mt-4">Boka möte</button>
+ <button type="submit" class="btn-base btn-cta-revised w-full mt-4" data-i18n="btnBookMeeting">Boka möte</button>
  </form>
  </div>
  
  <!-- Success State -->
  <div id="schedulerSuccess" class="hidden text-center py-8">
  <i class="ph-check-circle text-5xl text-nord-sym-cyan mb-4"></i>
- <h3 class="text-xl font-bold text-white mb-2">Bokning mottagen!</h3>
- <p class="text-sky-300 text-sm">Kalenderinbjudan skickas till din e-post.</p>
+ <h3 class="text-xl font-bold text-white mb-2" data-i18n="schedulerSuccessTitle">Bokning mottagen!</h3>
+ <p class="text-sky-300 text-sm" data-i18n="schedulerSuccessText">Kalenderinbjudan skickas till din e-post.</p>
  </div>
  
  </div>
@@ -7059,8 +7059,8 @@
  <i class="ph-x"></i>
  </button>
  <i id="modal-waitlist-icon" class="ph-rocket-launch text-4xl text-nord-sym-cyan mb-4"></i>
- <h3 id="modal-waitlist-title" class="text-2xl font-semibold text-white mb-2">Demonstration under utveckling</h3>
- <p id="modal-waitlist-desc" class="text-sky-300 mb-4">Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.</p>
+ <h3 id="modal-waitlist-title" class="text-2xl font-semibold text-white mb-2" data-i18n="modalWaitlistTitle">Demonstration under utveckling</h3>
+ <p id="modal-waitlist-desc" class="text-sky-300 mb-4" data-i18n="modalWaitlistDesc">Vi håller på att färdigställa den interaktiva demon. Skriv upp dig så meddelar vi när den är redo.</p>
  
  <!-- DYNAMISK LÄNK (Tjuvkika) -->
  <a id="modal-waitlist-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-block text-nord-sym-cyan hover:text-white transition-colors text-sm mb-6 font-medium underline decoration-dotted underline-offset-4 hidden">
@@ -7072,13 +7072,13 @@
  <input type="hidden" id="modal-waitlist-subject" name="_subject" value="Ny anmälan: Väntelista">
  <div class="space-y-4">
  <div>
- <label for="waitlist-email" class="form-label sr-only">E-post</label>
+ <label for="waitlist-email" class="form-label sr-only" data-i18n="labelEmail">E-post</label>
  <input type="email" name="email" id="waitlist-email" required class="form-input text-center" placeholder="Din e-postadress" data-i18n-placeholder="placeholderYourEmail">
  </div>
- <button type="submit" class="btn-base btn-cta-revised w-full">Bevaka lansering</button>
+ <button type="submit" class="btn-base btn-cta-revised w-full" data-i18n="modalWaitlistBtn">Bevaka lansering</button>
  </div>
  <div class="form-success-container hidden mt-4">
- <p class="text-nord-sym-cyan"><i class="ph-check-circle"></i> <span>Du är uppskriven!</span></p>
+ <p class="text-nord-sym-cyan"><i class="ph-check-circle"></i> <span data-i18n="waitlistSuccessText">Du är uppskriven!</span></p>
  </div>
  </form>
  </div>
@@ -7101,13 +7101,13 @@
  <p class="text-nord-sym-cyan font-mono text-xs uppercase tracking-widest mb-6 light-theme:text-sky-600"data-i18n="founderTitle">Grundare</p>
  
  <!-- Om mig - Grundare -->
- <p class="text-sky-200 leading-relaxed mb-4 light-theme:text-gray-600 text-sm md:text-base">
+ <p class="text-sky-200 leading-relaxed mb-4 light-theme:text-gray-600 text-sm md:text-base" data-i18n="founderBio1">
  Jag hjälper otekniska grundare bygga AI micro-appar som automatiserar deras verksamhet.
  </p>
  
  <!-- Direktlänk till Scheduler -->
  <a href="#" onclick="window.nord.closeFounderModal(); window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-cta-revised w-full mb-6 flex items-center justify-center gap-2">
- <span>Book Strategy Call</span>
+ <span data-i18n="btnBookCall">Boka Strategisamtal</span>
  <i class="ph-calendar-check text-lg"></i>
  </a>
  
@@ -7147,23 +7147,23 @@
  <img src="https://raw.githubusercontent.com/GusHem/Logga-utan-text/refs/heads/main/Final%20logo%20no%20text.svg" alt="NordSym Logotyp" class="h-16" loading="lazy" decoding="async">
  </a>
  
- <p class="text-sm font-bold text-white mb-1">Redo att skala upp?</p>
+ <p class="text-sm font-bold text-white mb-1" data-i18n="footerReadyToScale">Redo att skala upp?</p>
  <!-- Skarpare copy. Från "AI-First" till konkret infrastruktur/tillväxt. -->
- <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);">NordSym bygger infrastrukturen för skalbar, agent-driven tillväxt.</p>
- <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6">Book Strategy Call</a>
+ <p class="text-xs text-sky-200 mb-4" style="color: rgba(255,255,255,0.7);" data-i18n="footerTagline">NordSym bygger infrastrukturen för skalbar, agent-driven tillväxt.</p>
+ <a href="#" onclick="window.nord.showPage('boka-samtal-skraddarsydd'); return false;" class="btn-base btn-service-cta text-xs px-6 py-2 mb-6" data-i18n="btnBookCall">Boka Strategisamtal</a>
 
  </div>
  <div class="text-center md:text-left">
- <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;">Snabblänkar</p>
+ <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;" data-i18n="footerQuickLinks">Snabblänkar</p>
  <div class="footer-quicklinks">
- <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link">Micro-Apps</a>
- <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link">Services</a>
- <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link">R&D</a>
- <a href="#" onclick="window.nord.showPage('system'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link">Vanliga frågor</a>
+ <a href="#" onclick="window.nord.showPage('om-oss'); return false;" class="footer-link" data-i18n="navMicroApps">Micro-Apps</a>
+ <a href="#" onclick="window.nord.showPage('system'); return false;" class="footer-link" data-i18n="navServices">Tjänster</a>
+ <a href="#" onclick="window.nord.showPage('ritbordet'); return false;" class="footer-link" data-i18n="btnRnD">R&D</a>
+ <a href="#" onclick="window.nord.showPage('system'); setTimeout(() => window.nord.smoothScrollTo('#faq-section'), 600); return false;" class="footer-link" data-i18n="faqTitle">Vanliga frågor</a>
  </div>
  </div>
  <div class="text-center md:text-left">
- <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;">Produkter</p>
+ <p class="font-semibold text-nord-sym-text-light mb-2" style="color: #ffffff;" data-i18n="footerProducts">Produkter</p>
  <div class="footer-quicklinks">
  <a href="https://hivr.online" target="_blank" rel="noopener noreferrer" class="footer-link">🐝 Hivr</a>
  <a href="https://apiclaw.nordsym.com" target="_blank" rel="noopener noreferrer" class="footer-link">🦞 APIClaw</a>
@@ -7173,7 +7173,7 @@
  </div>
  <div class="md:col-span-1 text-center md:text-left">
  
- <p class="font-semibold text-nord-sym-text-light mb-4" style="color: #ffffff;">Följ NordSym</p>
+ <p class="font-semibold text-nord-sym-text-light mb-4" style="color: #ffffff;" data-i18n="footerFollowUs">Följ NordSym</p>
 
  <div class="flex gap-5 justify-center md:justify-start items-center">
  <a href="https://www.linkedin.com/company/nordsym-ab/" target="_blank" rel="noopener noreferrer" class="footer-link group" aria-label="LinkedIn">
@@ -7205,8 +7205,8 @@
  </div>
  <div class="mt-8 border-t border-sky-700/50 pt-6 text-center text-xs text-content-dark-bg space-x-4" style="border-color: rgba(255,255,255,0.15);">
  <span style="color: rgba(255,255,255,0.5);">© <span id="currentYear"></span> NordSym.</span>
- <a href="#privacy-policy-en" onclick="window.nord.showPage('privacy-policy-en'); return false;" class="footer-link hover:underline ml-4">Integritetspolicy</a>
- <a href="#terms-of-service-en" onclick="window.nord.showPage('terms-of-service-en'); return false;" class="footer-link hover:underline">Användarvillkor</a>
+ <a href="#privacy-policy-en" onclick="window.nord.showPage('privacy-policy-en'); return false;" class="footer-link hover:underline ml-4" data-i18n="footerPrivacy">Integritetspolicy</a>
+ <a href="#terms-of-service-en" onclick="window.nord.showPage('terms-of-service-en'); return false;" class="footer-link hover:underline" data-i18n="footerTerms">Användarvillkor</a>
  </div>
  </div>
  </footer>
@@ -7218,12 +7218,12 @@
  <div class="flex flex-col">
  <div class="flex items-center gap-3 mb-3">
  <i class="ph-cookie text-2xl text-nord-sym-cyan"></i>
- <span class="font-bold text-white text-sm light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;">Digital Integritet</span>
+ <span class="font-bold text-white text-sm light-theme:text-nord-sym-blueprint-ink" style="font-family: 'Comfortaa', sans-serif;" data-i18n="cookieTitle">Digital Integritet</span>
  </div>
- <p>
+ <p data-i18n="cookieText">
  Vi använder cookies för att optimera systemets prestanda. Genom att fortsätta godkänner du vår <a href="#" onclick="window.nord.showPage('privacy-policy-en'); return false;">Integritetspolicy</a>.
  </p>
- <button id="cookie-accept-btn" class="btn-base btn-cta-revised w-full py-2 text-sm">
+ <button id="cookie-accept-btn" class="btn-base btn-cta-revised w-full py-2 text-sm" data-i18n="cookieAccept">
  Godkänn
  </button>
  </div>
@@ -7291,7 +7291,7 @@
  <div class="ghost-hint-sub">Dra för att Rotera</div>
  <div class="ghost-hint-agent">
  <span class="agent-pulse"></span>
- <span>Geometrin reagerar på agentaktivitet</span>
+ <span data-i18n="workshopAgentHint">Geometrin reagerar på agentaktivitet</span>
  </div>
  </div>
  <button id="mobile-enter-workshop-btn" onclick="window.UnifiedGeometryManager.enterBuilderMode()">
