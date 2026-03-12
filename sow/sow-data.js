@@ -19,7 +19,7 @@ window.NORDSYM_SOW_DATA = {
         "• Swarm Oversight & Real-time Optimization",
         "• Infrastructure monitoring and performance optimization"
       ]},
-      { title: "4. Services Provided", items: [
+      { title: "4. Selected Service Scope", items: [
         { label: "APIClaw Execution Infrastructure", value: "Enterprise-grade agent orchestration and deployment infrastructure" },
         { label: "Managed Swarm Orchestration", value: "Handled-specific agents for customer onboarding, support, and engagement" },
         { label: "Headless Telegram Execution Layer", value: "Zero-UI backend agent communication and task distribution" },
@@ -70,7 +70,7 @@ window.NORDSYM_SOW_DATA = {
         "• Swarm Oversight & Real-time Optimization",
         "• Revenue-sharing framework for infrastructure resale"
       ]},
-      { title: "4. Services Provided", items: [
+      { title: "4. Selected Service Scope", items: [
         { label: "APIClaw Execution Infrastructure", value: "Enterprise-grade orchestration with Nakama white-label branding" },
         { label: "Managed Swarm Orchestration", value: "Multi-tenant agent deployment for Nakama end customers" },
         { label: "Headless Telegram Execution Layer", value: "Zero-UI backend agent communication under Nakama brand" },
@@ -110,7 +110,7 @@ window.NORDSYM_SOW_DATA = {
         "• Multi-channel engagement (email, SMS, WhatsApp)",
         "• Customer support and booking automation"
       ]},
-      { title: "4. Services Provided", items: [
+      { title: "4. Selected Service Scope", items: [
         { label: "Business Platform Access", value: "Full access to agent marketplace and execution infrastructure" },
         { label: "Marketing Agents", value: "Custom agents for email campaigns, outreach, and customer engagement" },
         { label: "Booking & Support Automation", value: "AI agents handling inquiries, booking management, and coordination" },
@@ -150,7 +150,7 @@ window.NORDSYM_SOW_DATA = {
         "• AI-powered client communication and project management",
         "• Multi-freelancer orchestration"
       ]},
-      { title: "4. Services Provided", items: [
+      { title: "4. Selected Service Scope", items: [
         { label: "Business Platform Access", value: "Full access to agent marketplace and execution infrastructure" },
         { label: "Automation Agents", value: "Custom agents for job scanning, proposal generation, and communication" },
         { label: "Workflow Integration", value: "Agent orchestration for freelance workflow management" },
