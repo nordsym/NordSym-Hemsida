@@ -205,6 +205,18 @@
     btn.disabled = true;
     msg.className = '';
     msg.textContent = '';
+    const successUrl = '/sow/success?customerId=' + encodeURIComponent(customerId) +
+      '&signerName=' + encodeURIComponent(nameInput.value.trim()) +
+      '&demo=' + (demoMode ? '1' : '0');
+
+    if (demoMode) {
+      msg.className = 'sow-msg ok';
+      msg.textContent = 'Demo mode: simulated signing complete.';
+      setTimeout(function () {
+        window.location.href = successUrl;
+      }, 400);
+      return;
+    }
 
     fetch('/api/sow/sign', {
       method: 'POST',
@@ -221,9 +233,6 @@
         if (!r.ok) throw new Error(payload.error || 'Signing failed');
         msg.className = 'sow-msg ok';
         msg.textContent = 'Signed successfully. Thank you.';
-        const successUrl = '/sow/success?customerId=' + encodeURIComponent(customerId) +
-          '&signerName=' + encodeURIComponent(nameInput.value.trim()) +
-          '&demo=' + (demoMode ? '1' : '0');
         if (demoMode) {
           setTimeout(function () {
             window.location.href = successUrl;

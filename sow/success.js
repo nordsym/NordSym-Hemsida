@@ -164,6 +164,10 @@
       if (!date || !time) return alert('Select date and time.');
 
       const status = document.getElementById('status');
+      if (demo) {
+        status.innerHTML = '<span class=\"sow-msg ok\">Demo mode: simulated Google Meet booking + email confirmation complete.</span>';
+        return;
+      }
       status.textContent = 'Booking...';
       try {
         const response = await fetch('/api/sow/book', {
