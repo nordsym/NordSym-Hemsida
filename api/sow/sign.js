@@ -196,7 +196,7 @@ function generateEmailBody(sow, signedDate) {
         </tr>
         <tr>
           <td style="padding: 12px 0; color: #737373; font-size: 14px;">Document</td>
-          <td style="padding: 12px 0; font-weight: 600; text-align: right;">Attached as HTML</td>
+          <td style="padding: 12px 0; font-weight: 600; text-align: right;">Signed document (see below)</td>
         </tr>
       </table>
     </div>
@@ -209,15 +209,15 @@ function generateEmailBody(sow, signedDate) {
 </html>`;
 }
 
-async function sendEmailWithAttachment(to, subject, sow, signedDate, attachmentHtml, filename) {
+async function sendEmailWithAttachment(to, subject, sow, signedDate, sowHtml, filename) {
   try {
-    const encoder = new TextEncoder();
-    const uint8Array = encoder.encode(attachmentHtml);
-    let binary = '';
-    uint8Array.forEach(byte => binary += String.fromCharCode(byte));
-    const base64Data = btoa(binary);
-
-    const emailBody = generateEmailBody(sow, signedDate);
+    // Send the full signed SoW document as the email body (renders properly in all clients)
+    // Prepend a small confirmation banner above the SoW document
+    const confirmationBanner = `<div style="background:linear-gradient(135deg,#00D4FF 0%,#9370DB 100%);padding:20px 32px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
+      <div style="font-size:28px;font-weight:bold;color:white;">NordSym</div>
+      <p style="margin:8px 0 0;color:rgba(255,255,255,0.9);font-size:14px;">✓ Scope of Work — Signed ${signedDate}</p>
+    </div>`;
+    const fullBody = sowHtml.replace('<body', '<body').replace(/(<body[^>]*>)/, `$1${confirmationBanner}`);
 
     const response = await fetch(N8N_WEBHOOK, {
       method: "POST",
@@ -226,11 +226,7 @@ async function sendEmailWithAttachment(to, subject, sow, signedDate, attachmentH
         action: "send",
         to,
         subject,
-        message: emailBody,
-        attachments: [{
-          filename,
-          data: base64Data,
-        }],
+        message: fullBody,
       }),
     });
 
