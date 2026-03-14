@@ -77,96 +77,107 @@ const SOW_FALLBACK_DATA = {
 };
 
 function generateSowHtml(sow, signatureDataUrl, signedDate) {
-  const sections = sow.sections.map(section => {
-    let content = `<h2 style="color: #00D4FF; margin-top: 30px;">${section.title}</h2>`;
-    
+  // Render sections — same pattern as book.js welcome email
+  const sectionsHtml = (sow.sections || []).map(section => {
+    let rows = '';
     if (section.content) {
-      content += section.content.map(item => `<p>${item}</p>`).join('\n');
+      const text = section.content.filter(Boolean).join('<br>');
+      rows = `<tr><td style="padding:12px 16px;">
+        <p style="margin:0;color:#475569;font-size:13px;line-height:1.7;">${text}</p>
+      </td></tr>`;
     }
-    
     if (section.items) {
-      content += '<ul style="list-style: none; padding-left: 0;">';
-      section.items.forEach(item => {
-        content += `<li style="margin-bottom: 12px;"><strong>${item.label}:</strong> ${item.value}</li>`;
-      });
-      content += '</ul>';
+      rows = section.items.map(it => `<tr>
+        <td style="padding:10px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;width:40%;">${it.label}</td>
+        <td style="padding:10px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;font-size:13px;color:#0f172a;">${it.value}</td>
+      </tr>`).join('');
     }
-    
-    return content;
-  }).join('\n');
+    return `
+<tr><td style="padding:20px 32px 0;">
+  <p style="margin:0 0 10px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;">${section.title}</p>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:10px;overflow:hidden;">
+    ${rows}
+  </table>
+</td></tr>
+<tr><td style="padding:16px 32px 0;"><div style="height:1px;background:#e2e8f0;"></div></td></tr>`;
+  }).join('');
 
-  return `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>NordSym X ${sow.customerName} - Signed SoW</title>
-</head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px; background: #0A0908;">
-  <div style="background: #12110F; border-radius: 16px; padding: 40px; border: 1px solid #1F1E1C;">
-    <!-- Header -->
-    <div style="text-align: center; margin-bottom: 40px;">
-      <div style="font-size: 42px; font-weight: bold; background: linear-gradient(135deg, #00D4FF 0%, #9370DB 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">NordSym</div>
-      <h1 style="margin: 16px 0 8px; color: #FAFAFA; font-size: 28px;">NordSym X ${sow.customerName}</h1>
-      <div style="display: inline-block; background: #166534; color: #F0FDF4; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-top: 12px;">
-        ✓ Week 1 Checkpoint
-      </div>
-      <p style="color: #00D4FF; font-weight: 600; margin-top: 16px; font-size: 18px;">SIGNED SCOPE OF WORK</p>
-      <p style="color: #A3A3A3; font-size: 14px;">Signed on ${signedDate}</p>
-    </div>
-    
-    <!-- Vertical -->
-    <div style="background: #1F1E1C; padding: 20px; border-radius: 12px; margin-bottom: 30px;">
-      <p style="color: #9370DB; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px;">Vertical</p>
-      <p style="color: #FAFAFA; font-size: 16px; margin: 0; font-weight: 500;">${sow.vertical}</p>
-    </div>
-    
-    <!-- Pricing -->
-    <div style="background: #1F1E1C; padding: 20px; border-radius: 12px; margin-bottom: 30px;">
-      <p style="color: #9370DB; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px;">Investment</p>
-      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 200px;">
-          <p style="color: #A3A3A3; font-size: 14px; margin: 0 0 4px;">Fixed Monthly</p>
-          <p style="color: #00D4FF; font-size: 24px; font-weight: bold; margin: 0;">$${sow.pricing.fixed}</p>
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-          <p style="color: #A3A3A3; font-size: 14px; margin: 0 0 4px;">Nectar (Usage)</p>
-          <p style="color: #FAFAFA; font-size: 16px; margin: 0;">${sow.pricing.nectar}</p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Content Sections -->
-    <div style="color: #E5E5E5; line-height: 1.8;">
-      ${sections}
-    </div>
-    
-    <!-- Signatures -->
-    <div style="border-top: 2px solid #1F1E1C; margin-top: 40px; padding-top: 30px;">
-      <h2 style="color: #00D4FF; margin-bottom: 24px;">Signatures</h2>
-      <table width="100%" style="border-collapse: collapse;">
-        <tr>
-          <td style="width: 50%; vertical-align: top; padding-right: 20px;">
-            <p style="color: #A3A3A3; font-size: 12px; margin: 0 0 12px;">NORDSYM AB</p>
-            <p style="font-family: 'Brush Script MT', cursive; font-size: 28px; color: #FAFAFA; margin: 12px 0;">Gustav Hemmingsson</p>
-            <p style="color: #E5E5E5; margin: 8px 0 0;"><strong>Gustav Hemmingsson</strong><br>CEO, NordSym AB<br>March 12, 2026</p>
-          </td>
-          <td style="width: 50%; vertical-align: top; padding-left: 20px; border-left: 1px solid #1F1E1C;">
-            <p style="color: #A3A3A3; font-size: 12px; margin: 0 0 12px;">${sow.customerName.toUpperCase()}</p>
-            <img src="${signatureDataUrl}" style="max-width: 250px; max-height: 100px; display: block; margin: 12px 0;" alt="Signature"/>
-            <p style="color: #E5E5E5; margin: 8px 0 0;"><strong>${sow.signedBy}</strong><br>${sow.signerTitle}<br>${signedDate}</p>
-          </td>
-        </tr>
-      </table>
-    </div>
-    
-    <!-- Footer -->
-    <div style="margin-top: 40px; padding: 24px; background: #0F9960; border-radius: 12px; text-align: center;">
-      <p style="color: #F0FDF4; margin: 0; font-size: 16px; font-weight: 600;">This document has been digitally signed by both parties</p>
-    </div>
-  </div>
-</body>
-</html>`;
+  return `<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NordSym X ${sow.customerName} — Signed SoW</title></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#0f172a;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;">
+<tr><td>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);">
+
+<!-- Header -->
+<tr><td style="background:#0a0c0f;padding:28px 32px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td><span style="font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-.3px;">NordSym</span><span style="font-size:22px;font-weight:300;color:#00d4ff;"> × ${sow.customerName}</span></td>
+<td align="right"><span style="display:inline-block;background:rgba(0,212,255,.12);color:#00d4ff;border:1px solid rgba(0,212,255,.3);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;letter-spacing:.04em;">SIGNED SOW</span></td>
+</tr></table>
+<p style="margin:10px 0 0;color:#94a3b8;font-size:14px;line-height:1.6;">Scope of Work — signed ${signedDate}</p>
+</td></tr>
+
+<!-- Signed by -->
+<tr><td style="padding:24px 32px 0;">
+<div style="background:#f0fdf4;border-left:4px solid #166534;border-radius:0 10px 10px 0;padding:14px 16px;">
+<p style="margin:0;color:#166534;font-weight:700;font-size:14px;">✓ Scope of Work signed by ${sow.signedBy}</p>
+</div>
+</td></tr>
+
+<!-- Investment -->
+<tr><td style="padding:20px 32px 0;">
+<p style="margin:0 0 10px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;">Investment</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:10px;overflow:hidden;">
+<tr>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;">Monthly fee</td>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:700;font-size:16px;color:#0f172a;">$${sow.pricing.fixed}</td>
+</tr>
+<tr>
+<td style="padding:12px 16px;color:#64748b;font-size:13px;">Billing</td>
+<td style="padding:12px 16px;text-align:right;font-weight:600;font-size:13px;">Monthly via Stripe</td>
+</tr>
+</table>
+</td></tr>
+<tr><td style="padding:16px 32px 0;"><div style="height:1px;background:#e2e8f0;"></div></td></tr>
+
+${sectionsHtml}
+
+<!-- Signature block -->
+<tr><td style="padding:20px 32px 0;">
+<p style="margin:0 0 10px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;">Signatures</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border-radius:10px;overflow:hidden;">
+<tr>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;">NordSym AB</td>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;font-size:13px;font-style:italic;">Gustav Hemmingsson</td>
+</tr>
+<tr>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;color:#64748b;font-size:13px;">${sow.customerName}</td>
+<td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;font-size:13px;">${sow.signedBy}${sow.signerTitle ? ', ' + sow.signerTitle : ''}</td>
+</tr>
+<tr>
+<td style="padding:12px 16px;color:#64748b;font-size:13px;">Date</td>
+<td style="padding:12px 16px;font-weight:600;font-size:13px;">${signedDate}</td>
+</tr>
+</table>
+</td></tr>
+
+<!-- Footer -->
+<tr><td style="padding:24px 32px;">
+<div style="height:1px;background:#e2e8f0;margin-bottom:20px;"></div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="color:#94a3b8;font-size:12px;line-height:1.6;"><strong style="color:#64748b;">NordSym AB</strong> · org.nr 559535-5768<br><a href="https://nordsym.com" style="color:#00d4ff;text-decoration:none;">nordsym.com</a></td>
+<td align="right" style="color:#94a3b8;font-size:11px;">Signed Scope of Work · ${new Date().getFullYear()}</td>
+</tr></table>
+</td></tr>
+
+</table>
+</td></tr>
+</table>
+</body></html>`;
 }
+
 
 function generateEmailBody(sow, signedDate) {
   return `<!DOCTYPE html>
