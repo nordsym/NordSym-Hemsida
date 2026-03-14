@@ -78,10 +78,10 @@
 
   function autoAgenda() {
     const lines = [
-      '1) Objectives and desired business outcomes',
-      '2) Week 1 scope and success criteria',
-      '3) Technical constraints and integration boundaries',
-      '4) Roles, owners and communication cadence',
+      '1) Review Week 1 progress and early results',
+      '2) Agent performance and infrastructure status',
+      '3) Feedback and priority adjustments',
+      '4) Decision: continue, revise, or expand scope',
       '5) Next actions and timeline'
     ];
     if (state.primaryGoal) lines.unshift('Business goal: ' + state.primaryGoal);
@@ -192,6 +192,9 @@
       }
       status.textContent = 'Booking...';
       try {
+        // Extract service scope items from SoW section 4
+        var scopeSection = (content.sections || []).find(function (s) { return s.title && s.title.indexOf('4.') === 0 && s.items; });
+        var serviceScope = scopeSection ? scopeSection.items : [];
         const response = await fetch('/api/sow/book', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -206,6 +209,7 @@
             requestedTime: time,
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Europe/Stockholm',
             agenda: state.agenda,
+            serviceScope: serviceScope,
             demo
           })
         });
