@@ -2,7 +2,7 @@
 // Handles signature submission and email delivery
 
 const CONVEX_URL = "https://laudable-ladybug-188.convex.cloud";
-const N8N_WEBHOOK = "https://nordsym.app.n8n.cloud/webhook/symbot-smtp-v2";
+const N8N_WEBHOOK = "https://nordsym.app.n8n.cloud/webhook/symbot-gmail";
 
 // Partner email configuration
 const partnerEmails = {
@@ -201,17 +201,18 @@ ${sectionsHtml}
 
 async function sendEmailWithAttachment(to, subject, sow, signedDate, sowHtml, filename) {
   try {
-    // Send full signed SoW as email body + base64-encoded HTML attachment
+    // Send full signed SoW as HTML email body + base64-encoded HTML attachment
+    // Payload format matches Symbot-Gmail n8n workflow (Convert Attachments Code node)
     const attachmentBase64 = Buffer.from(sowHtml).toString('base64');
     const response = await fetch(N8N_WEBHOOK, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        action: "send",
         to,
         subject,
         message: sowHtml,
-        attachment_base64: attachmentBase64,
-        attachment_filename: filename,
+        attachments: [{ data: attachmentBase64, filename }],
       }),
     });
 
